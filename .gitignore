@@ -5,3 +5,4 @@ video/node_modules/
 video/renders/
 video/.hyperframes/
 .DS_Store
+video/.thumbnails/

@@ -1,0 +1,240 @@
+{
+  "audio": "assets/vo/s10-outro.mp3",
+  "language": "en",
+  "words": [
+    {
+      "text": "AI",
+      "start": 0.34,
+      "end": 0.64,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "organizes",
+      "start": 0.82,
+      "end": 1.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 1.54,
+      "end": 1.64,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "explains.",
+      "start": 1.68,
+      "end": 2.4,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "The",
+      "start": 2.88,
+      "end": 2.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "insolvency",
+      "start": 2.98,
+      "end": 3.64,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "practitioner",
+      "start": 3.74,
+      "end": 4.3,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "decides.",
+      "start": 4.38,
+      "end": 5,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "This",
+      "start": 5.46,
+      "end": 5.56,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "is",
+      "start": 5.62,
+      "end": 5.74,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "information,",
+      "start": 5.8,
+      "end": 6.44,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "not",
+      "start": 6.76,
+      "end": 6.96,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "legal",
+      "start": 7,
+      "end": 7.28,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "advice.",
+      "start": 7.34,
+      "end": 7.84,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "I",
+      "start": 8.3,
+      "end": 8.36,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "might",
+      "start": 8.4,
+      "end": 8.6,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "see",
+      "start": 8.66,
+      "end": 8.82,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "you",
+      "start": 8.88,
+      "end": 8.96,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 9.02,
+      "end": 9.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "part",
+      "start": 9.2,
+      "end": 9.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "two,",
+      "start": 9.52,
+      "end": 9.78,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "depending",
+      "start": 10.08,
+      "end": 10.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "on",
+      "start": 10.56,
+      "end": 10.64,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "your",
+      "start": 10.68,
+      "end": 10.76,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "feedback.",
+      "start": 10.9,
+      "end": 11.4,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "And",
+      "start": 11.86,
+      "end": 11.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "if",
+      "start": 11.98,
+      "end": 12.08,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "you're",
+      "start": 12.12,
+      "end": 12.26,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "interested",
+      "start": 12.32,
+      "end": 12.78,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 12.84,
+      "end": 12.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "building",
+      "start": 13.02,
+      "end": 13.3,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "bots",
+      "start": 13.42,
+      "end": 13.68,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 13.72,
+      "end": 13.8,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "automation,",
+      "start": 13.9,
+      "end": 14.48,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "check",
+      "start": 14.9,
+      "end": 15.12,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "out",
+      "start": 15.2,
+      "end": 15.36,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "our",
+      "start": 15.42,
+      "end": 15.58,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "school",
+      "start": 15.64,
+      "end": 15.88,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "community",
+      "start": 15.98,
+      "end": 16.54,
+      "speaker": "speaker_0"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "audio": "assets/vo/s09-cta.mp3",
+  "language": "en",
+  "words": [
+    {
+      "text": "In",
+      "start": 0.3,
+      "end": 0.36,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "part",
+      "start": 0.44,
+      "end": 0.7,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "two,",
+      "start": 0.76,
+      "end": 1,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "I'll",
+      "start": 1.32,
+      "end": 1.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "showcase",
+      "start": 1.52,
+      "end": 1.96,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "how",
+      "start": 2,
+      "end": 2.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "I",
+      "start": 2.26,
+      "end": 2.36,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "build",
+      "start": 2.38,
+      "end": 2.56,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 2.6,
+      "end": 2.7,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "stages",
+      "start": 2.76,
+      "end": 3.2,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 3.34,
+      "end": 3.42,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 3.46,
+      "end": 3.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "app,",
+      "start": 3.66,
+      "end": 3.86,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 4.28,
+      "end": 4.38,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "how",
+      "start": 4.44,
+      "end": 4.72,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "AI",
+      "start": 4.82,
+      "end": 5.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "agents",
+      "start": 5.36,
+      "end": 5.74,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "email",
+      "start": 5.92,
+      "end": 6.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 6.22,
+      "end": 6.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "right",
+      "start": 6.36,
+      "end": 6.54,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "parties",
+      "start": 6.64,
+      "end": 7.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "to",
+      "start": 7.18,
+      "end": 7.26,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "move",
+      "start": 7.3,
+      "end": 7.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 7.56,
+      "end": 7.66,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "needle",
+      "start": 7.7,
+      "end": 8.039,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 8.08,
+      "end": 8.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 8.18,
+      "end": 8.26,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "right",
+      "start": 8.3,
+      "end": 8.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "direction.",
+      "start": 8.56,
+      "end": 9.1,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "If",
+      "start": 9.7,
+      "end": 9.82,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "this",
+      "start": 9.88,
+      "end": 10.06,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "was",
+      "start": 10.12,
+      "end": 10.28,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "useful,",
+      "start": 10.36,
+      "end": 10.76,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "subscribe",
+      "start": 11.12,
+      "end": 11.8,
+      "speaker": "speaker_0"
+    }
+  ]
+}
