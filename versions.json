@@ -1,5 +1,5 @@
 {
-  "site": "1.6.0",
+  "site": "1.6.1",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -104,7 +104,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "date": "2026-11-18"
     },
     "performance.html": {
@@ -114,6 +114,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.6.1",
+      "date": "2026-11-18",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Fix: the Review page's control rows no longer pick up the thin teal progress-bar style from the shared stylesheet, so the buttons and messages no longer overlap."
+      ]
+    },
     {
       "version": "1.6.0",
       "date": "2026-11-18",
