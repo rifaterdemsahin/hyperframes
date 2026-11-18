@@ -1,5 +1,5 @@
 // Builds storyboard/index.html from script/scenes.json. Run: node scripts/build-storyboard.mjs
-import { readFileSync, writeFileSync, mkdirSync, cpSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, cpSync, copyFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,6 +9,8 @@ mkdirSync(`${root}/storyboard`, { recursive: true });
 cpSync(`${root}/video/assets/bg`, `${root}/storyboard/bg`, { recursive: true });
 cpSync(`${root}/video/assets/vo`, `${root}/storyboard/vo`, { recursive: true });
 
+copyFileSync(`${root}/scripts/storyboard-editor.js`, `${root}/storyboard/editor.js`);
+
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const tc = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
@@ -17,10 +19,10 @@ const panels = data.scenes
     const words = s.vo.split(/\s+/).length;
     const [head, ...rest] = s.overlay;
     return `
-<article class="panel">
+<article class="panel" data-id="${s.id}" data-title="${String(i + 1).padStart(2, "0")} · ${esc(s.title)}">
   <div class="frame" style="background-image:url(bg/${s.bg}.jpg)">
     <div class="shade"></div>
-    <div class="ov"><h2>${esc(head)}</h2>${rest.map((r) => `<p>${esc(r)}</p>`).join("")}</div>
+    <div class="ov"><h2 contenteditable="plaintext-only" data-f="o0">${esc(head)}</h2>${rest.map((r, j) => `<p contenteditable="plaintext-only" data-f="o${j + 1}">${esc(r)}</p>`).join("")}</div>
     ${s.ph ? `<div class="ph">PLACEHOLDER · ${esc(s.ph)}</div>` : ""}
     <span class="tag">${esc(s.label)}</span>
   </div>
@@ -29,7 +31,8 @@ const panels = data.scenes
     <p class="broll"><b>B-roll:</b> ${esc(s.broll)}</p>
     ${s.voSeconds ? `<audio controls preload="none" src="vo/${s.id}.mp3"></audio>
     <p class="fit ${s.voSeconds > s.duration ? "over" : "ok"}">Voice ${s.voSeconds}s vs ${s.duration}s slot${s.voSeconds > s.duration ? ` · runs over by ${(s.voSeconds - s.duration).toFixed(1)}s` : ""}</p>` : ""}
-    <p class="vo">“${esc(s.vo)}”</p>
+    <p class="vo" contenteditable="plaintext-only" data-f="vo">${esc(s.vo)}</p>
+    <textarea class="fb" data-f="fb" placeholder="Feedback on this panel: what to change, move, cut..."></textarea>
   </div>
 </article>`;
   })
@@ -53,12 +56,21 @@ main{max-width:1280px;margin:auto;padding:16px 24px 64px;display:grid;grid-templ
 .ph{position:absolute;bottom:10px;left:10px;right:10px;border:1px dashed #ffd166;color:#ffd166;background:#000a;font-size:12px;padding:5px 8px;border-radius:4px}
 .meta{padding:14px 16px 18px}.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.row span{color:var(--mute);font-size:13px}
 audio{width:100%;margin-top:8px;height:36px}.fit{margin:.3em 0;font-size:12px}.fit.ok{color:#68d391}.fit.over{color:var(--red)}
+[contenteditable]{outline:none;border-radius:4px;cursor:text}[contenteditable]:hover{box-shadow:0 0 0 1px #ffd16688}[contenteditable]:focus{box-shadow:0 0 0 2px var(--accent);background:#0006}[contenteditable].changed{box-shadow:0 0 0 2px #ffd166}
+.fb{width:100%;min-height:54px;margin-top:10px;font:inherit;font-size:14px;background:var(--bg);color:var(--ink);border:1px solid #232a35;border-radius:6px;padding:8px;resize:vertical}
+#bar{position:sticky;bottom:0;z-index:50;background:#0e1116ee;border-top:1px solid #232a35;padding:10px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;backdrop-filter:blur(6px)}
+#bar button{font:inherit;border:1px solid #232a35;background:var(--card);color:var(--ink);padding:8px 14px;border-radius:8px;cursor:pointer}#bar #copy{background:var(--accent);color:#04222a;font-weight:700;border-color:var(--accent)}#count{color:var(--mute);font-size:13px}
+#gen{max-width:1280px;margin:0 auto;padding:0 24px 24px}#gen label{display:block;color:var(--mute);margin-bottom:6px}#gen textarea{width:100%;min-height:90px;font:inherit;background:var(--card);color:var(--ink);border:1px solid #232a35;border-radius:8px;padding:10px}
 .broll{color:var(--mute);font-size:14px;margin:.5em 0}.broll b{color:var(--accent)}.vo{margin:.4em 0 0;font-size:15px}
 </style></head><body>
 <script src="../nav.js"></script>
-<header><h1>${esc(data.title)}</h1><p>Storyboard · ${data.scenes.length} scenes · about ${tc(data.totalSecondsApprox)} · generated from script/scenes.json. Dashed boxes are real footage you supply. Backgrounds and voiceover are fal.ai (British male, Kokoro); press play on each panel. Total voice time: ${data.scenes.reduce((a,x)=>a+(x.voSeconds||0),0).toFixed(0)}s.</p></header>
+<header><h1>${esc(data.title)}</h1><p>Storyboard · ${data.scenes.length} scenes · about ${tc(data.totalSecondsApprox)} · generated from script/scenes.json. Dashed boxes are real footage you supply. Backgrounds and voiceover are fal.ai (British male, Kokoro); press play on each panel. <b>Click any overlay or voiceover text to edit it</b> (edited text gets a yellow outline), add feedback per panel, then use Copy at the bottom. Total voice time: ${data.scenes.reduce((a,x)=>a+(x.voSeconds||0),0).toFixed(0)}s.</p></header>
 <main>${panels}
-</main></body></html>`;
+</main>
+<section id="gen"><label for="general">General feedback (pacing, voice, look, anything else)</label><textarea id="general" placeholder="e.g. make the hook shorter, try a female voice, warmer colours..."></textarea><textarea id="fallback" hidden style="margin-top:8px"></textarea></section>
+<div id="bar"><button id="copy">Copy feedback for Claude</button><button id="reset">Reset edits</button><span id="count"></span></div>
+<script src="editor.js"></script>
+</body></html>`;
 
 writeFileSync(`${root}/storyboard/index.html`, html);
 console.log("wrote storyboard/index.html");

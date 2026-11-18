@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes vs Remotion</title>
+<style>
+:root{--bg:#f6f8fa;--card:#fff;--ink:#17202a;--mute:#5b6675;--line:#dde3ea;--accent:#0a7c91;--warn:#b7791f}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e8ecf1;--mute:#8b95a5;--line:#232a35;--accent:#4cc3d9;--warn:#ffd166}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:860px;margin:auto;padding:32px 16px 64px}h1{margin:0 0 6px;font-size:30px}h2{margin:36px 0 10px;font-size:20px}
+.lead{font-size:18px;color:var(--mute)}.note{border-left:3px solid var(--warn);background:var(--card);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14px;color:var(--mute)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto}
+pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;font-size:13px;line-height:1.5}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}.two h3{margin:0 0 6px;font-size:15px}
+.pick{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}.pick li{margin:4px 0}
+a{color:var(--accent)}small{color:var(--mute)}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+<main>
+  <h1>Hyperframes vs Remotion</h1>
+  <p class="lead">Both tools turn web pages into video: open a real browser, draw each frame, encode the result. The difference is what you write. Remotion asks for a React component. Hyperframes asks for an HTML file.</p>
+  <p class="note"><b>Source and bias:</b> the comparison numbers and code below come from Hyperframes' own guide, written by HeyGen, who make Hyperframes. It is open about what Remotion does better, but treat it as a vendor source. The "for this project" section is my own reasoning.</p>
+
+  <h2>Where they differ</h2>
+  <div class="tw"><table>
+    <tr><th></th><th>Hyperframes</th><th>Remotion</th></tr>
+    <tr><td>You write</td><td>HTML, CSS and JavaScript</td><td>React and TypeScript</td></tr>
+    <tr><td>How motion is timed</td><td>Markup declares when things are on screen (<code>data-start</code>, <code>data-duration</code>); a paused GSAP timeline declares how they move, in seconds. The renderer <em>seeks</em> it to each exact moment.</td><td>A component reads the current frame number and returns the values for that frame. You do the timing math in frames.</td></tr>
+    <tr><td>Existing web material</td><td>HTML, CSS, GSAP or Lottie usually drop in close to as-is</td><td>Rewritten as React components</td></tr>
+    <tr><td>Licence</td><td>Apache 2.0</td><td>Its own licence: free for individuals and companies up to three people, paid above that (check <a href="https://www.remotion.pro/license">current terms</a>)</td></tr>
+    <tr><td>Rendering</td><td>Local (free, no account), HeyGen cloud, Google Cloud Run, AWS Lambda</td><td>Local and AWS Lambda; Lambda is mature and heavily documented</td></tr>
+    <tr><td>Visual editor</td><td>Studio edits the same DOM the renderer captures</td><td>Remotion Studio edits React compositions</td></tr>
+    <tr><td>Maturity</td><td>Newer</td><td>Older: more templates, tutorials, answers and production history</td></tr>
+  </table></div>
+
+  <h2>Same request, two agents (HeyGen's test)</h2>
+  <p>Claude Code was given one prompt twice: a 15 second launch video, once with Remotion's agent skills and once with Hyperframes'. One run each, no retries. Both produced good videos; one run decides nothing about quality.</p>
+  <div class="tw"><table>
+    <tr><th></th><th>Remotion</th><th>Hyperframes</th></tr>
+    <tr><td>Time to rendered MP4</td><td>12 min 30 s</td><td>11 min 50 s</td></tr>
+    <tr><td>Code written</td><td>10 TypeScript files, 1,037 lines</td><td>4 HTML files, 822 lines</td></tr>
+    <tr><td>Installed into project</td><td>about 950 MB of <code>node_modules</code></td><td>nothing</td></tr>
+    <tr><td>Sound</td><td>none</td><td>a music bed and five sound effects it chose</td></tr>
+  </table></div>
+
+  <h2>The same title card, written both ways</h2>
+  <div class="two">
+    <div><h3>Remotion</h3><pre>import { AbsoluteFill, interpolate,
+  useCurrentFrame } from "remotion";
+
+export const TitleCard = () =&gt; {
+  const frame = useCurrentFrame();
+  // fade in 0-15, hold to 75, out by 90
+  const opacity = interpolate(
+    frame, [0, 15, 75, 90], [0, 1, 1, 0],
+    { extrapolateLeft: "clamp",
+      extrapolateRight: "clamp" });
+  return (
+    &lt;AbsoluteFill style={{ background: "#0a0a0a",
+      justifyContent: "center",
+      alignItems: "center" }}&gt;
+      &lt;div style={{ fontSize: 160, color: "#fff",
+        opacity }}&gt;HELLO&lt;/div&gt;
+    &lt;/AbsoluteFill&gt;);
+};</pre></div>
+    <div><h3>Hyperframes</h3><pre>&lt;div id="stage" data-composition-id="title-card"
+     data-start="0" data-width="1280"
+     data-height="720" data-duration="3"&gt;
+  &lt;div class="clip" data-start="0"
+       data-duration="3" data-track-index="0"&gt;
+    &lt;div id="title"&gt;HELLO&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  const tl = gsap.timeline({ paused: true });
+  tl.to("#title", {opacity:1, duration:.5}, 0);
+  tl.to("#title", {opacity:1, duration:2}, .5);
+  tl.to("#title", {opacity:0, duration:.5}, 2.5);
+  window.__timelines["title-card"] = tl;
+&lt;/script&gt;</pre></div>
+  </div>
+  <p><small>Condensed from the official guide. Neither is obviously better: the Remotion one is a pure function you can reason about in your head; the Hyperframes one is a page you can open in a browser and inspect with devtools.</small></p>
+
+  <h2>What Remotion does better</h2>
+  <ul>
+    <li>More established: more templates, tutorials, answered questions and production history.</li>
+    <li>Remotion Lambda is a mature rendering system; Hyperframes' cloud options are newer.</li>
+    <li>If your team already writes React, you reuse your components, design system and charting libraries, with typed, validated inputs.</li>
+  </ul>
+
+  <h2>For this video</h2>
+  <div class="pick">
+    <p><b>Hyperframes is the better fit here</b>, for these reasons:</p>
+    <ul>
+      <li>Every number and date (£39,475.54, £1,500 + £2,100, 30 Oct, 19 Nov, 2 Dec) is plain HTML text you can edit and re-render, with no React build.</li>
+      <li>The storyboard, kanban and hub are already HTML, so the same overlays and CSS carry straight into the video.</li>
+      <li>The project is Apache 2.0 and installs nothing into the repo, which suits a public repo on GitHub Pages.</li>
+      <li>It is made for AI agents to write, which is how this video is being built, and the project's own docs steer me through it.</li>
+    </ul>
+    <p>Remotion would make sense if you later wanted a React app that generates many videos from data, or already had React components to reuse.</p>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md">HyperFrames vs Remotion</a> (HeyGen)</li>
+    <li><a href="https://hyperframes.heygen.com/prompting/remotion-migration.md">Move from Remotion to Hyperframes</a></li>
+    <li><a href="https://hyperframes.heygen.com/faq.md">Hyperframes FAQ</a></li>
+    <li><a href="https://www.remotion.pro/license">Remotion licence</a></li>
+  </ul>
+</main>
+</body>
+</html>
