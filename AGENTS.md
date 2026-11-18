@@ -34,7 +34,8 @@ node scripts/build-publish-page.mjs   # publish.html from spec/publish.json (tit
 scripts/build-thumbnails.sh           # thumbnails/thumb-*.html to 1280x720 JPG with headless Chrome + ffmpeg
 node scripts/build-architecture.mjs   # architecture diagram + dependency table inside index.html (edit NODES/EDGES/DEPS in the script)
 node scripts/build-video.mjs          # regenerate video/index.html + video/compositions from scenes.json
-node scripts/render-draft.mjs         # build, check, render and TIME the whole draft; refreshes first-draft, review and performance pages
+node scripts/render-draft.mjs [--version=N]  # build, check, render and TIME draft vN (default: latest in draft/versions.json); refreshes the draft, review and performance pages
+#   new draft version: add an entry (n, date, label, changes) to draft/versions.json, set "latest", then run render-draft. Older versions stay in draft/vN and are hidden on the page (?all=1)
 node scripts/build-changes-page.mjs   # changes.html: latest release, script diffs, commits (run after the bump, before the commit)
 scripts/gen-backgrounds.sh            # fal.ai background images (needs FAL_KEY in .env)
 scripts/gen-voiceover.sh [voice]      # fal.ai draft voiceover, writes voSeconds into scenes.json

@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.7.0"></script>
+<script src="nav.js?v=1.8.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -51,6 +51,8 @@ const TASKS=[
  {id:"t22",col:"input",who:"you",title:"Skool community name and link",desc:"For the end screen and the description. I did not invent one."},
  {id:"t23",col:"input",who:"you",title:"Ask the practitioner about emailing the parties",desc:"The script says AI agents email the right parties. Check what you may send yourself before Part 2 shows it."},
  {id:"t27",col:"input",who:"you",title:"Part 2 link (after it is published)",desc:"Goes in the description and on the end screen."},
+ {id:"t32",col:"input",who:"you",title:"Official n8n logo file",desc:"Scene 8 has a logo slot. Drop the official logo into video/assets/logos/n8n.svg (or .png), or tell me to download it from n8n's brand page. I will not redraw or AI-generate a brand logo."},
+ {id:"t33",col:"input",who:"you",title:"Confirm the £1,500 + £2,100 are average UK figures",desc:"Draft v2 now says these are average figures in the UK and yours could be higher or lower. Check that is true, or tell me the wording you want."},
  {id:"t09",col:"input",who:"you",title:"Rotate the fal.ai key",desc:"The key was pasted in chat. Create a new one and replace FAL_KEY in your local .env."},
  // Ready for Claude
  {id:"t10",col:"ready",who:"ai",title:"Build the 10 scenes in Hyperframes",desc:"Sub-compositions with placeholders, timings from script/scenes.json."},
@@ -71,6 +73,7 @@ const TASKS=[
  {id:"t29",col:"done",who:"ai",title:"Title, description and thumbnails drafted (v1.5.0)",desc:"Publish page under Postprod, with two real 1280x720 thumbnails."},
  {id:"t30",col:"done",who:"ai",title:"Title and thumbnail chosen (v1.5.3)",desc:"You picked the title \"Stuck in Red Tape? How I Use AI When a Process Gets Confusing\" and thumbnail A. Marked on the Publish page."},
  {id:"t31",col:"done",who:"ai",title:"First draft built, rendered and embedded (v1.6.0)",desc:"3:38 with the AI voice and captions, 0 check warnings. Postprod: First draft, Review, Performance pages."},
+ {id:"t34",col:"done",who:"ai",title:"Draft v2 from your review notes (v1.8.0)",desc:"8 notes applied: AI-age hook, connect parts to AI, learn the details, average UK figures, lever animation, stakes line, bigger footage frame, n8n logo slot, next journey."},
  {id:"t18",col:"done",who:"ai",title:"GitHub Pages hub, this kanban",desc:"index.html and kanban.html."}
 ];
 const KEY="liquidation-kanban-v1";

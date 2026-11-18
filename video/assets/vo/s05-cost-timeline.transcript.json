@@ -5,7 +5,7 @@
     {
       "text": "Here's",
       "start": 0.3,
-      "end": 0.52,
+      "end": 0.54,
       "speaker": "speaker_0"
     },
     {
@@ -23,7 +23,7 @@
     {
       "text": "costs:",
       "start": 0.78,
-      "end": 1.18,
+      "end": 1.16,
       "speaker": "speaker_0"
     },
     {
@@ -59,18 +59,18 @@
     {
       "text": "pounds",
       "start": 2.78,
-      "end": 3.04,
+      "end": 3.08,
       "speaker": "speaker_0"
     },
     {
       "text": "deposit,",
-      "start": 3.1,
+      "start": 3.12,
       "end": 3.52,
       "speaker": "speaker_0"
     },
     {
       "text": "then",
-      "start": 3.82,
+      "start": 3.84,
       "end": 3.92,
       "speaker": "speaker_0"
     },
@@ -95,25 +95,25 @@
     {
       "text": "one",
       "start": 4.66,
-      "end": 4.76,
+      "end": 4.74,
       "speaker": "speaker_0"
     },
     {
       "text": "hundred",
-      "start": 4.8,
-      "end": 5.04,
+      "start": 4.78,
+      "end": 5.02,
       "speaker": "speaker_0"
     },
     {
       "text": "pounds",
-      "start": 5.14,
-      "end": 5.4,
+      "start": 5.12,
+      "end": 5.38,
       "speaker": "speaker_0"
     },
     {
       "text": "balance.",
-      "start": 5.5,
-      "end": 5.9,
+      "start": 5.46,
+      "end": 5.86,
       "speaker": "speaker_0"
     },
     {
@@ -125,367 +125,451 @@
     {
       "text": "paid",
       "start": 6.54,
-      "end": 6.8,
+      "end": 6.78,
       "speaker": "speaker_0"
     },
     {
       "text": "both,",
-      "start": 6.84,
-      "end": 7.1,
+      "start": 6.82,
+      "end": 7.08,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 7.4,
-      "end": 7.46,
+      "start": 7.32,
+      "end": 7.38,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 7.5,
-      "end": 7.58,
+      "start": 7.42,
+      "end": 7.5,
       "speaker": "speaker_0"
     },
     {
       "text": "process",
-      "start": 7.62,
-      "end": 8.039,
+      "start": 7.54,
+      "end": 7.96,
       "speaker": "speaker_0"
     },
     {
       "text": "takes",
-      "start": 8.08,
-      "end": 8.26,
+      "start": 8,
+      "end": 8.18,
       "speaker": "speaker_0"
     },
     {
       "text": "about",
-      "start": 8.32,
-      "end": 8.56,
+      "start": 8.26,
+      "end": 8.48,
       "speaker": "speaker_0"
     },
     {
       "text": "two",
-      "start": 8.6,
-      "end": 8.74,
+      "start": 8.54,
+      "end": 8.66,
       "speaker": "speaker_0"
     },
     {
       "text": "months.",
-      "start": 8.84,
-      "end": 9.16,
+      "start": 8.76,
+      "end": 9.1,
       "speaker": "speaker_0"
     },
     {
-      "text": "Don't",
-      "start": 9.52,
-      "end": 9.68,
+      "text": "These",
+      "start": 9.6,
+      "end": 9.74,
       "speaker": "speaker_0"
     },
     {
-      "text": "try",
-      "start": 9.72,
-      "end": 9.88,
+      "text": "are",
+      "start": 9.76,
+      "end": 9.86,
       "speaker": "speaker_0"
     },
     {
-      "text": "to",
-      "start": 9.92,
-      "end": 10.02,
+      "text": "average",
+      "start": 9.94,
+      "end": 10.18,
       "speaker": "speaker_0"
     },
     {
-      "text": "do",
-      "start": 10.06,
-      "end": 10.12,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "it",
-      "start": 10.16,
-      "end": 10.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
+      "text": "figures",
       "start": 10.26,
-      "end": 10.42,
+      "end": 10.54,
       "speaker": "speaker_0"
     },
     {
-      "text": "AI",
-      "start": 10.48,
-      "end": 10.76,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "alone.",
-      "start": 10.82,
-      "end": 11.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Learn",
-      "start": 11.66,
-      "end": 11.84,
+      "text": "in",
+      "start": 10.56,
+      "end": 10.62,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 11.88,
-      "end": 11.96,
+      "start": 10.66,
+      "end": 10.72,
       "speaker": "speaker_0"
     },
     {
-      "text": "process,",
-      "start": 12,
-      "end": 12.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "delegate",
-      "start": 12.74,
-      "end": 13.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
-      "start": 13.1,
-      "end": 13.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI,",
-      "start": 13.34,
-      "end": 13.68,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 13.84,
-      "end": 13.92,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "still",
-      "start": 14.04,
-      "end": 14.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "use",
-      "start": 14.3,
-      "end": 14.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 14.46,
-      "end": 14.5,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "professional.",
-      "start": 14.54,
-      "end": 15.1,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Using",
-      "start": 15.6,
-      "end": 15.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 15.94,
-      "end": 16.219,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "gives",
-      "start": 16.3,
-      "end": 16.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "you",
-      "start": 16.52,
-      "end": 16.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "leverage,",
-      "start": 16.64,
-      "end": 17.08,
+      "text": "UK,",
+      "start": 10.78,
+      "end": 11.14,
       "speaker": "speaker_0"
     },
     {
       "text": "so",
-      "start": 17.46,
-      "end": 17.6,
+      "start": 11.42,
+      "end": 11.58,
       "speaker": "speaker_0"
     },
     {
-      "text": "use",
-      "start": 17.66,
-      "end": 17.76,
+      "text": "yours",
+      "start": 11.62,
+      "end": 11.92,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "could",
+      "start": 11.94,
+      "end": 12.02,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "be",
+      "start": 12.06,
+      "end": 12.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "higher",
+      "start": 12.18,
+      "end": 12.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "or",
+      "start": 12.5,
+      "end": 12.6,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "lower.",
+      "start": 12.66,
+      "end": 12.96,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Don't",
+      "start": 13.34,
+      "end": 13.5,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "try",
+      "start": 13.54,
+      "end": 13.7,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "to",
+      "start": 13.72,
+      "end": 13.8,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "do",
+      "start": 13.82,
+      "end": 13.9,
       "speaker": "speaker_0"
     },
     {
       "text": "it",
-      "start": 17.8,
-      "end": 17.84,
+      "start": 13.92,
+      "end": 14,
       "speaker": "speaker_0"
     },
     {
-      "text": "on",
-      "start": 17.88,
-      "end": 18.04,
+      "text": "with",
+      "start": 14.04,
+      "end": 14.2,
       "speaker": "speaker_0"
     },
     {
-      "text": "processes",
-      "start": 18.06,
-      "end": 18.62,
+      "text": "AI",
+      "start": 14.26,
+      "end": 14.54,
       "speaker": "speaker_0"
     },
     {
-      "text": "like",
-      "start": 18.68,
-      "end": 18.86,
+      "text": "alone.",
+      "start": 14.6,
+      "end": 15.02,
       "speaker": "speaker_0"
     },
     {
-      "text": "this",
-      "start": 18.92,
-      "end": 19.1,
+      "text": "Learn",
+      "start": 15.44,
+      "end": 15.62,
       "speaker": "speaker_0"
     },
     {
-      "text": "to",
-      "start": 19.14,
-      "end": 19.22,
+      "text": "the",
+      "start": 15.66,
+      "end": 15.74,
       "speaker": "speaker_0"
     },
     {
-      "text": "get",
-      "start": 19.24,
-      "end": 19.4,
+      "text": "process,",
+      "start": 15.76,
+      "end": 16.219,
       "speaker": "speaker_0"
     },
     {
-      "text": "better",
-      "start": 19.44,
-      "end": 19.66,
+      "text": "delegate",
+      "start": 16.46,
+      "end": 16.8,
       "speaker": "speaker_0"
     },
     {
-      "text": "at",
-      "start": 19.68,
-      "end": 19.82,
+      "text": "with",
+      "start": 16.84,
+      "end": 16.98,
       "speaker": "speaker_0"
     },
     {
       "text": "AI,",
-      "start": 19.92,
-      "end": 20.24,
+      "start": 17.06,
+      "end": 17.4,
       "speaker": "speaker_0"
     },
     {
-      "text": "not",
-      "start": 20.6,
-      "end": 20.76,
+      "text": "and",
+      "start": 17.54,
+      "end": 17.62,
       "speaker": "speaker_0"
     },
     {
-      "text": "just",
-      "start": 20.82,
-      "end": 20.98,
+      "text": "still",
+      "start": 17.76,
+      "end": 17.92,
       "speaker": "speaker_0"
     },
     {
-      "text": "to",
-      "start": 21.02,
-      "end": 21.12,
+      "text": "use",
+      "start": 18.04,
+      "end": 18.16,
       "speaker": "speaker_0"
     },
     {
-      "text": "finish",
-      "start": 21.16,
-      "end": 21.4,
+      "text": "a",
+      "start": 18.2,
+      "end": 18.26,
       "speaker": "speaker_0"
     },
     {
-      "text": "one.",
-      "start": 21.5,
-      "end": 21.72,
+      "text": "professional.",
+      "start": 18.28,
+      "end": 18.84,
       "speaker": "speaker_0"
     },
     {
-      "text": "The",
-      "start": 22.22,
-      "end": 22.32,
+      "text": "Using",
+      "start": 19.4,
+      "end": 19.66,
       "speaker": "speaker_0"
     },
     {
-      "text": "skills",
-      "start": 22.36,
-      "end": 22.72,
+      "text": "AI",
+      "start": 19.74,
+      "end": 20.02,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "gives",
+      "start": 20.1,
+      "end": 20.28,
       "speaker": "speaker_0"
     },
     {
       "text": "you",
-      "start": 22.76,
-      "end": 22.84,
+      "start": 20.32,
+      "end": 20.38,
       "speaker": "speaker_0"
     },
     {
-      "text": "learn",
-      "start": 22.88,
-      "end": 23.16,
+      "text": "leverage,",
+      "start": 20.44,
+      "end": 20.88,
       "speaker": "speaker_0"
     },
     {
-      "text": "here",
-      "start": 23.22,
-      "end": 23.42,
+      "text": "so",
+      "start": 21.24,
+      "end": 21.36,
       "speaker": "speaker_0"
     },
     {
-      "text": "carry",
-      "start": 23.48,
-      "end": 23.74,
+      "text": "use",
+      "start": 21.44,
+      "end": 21.54,
       "speaker": "speaker_0"
     },
     {
-      "text": "over",
-      "start": 23.8,
-      "end": 23.98,
+      "text": "it",
+      "start": 21.56,
+      "end": 21.62,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "on",
+      "start": 21.66,
+      "end": 21.82,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "processes",
+      "start": 21.84,
+      "end": 22.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "like",
+      "start": 22.5,
+      "end": 22.68,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "this",
+      "start": 22.74,
+      "end": 22.9,
       "speaker": "speaker_0"
     },
     {
       "text": "to",
-      "start": 24.02,
-      "end": 24.1,
+      "start": 22.94,
+      "end": 23.02,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "get",
+      "start": 23.04,
+      "end": 23.2,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "better",
+      "start": 23.24,
+      "end": 23.46,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "at",
+      "start": 23.48,
+      "end": 23.62,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "AI,",
+      "start": 23.72,
+      "end": 24.04,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "not",
+      "start": 24.4,
+      "end": 24.56,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "just",
+      "start": 24.62,
+      "end": 24.8,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "to",
+      "start": 24.84,
+      "end": 24.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "finish",
+      "start": 24.98,
+      "end": 25.22,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "one.",
+      "start": 25.32,
+      "end": 25.54,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "The",
+      "start": 26.42,
+      "end": 26.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "skills",
+      "start": 26.56,
+      "end": 26.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "you",
+      "start": 26.98,
+      "end": 27.06,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "learn",
+      "start": 27.12,
+      "end": 27.36,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "here",
+      "start": 27.42,
+      "end": 27.62,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "carry",
+      "start": 27.96,
+      "end": 28.26,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "over",
+      "start": 28.36,
+      "end": 28.58,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "to",
+      "start": 28.62,
+      "end": 28.72,
       "speaker": "speaker_0"
     },
     {
       "text": "your",
-      "start": 24.14,
-      "end": 24.26,
+      "start": 28.76,
+      "end": 28.88,
       "speaker": "speaker_0"
     },
     {
       "text": "next",
-      "start": 24.3,
-      "end": 24.58,
+      "start": 28.94,
+      "end": 29.16,
       "speaker": "speaker_0"
     },
     {
-      "text": "project",
-      "start": 24.62,
-      "end": 25.04,
+      "text": "project.",
+      "start": 29.24,
+      "end": 29.72,
       "speaker": "speaker_0"
     }
   ]

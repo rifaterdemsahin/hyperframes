@@ -1,5 +1,5 @@
 {
-  "site": "1.7.0",
+  "site": "1.8.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -9,22 +9,22 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18"
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18"
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.4.1",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/": {
@@ -59,12 +59,12 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "date": "2026-11-18"
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "release-checklist.html": {
@@ -74,7 +74,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "reuse.html": {
@@ -89,7 +89,7 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/signin.html": {
@@ -98,18 +98,18 @@
       "date": "2026-11-18"
     },
     "first-draft.html": {
-      "title": "First draft",
-      "version": "1.6.1",
+      "title": "Draft video",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "review.html": {
       "title": "Review",
-      "version": "1.6.1",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "performance.html": {
       "title": "Performance",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/app-and-players.html": {
@@ -119,6 +119,25 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "pages": [
+        "first-draft.html",
+        "review.html",
+        "performance.html",
+        "recommendations.html",
+        "kanban.html",
+        "script.html",
+        "storyboard/",
+        "master-spec.html",
+        "publish.html",
+        "agents.html"
+      ],
+      "changes": [
+        "Draft v2 of the video from your Review notes: hook says 'in the age of AI'; five things now connects every part to AI and says be ready to learn the details; costs say these are average UK figures plus a new lever animation for leverage; exceptions show 'AI helps when the stakes increase'; the email footage frame is much bigger; tracking says 'next journey' and has an n8n logo slot (official logo file needed). Drafts are now versioned (v1 kept, v2 latest). Script 3:38 to 3:54. Review notes cleared."
+      ]
+    },
     {
       "version": "1.7.0",
       "date": "2026-11-18",
@@ -290,6 +309,7 @@
   "feedbackCleared": {
     "*": "2026-11-18T21:55:42.014Z",
     "script.html": "2026-11-18T22:07:30.860Z",
-    "publish.html": "2026-11-18T22:18:45.249Z"
+    "publish.html": "2026-11-18T22:18:45.249Z",
+    "review.html": "2026-11-18T23:01:32.862Z"
   }
 }

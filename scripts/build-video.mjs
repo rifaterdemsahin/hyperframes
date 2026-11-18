@@ -5,13 +5,14 @@
 //   node scripts/build-video.mjs --final no draft tag
 // Rules followed (video/CLAUDE.md): timed elements have class="clip", data-start, data-duration; each composition
 // registers one paused timeline on window.__timelines under its own id; no Date.now / Math.random / network at render time.
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const S = JSON.parse(readFileSync(`${root}/script/scenes.json`, "utf8"));
 const FINAL = process.argv.includes("--final");
+const DRAFT_N = (() => { try { return JSON.parse(readFileSync(`${root}/draft/versions.json`, "utf8")).latest; } catch { return 1; } })();
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const r2 = (n) => Math.round(n * 100) / 100;
 
@@ -36,7 +37,23 @@ const CSS = `
     .phi { font-size: 70px; color: var(--warn); }
     .pht { font-size: 34px; font-weight: 800; color: var(--warn); letter-spacing: .06em; }
     .phd { font-size: 28px; color: #e8ecf1; line-height: 1.3; }
-    .cap { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); width: 1560px; text-align: center; font-size: 40px; line-height: 1.3; font-weight: 600; padding: 14px 30px; background: rgba(0,0,0,.72); border-radius: 12px; opacity: 0; }`;
+    .cap { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); width: 1560px; text-align: center; font-size: 40px; line-height: 1.3; font-weight: 600; padding: 14px 30px; background: rgba(0,0,0,.72); border-radius: 12px; opacity: 0; }
+    .stack.dense { gap: 12px; top: 190px; }
+    .dense .line { font-size: 34px; padding: 9px 22px; }
+    .dense h1 { font-size: 66px; }
+    .stack.narrow.wideph { width: 700px; }
+    .wideph h1 { font-size: 60px; }
+    .wideph .line { font-size: 36px; }
+    .ph.large { right: 60px; top: 200px; width: 1000px; height: 590px; }
+    .logo { position: absolute; right: 80px; top: 100px; width: 240px; height: 120px; border-radius: 14px; background: #fff; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    .logo img { max-width: 200px; max-height: 80px; }
+    .logo.missing { background: rgba(0,0,0,.6); border: 4px dashed var(--warn); color: var(--warn); font-weight: 800; font-size: 28px; text-align: center; line-height: 1.15; padding: 10px; }
+    .fx { position: absolute; right: 70px; top: 240px; width: 860px; height: 520px; opacity: 0; }
+    .lever { position: absolute; left: 40px; top: 330px; width: 780px; height: 20px; background: #e8ecf1; border-radius: 10px; transform-origin: 480px 10px; }
+    .fulcrum { position: absolute; left: 470px; top: 342px; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 100px solid var(--accent); }
+    .effort { position: absolute; left: 45px; top: 250px; width: 110px; height: 80px; background: var(--accent); color: #04222a; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .load { position: absolute; left: 655px; top: 180px; width: 190px; height: 150px; background: var(--warn); color: #3a2a00; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .fxcap { position: absolute; left: 0; top: 460px; width: 860px; text-align: center; font-size: 32px; font-weight: 700; color: #fff; }`;
 
 const GSAP = `<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>`;
 
@@ -51,6 +68,10 @@ let rootAudio = "";
 scenes.forEach((s, i) => {
   const [head, ...lines] = s.overlay;
   const hasPh = !!s.ph;
+  const fx = s.fx && s.fx.type === "leverage" ? s.fx : null;
+  const dense = lines.length >= 5;
+  const wide = s.phSize === "large";
+  const logoFile = s.logo ? ["svg", "png", "webp", "jpg"].map((e) => `assets/logos/${s.logo}.${e}`).find((f) => existsSync(`${root}/video/${f}`)) : null;
   const voDur = s.voSeconds || s.duration - 0.5;
   const voLocal = VO_LEAD; // local time inside the scene
 
@@ -94,6 +115,23 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     js += `
     tl.fromTo("#l${j}", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, ${r2(Math.min(t, s.duration - 1.2))});`;
   });
+  if (fx) {
+    // lever: the lever swings so a small push lifts the load; then it keeps rocking gently until the scene ends
+    const cue = caps.find((c) => new RegExp(fx.cue || "leverage", "i").test(c.text)) || caps[Math.floor(caps.length / 2)];
+    const t0 = Math.max(0.6, cue.t0 - 0.3);
+    const swing = (a, ey, ly, at, dur) => `
+    tl.to("#lever", { rotation: ${a}, duration: ${dur}, ease: "power2.inOut" }, ${r2(at)});
+    tl.to("#effort", { y: ${ey}, duration: ${dur}, ease: "power2.inOut" }, ${r2(at)});
+    tl.to("#load", { y: ${ly}, duration: ${dur}, ease: "power2.inOut" }, ${r2(at)});`;
+    js += `
+    tl.fromTo("#fx", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, ${r2(t0)});
+    tl.set("#lever", { rotation: 14 }, 0); tl.set("#effort", { y: -102 }, 0); tl.set("#load", { y: 56 }, 0);`;
+    js += swing(-14, 102, -56, t0 + 0.7, 1.6);
+    let t = t0 + 0.7 + 1.6 + 0.5, up = false;
+    while (t + 1.4 < s.duration - 0.6) { js += up ? swing(-14, 102, -56, t, 1.4) : swing(-6, 44, -24, t, 1.4); up = !up; t += 1.9; }
+  }
+  if (s.logo) js += `
+    tl.fromTo("#logo", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, 1.2);`;
   if (hasPh) js += `
     tl.fromTo("#ph", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 0.9);`;
   caps.forEach((c, k) => {
@@ -121,11 +159,13 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
       <div class="shade" data-layout-ignore></div>
       <div id="prog" class="prog"></div>
       <div id="tag" class="tag">${esc(s.label)}</div>
-      <div class="stack${hasPh ? " narrow" : ""}">
+      <div class="stack${hasPh || fx ? " narrow" : ""}${dense ? " dense" : ""}${wide ? " wideph" : ""}">
         <h1 id="head">${esc(head)}</h1>
         ${lines.map((l, j) => `<p id="l${j}" class="line">${esc(l)}</p>`).join("\n        ")}
       </div>
-      ${hasPh ? `<div id="ph" class="ph"><div class="phi">▶</div><div class="pht">YOUR FOOTAGE GOES HERE</div><div class="phd">${esc(s.ph)}</div></div>` : ""}
+      ${fx ? `<div id="fx" class="fx"><div id="lever" class="lever"></div><div class="fulcrum"></div><div id="effort" class="effort">YOU</div><div id="load" class="load">RESULTS</div><div class="fxcap">A small push, a bigger result</div></div>` : ""}
+      ${s.logo ? (logoFile ? `<div id="logo" class="logo"><img src="../${logoFile}" alt="${esc(s.logo)} logo"></div>` : `<div id="logo" class="logo missing">${esc(s.logo)} LOGO<br>NEEDED</div>`) : ""}
+      ${hasPh ? `<div id="ph" class="ph${wide ? " large" : ""}"><div class="phi">▶</div><div class="pht">YOUR FOOTAGE GOES HERE</div><div class="phd">${esc(s.ph)}</div></div>` : ""}
       ${caps.map((c, k) => `<div id="c${k}" class="cap">${esc(c.text)}</div>`).join("\n      ")}
     </div>
     <script>${js}
@@ -158,7 +198,7 @@ const index = `<!doctype html>
 </head>
 <body>
   <div id="root" data-composition-id="main" data-start="0" data-duration="${total}" data-width="1920" data-height="1080" data-fps="30">${rootClips}${rootAudio}
-${FINAL ? "" : `    <div id="draft-tag" class="clip draft" data-start="0" data-duration="${total}" data-track-index="2">FIRST DRAFT</div>`}
+${FINAL ? "" : `    <div id="draft-tag" class="clip draft" data-start="0" data-duration="${total}" data-track-index="2">DRAFT V${DRAFT_N}</div>`}
   </div>
   <script>
     window.__timelines = window.__timelines || {};

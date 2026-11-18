@@ -32,6 +32,7 @@ if (!latest) {
     ${render ? `<div><b>${fmt(render.seconds)}</b><small>to render ${Math.round(latest.videoSeconds)} s of video (${speed}x faster than real time)</small></div>` : ""}
     ${dAvg !== null ? `<div><b>about ${dAvg} s</b><small>for a push to go live (average of the last ${deploys.length} deploys, slowest ${dMax} s)</small></div>` : ""}
   </div>
+  ${(() => { const prev = P.runs[P.runs.length - 2]; const pr = prev && prev.steps.find((x) => x.name.startsWith("Render")); if (render && pr && render.seconds > pr.seconds * 1.5) return `<p class="note">⚠️ <b>Slower than last time.</b> This render took ${fmt(render.seconds)} for ${Math.round(latest.videoSeconds)} s of film, ${(render.seconds / pr.seconds).toFixed(1)}x the previous run (${fmt(pr.seconds)} for ${Math.round(prev.videoSeconds)} s). Possible causes: other apps using the CPU or GPU, such as the Hyperframes Studio app being open. I have not verified the cause.</p>`; return ""; })()}
   <p class="meas">Measured <span id="ago" data-at="${esc(latest.at)}"></span> on ${esc(latest.machine)}, Hyperframes ${esc(latest.hyperframes)}, Node ${esc(latest.node)}.</p>
 
   <h2>Where the time goes</h2>

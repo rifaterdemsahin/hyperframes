@@ -9,7 +9,8 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const J = (p) => JSON.parse(readFileSync(`${root}/${p}`, "utf8"));
 const S = J("script/scenes.json"), PUB = J("spec/publish.json"), P = J("spec/project.json"), V = J("versions.json");
-const M = existsSync(`${root}/draft/meta.json`) ? J("draft/meta.json") : { duration: S.scenes.at(-1).start + S.scenes.at(-1).duration };
+const VERS = J("draft/versions.json"), N = VERS.latest;
+const M = existsSync(`${root}/draft/v${N}/meta.json`) ? J(`draft/v${N}/meta.json`) : { duration: S.scenes.at(-1).start + S.scenes.at(-1).duration };
 const FPS = 30;
 
 // the selected title (or the first), and the description as the Publish page builds it
@@ -35,7 +36,7 @@ const scenes = S.scenes.map((s, i) => {
   };
 });
 
-const DATA = { fps: FPS, src: "draft/first-draft.mp4", poster: `draft/frames/${S.scenes[0].id}.jpg`, label: "🎬 First draft", duration: M.duration, scenes, title, description, pageKey: "review.html", videoTitle: S.title };
+const DATA = { fps: FPS, src: `draft/v${N}/video.mp4`, poster: `draft/v${N}/frames/${S.scenes[0].id}.jpg`, label: `🎬 Draft v${N}`, draftN: N, duration: M.duration, scenes, title, description, pageKey: "review.html", videoTitle: S.title };
 const json = JSON.stringify(DATA).replace(/</g, "\\u003c");
 
 const html = `<!doctype html>
@@ -234,7 +235,7 @@ function build() {
   const mine = items.filter((i) => (i.kind === "marker" || i.note) && open(i));
   if (!mine.length) return "";
   const info = window.SITE_INFO || {};
-  const out = ['Review feedback on "' + R.videoTitle + ' (first draft)" (page v' + (info.version || "?") + ", site v" + (info.site || "?") + ")", info.url || location.href, ""];
+  const out = ['Review feedback on "' + R.videoTitle + ' (draft v' + R.draftN + ')" (page v' + (info.version || "?") + ", site v" + (info.site || "?") + ")", info.url || location.href, ""];
   R.scenes.forEach((s) => {
     const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
     out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");

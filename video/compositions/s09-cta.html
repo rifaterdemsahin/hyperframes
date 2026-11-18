@@ -22,22 +22,40 @@
     .pht { font-size: 34px; font-weight: 800; color: var(--warn); letter-spacing: .06em; }
     .phd { font-size: 28px; color: #e8ecf1; line-height: 1.3; }
     .cap { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); width: 1560px; text-align: center; font-size: 40px; line-height: 1.3; font-weight: 600; padding: 14px 30px; background: rgba(0,0,0,.72); border-radius: 12px; opacity: 0; }
+    .stack.dense { gap: 12px; top: 190px; }
+    .dense .line { font-size: 34px; padding: 9px 22px; }
+    .dense h1 { font-size: 66px; }
+    .stack.narrow.wideph { width: 700px; }
+    .wideph h1 { font-size: 60px; }
+    .wideph .line { font-size: 36px; }
+    .ph.large { right: 60px; top: 200px; width: 1000px; height: 590px; }
+    .logo { position: absolute; right: 80px; top: 100px; width: 240px; height: 120px; border-radius: 14px; background: #fff; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    .logo img { max-width: 200px; max-height: 80px; }
+    .logo.missing { background: rgba(0,0,0,.6); border: 4px dashed var(--warn); color: var(--warn); font-weight: 800; font-size: 28px; text-align: center; line-height: 1.15; padding: 10px; }
+    .fx { position: absolute; right: 70px; top: 240px; width: 860px; height: 520px; opacity: 0; }
+    .lever { position: absolute; left: 40px; top: 330px; width: 780px; height: 20px; background: #e8ecf1; border-radius: 10px; transform-origin: 480px 10px; }
+    .fulcrum { position: absolute; left: 470px; top: 342px; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 100px solid var(--accent); }
+    .effort { position: absolute; left: 45px; top: 250px; width: 110px; height: 80px; background: var(--accent); color: #04222a; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .load { position: absolute; left: 655px; top: 180px; width: 190px; height: 150px; background: var(--warn); color: #3a2a00; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .fxcap { position: absolute; left: 0; top: 460px; width: 860px; text-align: center; font-size: 32px; font-weight: 700; color: #fff; }
   </style>
 </head>
 <body>
-  <div data-hf-id="hf-yy2m" data-composition-id="s09-cta" data-width="1920" data-height="1080">
-    <div data-hf-id="hf-lmbi" id="scene" class="scene">
-      <div data-hf-id="hf-jeo3" id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/network.jpg)"></div>
-      <div data-hf-id="hf-hama" class="shade" data-layout-ignore></div>
-      <div data-hf-id="hf-ol7e" id="prog" class="prog"></div>
-      <div data-hf-id="hf-2d54" id="tag" class="tag">CTA</div>
-      <div data-hf-id="hf-d1zs" class="stack">
-        <h1 data-hf-id="hf-iiff" id="head">Subscribe for Part 2</h1>
-        <p data-hf-id="hf-f4kf" id="l0" class="line">How I build the stages and the app</p>
-        <p data-hf-id="hf-v50i" id="l1" class="line">AI agents that email the right parties</p>
+  <div data-composition-id="s09-cta" data-width="1920" data-height="1080">
+    <div id="scene" class="scene">
+      <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/network.jpg)"></div>
+      <div class="shade" data-layout-ignore></div>
+      <div id="prog" class="prog"></div>
+      <div id="tag" class="tag">CTA</div>
+      <div class="stack">
+        <h1 id="head">Subscribe for Part 2</h1>
+        <p id="l0" class="line">How I build the stages and the app</p>
+        <p id="l1" class="line">AI agents that email the right parties</p>
       </div>
       
-      <div data-hf-id="hf-bu2n" id="c0" class="cap">In Part 2, I'll showcase how I build the stages and the app, and how AI agents email the right parties to move the needle in the right direction. If this was useful, subscribe.</div>
+      
+      
+      <div id="c0" class="cap">In Part 2, I'll showcase how I build the stages and the app, and how AI agents email the right parties to move the needle in the right direction. If this was useful, subscribe.</div>
     </div>
     <script>
     window.__timelines = window.__timelines || {};

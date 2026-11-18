@@ -1,0 +1,204 @@
+{
+  "audio": "assets/vo/s03-goal.mp3",
+  "language": "en",
+  "words": [
+    {
+      "text": "Here's",
+      "start": 0.32,
+      "end": 0.58,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 0.62,
+      "end": 0.68,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "goal:",
+      "start": 0.78,
+      "end": 1.08,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "company",
+      "start": 1.48,
+      "end": 1.84,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "debt",
+      "start": 1.96,
+      "end": 2.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "stays",
+      "start": 2.32,
+      "end": 2.6,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 2.64,
+      "end": 2.72,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "company's.",
+      "start": 2.78,
+      "end": 3.34,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "A",
+      "start": 3.82,
+      "end": 3.86,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "licensed",
+      "start": 3.94,
+      "end": 4.34,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "practitioner",
+      "start": 4.44,
+      "end": 5,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "takes",
+      "start": 5.1,
+      "end": 5.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "over,",
+      "start": 5.42,
+      "end": 5.64,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "sells",
+      "start": 6.06,
+      "end": 6.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 6.36,
+      "end": 6.48,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "assets,",
+      "start": 6.56,
+      "end": 6.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 7.08,
+      "end": 7.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "pays",
+      "start": 7.26,
+      "end": 7.52,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "creditors",
+      "start": 7.62,
+      "end": 8.08,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 8.14,
+      "end": 8.28,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "order.",
+      "start": 8.36,
+      "end": 8.66,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "There's",
+      "start": 9.18,
+      "end": 9.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "a",
+      "start": 9.38,
+      "end": 9.42,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "lot",
+      "start": 9.48,
+      "end": 9.6,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "of",
+      "start": 9.66,
+      "end": 9.76,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "red",
+      "start": 9.82,
+      "end": 10.02,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "tape",
+      "start": 10.08,
+      "end": 10.34,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 10.4,
+      "end": 10.5,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "society,",
+      "start": 10.54,
+      "end": 11.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "so",
+      "start": 11.56,
+      "end": 11.78,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "understand",
+      "start": 11.82,
+      "end": 12.4,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "it",
+      "start": 12.46,
+      "end": 12.54,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "first",
+      "start": 12.66,
+      "end": 13.06,
+      "speaker": "speaker_0"
+    }
+  ]
+}

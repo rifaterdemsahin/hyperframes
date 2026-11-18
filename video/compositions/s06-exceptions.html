@@ -22,28 +22,47 @@
     .pht { font-size: 34px; font-weight: 800; color: var(--warn); letter-spacing: .06em; }
     .phd { font-size: 28px; color: #e8ecf1; line-height: 1.3; }
     .cap { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); width: 1560px; text-align: center; font-size: 40px; line-height: 1.3; font-weight: 600; padding: 14px 30px; background: rgba(0,0,0,.72); border-radius: 12px; opacity: 0; }
+    .stack.dense { gap: 12px; top: 190px; }
+    .dense .line { font-size: 34px; padding: 9px 22px; }
+    .dense h1 { font-size: 66px; }
+    .stack.narrow.wideph { width: 700px; }
+    .wideph h1 { font-size: 60px; }
+    .wideph .line { font-size: 36px; }
+    .ph.large { right: 60px; top: 200px; width: 1000px; height: 590px; }
+    .logo { position: absolute; right: 80px; top: 100px; width: 240px; height: 120px; border-radius: 14px; background: #fff; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    .logo img { max-width: 200px; max-height: 80px; }
+    .logo.missing { background: rgba(0,0,0,.6); border: 4px dashed var(--warn); color: var(--warn); font-weight: 800; font-size: 28px; text-align: center; line-height: 1.15; padding: 10px; }
+    .fx { position: absolute; right: 70px; top: 240px; width: 860px; height: 520px; opacity: 0; }
+    .lever { position: absolute; left: 40px; top: 330px; width: 780px; height: 20px; background: #e8ecf1; border-radius: 10px; transform-origin: 480px 10px; }
+    .fulcrum { position: absolute; left: 470px; top: 342px; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 100px solid var(--accent); }
+    .effort { position: absolute; left: 45px; top: 250px; width: 110px; height: 80px; background: var(--accent); color: #04222a; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .load { position: absolute; left: 655px; top: 180px; width: 190px; height: 150px; background: var(--warn); color: #3a2a00; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .fxcap { position: absolute; left: 0; top: 460px; width: 860px; text-align: center; font-size: 32px; font-weight: 700; color: #fff; }
   </style>
 </head>
 <body>
-  <div data-hf-id="hf-u709" data-composition-id="s06-exceptions" data-width="1920" data-height="1080">
-    <div data-hf-id="hf-lmbi" id="scene" class="scene">
-      <div data-hf-id="hf-0c5t" id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/warning.jpg)"></div>
-      <div data-hf-id="hf-hama" class="shade" data-layout-ignore></div>
-      <div data-hf-id="hf-ol7e" id="prog" class="prog"></div>
-      <div data-hf-id="hf-owrv" id="tag" class="tag">CHAPTER 4</div>
-      <div data-hf-id="hf-d1zs" class="stack">
-        <h1 data-hf-id="hf-qy9p" id="head">Wrongful / fraudulent trading</h1>
-        <p data-hf-id="hf-c1ne" id="l0" class="line">Personal guarantees</p>
-        <p data-hf-id="hf-8ahn" id="l1" class="line">Overdrawn director's loan account</p>
-        <p data-hf-id="hf-2huz" id="l2" class="line">Paying one creditor first</p>
-        <p data-hf-id="hf-ki1f" id="l3" class="line">Low expectations of AI: it gives you courage and the assist</p>
+  <div data-composition-id="s06-exceptions" data-width="1920" data-height="1080">
+    <div id="scene" class="scene">
+      <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/warning.jpg)"></div>
+      <div class="shade" data-layout-ignore></div>
+      <div id="prog" class="prog"></div>
+      <div id="tag" class="tag">CHAPTER 4</div>
+      <div class="stack dense">
+        <h1 id="head">Wrongful / fraudulent trading</h1>
+        <p id="l0" class="line">Personal guarantees</p>
+        <p id="l1" class="line">Overdrawn director's loan account</p>
+        <p id="l2" class="line">Paying one creditor first</p>
+        <p id="l3" class="line">Low expectations of AI: it gives you courage and the assist</p>
+        <p id="l4" class="line">AI helps when the stakes increase</p>
       </div>
       
-      <div data-hf-id="hf-i7ge" id="c0" class="cap">Now the exceptions, because this matters. The protection isn't absolute.</div>
-      <div data-hf-id="hf-d5qe" id="c1" class="cap">A director can still be personally liable for wrongful or fraudulent trading, personal guarantees, an overdrawn director's loan account, or paying one creditor first. That's why the practitioner decides.</div>
-      <div data-hf-id="hf-t8ic" id="c2" class="cap">Understand the basics, because even the people closest to you won't get what you're really doing.</div>
-      <div data-hf-id="hf-zeu2" id="c3" class="cap">And keep your expectations of AI low: it gives you the courage and the assist you need.</div>
-      <div data-hf-id="hf-7zaa" id="c4" class="cap">Most people get stuck in red tape and can't move.</div>
+      
+      
+      <div id="c0" class="cap">Now the exceptions, because this matters. The protection isn't absolute.</div>
+      <div id="c1" class="cap">A director can still be personally liable for wrongful or fraudulent trading, personal guarantees, an overdrawn director's loan account, or paying one creditor first. That's why the practitioner decides.</div>
+      <div id="c2" class="cap">Understand the basics, because even the people closest to you won't get what you're really doing.</div>
+      <div id="c3" class="cap">And keep your expectations of AI low: it gives you the courage and the assist you need.</div>
+      <div id="c4" class="cap">Most people get stuck in red tape and can't move.</div>
     </div>
     <script>
     window.__timelines = window.__timelines || {};
@@ -54,10 +73,11 @@ tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 31.6);
     tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 32, ease: "none" }, 0);
     tl.fromTo("#tag", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.3);
     tl.fromTo("#head", { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.5);
-    tl.fromTo("#l0", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 8.28);
-    tl.fromTo("#l1", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 13.23);
-    tl.fromTo("#l2", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 18.17);
-    tl.fromTo("#l3", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 23.12);
+    tl.fromTo("#l0", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 7.39);
+    tl.fromTo("#l1", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 11.43);
+    tl.fromTo("#l2", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 15.48);
+    tl.fromTo("#l3", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 19.52);
+    tl.fromTo("#l4", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 23.57);
     tl.fromTo("#c0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.25);
     tl.to("#c0", { opacity: 0, duration: 0.2, ease: "power1.in" }, 3.82);
     tl.fromTo("#c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 4.02);

@@ -22,58 +22,80 @@
     .pht { font-size: 34px; font-weight: 800; color: var(--warn); letter-spacing: .06em; }
     .phd { font-size: 28px; color: #e8ecf1; line-height: 1.3; }
     .cap { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); width: 1560px; text-align: center; font-size: 40px; line-height: 1.3; font-weight: 600; padding: 14px 30px; background: rgba(0,0,0,.72); border-radius: 12px; opacity: 0; }
+    .stack.dense { gap: 12px; top: 190px; }
+    .dense .line { font-size: 34px; padding: 9px 22px; }
+    .dense h1 { font-size: 66px; }
+    .stack.narrow.wideph { width: 700px; }
+    .wideph h1 { font-size: 60px; }
+    .wideph .line { font-size: 36px; }
+    .ph.large { right: 60px; top: 200px; width: 1000px; height: 590px; }
+    .logo { position: absolute; right: 80px; top: 100px; width: 240px; height: 120px; border-radius: 14px; background: #fff; display: flex; align-items: center; justify-content: center; opacity: 0; }
+    .logo img { max-width: 200px; max-height: 80px; }
+    .logo.missing { background: rgba(0,0,0,.6); border: 4px dashed var(--warn); color: var(--warn); font-weight: 800; font-size: 28px; text-align: center; line-height: 1.15; padding: 10px; }
+    .fx { position: absolute; right: 70px; top: 240px; width: 860px; height: 520px; opacity: 0; }
+    .lever { position: absolute; left: 40px; top: 330px; width: 780px; height: 20px; background: #e8ecf1; border-radius: 10px; transform-origin: 480px 10px; }
+    .fulcrum { position: absolute; left: 470px; top: 342px; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 100px solid var(--accent); }
+    .effort { position: absolute; left: 45px; top: 250px; width: 110px; height: 80px; background: var(--accent); color: #04222a; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
+    .load { position: absolute; left: 655px; top: 180px; width: 190px; height: 150px; background: var(--warn); color: #3a2a00; font-weight: 800; font-size: 28px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    .fxcap { position: absolute; left: 0; top: 460px; width: 860px; text-align: center; font-size: 32px; font-weight: 700; color: #fff; }
   </style>
 </head>
 <body>
-  <div data-hf-id="hf-6r81" data-composition-id="s04-five-things" data-width="1920" data-height="1080">
-    <div data-hf-id="hf-lmbi" id="scene" class="scene">
-      <div data-hf-id="hf-3zqq" id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/desk.jpg)"></div>
-      <div data-hf-id="hf-hama" class="shade" data-layout-ignore></div>
-      <div data-hf-id="hf-ol7e" id="prog" class="prog"></div>
-      <div data-hf-id="hf-mixp" id="tag" class="tag">CHAPTER 2</div>
-      <div data-hf-id="hf-co2t" class="stack narrow">
-        <h1 data-hf-id="hf-epfi" id="head">Use AI to get through the red tape</h1>
-        <p data-hf-id="hf-y97r" id="l0" class="line">1 Check your HMRC balance</p>
-        <p data-hf-id="hf-1sn1" id="l1" class="line">2 Gather books &amp; records</p>
-        <p data-hf-id="hf-sdky" id="l2" class="line">3 Get a licensed practitioner</p>
-        <p data-hf-id="hf-xaln" id="l3" class="line">4 Stop trading, no creditor preferred</p>
-        <p data-hf-id="hf-4h90" id="l4" class="line">5 Close invoices, banks to zero</p>
+  <div data-composition-id="s04-five-things" data-width="1920" data-height="1080">
+    <div id="scene" class="scene">
+      <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/desk.jpg)"></div>
+      <div class="shade" data-layout-ignore></div>
+      <div id="prog" class="prog"></div>
+      <div id="tag" class="tag">CHAPTER 2</div>
+      <div class="stack narrow dense">
+        <h1 id="head">Use AI to get through the red tape</h1>
+        <p id="l0" class="line">1 Check your HMRC balance</p>
+        <p id="l1" class="line">2 Gather books &amp; records</p>
+        <p id="l2" class="line">3 Get a licensed practitioner</p>
+        <p id="l3" class="line">4 Stop trading, no creditor preferred</p>
+        <p id="l4" class="line">5 Close invoices, banks to zero</p>
+        <p id="l5" class="line">Connect every part to AI, then iterate</p>
+        <p id="l6" class="line">Be ready to learn the details</p>
       </div>
-      <div data-hf-id="hf-tlt2" id="ph" class="ph"><div data-hf-id="hf-9pth" class="phi">▶</div><div data-hf-id="hf-acvo" class="pht">YOUR FOOTAGE GOES HERE</div><div data-hf-id="hf-zb4k" class="phd">Optional: HMRC screen (S2) inset for step 1. Blur UTR + login, hide the balance</div></div>
-      <div data-hf-id="hf-rb0g" id="c0" class="cap">Five things to do first, with AI as your support.</div>
-      <div data-hf-id="hf-1nn1" id="c1" class="cap">Every time I'm on the HMRC site, I leave with more questions than answers, so I ask AI to explain each step before I act.</div>
-      <div data-hf-id="hf-91ma" id="c2" class="cap">One: check your HMRC balance. Two: gather the company's books and records.</div>
-      <div data-hf-id="hf-axb1" id="c3" class="cap">Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot.</div>
-      <div data-hf-id="hf-sbog" id="c4" class="cap">Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this.</div>
-      <div data-hf-id="hf-pnn2" id="c5" class="cap">Five: close your invoices and bring every bank account to zero, or the money goes to the Crown.</div>
+      
+      
+      <div id="ph" class="ph"><div class="phi">▶</div><div class="pht">YOUR FOOTAGE GOES HERE</div><div class="phd">Optional: HMRC screen (S2) inset for step 1. Blur UTR + login, hide the balance</div></div>
+      <div id="c0" class="cap">Five things to do first, with AI as your support. Every time I'm on the HMRC site, I leave with more questions than answers, so I ask AI to explain each step before I act. One: check your HMRC balance. Two: gather the company's books and records.</div>
+      <div id="c1" class="cap">Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot.</div>
+      <div id="c2" class="cap">Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this.</div>
+      <div id="c3" class="cap">Five: close your invoices and bring every bank account to zero, or the money goes to the Crown.</div>
+      <div id="c4" class="cap">Connect all of these parts to AI, so you can iterate with it. Be ready to learn the details.</div>
+      <div id="c5" class="cap">AI doesn't mean you won't learn anything. It means you're ready to learn and act on the fly.</div>
     </div>
     <script>
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#scene", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
-tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 35.6);
-    tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.18, x: -50, duration: 36, ease: "none" }, 0);
-    tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 36, ease: "none" }, 0);
+tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 45.6);
+    tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.18, x: -50, duration: 46, ease: "none" }, 0);
+    tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 46, ease: "none" }, 0);
     tl.fromTo("#tag", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.3);
     tl.fromTo("#head", { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.5);
-    tl.fromTo("#l0", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 8.26);
-    tl.fromTo("#l1", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 12.81);
-    tl.fromTo("#l2", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 17.35);
-    tl.fromTo("#l3", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 21.89);
-    tl.fromTo("#l4", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 26.43);
+    tl.fromTo("#l0", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 9.15);
+    tl.fromTo("#l1", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 13.51);
+    tl.fromTo("#l2", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 17.87);
+    tl.fromTo("#l3", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 22.22);
+    tl.fromTo("#l4", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 26.58);
+    tl.fromTo("#l5", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 30.94);
+    tl.fromTo("#l6", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 35.3);
     tl.fromTo("#ph", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 0.9);
     tl.fromTo("#c0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.25);
-    tl.to("#c0", { opacity: 0, duration: 0.2, ease: "power1.in" }, 3.66);
-    tl.fromTo("#c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 3.86);
-    tl.to("#c1", { opacity: 0, duration: 0.2, ease: "power1.in" }, 12.7);
-    tl.fromTo("#c2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 12.9);
-    tl.to("#c2", { opacity: 0, duration: 0.2, ease: "power1.in" }, 17.04);
-    tl.fromTo("#c3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 17.24);
-    tl.to("#c3", { opacity: 0, duration: 0.2, ease: "power1.in" }, 22.1);
-    tl.fromTo("#c4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 22.3);
-    tl.to("#c4", { opacity: 0, duration: 0.2, ease: "power1.in" }, 28.24);
-    tl.fromTo("#c5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 28.44);
-    tl.to("#c5", { opacity: 0, duration: 0.2, ease: "power1.in" }, 35.35);
+    tl.to("#c0", { opacity: 0, duration: 0.2, ease: "power1.in" }, 16.09);
+    tl.fromTo("#c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 16.29);
+    tl.to("#c1", { opacity: 0, duration: 0.2, ease: "power1.in" }, 20.87);
+    tl.fromTo("#c2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 21.07);
+    tl.to("#c2", { opacity: 0, duration: 0.2, ease: "power1.in" }, 26.68);
+    tl.fromTo("#c3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 26.88);
+    tl.to("#c3", { opacity: 0, duration: 0.2, ease: "power1.in" }, 32.82);
+    tl.fromTo("#c4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 33.02);
+    tl.to("#c4", { opacity: 0, duration: 0.2, ease: "power1.in" }, 39.31);
+    tl.fromTo("#c5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 39.51);
+    tl.to("#c5", { opacity: 0, duration: 0.2, ease: "power1.in" }, 45.45);
     window.__timelines["s04-five-things"] = tl;
     tl.seek(0);
     </script>

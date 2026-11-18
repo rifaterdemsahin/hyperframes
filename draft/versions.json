@@ -1,0 +1,14 @@
+{
+  "latest": 2,
+  "versions": [
+    { "n": 1, "date": "2026-11-18", "label": "First draft", "changes": ["First cut: the whole film from the script, AI draft voice, captions, placeholders for your footage."] },
+    { "n": 2, "date": "2026-11-18", "label": "Second draft", "changes": [
+      "Hook: \"here's how a liquidation works in the age of AI\".",
+      "Five things: connect all of the parts to AI so you can iterate; be ready to learn the details; AI doesn't mean you won't learn, it means you're ready to learn and act on the fly.",
+      "Costs: these are average UK figures, yours could be higher or lower; new lever animation for \"AI gives you leverage\".",
+      "Exceptions: \"AI helps when the stakes increase\" on screen.",
+      "Emails: the footage frame is much bigger.",
+      "Tracking: n8n logo slot (needs the official logo file), and \"next journey\" instead of \"next role\"."
+    ] }
+  ]
+}

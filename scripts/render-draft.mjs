@@ -11,6 +11,9 @@ import os from "node:os";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sh = (cmd, args, opts = {}) => spawnSync(cmd, args, { cwd: root, encoding: "utf8", maxBuffer: 1 << 28, ...opts });
 const S = JSON.parse(readFileSync(`${root}/script/scenes.json`, "utf8"));
+const VERS = JSON.parse(readFileSync(`${root}/draft/versions.json`, "utf8"));
+const VN = Number((process.argv.find((a) => a.startsWith("--version=")) || "").split("=")[1]) || VERS.latest;
+const VDIR = `draft/v${VN}`;
 const steps = [];
 const clock = () => Number(process.hrtime.bigint()) / 1e9;
 function step(name, note, fn) {
@@ -22,7 +25,7 @@ function step(name, note, fn) {
 }
 const need = (r, what) => { if (r.status !== 0) { console.error(`${what} failed:\n${(r.stdout || "") + (r.stderr || "")}`.slice(-1500)); process.exit(1); } return r; };
 
-mkdirSync(`${root}/draft/frames`, { recursive: true });
+mkdirSync(`${root}/${VDIR}/frames`, { recursive: true });
 mkdirSync(`${root}/video/renders`, { recursive: true });
 const runStart = clock();
 
@@ -40,7 +43,7 @@ step("Hyperframes check", "lint, runtime, layout, motion, contrast, craft (no ca
 });
 
 let renderInfo = {};
-step("Render the draft (1080p, 30 fps, with sound)", "local, drawelement capture", () => {
+step(`Render draft v${VN} (1080p, 30 fps, with sound)`, "local, drawelement capture", () => {
   const r = sh("npx", ["-y", "hyperframes@0.9.67", "render", "--quality", "draft", "--output", "renders/first-draft.mp4"], { cwd: `${root}/video` });
   need(r, "render");
   const out = (r.stdout || "") + (r.stderr || "");
@@ -50,14 +53,14 @@ step("Render the draft (1080p, 30 fps, with sound)", "local, drawelement capture
   return `${renderInfo.workers ?? "?"} workers`;
 });
 
-step("Make the light web copy (960x540)", "H.264 CRF 29, AAC 64k", () => {
-  need(sh("ffmpeg", ["-y", "-loglevel", "error", "-i", "video/renders/first-draft.mp4", "-vf", "scale=960:540", "-c:v", "libx264", "-crf", "29", "-preset", "medium", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", "draft/first-draft.mp4"]), "ffmpeg web copy");
+step(`Make the light web copy of draft v${VN} (960x540)`, "H.264 CRF 29, AAC 64k", () => {
+  need(sh("ffmpeg", ["-y", "-loglevel", "error", "-i", "video/renders/first-draft.mp4", "-vf", "scale=960:540", "-c:v", "libx264", "-crf", "29", "-preset", "medium", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", `${VDIR}/video.mp4`]), "ffmpeg web copy");
 });
 
 step("Extract one frame per scene", `${S.scenes.length} JPG frames`, () => {
   for (const s of S.scenes) {
     const t = s.start + Math.min(s.duration * 0.45, 5.5);
-    need(sh("ffmpeg", ["-y", "-loglevel", "error", "-ss", String(t), "-i", "video/renders/first-draft.mp4", "-frames:v", "1", "-vf", "scale=640:-1", "-q:v", "4", `draft/frames/${s.id}.jpg`]), `frame ${s.id}`);
+    need(sh("ffmpeg", ["-y", "-loglevel", "error", "-ss", String(t), "-i", "video/renders/first-draft.mp4", "-frames:v", "1", "-vf", "scale=640:-1", "-q:v", "4", `${VDIR}/frames/${s.id}.jpg`]), `frame ${s.id}`);
   }
 });
 
@@ -65,15 +68,16 @@ const probe = need(sh("ffprobe", ["-v", "error", "-show_entries", "format=durati
 const duration = Math.round(parseFloat(probe) * 10) / 10;
 const meta = {
   check: checkSummary,
-  renderSeconds: renderInfo.reported,
+  renderSeconds: renderInfo.reported ?? steps.find((x) => x.name.startsWith("Render"))?.seconds ?? null,
   workers: renderInfo.workers,
   fullBytes: statSync(`${root}/video/renders/first-draft.mp4`).size,
-  webBytes: statSync(`${root}/draft/first-draft.mp4`).size,
+  webBytes: statSync(`${root}/${VDIR}/video.mp4`).size,
   duration,
   date: new Date().toISOString().slice(0, 10),
   hyperframes: "0.9.67",
+  version: VN,
 };
-writeFileSync(`${root}/draft/meta.json`, JSON.stringify(meta, null, 2) + "\n");
+writeFileSync(`${root}/${VDIR}/meta.json`, JSON.stringify(meta, null, 2) + "\n");
 
 // ---- record this run for the Performance page (the site-page build is timed after, then added)
 const cpu = (() => { try { return execFileSync("sysctl", ["-n", "machdep.cpu.brand_string"], { encoding: "utf8" }).trim(); } catch { return os.cpus()[0]?.model || "unknown"; } })();
