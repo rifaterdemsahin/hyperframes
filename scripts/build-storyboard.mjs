@@ -55,6 +55,7 @@ main{max-width:1280px;margin:auto;padding:16px 24px 64px;display:grid;grid-templ
 audio{width:100%;margin-top:8px;height:36px}.fit{margin:.3em 0;font-size:12px}.fit.ok{color:#68d391}.fit.over{color:var(--red)}
 .broll{color:var(--mute);font-size:14px;margin:.5em 0}.broll b{color:var(--accent)}.vo{margin:.4em 0 0;font-size:15px}
 </style></head><body>
+<script src="../nav.js"></script>
 <header><h1>${esc(data.title)}</h1><p>Storyboard · ${data.scenes.length} scenes · about ${tc(data.totalSecondsApprox)} · generated from script/scenes.json. Dashed boxes are real footage you supply. Backgrounds and voiceover are fal.ai (British male, Kokoro); press play on each panel. Total voice time: ${data.scenes.reduce((a,x)=>a+(x.voSeconds||0),0).toFixed(0)}s.</p></header>
 <main>${panels}
 </main></body></html>`;
