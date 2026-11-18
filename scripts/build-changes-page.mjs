@@ -67,7 +67,8 @@ const bumped = headV
   ? Object.entries(V.pages).filter(([k, p]) => !headV.pages[k] || headV.pages[k].version !== p.version)
       .map(([k, p]) => `<tr><td><a href="${esc(k)}">${esc(p.title)}</a></td><td>${headV.pages[k] ? "v" + esc(headV.pages[k].version) : "new"}</td><td>v${esc(p.version)}</td></tr>`)
   : [];
-const clearedNow = Object.entries(V.feedbackCleared || {}).filter(([k, t]) => !headV || !(headV.feedbackCleared || {})[k] || (headV.feedbackCleared || {})[k] !== t).map(([k]) => (k === "*" ? "all pages" : (V.pages[k] || {}).title || k));
+const headCleared = { ...((headV && headV.feedbackCleared) || {}), ...(headV && headV.feedbackClearedAt ? { "*": headV.feedbackClearedAt } : {}) }; // older files kept one global time
+const clearedNow = Object.entries(V.feedbackCleared || {}).filter(([k, t]) => headCleared[k] !== t).map(([k]) => (k === "*" ? "all pages" : (V.pages[k] || {}).title || k));
 const rel = V.changelog[0];
 
 // ---- script changes by past release (commits that touched scenes.json), newest first

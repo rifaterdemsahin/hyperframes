@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.4.0"></script>
+<script src="nav.js?v=1.5.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -50,6 +50,8 @@ const TASKS=[
  {id:"t08",col:"input",who:"you",title:"Look and sound: palette, font, music",desc:"Any brand colours, a font, a music preference, or say 'your call'."},
  {id:"t22",col:"input",who:"you",title:"Skool community name and link",desc:"For the end screen and the description. I did not invent one."},
  {id:"t23",col:"input",who:"you",title:"Ask the practitioner about emailing the parties",desc:"The script says AI agents email the right parties. Check what you may send yourself before Part 2 shows it."},
+ {id:"t26",col:"input",who:"you",title:"Choose the title and thumbnail",desc:"Four titles and two thumbnails are drafted on the Publish page, with a recommended pairing. Tell me which, or what to change."},
+ {id:"t27",col:"input",who:"you",title:"Part 2 link (after it is published)",desc:"Goes in the description and on the end screen."},
  {id:"t09",col:"input",who:"you",title:"Rotate the fal.ai key",desc:"The key was pasted in chat. Create a new one and replace FAL_KEY in your local .env."},
  // Ready for Claude
  {id:"t10",col:"ready",who:"ai",title:"Build the 10 scenes in Hyperframes",desc:"Sub-compositions with placeholders, timings from script/scenes.json."},
@@ -66,6 +68,8 @@ const TASKS=[
  {id:"t21",col:"done",who:"ai",title:"Versioning and copy-feedback on every page",desc:"Footer versions, changelog, and a feedback bar like the storyboard."},
  {id:"t24",col:"done",who:"ai",title:"Script rewritten around AI and red tape (v1.4.0)",desc:"From your Script page feedback: new wording and voiceover, re-timed."},
  {id:"t25",col:"done",who:"ai",title:"AGENTS.md, agents page and Reuse page (v1.4.0)",desc:"Postprod menu: master spec, release checklist, AGENTS.md, reuse guide."},
+ {id:"t28",col:"done",who:"ai",title:"Architecture diagram on the hub (v1.5.0)",desc:"Icons, dependency arrows and a dependency table."},
+ {id:"t29",col:"done",who:"ai",title:"Title, description and thumbnails drafted (v1.5.0)",desc:"Publish page under Postprod, with two real 1280x720 thumbnails."},
  {id:"t18",col:"done",who:"ai",title:"GitHub Pages hub, this kanban",desc:"index.html and kanban.html."}
 ];
 const KEY="liquidation-kanban-v1";

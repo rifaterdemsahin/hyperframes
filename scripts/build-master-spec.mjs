@@ -79,7 +79,7 @@ const spec = `${head("Master Spec")}
   ${table(["Stage", "What happens", "Pages", "Done when"], [
     ["📝 <b>Preprod</b>", "Script, storyboard, feedback loop, task tracking, recommendations", `<a href="script.html">Script</a>, <a href="storyboard/">Storyboard</a>, <a href="kanban.html">Kanban</a>, <a href="recommendations.html">Recommendations</a>`, "You approve the storyboard and the open decisions below are closed"],
     ["🎬 <b>Prod</b>", "Build the scenes in Hyperframes, bring in real footage and voiceover, check and snapshot", `<a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, <code>npm run check</code> passes, snapshots reviewed"],
-    ["🎞️ <b>Postprod</b>", "Final render, quality control, captions, publish", `<a href="master-spec.html">Master spec</a>, <a href="release-checklist.html">Release checklist</a>, <a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>`, "All acceptance criteria met and the release checklist is complete"],
+    ["🎞️ <b>Postprod</b>", "Final render, quality control, captions, publish", `<a href="master-spec.html">Master spec</a>, <a href="release-checklist.html">Release checklist</a>, <a href="publish.html">Publish copy</a>, <a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>`, "All acceptance criteria met and the release checklist is complete"],
   ])}
   <p><b>Working rule:</b> every change is committed, pushed and deployed to GitHub Pages, and every release bumps the version (<a href="changelog.html">changelog</a>).</p>
 
@@ -150,10 +150,10 @@ const groups = [
     "No API key or secret in the repo, the video or the description",
   ]],
   ["YouTube packaging", [
-    "Title written (leads with the viewer's question, promises no outcome)",
-    "Description written, with the disclaimer and the link to Part 2 once it exists",
+    "Title chosen from the Publish page (subject or viewer's question first, no promised outcome)",
+    "Description pasted from the Publish page, both [LINK] placeholders replaced, disclaimer included",
     "Chapters pasted into the description (below)",
-    "Thumbnail made and checked at small size",
+    "Thumbnail uploaded (1280x720 JPG from the Publish page) and checked at small size",
     "Captions file uploaded or auto-captions reviewed",
     "End screen and one call to action set: " + P.singleCallToAction,
     "Added to the series playlist",

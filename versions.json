@@ -1,10 +1,10 @@
 {
-  "site": "1.4.0",
+  "site": "1.5.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "script.html": {
@@ -19,12 +19,12 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18"
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/": {
@@ -59,36 +59,65 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "release-checklist.html": {
       "title": "Release checklist",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "reuse.html": {
       "title": "Reuse as template",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.4.0",
+      "version": "1.5.0",
+      "date": "2026-11-18"
+    },
+    "publish.html": {
+      "title": "Title, description, thumbnail",
+      "version": "1.5.0",
+      "date": "2026-11-18"
+    },
+    "hyperframes-guide/signin.html": {
+      "title": "Hyperframes sign-in",
+      "version": "1.5.0",
       "date": "2026-11-18"
     }
   },
   "changelog": [
+    {
+      "version": "1.5.0",
+      "date": "2026-11-18",
+      "pages": [
+        "index.html",
+        "publish.html",
+        "changes.html",
+        "agents.html",
+        "master-spec.html",
+        "release-checklist.html",
+        "reuse.html",
+        "kanban.html",
+        "recommendations.html"
+      ],
+      "changes": [
+        "Architecture diagram at the top of the hub, with icons, dependency arrows and a dependency table. New Postprod page for the title, description and thumbnail: four title options, a ready description with chapters, tags, and two real 1280x720 thumbnails (text is HTML; the red-tape background was made with fal.ai). Fix: the Changes page no longer lists 'all pages' as cleared when only Script was.",
+        "Prod menu: Hyperframes sign-in page (Hyperframes has no web login page: sign in from the CLI or the Studio app, and this project needs no account) and a direct link to hyperframes.studio."
+      ]
+    },
     {
       "version": "1.4.0",
       "date": "2026-11-18",

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes Sign-in</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<script src="../nav.js?v=1.5.0"></script>
+<main>
+  <div class="crumbs">🎬 Prod / Hyperframes &rsaquo; Sign-in</div>
+  <h1>🔐 Hyperframes sign-in</h1>
+  <p class="lead">Hyperframes has no separate web login page. You sign in with a HeyGen account, either from the command line or from the Studio app. For this project you do not need to sign in at all.</p>
+  <p class="note">From the official <a href="https://hyperframes.heygen.com/guides/authentication">Authentication &amp; API keys</a> and <a href="https://hyperframes.heygen.com/studio-app">Studio app</a> docs, checked 18 Nov 2026.</p>
+
+  <h2>Quick links</h2>
+  <div class="grid">
+    <a class="tile" href="https://hyperframes.studio/"><b>🌐 hyperframes.studio ↗</b><span>The Studio site: download the app, pricing, community. The app's "Continue with HeyGen" sign-in opens in your browser from here.</span></a>
+    <a class="tile" href="https://hyperframes.heygen.com/guides/authentication"><b>📖 Authentication docs ↗</b><span>Every way to sign in, and which credential wins.</span></a>
+    <a class="tile" href="https://hyperframes.heygen.com/studio-app"><b>🖥️ Studio app guide ↗</b><span>Install the app and sign in on first launch.</span></a>
+    <a class="tile" href="https://hyperframes.studio/pricing"><b>💳 Plans ↗</b><span>Free and Pro. See also <a href="../why-pay.html">Why pay?</a></span></a>
+  </div>
+
+  <h2>Do I need to sign in?</h2>
+  <div class="card">
+    <p><b>No, not for this project.</b> You can create and render locally with no account. Voice falls back to the free Kokoro engine and music to local engines.</p>
+    <p>Sign in only if you want HeyGen voices and music, HeyGen's managed cloud rendering, the hosted MCP connector, or to own a published project you can update later.</p>
+  </div>
+
+  <h2>Sign in from the command line</h2>
+<pre>npx hyperframes auth login            # opens your browser for OAuth, then saves the session
+npx hyperframes auth status           # shows who you are signed in as, and what is configured
+npx hyperframes doctor                # checks the local dependencies
+
+# CI or a machine with no browser: save an API key instead
+npx hyperframes auth login --api-key</pre>
+  <p>Signing in is the same OAuth step as creating an account: a new user lands on the sign-up screen.</p>
+
+  <h2>Sign in from the Studio app</h2>
+  <ol>
+    <li>Install the app from <a href="https://hyperframes.studio/">hyperframes.studio</a>.</li>
+    <li>On first launch choose <b>Continue with HeyGen</b>. Your browser opens the sign-in page.</li>
+    <li>Sign in within 10 minutes. The browser sends you back to the app, which shows "You're in!".</li>
+  </ol>
+
+  <h2>Keeping your credentials safe</h2>
+  <ul>
+    <li>The CLI stores the session in <code>~/.hyperframes/credentials</code>, outside this repo. Do not copy it into the project.</li>
+    <li>This repo is public. Never commit an API key or paste one into chat. Keys go in a git-ignored <code>.env</code> (this project already uses one for <code>FAL_KEY</code>).</li>
+    <li>If a key leaks, revoke it in the provider's dashboard and create a new one.</li>
+  </ul>
+
+  <p class="next"><a href="index.html">&larr; Overview</a><a href="rendering.html">Rendering paths &rarr;</a></p>
+</main>
+</body>
+</html>

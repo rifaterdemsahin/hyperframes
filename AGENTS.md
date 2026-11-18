@@ -14,13 +14,14 @@ The single source of truth for the current video is `script/scenes.json` (scenes
 |---|---|---|
 | `script/scenes.json` | Scenes: voiceover, B-roll, overlays, timings | Yes (then regenerate) |
 | `spec/project.json` | Brief, rules, acceptance, risks, decisions | Yes (then regenerate) |
+| `spec/publish.json`, `thumbnails/*.html` | YouTube title options, description template, tags, thumbnail designs (text is HTML, never AI-drawn) | Yes (then regenerate) |
 | `versions.json` | Site and page versions, changelog, note-clearing times | Only through `scripts/version.mjs` |
 | `nav.js`, `feedback.js`, `site.css` | Shared menu, version footer, copy-feedback bar, styles | Yes |
 | `scripts/` | Generators and fal.ai helpers | Yes |
 | `video/` | The Hyperframes project (`index.html` is the render composition) | Yes |
 | `templates/` | Blank spec, scenes and a reuse guide for the next video | Yes |
-| `script.html`, `storyboard/`, `master-spec.html`, `release-checklist.html`, `agents.html`, `changes.html`, `changelog.html`, `templates/MASTER-SPEC.md` | Generated | No. Regenerate |
-| `index.html`, `kanban.html`, `recommendations.html`, `compare.html`, `why-pay.html`, `reuse.html`, `hyperframes-guide/` | Hand-written pages | Yes |
+| `script.html`, `storyboard/`, `master-spec.html`, `release-checklist.html`, `agents.html`, `publish.html`, `changes.html`, `changelog.html`, `templates/MASTER-SPEC.md` | Generated | No. Regenerate |
+| `index.html` (the architecture block between the ARCH markers is generated), `kanban.html`, `recommendations.html`, `compare.html`, `why-pay.html`, `reuse.html`, `hyperframes-guide/` | Hand-written pages | Yes |
 
 ## Commands
 
@@ -29,12 +30,17 @@ node scripts/build-storyboard.mjs     # storyboard/ from scenes.json
 node scripts/build-script-page.mjs    # script.html
 node scripts/build-master-spec.mjs    # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
 node scripts/build-agents-page.mjs    # agents.html from this file
+node scripts/build-publish-page.mjs   # publish.html from spec/publish.json (titles, description, tags, thumbnails)
+scripts/build-thumbnails.sh           # thumbnails/thumb-*.html to 1280x720 JPG with headless Chrome + ffmpeg
+node scripts/build-architecture.mjs   # architecture diagram + dependency table inside index.html (edit NODES/EDGES/DEPS in the script)
 node scripts/build-changes-page.mjs   # changes.html: latest release, script diffs, commits (run after the bump, before the commit)
 scripts/gen-backgrounds.sh            # fal.ai background images (needs FAL_KEY in .env)
 scripts/gen-voiceover.sh [voice]      # fal.ai draft voiceover, writes voSeconds into scenes.json
 node scripts/version.mjs bump minor|patch|major "what changed" [page ...] [--clear-notes=page,page]
 cd video && npm run check && npx hyperframes snapshot --at 1,3,5 && npm run render
 ```
+
+When the system itself changes (a new script, service or page), update NODES, EDGES and DEPS in `scripts/build-architecture.mjs` so the hub diagram stays true.
 
 Regenerate in this order after changing `scenes.json`: voiceover (only scenes whose text changed: delete their mp3 first, the script skips existing files), re-time slots, then the build scripts.
 

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<script src="nav.js?v=1.4.0"></script>
+<script src="nav.js?v=1.5.0"></script>
 <main>
   <div class="crumbs">📦 Postprod</div>
   <h1>♻️ Reuse as template</h1>
@@ -18,8 +18,8 @@
     <tr><th>Keep as is (the engine)</th><th>Replace for each video (the content)</th><th>Generated, never edit by hand</th></tr>
     <tr>
       <td><code>nav.js</code>, <code>feedback.js</code>, <code>site.css</code><br><code>versions.json</code> (reset the changelog)<br><code>scripts/</code><br><code>AGENTS.md</code>, <code>CLAUDE.md</code><br><code>templates/</code>, <code>.gitignore</code><br><code>hyperframes-guide/</code>, <code>compare.html</code>, <code>why-pay.html</code></td>
-      <td><code>script/scenes.json</code><br><code>spec/project.json</code><br><code>video/</code> (the Hyperframes project and its assets)<br><code>.env</code> (your own keys, never committed)<br><code>index.html</code>, <code>kanban.html</code>, <code>recommendations.html</code> (their text is about the current video)<br><code>docs/superpowers/specs/</code></td>
-      <td><code>script.html</code><br><code>storyboard/</code><br><code>master-spec.html</code><br><code>release-checklist.html</code><br><code>agents.html</code><br><code>changes.html</code>, <code>changelog.html</code><br><code>templates/MASTER-SPEC.md</code></td>
+      <td><code>script/scenes.json</code><br><code>spec/project.json</code>, <code>spec/publish.json</code><br><code>thumbnails/*.html</code><br><code>video/</code> (the Hyperframes project and its assets)<br><code>.env</code> (your own keys, never committed)<br><code>index.html</code>, <code>kanban.html</code>, <code>recommendations.html</code> (their text is about the current video)<br><code>docs/superpowers/specs/</code></td>
+      <td><code>script.html</code><br><code>storyboard/</code><br><code>master-spec.html</code><br><code>release-checklist.html</code><br><code>agents.html</code><br><code>publish.html</code>, <code>thumbnails/*.jpg</code><br><code>changes.html</code>, <code>changelog.html</code><br><code>templates/MASTER-SPEC.md</code></td>
     </tr>
   </table></div>
 
@@ -37,6 +37,9 @@
 node scripts/build-script-page.mjs
 node scripts/build-master-spec.mjs
 node scripts/build-agents-page.mjs
+node scripts/build-publish-page.mjs
+scripts/build-thumbnails.sh
+node scripts/build-architecture.mjs
 node scripts/build-changes-page.mjs
 node scripts/version.mjs bump minor "what changed" [page ...] [--clear-notes=page,page]</pre>
 

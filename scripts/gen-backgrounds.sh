@@ -27,3 +27,4 @@ gen storage   "dim self-storage unit corridor with rows of closed orange doors, 
 gen warning   "dark charcoal abstract background with a subtle red glow from the lower edge, soft grain, minimal, $NOTEXT"
 gen network   "dark blue abstract node network glowing softly, minimal tech background, depth of field, $NOTEXT"
 gen calm      "soft dark teal gradient abstract background with gentle bokeh lights, minimal, $NOTEXT"
+gen redtape   "dramatic close up of tangled red ribbon tape forming a knot on a dark wooden desk, shallow depth of field, cinematic moody lighting, $NOTEXT"
