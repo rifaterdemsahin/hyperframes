@@ -7,6 +7,8 @@
     ["🎞️ Storyboard", base + "storyboard/"],
     ["⚖️ Hyperframes vs Remotion", base + "compare.html"],
     ["💳 Why pay?", base + "why-pay.html"],
+    ["✅ Recommendations", base + "recommendations.html"],
+    ["📄 Design doc", "https://github.com/rifaterdemsahin/hyperframes/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],
     ["🐙 Repo", "https://github.com/rifaterdemsahin/hyperframes"],
   ];
   var here = location.href.split("#")[0].replace(/index\.html$/, "");

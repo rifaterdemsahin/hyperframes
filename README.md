@@ -11,6 +11,7 @@ Video project: **UK Director Liquidation, Part 1 of 3: the real process** (about
 | Storyboard (editable, with draft voiceover and a copy-feedback bar) | https://rifaterdemsahin.github.io/hyperframes/storyboard/ |
 | Hyperframes vs Remotion | https://rifaterdemsahin.github.io/hyperframes/compare.html |
 | Why pay for Hyperframes? | https://rifaterdemsahin.github.io/hyperframes/why-pay.html |
+| Recommendations | https://rifaterdemsahin.github.io/hyperframes/recommendations.html |
 | Design doc | [docs/superpowers/specs/2026-11-18-liquidation-video-design.md](docs/superpowers/specs/2026-11-18-liquidation-video-design.md) |
 | Scene data | [script/scenes.json](script/scenes.json) |
 | Hyperframes project | [video/](video/) |

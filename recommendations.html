@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recommendations</title>
+<style>
+:root{--bg:#f6f8fa;--card:#fff;--ink:#17202a;--mute:#5b6675;--line:#dde3ea;--accent:#0a7c91;--hi:#c53030;--mid:#b7791f;--lo:#2f855a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e8ecf1;--mute:#8b95a5;--line:#232a35;--accent:#4cc3d9;--hi:#ff6b6b;--mid:#ffd166;--lo:#68d391}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:860px;margin:auto;padding:32px 16px 64px}h1{margin:0 0 6px;font-size:30px}h2{margin:34px 0 10px;font-size:20px}
+.lead{font-size:18px;color:var(--mute)}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:12px 0}
+.card h3{margin:0 0 6px;font-size:16px}.card p{margin:4px 0}.card ul{margin:6px 0;padding-left:20px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;border:1px solid currentColor;margin-right:8px;vertical-align:middle}
+.hi{color:var(--hi)}.mid{color:var(--mid)}.lo{color:var(--lo)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}th{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}
+.over{color:var(--hi);font-weight:600}pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:13px}a{color:var(--accent)}small{color:var(--mute)}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+<main>
+  <h1>✅ Recommendations</h1>
+  <p class="lead">What I would do next, in priority order. These are my suggestions from working on the storyboard, not requirements. Anything about law or tax is a prompt to check with your practitioner, not advice.</p>
+
+  <h2>Do first</h2>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Rotate the fal.ai key</h3>
+    <p>The key was pasted into chat, so treat it as exposed. Create a new one in the fal.ai dashboard, put it in your local <code>.env</code> as <code>FAL_KEY=...</code>, and delete the old one. It is not in the repo, which I checked on every commit.</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Decide whether the repo stays public before release</h3>
+    <p>The repo and the Pages site are public, and the script holds £39,475.54 and your real dates. That is fine once the video is out, but until then it publishes the story early. If you would rather not, make the repo private (Pages then needs a paid GitHub plan) or keep the script out of it until release.</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Get the script checked for accuracy before publishing</h3>
+    <p>The video makes factual claims about liability and process ("generally, the director isn't personally liable", the five steps, "or the money goes to the Crown"). Ask your insolvency practitioner to read the script once. You already say they decide; a quick read protects you and viewers. Keep the disclaimer.</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Blur before you upload anything</h3>
+    <p>UTR, login, names, addresses and the practitioner's details. Blur in the source image, not as a soft overlay, and check the exported frame, not the preview. Decide whether to name the practitioner or the "4.8 stars" provider; if you do, say it is your experience, not a recommendation.</p></div>
+
+  <h2>Fix the timing</h2>
+  <p>The AI draft voice runs over the script's slot in five scenes. Total voice is 190 s against a 198 s plan, so the problem is balance, not length.</p>
+  <div class="tw"><table>
+    <tr><th>Scene</th><th>Slot</th><th>Voice</th><th>Suggestion</th></tr>
+    <tr><td>Hook</td><td>15 s</td><td class="over">16.6 s</td><td>Cut "with the real costs"; keep the £ figure in the first sentence</td></tr>
+    <tr><td>The goal</td><td>12 s</td><td class="over">14.6 s</td><td>Give it 15 s; there is slack in the intro</td></tr>
+    <tr><td>Five things</td><td>42 s</td><td class="over">45.0 s</td><td>Give it 45 s, and trim the storage-unit aside</td></tr>
+    <tr><td>Exceptions</td><td>19 s</td><td class="over">20.0 s</td><td>Give it 20 s</td></tr>
+    <tr><td>Outro</td><td>6 s</td><td class="over">10.1 s</td><td>Give it 10 s over the end screen, or drop the second sentence</td></tr>
+    <tr><td>Intro, costs, emails, tracking</td><td colspan="3">All finish 2 to 5 s early. Let the freed seconds go to the scenes above, or add a beat of silence for the viewer to read the graphic.</td></tr>
+  </table></div>
+  <p><small>Your real voice will have different timings, so settle the slots after you record.</small></p>
+
+  <h2>Voice and footage</h2>
+  <div class="card"><h3><span class="tag mid">MED</span>Record your own voice for the final cut</h3>
+    <p>A personal story about your own company works better in your voice, and it costs nothing. Keep the AI voice only as a timing guide. If you do want AI audio, try the free Kokoro voices before paying for HeyGen (see <a href="why-pay.html">Why pay?</a>).</p></div>
+  <div class="card"><h3><span class="tag mid">MED</span>Use real footage where the claim is about real things</h3>
+    <p>Show the real HMRC balance, the real emails and the real n8n canvas. The generated backgrounds are only mood plates and should never stand in for a document or screen. I did not make fake versions of those, and I would keep it that way.</p></div>
+  <div class="card"><h3><span class="tag mid">MED</span>Burn in captions</h3>
+    <p>Many viewers watch muted. With the final audio, I can generate timed captions in Hyperframes from the transcript.</p></div>
+
+  <h2>YouTube packaging</h2>
+  <div class="card"><h3><span class="tag lo">LOW</span>Chapters</h3>
+    <p>YouTube needs the first chapter at 0:00 and each chapter at least 10 seconds, so merge the 6 s call to action into the outro. Starting point from the current timings; retime after the final edit:</p>
+<pre>0:00 The debt and the plan
+0:15 Who I am, and the three parts
+0:30 The goal of a liquidation
+0:42 Five things to do first
+1:24 What it costs and how long it takes
+1:55 The exceptions
+2:14 What my emails taught me
+2:44 How I keep track of it
+3:06 Part 2 and disclaimer</pre></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>One call to action, put it in the description too</h3>
+    <p>You already have a single ask (subscribe for Part 2). Repeat it with a link to Part 2 once it exists, and put the disclaimer line in the description as well as the end.</p></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>Thumbnail and title</h3>
+    <p>Lead with the number and the question the viewer has, for example the £ figure plus "UK director, can't pay HMRC". Avoid promising an outcome, since Part 3 shows how it ends.</p></div>
+
+  <h2>Process</h2>
+  <div class="card"><h3><span class="tag lo">LOW</span>Keep the loop short</h3>
+    <ul>
+      <li>Edit text and leave notes on the <a href="storyboard/">storyboard</a>, then paste the copied feedback into the chat.</li>
+      <li>Track what is waiting on you in the <a href="kanban.html">kanban</a>.</li>
+      <li>After you approve the storyboard I build the scenes with placeholders, check them, then swap in your real footage and render. Each step is committed, pushed and deployed.</li>
+    </ul></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>Stay on the free stack</h3>
+    <p>Hyperframes, Claude Code and local rendering cost no licence fee. See <a href="compare.html">Hyperframes vs Remotion</a> and <a href="why-pay.html">Why pay?</a> for the reasoning.</p></div>
+</main>
+</body>
+</html>
