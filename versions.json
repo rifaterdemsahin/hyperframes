@@ -1,0 +1,32 @@
+{
+  "site": "1.1.0",
+  "date": "2026-11-18",
+  "pages": {
+    "index.html": { "title": "Home", "version": "1.1.0", "date": "2026-11-18" },
+    "script.html": { "title": "Script", "version": "1.1.0", "date": "2026-11-18" },
+    "storyboard/": { "title": "Storyboard", "version": "1.1.0", "date": "2026-11-18" },
+    "kanban.html": { "title": "Kanban", "version": "1.1.0", "date": "2026-11-18" },
+    "recommendations.html": { "title": "Recommendations", "version": "1.1.0", "date": "2026-11-18" },
+    "hyperframes-guide/": { "title": "Hyperframes overview", "version": "1.1.0", "date": "2026-11-18" },
+    "hyperframes-guide/rendering.html": { "title": "Rendering paths", "version": "1.1.0", "date": "2026-11-18" },
+    "hyperframes-guide/speed.html": { "title": "Cloud vs local speed", "version": "1.1.0", "date": "2026-11-18" },
+    "hyperframes-guide/cli.html": { "title": "CLI cheat sheet", "version": "1.1.0", "date": "2026-11-18" },
+    "compare.html": { "title": "Hyperframes vs Remotion", "version": "1.1.0", "date": "2026-11-18" },
+    "why-pay.html": { "title": "Why pay?", "version": "1.1.0", "date": "2026-11-18" },
+    "changelog.html": { "title": "Changelog", "version": "1.1.0", "date": "2026-11-18" }
+  },
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-11-18",
+      "pages": ["all"],
+      "changes": [
+        "Script rewritten from your storyboard feedback: no figures in the hook, goodbye framing, red tape, learn then delegate to AI with a professional, build your system for the next role, Part 2 showcases the stages and the app. Voiceover regenerated and scenes re-timed (196 s of slots, 181 s of voice, no overruns).",
+        "Versioning system: every page shows its version and date in a footer, and this changelog lists every release.",
+        "Copy-feedback bar on every page, like the storyboard: a feedback box per section, general notes, and one button that copies it all for the chat.",
+        "Hyperframes vs Remotion: added a GitHub repo comparison and npm downloads.",
+        "Earlier work (scaffold, storyboard, voiceover, menus, comparison pages, speed benchmark) is in the git history; versioning starts here."
+      ]
+    }
+  ]
+}

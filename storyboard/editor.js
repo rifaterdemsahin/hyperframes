@@ -51,7 +51,8 @@
       if (lines.length) out.push("## " + p.dataset.title + "\n" + lines.join("\n"));
     });
     if (general.value.trim()) out.push("## General\n" + general.value.trim());
-    return out.length ? "Storyboard feedback:\n\n" + out.join("\n\n") : "";
+    var i = window.SITE_INFO || {};
+    return out.length ? "Storyboard feedback (page v" + (i.version || "?") + ", site v" + (i.site || "?") + "):\n\n" + out.join("\n\n") : "";
   }
 
   var countEl = document.getElementById("count");

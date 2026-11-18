@@ -3,6 +3,8 @@
 (function () {
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
   var G = "https://github.com/rifaterdemsahin/hyperframes";
+  // Written by scripts/version.mjs from versions.json. Do not edit by hand.
+  /*VERSIONS-START*/ var VERSIONS = {"site":"1.1.0","date":"2026-11-18","pages":{"index.html":{"t":"Home","v":"1.1.0","d":"2026-11-18"},"script.html":{"t":"Script","v":"1.1.0","d":"2026-11-18"},"storyboard/":{"t":"Storyboard","v":"1.1.0","d":"2026-11-18"},"kanban.html":{"t":"Kanban","v":"1.1.0","d":"2026-11-18"},"recommendations.html":{"t":"Recommendations","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.1.0","d":"2026-11-18"},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.1.0","d":"2026-11-18"},"why-pay.html":{"t":"Why pay?","v":"1.1.0","d":"2026-11-18"},"changelog.html":{"t":"Changelog","v":"1.1.0","d":"2026-11-18"}}}; /*VERSIONS-END*/
   var MENU = [
     { label: "🏠 Home", href: "" },
     {
@@ -28,6 +30,7 @@
     {
       label: "🔗 Project",
       items: [
+        ["🕘 Changelog", "changelog.html"],
         ["📄 Design doc", G + "/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],
         ["🐙 Repo", G],
       ],
@@ -89,4 +92,27 @@
   });
   document.addEventListener("click", function (e) { if (!nav.contains(e.target)) closeAll(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+
+  // ---- Versioning: which page is this, and what version is it? ----
+  var rel = location.href.split("#")[0].split("?")[0];
+  rel = rel.indexOf(base) === 0 ? rel.slice(base.length) : rel;
+  rel = rel.replace(/index\.html$/, "");
+  var key = rel === "" ? "index.html" : rel;
+  var pg = (VERSIONS.pages || {})[key] || { t: document.title, v: "?", d: "" };
+  window.SITE_INFO = { site: VERSIONS.site, siteDate: VERSIONS.date, key: key, title: pg.t, version: pg.v, date: pg.d, url: location.origin + location.pathname };
+
+  var ready = function (fn) { document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", fn) : fn(); };
+  ready(function () {
+    var f = document.createElement("footer");
+    f.id = "site-foot";
+    f.innerHTML = "📌 <b>" + pg.t + "</b> v" + pg.v + (pg.d ? " · updated " + pg.d : "") + " · site v" + VERSIONS.site + ' · <a href="' + base + 'changelog.html">Changelog</a>';
+    var st = document.createElement("style");
+    st.textContent = "#site-foot{max-width:860px;margin:0 auto;padding:16px;color:#8b95a5;font:13px system-ui,sans-serif;text-align:center}#site-foot a{color:#4cc3d9}";
+    document.head.appendChild(st);
+    document.body.appendChild(f);
+    // Copy-feedback bar on every page (pages that bring their own set <body data-feedback="custom">)
+    var s = document.createElement("script");
+    s.src = base + "feedback.js?v=" + VERSIONS.site;
+    document.head.appendChild(s);
+  });
 })();

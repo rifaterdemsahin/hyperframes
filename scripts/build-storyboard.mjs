@@ -62,8 +62,8 @@ audio{width:100%;margin-top:8px;height:36px}.fit{margin:.3em 0;font-size:12px}.f
 #bar button{font:inherit;border:1px solid #232a35;background:var(--card);color:var(--ink);padding:8px 14px;border-radius:8px;cursor:pointer}#bar #copy{background:var(--accent);color:#04222a;font-weight:700;border-color:var(--accent)}#count{color:var(--mute);font-size:13px}
 #gen{max-width:1280px;margin:0 auto;padding:0 24px 24px}#gen label{display:block;color:var(--mute);margin-bottom:6px}#gen textarea{width:100%;min-height:90px;font:inherit;background:var(--card);color:var(--ink);border:1px solid #232a35;border-radius:8px;padding:10px}
 .broll{color:var(--mute);font-size:14px;margin:.5em 0}.broll b{color:var(--accent)}.vo{margin:.4em 0 0;font-size:15px}
-</style></head><body>
-<script src="../nav.js?v=3"></script>
+</style></head><body data-feedback="custom">
+<script src="../nav.js?v=1.1.0"></script>
 <header><h1>${esc(data.title)}</h1><p>Storyboard · ${data.scenes.length} scenes · about ${tc(data.totalSecondsApprox)} · generated from script/scenes.json. Dashed boxes are real footage you supply. Backgrounds and voiceover are fal.ai (British male, Kokoro); press play on each panel. <b>Click any overlay or voiceover text to edit it</b> (edited text gets a yellow outline), add feedback per panel, then use Copy at the bottom. Total voice time: ${data.scenes.reduce((a,x)=>a+(x.voSeconds||0),0).toFixed(0)}s.</p></header>
 <main>${panels}
 </main>

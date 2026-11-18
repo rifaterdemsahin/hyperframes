@@ -20,7 +20,7 @@ a{color:var(--accent)}small{color:var(--mute)}
 </style>
 </head>
 <body>
-<script src="nav.js?v=3"></script>
+<script src="nav.js?v=1.1.0"></script>
 <main>
   <h1>Hyperframes vs Remotion</h1>
   <p class="lead">Both tools turn web pages into video: open a real browser, draw each frame, encode the result. The difference is what you write. Remotion asks for a React component. Hyperframes asks for an HTML file.</p>
@@ -37,6 +37,37 @@ a{color:var(--accent)}small{color:var(--mute)}
     <tr><td>Visual editor</td><td>Studio edits the same DOM the renderer captures</td><td>Remotion Studio edits React compositions</td></tr>
     <tr><td>Maturity</td><td>Newer</td><td>Older: more templates, tutorials, answers and production history</td></tr>
   </table></div>
+
+  <h2>🐙 The GitHub repos compared</h2>
+  <p><small>Snapshot taken 18 Nov 2026 from the GitHub API and npm. These numbers move daily. Repos: <a href="https://github.com/heygen-com/hyperframes">heygen-com/hyperframes</a> and <a href="https://github.com/remotion-dev/remotion">remotion-dev/remotion</a>.</small></p>
+  <div class="tw"><table>
+    <tr><th></th><th>Hyperframes</th><th>Remotion</th></tr>
+    <tr><td>Created</td><td>10 Mar 2026 (about 8 months old)</td><td>23 Jun 2020 (about 6 years 5 months old)</td></tr>
+    <tr><td>Stars</td><td><b>86,496</b></td><td>74,126</td></tr>
+    <tr><td>Forks</td><td>8,029</td><td>6,264</td></tr>
+    <tr><td>Watchers</td><td>207</td><td>204</td></tr>
+    <tr><td>Open issues and PRs</td><td>297</td><td>199</td></tr>
+    <tr><td>Contributors</td><td>152</td><td><b>510</b></td></tr>
+    <tr><td>Commits</td><td>7,566</td><td><b>42,092</b></td></tr>
+    <tr><td>Releases</td><td>651 (latest v0.9.68)</td><td>704 (latest v4.0.545)</td></tr>
+    <tr><td>Last push</td><td>18 Nov 2026</td><td>18 Nov 2026</td></tr>
+    <tr><td>npm downloads, last week</td><td>1.44 million</td><td><b>4.46 million</b></td></tr>
+    <tr><td>npm downloads, last month</td><td>5.5 million</td><td><b>14.7 million</b></td></tr>
+    <tr><td>Licence (as GitHub shows it)</td><td>Apache-2.0</td><td>Custom licence (GitHub reports "NOASSERTION")</td></tr>
+    <tr><td>Main languages</td><td>TypeScript, JavaScript, Shell, CSS</td><td>TypeScript, Rust, PHP, MDX</td></tr>
+    <tr><td>Repo size (with history)</td><td>548 MB</td><td>4.5 GB</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:18px">How to read it</h3>
+  <ul>
+    <li><b>Hyperframes grew much faster.</b> About 10,000 stars a month against about 1,000 for Remotion over its lifetime, and it already has more stars. Stars measure attention, not quality, and a launch backed by a large company draws a lot of it.</li>
+    <li><b>Remotion is far more established.</b> Roughly 3x the weekly downloads, 3x the contributors and 5.6x the commits, over a project about nine times as old. That matches the vendor guide's own admission that Remotion has more production history.</li>
+    <li><b>Hyperframes ships very fast.</b> 651 releases in about 253 days is roughly 2.6 a day, against about 0.3 a day for Remotion. Good for fixes, but it also means frequent change, so this project pins <code>hyperframes@0.9.67</code>.</li>
+    <li><b>Version numbers.</b> Hyperframes is at 0.9.x and Remotion at 4.x. By the usual semver convention a 0.x version can still change in breaking ways. Check release notes before upgrading.</li>
+    <li><b>Download counts are noisy.</b> npm numbers include CI runs and AI agents running <code>npx</code>, and projects that pin <code>npx --yes hyperframes@x</code> (like this one) download on each run. Read them as a rough ratio, not a user count.</li>
+    <li><b>Both are active today:</b> each repo had a push and a release on 18 Nov 2026.</li>
+    <li>Open issues include pull requests, so they are not a bug count.</li>
+  </ul>
 
   <h2>💷 Cost difference</h2>
   <p><small>Prices checked 18 Nov 2026 on each vendor's own pages. They change, so confirm before buying.</small></p>
@@ -111,7 +142,7 @@ export const TitleCard = () =&gt; {
   <div class="pick">
     <p><b>Hyperframes is the better fit here</b>, for these reasons:</p>
     <ul>
-      <li>Every number and date (£39,475.54, £1,500 + £2,100, 30 Oct, 19 Nov, 2 Dec) is plain HTML text you can edit and re-render, with no React build.</li>
+      <li>Every number and date (£1,500 + £2,100, 19 Nov, 2 Dec) is plain HTML text you can edit and re-render, with no React build.</li>
       <li>The storyboard, kanban and hub are already HTML, so the same overlays and CSS carry straight into the video.</li>
       <li>The project is Apache 2.0 and installs nothing into the repo, which suits a public repo on GitHub Pages.</li>
       <li>It is made for AI agents to write, which is how this video is being built, and the project's own docs steer me through it.</li>
@@ -124,6 +155,7 @@ export const TitleCard = () =&gt; {
     <li><a href="https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md">HyperFrames vs Remotion</a> (HeyGen)</li>
     <li><a href="https://hyperframes.heygen.com/prompting/remotion-migration.md">Move from Remotion to Hyperframes</a></li>
     <li><a href="https://hyperframes.heygen.com/faq.md">Hyperframes FAQ</a></li>
+    <li><a href="https://github.com/heygen-com/hyperframes">Hyperframes repo</a>, <a href="https://github.com/remotion-dev/remotion">Remotion repo</a> (GitHub API) and <a href="https://www.npmjs.com/package/remotion">npm download stats</a></li>
     <li><a href="https://www.remotion.pro/pricing">Remotion pricing</a> and <a href="https://www.remotion.dev/docs/lambda/cost-example">Lambda cost examples</a></li>
     <li><a href="https://hyperframes.heygen.com/faq.md#is-hyperframes-free">Hyperframes FAQ: is it free?</a></li>
   </ul>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog</title>
+<link rel="stylesheet" href="site.css">
+</head><body>
+<script src="nav.js?v=1.1.0"></script>
+<main>
+  <h1>🕘 Changelog</h1>
+  <p class="lead">Site version <b>v1.1.0</b>, updated 2026-11-18. Every page shows its own version in its footer.</p>
+  <h2>Page versions</h2>
+  <div class="tw"><table><tr><th>Page</th><th>Version</th><th>Updated</th></tr><tr><td><a href="index.html">Home</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="script.html">Script</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="storyboard/">Storyboard</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="kanban.html">Kanban</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="recommendations.html">Recommendations</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="hyperframes-guide/">Hyperframes overview</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="hyperframes-guide/rendering.html">Rendering paths</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="hyperframes-guide/speed.html">Cloud vs local speed</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="hyperframes-guide/cli.html">CLI cheat sheet</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="compare.html">Hyperframes vs Remotion</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="why-pay.html">Why pay?</a></td><td>v1.1.0</td><td>2026-11-18</td></tr><tr><td><a href="changelog.html">Changelog</a></td><td>v1.1.0</td><td>2026-11-18</td></tr></table></div>
+  <h2>Releases</h2>
+<section class="rel"><h2>v1.1.0 <small>2026-11-18 · all pages</small></h2><ul><li>Script rewritten from your storyboard feedback: no figures in the hook, goodbye framing, red tape, learn then delegate to AI with a professional, build your system for the next role, Part 2 showcases the stages and the app. Voiceover regenerated and scenes re-timed (196 s of slots, 181 s of voice, no overruns).</li><li>Versioning system: every page shows its version and date in a footer, and this changelog lists every release.</li><li>Copy-feedback bar on every page, like the storyboard: a feedback box per section, general notes, and one button that copies it all for the chat.</li><li>Hyperframes vs Remotion: added a GitHub repo comparison and npm downloads.</li><li>Earlier work (scaffold, storyboard, voiceover, menus, comparison pages, speed benchmark) is in the git history; versioning starts here.</li></ul></section>
+  <p class="note">How it works: <code>versions.json</code> is the source of truth. <code>node scripts/version.mjs bump minor "what changed" [page ...]</code> bumps the versions, adds an entry here and refreshes every page. Use patch for wording fixes, minor for new content or features, major for a restructure.</p>
+</main>
+</body></html>
