@@ -1,5 +1,5 @@
 {
-  "site": "1.3.0",
+  "site": "1.3.1",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -14,7 +14,7 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "date": "2026-11-18"
     },
     "kanban.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -74,6 +74,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.3.1",
+      "date": "2026-11-18",
+      "pages": [
+        "storyboard/"
+      ],
+      "changes": [
+        "Fix: the storyboard editor script is now versioned in its URL, so note clearing and other updates reach the browser immediately instead of after the cache expires."
+      ]
+    },
     {
       "version": "1.3.0",
       "date": "2026-11-18",

@@ -53,7 +53,7 @@ const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site
 nav = nav.replace(/\/\*VERSIONS-START\*\/[\s\S]*?\/\*VERSIONS-END\*\//, block);
 writeFileSync(navPath, nav);
 
-// 2. cache-busters: ?v=<site version> on nav.js in every page and in the page builders
+// 2. cache-busters: ?v=<site version> on nav.js (and the storyboard editor.js) in every page and in the page builders
 const walk = (d) =>
   readdirSync(d).flatMap((f) => {
     const p = join(d, f);
@@ -63,7 +63,7 @@ const walk = (d) =>
 let stamped = 0;
 for (const f of walk(root).filter((p) => /\.(html|mjs)$/.test(p))) {
   const s = readFileSync(f, "utf8");
-  const t = s.replace(/(src="(?:\.\.\/)?nav\.js)(\?v=[\w.]+)?"/g, `$1?v=${v.site}"`);
+  const t = s.replace(/(src="(?:\.\.\/)?(?:nav|editor)\.js)(\?v=[\w.]+)?"/g, `$1?v=${v.site}"`);
   if (t !== s) { writeFileSync(f, t); stamped++; }
 }
 
