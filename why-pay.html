@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Why Pay for Hyperframes</title>
+<style>
+:root{--bg:#f6f8fa;--card:#fff;--ink:#17202a;--mute:#5b6675;--line:#dde3ea;--accent:#0a7c91;--warn:#b7791f;--ok:#2f855a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e8ecf1;--mute:#8b95a5;--line:#232a35;--accent:#4cc3d9;--warn:#ffd166;--ok:#68d391}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:860px;margin:auto;padding:32px 16px 64px}h1{margin:0 0 6px;font-size:30px}h2{margin:36px 0 10px;font-size:20px}
+.lead{font-size:18px;color:var(--mute)}.note{border-left:3px solid var(--warn);background:var(--card);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14px;color:var(--mute)}
+.tldr{background:var(--card);border:1px solid var(--accent);border-radius:12px;padding:14px 18px;font-size:17px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}.box h3{margin:0 0 6px;font-size:16px}.box ul{margin:0;padding-left:20px}.box li{margin:4px 0}
+.yes h3{color:var(--ok)}.no h3{color:var(--warn)}a{color:var(--accent)}small{color:var(--mute)}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+<main>
+  <h1>💳 Why pay for Hyperframes?</h1>
+  <p class="lead">Short answer: you don't have to. The framework, the command line and the skills are free and open source. What you can pay for is a separate, optional layer from HeyGen.</p>
+  <p class="note"><b>Source and bias:</b> facts are from Hyperframes' FAQ, its free-agents guide and the <a href="https://hyperframes.studio/pricing">Studio pricing page</a>, checked 18 Nov 2026. HeyGen makes Hyperframes and sells the paid plan, so read the "worth it" reasoning as mine, not theirs. Prices change.</p>
+
+  <h2>The short version</h2>
+  <p class="tldr">Rendering a Hyperframes video costs <b>$0</b>. Paying <b>$25/month (Studio Pro)</b> buys convenience and HeyGen's AI models, not the ability to make or render videos.</p>
+
+  <h2>What is free</h2>
+  <ul>
+    <li>The framework, CLI and skills (Apache 2.0), including commercial use.</li>
+    <li>Rendering on your own computer: free, no account, no limit.</li>
+    <li>The Studio app with a free HeyGen account. The Free plan has 5,000 starting credits, 3 AI video clips and 5 cloud exports a month. Local exports from the desktop app are unlimited on every plan.</li>
+    <li>Local voices (Kokoro) and local captions (Whisper or Parakeet), run by your own agent.</li>
+    <li>Free agents: OpenCode's free models or a model on your own computer, so even the AI that writes the video can be $0.</li>
+  </ul>
+
+  <h2>What you pay for</h2>
+  <div class="tw"><table>
+    <tr><th>Item</th><th>Cost</th><th>What you get</th></tr>
+    <tr><td>Studio <b>Pro</b> plan</td><td><b>$25/month</b></td><td>25,000 credits a month, unlimited cloud exports, HeyGen's top video, image, voice and music models (for example HeyGen Video 1 and HeyGen Voice 1), and making a video in the style of one you upload. It runs on Pro credits, so no separate Claude or other AI plan is needed inside the app.</td></tr>
+    <tr><td>HeyGen voices, avatars, generated clips</td><td>HeyGen credits</td><td>Studio-quality and cloned voices, avatars, AI clips. Needs a HeyGen API key or sign-in.</td></tr>
+    <tr><td>HeyGen cloud rendering</td><td>Billed through HeyGen</td><td>Render without running Chrome and FFmpeg yourself.</td></tr>
+    <tr><td>Your AI agent</td><td>Whatever your agent costs</td><td>Writing the video. Separate from Hyperframes in every case.</td></tr>
+  </table></div>
+  <p><small>Hyperframes Pro is separate from HeyGen's own plans.</small></p>
+
+  <h2>When paying makes sense</h2>
+  <div class="two">
+    <div class="box yes"><h3>✅ Worth it if</h3><ul>
+      <li>You want realistic or cloned voices and avatars without wiring up another service.</li>
+      <li>You want AI-generated video clips, music and images from one place and one bill.</li>
+      <li>You don't want to pay for or manage a separate AI agent plan.</li>
+      <li>You export often and don't want to render locally (unlimited cloud exports).</li>
+      <li>You want to copy the style of an existing video.</li>
+    </ul></div>
+    <div class="box no"><h3>⚠️ Not worth it if</h3><ul>
+      <li>You write the video with Claude Code and render locally: nothing paid is needed.</li>
+      <li>You record your own voice and face cam.</li>
+      <li>Your graphics are HTML and your footage is your own.</li>
+      <li>You only need a handful of cloud exports a month (Free gives 5).</li>
+    </ul></div>
+  </div>
+
+  <h2>For this video</h2>
+  <div class="box">
+    <p><b>Recommendation: don't pay.</b></p>
+    <ul>
+      <li>The video is built with Claude Code and rendered locally, both free of any Hyperframes charge.</li>
+      <li>Your real footage, face cam and (ideally) your own voice are what viewers expect for a personal story, and none of that needs HeyGen.</li>
+      <li>The draft voiceover already comes from fal.ai (Kokoro), so no HeyGen voice is needed to review the storyboard.</li>
+    </ul>
+    <p>The one case to revisit: if you decide an AI voice sounds better than yours for the final cut, HeyGen Voice 1 is the paid route. Try the free voice first.</p>
+  </div>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://hyperframes.heygen.com/faq.md">Hyperframes FAQ: is it free?</a></li>
+    <li><a href="https://hyperframes.heygen.com/guides/free-agents.md">Make videos with a free agent</a></li>
+    <li><a href="https://hyperframes.heygen.com/guides/voice-and-audio.md">Voice, music and sound: free or HeyGen quality</a></li>
+    <li><a href="https://hyperframes.studio/pricing">Studio pricing</a></li>
+    <li>Compare with <a href="compare.html">Hyperframes vs Remotion</a>, including costs.</li>
+  </ul>
+</main>
+</body>
+</html>

@@ -6,6 +6,7 @@
     ["📋 Kanban", base + "kanban.html"],
     ["🎞️ Storyboard", base + "storyboard/"],
     ["⚖️ Hyperframes vs Remotion", base + "compare.html"],
+    ["💳 Why pay?", base + "why-pay.html"],
     ["🐙 Repo", "https://github.com/rifaterdemsahin/hyperframes"],
   ];
   var here = location.href.split("#")[0].replace(/index\.html$/, "");
