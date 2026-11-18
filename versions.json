@@ -1,5 +1,5 @@
 {
-  "site": "1.6.1",
+  "site": "1.6.2",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -99,7 +99,7 @@
     },
     "first-draft.html": {
       "title": "First draft",
-      "version": "1.6.0",
+      "version": "1.6.1",
       "date": "2026-11-18"
     },
     "review.html": {
@@ -114,6 +114,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.6.2",
+      "date": "2026-11-18",
+      "pages": [
+        "first-draft.html"
+      ],
+      "changes": [
+        "First draft page: a feedback box under every scene card, so each note is tied to its scene in the copied text. The feedback system now supports a box under any element, and copies notes in page order."
+      ]
+    },
     {
       "version": "1.6.1",
       "date": "2026-11-18",

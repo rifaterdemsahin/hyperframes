@@ -20,7 +20,7 @@ const html = `<!doctype html>
 <link rel="stylesheet" href="site.css">
 <style>
 video{width:100%;max-width:860px;border-radius:12px;background:#000;display:block;border:1px solid var(--line)}
-.strip{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-top:12px}.strip button{all:unset;cursor:pointer;display:block;border:2px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}.strip button:hover,.strip button:focus-visible{border-color:var(--accent)}.strip img{width:100%;display:block}.strip span{display:block;padding:4px 8px;font-size:12px;color:var(--mute)}
+.strip{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));margin-top:12px;align-items:start}.sc{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px}.sc .fbx{margin:6px 0 2px;border-style:solid}.strip button{all:unset;cursor:pointer;display:block;border:2px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}.strip button:hover,.strip button:focus-visible{border-color:var(--accent)}.strip img{width:100%;display:block}.strip span{display:block;padding:4px 8px;font-size:12px;color:var(--mute)}
 .stat{display:flex;gap:10px 24px;flex-wrap:wrap;margin:12px 0}.stat div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px}.stat b{display:block;font-size:20px;color:var(--accent)}.stat small{color:var(--mute)}
 </style></head><body>
 <script src="nav.js?v=${V.site}"></script>
@@ -30,7 +30,9 @@ video{width:100%;max-width:860px;border-radius:12px;background:#000;display:bloc
   <p class="lead">${esc(S.title)}: the whole film, ${tc(total)}, built from your script with the AI draft voice. Real footage is still to come, so each place that needs it shows a dashed frame.</p>
   ${M ? `<div class="stat"><div><b>${tc(Math.round(M.duration))}</b><small>length</small></div><div><b>${M.renderSeconds ?? "?"} s</b><small>to render</small></div><div><b>${esc(M.check)}</b><small>Hyperframes check</small></div><div><b>${mb(M.webBytes)}</b><small>web copy (full 1080p: ${mb(M.fullBytes)})</small></div></div>` : ""}
   <video id="v" controls preload="metadata" poster="draft/frames/${esc(S.scenes[0].id)}.jpg" src="draft/first-draft.mp4"></video>
-  <div class="strip">${S.scenes.map((s) => `<button data-t="${s.start}" title="Jump to ${tc(s.start)}"><img src="draft/frames/${esc(s.id)}.jpg" alt="" loading="lazy"><span>${tc(s.start)} · ${esc(s.title)}</span></button>`).join("")}</div>
+  <h2 data-fb-skip>Scenes</h2>
+  <p>Click a scene to jump to it, then say what to change right under it.</p>
+  <div class="strip">${S.scenes.map((sc, i) => `<div class="sc" data-fb="Scene ${String(i + 1).padStart(2, "0")} · ${esc(sc.title)} (${tc(sc.start)})" data-fb-id="${esc(sc.id)}" data-fb-kind="scene" data-fb-open><button data-t="${sc.start}" title="Jump to ${tc(sc.start)}"><img src="draft/frames/${esc(sc.id)}.jpg" alt="" loading="lazy"><span>${String(i + 1).padStart(2, "0")} · ${tc(sc.start)} · ${esc(sc.title)}</span></button></div>`).join("")}</div>
 
   <h2>What you need to supply</h2>
   <p>Only these scenes wait on your footage. Everything else in the draft is final-quality layout.</p>

@@ -51,6 +51,7 @@
   }
 
   h2s.forEach(function (h, i) {
+    if (h.hasAttribute("data-fb-skip")) return; // the items under this heading carry their own boxes
     var title = h.textContent.replace(/\s+/g, " ").trim();
     var box = makeBox("s" + i, title, "Feedback on this section");
     var container = h.closest("section, article");
@@ -58,6 +59,13 @@
     var n = h.nextElementSibling;
     while (n && n.tagName !== "H2") n = n.nextElementSibling;
     if (n) main.insertBefore(box, n); else main.appendChild(box);
+  });
+
+  // Any element with data-fb="<title>" gets its own box right under it (add data-fb-open to show the box open).
+  Array.prototype.slice.call(main.querySelectorAll("[data-fb]")).forEach(function (el, i) {
+    var box = makeBox("f:" + (el.dataset.fbId || i), el.dataset.fb, "Feedback on this " + (el.dataset.fbKind || "item"));
+    if (el.hasAttribute("data-fb-open")) box.open = true;
+    el.appendChild(box);
   });
 
   var general = makeBox("general", "General", "General feedback for this page");
@@ -69,7 +77,7 @@
   document.body.appendChild(bar);
 
   var countEl = bar.querySelector("#fbcount");
-  function filled() { return boxes.filter(function (b) { return b.el.value.trim(); }); }
+  function filled() { return boxes.filter(function (b) { return b.el.value.trim(); }).sort(function (a, b) { var p = a.el.compareDocumentPosition(b.el); return p & 4 ? -1 : p & 2 ? 1 : 0; }); }
   function count() { var n = filled().length; countEl.textContent = n ? n + " note(s) on this page" : "No notes yet"; }
   count();
 
