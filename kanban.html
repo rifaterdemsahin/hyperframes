@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Kanban</title>
+<style>
+:root{--bg:#f6f8fa;--card:#fff;--ink:#17202a;--mute:#5b6675;--line:#dde3ea;--accent:#0a7c91;--you:#b7791f;--ai:#0a7c91;--ok:#2f855a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e8ecf1;--mute:#8b95a5;--line:#232a35;--accent:#4cc3d9;--you:#ffd166;--ai:#4cc3d9;--ok:#68d391}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+header{max-width:1400px;margin:auto;padding:24px 16px 8px}h1{margin:0;font-size:26px}header p{margin:4px 0 12px;color:var(--mute)}
+.bar{display:flex;gap:8px;flex-wrap:wrap}button{font:inherit;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 12px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}button:hover{border-color:var(--accent)}
+.board{max-width:1400px;margin:auto;padding:8px 16px 48px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:start}
+.col{background:color-mix(in srgb,var(--card) 60%,transparent);border:1px solid var(--line);border-radius:12px;padding:10px}
+.col h2{margin:2px 4px 10px;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);display:flex;justify-content:space-between}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
+.card h3{margin:0 0 4px;font-size:15px}.card p{margin:0 0 8px;color:var(--mute);font-size:13px}
+.chip{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;border:1px solid currentColor;margin-right:6px}
+.chip.you{color:var(--you)}.chip.ai{color:var(--ai)}.chip.done{color:var(--ok)}
+label{display:block;font-size:12px;color:var(--mute);margin:6px 0 2px}
+textarea,select{width:100%;font:inherit;font-size:13px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:6px}
+textarea{min-height:60px;resize:vertical}
+</style>
+</head>
+<body>
+<header>
+  <h1>Video Kanban: Liquidation Part 1</h1>
+  <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
+  <div class="bar">
+    <button class="primary" id="copy">Copy for Claude</button>
+    <button id="dl">Download JSON</button>
+    <button id="reset">Reset instructions</button>
+  </div>
+</header>
+<div class="board" id="board"></div>
+<script>
+const COLS=[["input","Needs your input"],["ready","Ready for Claude"],["doing","In progress"],["done","Done"]];
+const TASKS=[
+ // Needs your input
+ {id:"t01",col:"input",who:"you",title:"Approve storyboard and overlay text",desc:"Check the 10 panels at storyboard/. I wrote the short on-screen text; confirm numbers, dates and wording."},
+ {id:"t02",col:"input",who:"you",title:"HMRC balance screenshot (S2)",desc:"Real screenshot showing £39,475.54. Blur the UTR and login before sharing."},
+ {id:"t03",col:"input",who:"you",title:"Face-cam clip for the intro",desc:"About 15 s, Part 1 intro. Say if the face-cam audio is the voiceover or if you record it separately."},
+ {id:"t04",col:"input",who:"you",title:"Voiceover audio",desc:"Record the full script, or tell me to use captions only for the first cut."},
+ {id:"t05",col:"input",who:"you",title:"n8n canvas recording (S3) and dashboard (S10)",desc:"20 s canvas capture, then the dashboard. Any client data blurred."},
+ {id:"t06",col:"input",who:"you",title:"Email screenshots (S12), blurred",desc:"Chase reminders, the receipt, the liquidation-date email. Names and addresses blurred."},
+ {id:"t07",col:"input",who:"you",title:"Confirm the facts on screen",desc:"£1,500 + £2,100, £2,203.17, 4.8 Trustpilot, 30 Oct / 19 Nov / 2 Dec. Anything out of date by now?"},
+ {id:"t08",col:"input",who:"you",title:"Look and sound: palette, font, music",desc:"Any brand colours, a font, a music preference, or say 'your call'."},
+ {id:"t09",col:"input",who:"you",title:"Rotate the fal.ai key",desc:"The key was pasted in chat. Create a new one and replace FAL_KEY in your local .env."},
+ // Ready for Claude
+ {id:"t10",col:"ready",who:"ai",title:"Build the 10 scenes in Hyperframes",desc:"Sub-compositions with placeholders, timings from script/scenes.json."},
+ {id:"t11",col:"ready",who:"ai",title:"Motion graphics",desc:"Goal infographic, cost and timeline graphic, four exception cards, email timeline, subscribe animation."},
+ {id:"t12",col:"ready",who:"ai",title:"Captions from the script",desc:"Timed captions, swapped for transcript timings once voiceover exists."},
+ {id:"t13",col:"ready",who:"ai",title:"Check, snapshot, fix",desc:"npm run check and snapshot frames for every scene before each commit."},
+ {id:"t14",col:"ready",who:"ai",title:"Swap in real footage and render MP4",desc:"Needs t02 to t06. Then render and publish a review link."},
+ {id:"t15",col:"ready",who:"ai",title:"Part 2 teaser end screen",desc:"End card and teaser for Part 2."},
+ // Done
+ {id:"t16",col:"done",who:"ai",title:"Scaffold Hyperframes project, design doc, scene data",desc:"Stage 1."},
+ {id:"t17",col:"done",who:"ai",title:"Storyboard with fal.ai backgrounds",desc:"Stage 2."},
+ {id:"t18",col:"done",who:"ai",title:"GitHub Pages hub, this kanban",desc:"index.html and kanban.html."}
+];
+const KEY="liquidation-kanban-v1";
+let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const state=t=>Object.assign({col:t.col,note:""},saved[t.id]||{});
+function render(){
+  document.getElementById("board").innerHTML=COLS.map(([c,name])=>{
+    const cards=TASKS.filter(t=>state(t).col===c);
+    return `<section class="col"><h2><span>${name}</span><span>${cards.length}</span></h2>${cards.map(t=>{
+      const s=state(t);
+      return `<div class="card"><h3><span class="chip ${s.col==="done"?"done":t.who}">${s.col==="done"?"DONE":t.who==="you"?"YOU":"CLAUDE"}</span>${esc(t.title)}</h3><p>${esc(t.desc)}</p>
+      <label for="n-${t.id}">Your instructions</label><textarea id="n-${t.id}" data-id="${t.id}" placeholder="Type here...">${esc(s.note)}</textarea>
+      <label for="c-${t.id}">Column</label><select id="c-${t.id}" data-id="${t.id}">${COLS.map(([k,n])=>`<option value="${k}"${k===s.col?" selected":""}>${n}</option>`).join("")}</select></div>`}).join("")}</section>`}).join("");
+}
+document.getElementById("board").addEventListener("input",e=>{
+  const id=e.target.dataset.id;if(!id)return;
+  const t=TASKS.find(x=>x.id===id),s=state(t);
+  if(e.target.tagName==="TEXTAREA")s.note=e.target.value;
+  else{s.col=e.target.value;saved[id]=s;save();render();return}
+  saved[id]=s;save();
+});
+const exportData=()=>TASKS.map(t=>{const s=state(t);return{id:t.id,title:t.title,owner:t.who,column:s.col,instructions:s.note}});
+document.getElementById("copy").onclick=async e=>{
+  const md=exportData().filter(t=>t.instructions.trim()||t.column!==TASKS.find(x=>x.id===t.id).col)
+    .map(t=>`- [${t.id}] ${t.title} (${t.column}): ${t.instructions||"(moved only)"}`).join("\n")||"(no instructions entered)";
+  try{await navigator.clipboard.writeText("Kanban instructions:\n"+md);e.target.textContent="Copied"}catch(err){e.target.textContent="Copy failed: use Download"}
+  setTimeout(()=>e.target.textContent="Copy for Claude",1800);
+};
+document.getElementById("dl").onclick=()=>{
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(exportData(),null,2)],{type:"application/json"}));a.download="kanban-instructions.json";a.click();
+};
+document.getElementById("reset").onclick=()=>{if(confirm("Clear all instructions and column moves?")){saved={};save();render()}};
+render();
+</script>
+</body>
+</html>
