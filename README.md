@@ -23,6 +23,7 @@ Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red 
 | Changes (Postprod) | https://rifaterdemsahin.github.io/hyperframes/changes.html |
 | AGENTS.md page | https://rifaterdemsahin.github.io/hyperframes/agents.html |
 | Reuse as template | https://rifaterdemsahin.github.io/hyperframes/reuse.html |
+| Gaps (Preprod, what is waiting on you) | https://rifaterdemsahin.github.io/hyperframes/gaps.html |
 | Kanban (tasks + your instructions) | https://rifaterdemsahin.github.io/hyperframes/kanban.html |
 | Storyboard (editable, with draft voiceover and a copy-feedback bar) | https://rifaterdemsahin.github.io/hyperframes/storyboard/ |
 | Hyperframes vs Remotion | https://rifaterdemsahin.github.io/hyperframes/compare.html |

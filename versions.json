@@ -1,124 +1,265 @@
 {
-  "site": "1.8.0",
+  "site": "1.9.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.6.0",
-      "date": "2026-11-18"
+      "version": "1.7.0",
+      "date": "2026-11-18",
+      "deps": [
+        "scripts/build-architecture.mjs"
+      ]
     },
     "script.html": {
       "title": "Script",
-      "version": "1.4.0",
-      "date": "2026-11-18"
+      "version": "1.5.0",
+      "date": "2026-11-18",
+      "deps": [
+        "script/scenes.json",
+        "scripts/build-script-page.mjs"
+      ]
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.4.0",
-      "date": "2026-11-18"
+      "version": "1.5.0",
+      "date": "2026-11-18",
+      "deps": [
+        "script/scenes.json",
+        "scripts/build-storyboard.mjs",
+        "scripts/storyboard-editor.js",
+        "video/assets/bg/",
+        "video/assets/vo/"
+      ]
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.6.0",
-      "date": "2026-11-18"
+      "version": "1.7.0",
+      "date": "2026-11-18",
+      "deps": []
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.5.0",
-      "date": "2026-11-18"
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "deps": [
+        "script/scenes.json",
+        "first-draft.html",
+        "publish.html"
+      ]
     },
     "hyperframes-guide/": {
       "title": "Hyperframes overview",
-      "version": "1.3.0",
-      "date": "2026-11-18"
+      "version": "1.4.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.heygen.com/introduction.md",
+        "video/CLAUDE.md"
+      ]
     },
     "hyperframes-guide/rendering.html": {
       "title": "Rendering paths",
-      "version": "1.2.0",
-      "date": "2026-11-18"
+      "version": "1.3.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.heygen.com/deploy/overview.md",
+        "https://hyperframes.heygen.com/guides/rendering.md"
+      ]
     },
     "hyperframes-guide/speed.html": {
       "title": "Cloud vs local speed",
-      "version": "1.3.0",
-      "date": "2026-11-18"
+      "version": "1.4.0",
+      "date": "2026-11-18",
+      "deps": [
+        "spec/performance.json",
+        "performance.html",
+        "https://hyperframes.heygen.com/deploy/aws-lambda.md"
+      ]
     },
     "hyperframes-guide/cli.html": {
       "title": "CLI cheat sheet",
-      "version": "1.2.0",
-      "date": "2026-11-18"
+      "version": "1.3.0",
+      "date": "2026-11-18",
+      "deps": [
+        "video/CLAUDE.md",
+        "https://hyperframes.heygen.com/packages/cli.md"
+      ]
     },
     "compare.html": {
       "title": "Hyperframes vs Remotion",
-      "version": "1.2.0",
-      "date": "2026-11-18"
+      "version": "1.3.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md",
+        "https://www.remotion.pro/pricing",
+        "https://github.com/heygen-com/hyperframes",
+        "https://github.com/remotion-dev/remotion",
+        "https://www.npmjs.com/package/hyperframes"
+      ]
     },
     "why-pay.html": {
       "title": "Why pay?",
-      "version": "1.2.0",
-      "date": "2026-11-18"
+      "version": "1.3.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.studio/pricing",
+        "https://hyperframes.heygen.com/faq.md",
+        "https://hyperframes.heygen.com/guides/free-agents.md"
+      ]
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.8.0",
-      "date": "2026-11-18"
+      "version": "1.9.0",
+      "date": "2026-11-18",
+      "deps": [
+        "versions.json",
+        "scripts/version.mjs"
+      ]
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "spec/project.json",
+        "script/scenes.json",
+        "scripts/build-master-spec.mjs"
+      ]
     },
     "release-checklist.html": {
       "title": "Release checklist",
-      "version": "1.5.0",
-      "date": "2026-11-18"
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "deps": [
+        "spec/project.json",
+        "spec/publish.json",
+        "script/scenes.json",
+        "scripts/build-master-spec.mjs"
+      ]
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "AGENTS.md",
+        "scripts/build-agents-page.mjs"
+      ]
     },
     "reuse.html": {
       "title": "Reuse as template",
-      "version": "1.5.0",
-      "date": "2026-11-18"
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "deps": [
+        "templates/README.md",
+        "AGENTS.md",
+        "templates/"
+      ]
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.5.0",
-      "date": "2026-11-18"
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "deps": [
+        "versions.json",
+        "script/scenes.json",
+        "scripts/build-changes-page.mjs",
+        "https://github.com/rifaterdemsahin/hyperframes/commits/main"
+      ]
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "spec/publish.json",
+        "script/scenes.json",
+        "spec/project.json",
+        "thumbnails/thumb-a.html",
+        "thumbnails/thumb-b.html",
+        "scripts/build-publish-page.mjs",
+        "scripts/build-thumbnails.sh"
+      ]
     },
     "hyperframes-guide/signin.html": {
       "title": "Hyperframes sign-in",
-      "version": "1.5.0",
-      "date": "2026-11-18"
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.heygen.com/guides/authentication.md",
+        "https://hyperframes.studio/"
+      ]
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "draft/versions.json",
+        "draft/",
+        "script/scenes.json",
+        "video/",
+        "scripts/render-draft.mjs",
+        "scripts/build-first-draft-page.mjs"
+      ]
     },
     "review.html": {
       "title": "Review",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "draft/versions.json",
+        "script/scenes.json",
+        "spec/publish.json",
+        "first-draft.html",
+        "scripts/build-review-page.mjs"
+      ]
     },
     "performance.html": {
       "title": "Performance",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "spec/performance.json",
+        "scripts/render-draft.mjs",
+        "scripts/build-performance-page.mjs",
+        "https://docs.github.com/en/rest/pages/pages"
+      ]
     },
     "hyperframes-guide/app-and-players.html": {
       "title": "Desktop app and players",
-      "version": "1.7.0",
-      "date": "2026-11-18"
+      "version": "1.8.0",
+      "date": "2026-11-18",
+      "deps": [
+        "https://hyperframes.heygen.com/studio-app/index.md",
+        "https://hyperframes.heygen.com/packages/player.md",
+        "https://www.remotion.dev/docs/player",
+        "https://www.remotion.dev/docs/studio"
+      ]
+    },
+    "gaps.html": {
+      "title": "Gaps",
+      "version": "1.9.0",
+      "date": "2026-11-18",
+      "deps": [
+        "kanban.html",
+        "spec/gaps.json",
+        "scripts/build-gaps-page.mjs",
+        "first-draft.html",
+        "publish.html"
+      ]
     }
   },
   "changelog": [
+    {
+      "version": "1.9.0",
+      "date": "2026-11-18",
+      "pages": [
+        "all"
+      ],
+      "changes": [
+        "Preprod: new Gaps page listing everything that is waiting on you (19 items in 5 groups), what each one blocks, how to deliver it, with a link to where it matters. Every page footer now has a Depends on section with clickable links: pages, data files, generator scripts and external sources. Kanban completed (repo-public, thumbnail face, DeepSeek, Studio comment, practitioner read) and finished work moved to Done."
+      ]
+    },
     {
       "version": "1.8.0",
       "date": "2026-11-18",

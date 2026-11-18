@@ -37,7 +37,7 @@ video{width:100%;max-width:860px;border-radius:12px;background:#000;display:bloc
   <div class="card"><ul>${DV.changes.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>${PREV.length ? `\n  <div class="alt card"><b>Earlier versions</b> (hidden unless <code>?all=1</code>): ${PREV.map((v) => `v${v.n} ${esc(v.label)}, ${esc(v.date)}: <a href="draft/v${v.n}/video.mp4">video</a>`).join(" · ")}</div>` : ""}
   <h2 data-fb-skip>Scenes</h2>
   <p>Click a scene to jump to it, then say what to change right under it.</p>
-  <div class="strip">${S.scenes.map((sc, i) => `<div class="sc" data-fb="Scene ${String(i + 1).padStart(2, "0")} · ${esc(sc.title)} (${tc(sc.start)})" data-fb-id="${esc(sc.id)}" data-fb-kind="scene" data-fb-open><button data-t="${sc.start}" title="Jump to ${tc(sc.start)}"><img src="${DIR}/frames/${esc(sc.id)}.jpg" alt="" loading="lazy"><span>${String(i + 1).padStart(2, "0")} · ${tc(sc.start)} · ${esc(sc.title)}</span></button></div>`).join("")}</div>
+  <div class="strip">${S.scenes.map((sc, i) => `<div class="sc" id="sc-${esc(sc.id)}" data-fb="Scene ${String(i + 1).padStart(2, "0")} · ${esc(sc.title)} (${tc(sc.start)})" data-fb-id="${esc(sc.id)}" data-fb-kind="scene" data-fb-open><button data-t="${sc.start}" title="Jump to ${tc(sc.start)}"><img src="${DIR}/frames/${esc(sc.id)}.jpg" alt="" loading="lazy"><span>${String(i + 1).padStart(2, "0")} · ${tc(sc.start)} · ${esc(sc.title)}</span></button></div>`).join("")}</div>
 
   <h2>What you need to supply</h2>
   <p>Only these scenes wait on your footage. Everything else in the draft is final-quality layout.</p>

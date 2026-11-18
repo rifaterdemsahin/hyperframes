@@ -59,7 +59,7 @@ if (cmd === "bump") {
 // 1. nav.js data block
 const navPath = `${root}/nav.js`;
 let nav = readFileSync(navPath, "utf8");
-const pagesOut = Object.fromEntries(Object.entries(v.pages).map(([k, p]) => [k, { t: p.title, v: p.version, d: p.date }]));
+const pagesOut = Object.fromEntries(Object.entries(v.pages).map(([k, p]) => [k, { t: p.title, v: p.version, d: p.date, deps: p.deps || [] }]));
 const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site, date: v.date, cleared: v.feedbackCleared || {}, pages: pagesOut })}; /*VERSIONS-END*/`;
 nav = nav.replace(/\/\*VERSIONS-START\*\/[\s\S]*?\/\*VERSIONS-END\*\//, block);
 writeFileSync(navPath, nav);

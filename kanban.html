@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.8.0"></script>
+<script src="nav.js?v=1.9.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -40,7 +40,7 @@ textarea{min-height:60px;resize:vertical}
 const COLS=[["input","Needs your input"],["ready","Ready for Claude"],["doing","In progress"],["done","Done"]];
 const TASKS=[
  // Needs your input
- {id:"t01",col:"input",who:"you",title:"Approve storyboard and overlay text",desc:"Check the 10 panels at storyboard/. I wrote the short on-screen text; confirm numbers, dates and wording."},
+ {id:"t01",col:"input",who:"you",title:"Review draft v2 and approve it, or send more notes",desc:"Watch it on the Review page. Paste your notes, or say approved."},
  {id:"t02",col:"input",who:"you",title:"HMRC screen for step 1 (S2), optional",desc:"The hook no longer shows figures, so this is only an optional inset for step 1. Blur the UTR and login and hide the balance."},
  {id:"t03",col:"input",who:"you",title:"Face-cam clip for the intro",desc:"About 15 s, Part 1 intro. Say if the face-cam audio is the voiceover or if you record it separately."},
  {id:"t04",col:"input",who:"you",title:"Voiceover: keep the AI draft or record your own",desc:"A British male AI draft plays on each storyboard panel, regenerated for the rewritten script. No scene overruns now. Keep it, change the voice, or send your own recording."},
@@ -53,12 +53,17 @@ const TASKS=[
  {id:"t27",col:"input",who:"you",title:"Part 2 link (after it is published)",desc:"Goes in the description and on the end screen."},
  {id:"t32",col:"input",who:"you",title:"Official n8n logo file",desc:"Scene 8 has a logo slot. Drop the official logo into video/assets/logos/n8n.svg (or .png), or tell me to download it from n8n's brand page. I will not redraw or AI-generate a brand logo."},
  {id:"t33",col:"input",who:"you",title:"Confirm the £1,500 + £2,100 are average UK figures",desc:"Draft v2 now says these are average figures in the UK and yours could be higher or lower. Check that is true, or tell me the wording you want."},
+ {id:"t35",col:"input",who:"you",title:"Keep the repo public until release?",desc:"The repo and site are public and the earlier commits still contain the debt figure. Keep it, make the repo private, or ask me to rewrite the history."},
+ {id:"t36",col:"input",who:"you",title:"Face on the thumbnail?",desc:"Thumbnail A has room for a photo of you. Send a clear photo, or say no."},
+ {id:"t37",col:"input",who:"you",title:"DeepSeek button: how to continue",desc:"The system blocked storing your DeepInfra key as a GitHub secret. Set it yourself with gh secret set DEEPINFRA_API_KEY, or tell me another way."},
+ {id:"t38",col:"input",who:"you",title:"The comment you left in the Studio app",desc:"It is not in the project files or history. Paste the text here."},
+ {id:"t39",col:"input",who:"you",title:"Practitioner reads the script and the description",desc:"They make the same factual claims about liability and process. Ask your insolvency practitioner to read both."},
  {id:"t09",col:"input",who:"you",title:"Rotate the fal.ai key",desc:"The key was pasted in chat. Create a new one and replace FAL_KEY in your local .env."},
  // Ready for Claude
- {id:"t10",col:"ready",who:"ai",title:"Build the 10 scenes in Hyperframes",desc:"Sub-compositions with placeholders, timings from script/scenes.json."},
+ {id:"t10",col:"done",who:"ai",title:"Built the 10 scenes in Hyperframes",desc:"One file per scene, generated from scenes.json."},
  {id:"t11",col:"ready",who:"ai",title:"Motion graphics",desc:"Goal infographic, cost and timeline graphic, four exception cards, email timeline, subscribe animation."},
- {id:"t12",col:"ready",who:"ai",title:"Captions from the script",desc:"Timed captions, swapped for transcript timings once voiceover exists."},
- {id:"t13",col:"ready",who:"ai",title:"Check, snapshot, fix",desc:"npm run check and snapshot frames for every scene before each commit."},
+ {id:"t12",col:"done",who:"ai",title:"Captions in the draft",desc:"Timed by sentence from the AI voice. Final captions come from your own recording."},
+ {id:"t13",col:"done",who:"ai",title:"Checked, snapshotted and fixed",desc:"Hyperframes check passes with 0 errors and 0 warnings."},
  {id:"t14",col:"ready",who:"ai",title:"Swap in real footage and render MP4",desc:"Needs t02 to t06. Then render and publish a review link."},
  {id:"t15",col:"ready",who:"ai",title:"Part 2 teaser end screen",desc:"End card and teaser for Part 2."},
  // Done

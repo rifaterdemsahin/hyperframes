@@ -1,0 +1,31 @@
+{
+  "_about": "Extra detail for the Gaps page, keyed by kanban task id. The kanban's 'Needs your input' column is the list; this file says what each item blocks, how to deliver it, and where it matters.",
+  "groups": [
+    { "id": "approval", "title": "✅ Needs your approval" },
+    { "id": "render", "title": "🎬 Blocks the final video" },
+    { "id": "publish", "title": "📣 Blocks publishing" },
+    { "id": "safety", "title": "🔐 Safety and risk" },
+    { "id": "tooling", "title": "🛠️ Waiting on your decision (tools)" }
+  ],
+  "items": {
+    "t01": { "group": "approval", "how": "Watch it on the Review page, add notes there and paste them into the chat. Or just say \"approved\".", "link": "review.html", "linkLabel": "Open the Review page" },
+    "t02": { "group": "render", "blocks": "Scene 4 (optional inset)", "how": "Drop the screenshot into video/assets/ and tell me the file name. Blur the UTR, login and the balance first.", "link": "first-draft.html#sc-s04-five-things", "linkLabel": "See scene 4" },
+    "t03": { "group": "render", "blocks": "Scene 2 (intro)", "how": "Record about 15 seconds, drop the file in video/assets/ and tell me the file name.", "link": "first-draft.html#sc-s02-intro", "linkLabel": "See scene 2" },
+    "t04": { "group": "render", "blocks": "Every scene's timing and captions", "how": "Tell me to keep the AI voice or change it, or drop your recording in video/assets/vo/ (one file per scene, same names as now) and say so.", "link": "storyboard/", "linkLabel": "Hear the current voice" },
+    "t05": { "group": "render", "blocks": "Scene 8 (tracking)", "how": "A 20 second n8n canvas capture plus the dashboard. Drop the files in video/assets/ and tell me the names. Blur any client data.", "link": "first-draft.html#sc-s08-tracking", "linkLabel": "See scene 8" },
+    "t06": { "group": "render", "blocks": "Scene 7 (emails)", "how": "Screenshots of the chasers, the receipt and the liquidation-date email, with names and addresses blurred. Drop them in video/assets/.", "link": "first-draft.html#sc-s07-emails", "linkLabel": "See scene 7" },
+    "t07": { "group": "render", "blocks": "Facts on screen", "how": "Read the script and tell me anything out of date: £1,500 + £2,100, about two months, the 4.8 Trustpilot rating.", "link": "script.html", "linkLabel": "Open the script" },
+    "t08": { "group": "render", "blocks": "Look and sound", "how": "Tell me a palette, a font and a music preference, or say \"your call\".", "link": "master-spec.html", "linkLabel": "See the open decisions" },
+    "t32": { "group": "render", "blocks": "Scene 8 (logo slot)", "how": "Save the official logo as video/assets/logos/n8n.svg (or .png) and say done, or tell me to download it from n8n's brand page.", "link": "first-draft.html#sc-s08-tracking", "linkLabel": "See the empty slot" },
+    "t33": { "group": "render", "blocks": "Scene 5 (a claim in the video)", "how": "Confirm the £1,500 + £2,100 really are average UK figures, or tell me to say \"what I paid\" instead.", "link": "first-draft.html#sc-s05-cost-timeline", "linkLabel": "See scene 5" },
+    "t22": { "group": "publish", "blocks": "Description, end screen", "how": "Send the community name and the link.", "link": "publish.html", "linkLabel": "See the description" },
+    "t27": { "group": "publish", "blocks": "Description, end screen", "how": "Send the link once Part 2 is published.", "link": "publish.html", "linkLabel": "See the description" },
+    "t36": { "group": "publish", "blocks": "Thumbnail", "how": "Send a clear photo of your face for thumbnail A, or say no.", "link": "publish.html", "linkLabel": "See the thumbnail" },
+    "t39": { "group": "publish", "blocks": "Every factual claim", "how": "Send the script and the description to your insolvency practitioner and tell me what they change.", "link": "script.html", "linkLabel": "Open the script" },
+    "t23": { "group": "safety", "blocks": "Scene 9 (AI emailing the parties)", "how": "Ask the practitioner what you may send to creditors and other parties yourself, then tell me whether to keep the line.", "link": "recommendations.html", "linkLabel": "See the recommendation" },
+    "t35": { "group": "safety", "blocks": "Privacy until release", "how": "Say keep it public, make it private, or rewrite the history to remove the figure.", "link": "recommendations.html", "linkLabel": "See the recommendation" },
+    "t09": { "group": "safety", "blocks": "Your accounts", "how": "Both the fal.ai and DeepInfra keys were pasted in chat. Make new ones in their dashboards, put them in .env, and revoke the old ones.", "link": "recommendations.html", "linkLabel": "See the recommendation" },
+    "t37": { "group": "tooling", "blocks": "The Execute with DeepSeek button", "how": "Run  ! gh secret set DEEPINFRA_API_KEY -R rifaterdemsahin/hyperframes  (it asks for the value), then tell me. Or say what you prefer instead.", "link": "hyperframes-guide/", "linkLabel": "Hyperframes guide" },
+    "t38": { "group": "tooling", "blocks": "Your Studio app feedback", "how": "Paste the comment text into the chat. It is not saved in the project files.", "link": "hyperframes-guide/app-and-players.html", "linkLabel": "About the app" }
+  }
+}
