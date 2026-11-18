@@ -1,5 +1,5 @@
 {
-  "site": "1.6.2",
+  "site": "1.7.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -29,7 +29,7 @@
     },
     "hyperframes-guide/": {
       "title": "Hyperframes overview",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/rendering.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.6.2",
+      "version": "1.7.0",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -111,9 +111,25 @@
       "title": "Performance",
       "version": "1.6.0",
       "date": "2026-11-18"
+    },
+    "hyperframes-guide/app-and-players.html": {
+      "title": "Desktop app and players",
+      "version": "1.7.0",
+      "date": "2026-11-18"
     }
   },
   "changelog": [
+    {
+      "version": "1.7.0",
+      "date": "2026-11-18",
+      "pages": [
+        "hyperframes-guide/app-and-players.html",
+        "hyperframes-guide/"
+      ],
+      "changes": [
+        "New Prod page: Desktop app and players. A verdict on whether to use the Hyperframes Studio app (viewer and finishing tool, not the place the generated video is written, because it reformatted every generated file), the three ways to edit, and a detailed player comparison with Remotion's Player and Studio, with emojis. Also: feedback boxes under every scene card on the First draft page."
+      ]
+    },
     {
       "version": "1.6.2",
       "date": "2026-11-18",

@@ -9,6 +9,7 @@ Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red 
 | Hub | https://rifaterdemsahin.github.io/hyperframes/ |
 | Script (Preprod) | https://rifaterdemsahin.github.io/hyperframes/script.html |
 | Hyperframes guide (Prod) | https://rifaterdemsahin.github.io/hyperframes/hyperframes-guide/ |
+| Desktop app and players (vs Remotion) | https://rifaterdemsahin.github.io/hyperframes/hyperframes-guide/app-and-players.html |
 | Cloud vs local render speed | https://rifaterdemsahin.github.io/hyperframes/hyperframes-guide/speed.html |
 | Rendering paths | https://rifaterdemsahin.github.io/hyperframes/hyperframes-guide/rendering.html |
 | CLI cheat sheet | https://rifaterdemsahin.github.io/hyperframes/hyperframes-guide/cli.html |

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes Desktop App and Players</title>
+<link rel="stylesheet" href="../site.css">
+<style>
+.verdict{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:16px 20px;margin:16px 0}.verdict h2{margin:0 0 8px}.verdict p{margin:6px 0}
+.pro,.con{border-radius:12px;padding:12px 16px;border:1px solid var(--line);background:var(--card)}.pro{border-left:5px solid var(--ok)}.con{border-left:5px solid var(--warn)}.pro h3,.con h3{margin:0 0 6px}.pro ul,.con ul{margin:4px 0;padding-left:20px}
+.yes{color:var(--ok);font-weight:700}.no{color:#ff6b6b;font-weight:700}.mid{color:var(--warn);font-weight:700}
+td:first-child{white-space:nowrap}
+</style>
+</head>
+<body>
+<script src="../nav.js?v=1.7.0"></script>
+<main>
+  <div class="crumbs">🎬 Prod / Hyperframes &rsaquo; Desktop app and players</div>
+  <h1>🖥️ Desktop app or not? And how the player differs from Remotion's 🎞️</h1>
+  <p class="lead">Two questions in one page: should you use the Hyperframes <b>Studio desktop app</b> for this video, and what is different about the <b>player</b> compared with Remotion's. Everything is from the official docs unless it says "my reasoning" or "what I saw".</p>
+  <p class="note">📚 Sources checked 18 Nov 2026: the Hyperframes docs (Studio app, browser editor, <code>@hyperframes/player</code>, developer overview), made by HeyGen, who also make the app, so they are a vendor source; and Remotion's docs for the Player and Studio. 🧪 I did not use the app's chat or canvas myself, and I did not embed either player in a test page.</p>
+
+  <div class="verdict">
+    <h2>✅ My verdict for this project</h2>
+    <p><b>Use the desktop app as a viewer and a finishing tool, not as the place where the video is written.</b></p>
+    <p>🧱 Why: this video is <i>generated</i> from <code>script/scenes.json</code> by <code>scripts/build-video.mjs</code>. When I opened the project in the app today it <b>reformatted all 11 generated files</b> (170 lines of whitespace changes), created a word-level transcript of the first voiceover and a thumbnail cache. Anything you change by hand in the app would be overwritten the next time the script is rebuilt.</p>
+    <p>🎯 So: <span class="yes">yes</span> to the app for watching the timeline, scrubbing, and placing your <b>real footage</b> once you have it (the ten placeholder frames). <span class="no">No</span> to the app for wording, timing and layout: keep changing those in the script and the storyboard.</p>
+    <p>🔄 Once the real footage goes in, decide <b>once</b>: either keep generating from the script (and add footage through the script), or stop generating and treat <code>video/</code> as hand-edited from then on. Doing both is what causes lost edits.</p>
+  </div>
+
+  <h2>🧭 The three ways to edit a Hyperframes video</h2>
+  <p>They all edit the <b>same HTML files</b>, so you can switch between them. The docs say so directly: nothing is copied or moved.</p>
+  <div class="tw"><table>
+    <tr><th>Surface</th><th>What it is</th><th>You use it by</th><th>Cost</th></tr>
+    <tr><td>🖥️ <b>Studio app</b></td><td>Desktop app for Mac, Windows and Linux with an AI agent (Framey) beside the preview</td><td>Typing, pointing at the picture, drawing, commenting. No code needed</td><td>Free with a free HeyGen sign-in. Local exports are unlimited</td></tr>
+    <tr><td>🌐 <b>Browser editor</b></td><td>The editor that opens in your browser for any project folder</td><td><code>npx hyperframes preview</code>, then edit by hand: canvas, layers, design panel, keyframes, timeline</td><td>Free, no account</td></tr>
+    <tr><td>⌨️ <b>CLI + your agent</b></td><td>Claude Code, Codex or Cursor plus the command line</td><td><code>check</code>, <code>snapshot</code>, <code>render</code>, and editing files directly</td><td>Free, plus whatever your agent costs</td></tr>
+  </table></div>
+
+  <h2>🖥️ The Studio desktop app in detail</h2>
+  <div class="two">
+    <div class="pro"><h3>👍 What it is good at</h3><ul>
+      <li>🗣️ <b>Say it or point at it.</b> You describe a change, or point at or draw on the frame, and the agent edits the files.</li>
+      <li>🔁 <b>Picks up your Claude Code chat.</b> <code>npx hyperframes open</code> run inside an agent session hands the project over and the app's chat carries on that conversation (Mac today). <code>npx hyperframes catch-up</code> then tells your agent what you did in the app.</li>
+      <li>📂 <b>Nothing is moved.</b> Importing a project leaves it in its folder; changes are saved there.</li>
+      <li>🎨 <b>Extras:</b> brand kits, reference-a-video-to-copy-its-style, AI voiceovers, captions, music and sound, and generated clips (HeyGen credits).</li>
+      <li>💸 <b>Free plan</b> covers AI voiceovers, captions, music and effects, 3 AI clips and 5 cloud exports a month. Pro is $25/month and adds HeyGen's top models and unlimited cloud exports.</li>
+    </ul></div>
+    <div class="con"><h3>⚠️ What to watch for</h3><ul>
+      <li>✍️ <b>It rewrites files.</b> It reformatted every generated file in this project the moment it opened it. Harmless to the render, but it makes git noisy and overwrites nothing until you rebuild, then your hand edits are lost.</li>
+      <li>🔐 <b>Sign-in with HeyGen</b> is needed for the app (see <a href="signin.html">Hyperframes sign-in</a>).</li>
+      <li>🪄 <b>Auto-record manual edits as keyframes</b> is on by default in the editor: a tweak at the playhead becomes animation. Switch it off for a fix that should hold for the whole scene.</li>
+      <li>🍎 The hand-off that keeps your chat only works on <b>Mac</b> so far.</li>
+      <li>🧩 Our video is <b>generated</b>, which is not the app's normal flow (it expects to author the project itself).</li>
+    </ul></div>
+  </div>
+
+  <h3 style="margin-top:20px">🧮 Use it when… and skip it when…</h3>
+  <div class="tw"><table>
+    <tr><th>Situation</th><th>App?</th><th>Why</th></tr>
+    <tr><td>🎥 Dropping your real footage into the ten placeholder frames</td><td class="yes">✅ Yes</td><td>Visual placement and trimming are exactly what a timeline editor is for</td></tr>
+    <tr><td>👀 Scrubbing the draft to see how it feels</td><td class="yes">✅ Yes</td><td>A seek bar, frame stepping and J/K/L shortcuts (documented for the browser editor)</td></tr>
+    <tr><td>✏️ Changing the wording of a scene</td><td class="no">❌ No</td><td>The words live in <code>scenes.json</code>; the voiceover and captions are made from them</td></tr>
+    <tr><td>⏱️ Re-timing scenes after you record your own voice</td><td class="mid">🟡 Script first</td><td>Slots come from the voice lengths; let the generator set them, then fine-tune in the app</td></tr>
+    <tr><td>🎞️ Final render</td><td class="mid">🟡 Either</td><td>Local CLI render took 48 s and is repeatable; the app also exports locally for free</td></tr>
+    <tr><td>🤝 Handing the project between you and Claude Code</td><td class="yes">✅ Yes</td><td><code>open</code> and <code>catch-up</code> exist for exactly this</td></tr>
+  </table></div>
+
+  <h2>▶️ The player: Hyperframes vs Remotion</h2>
+  <p>"Player" means the component you drop into a web page to <b>play and seek</b> a composition live, without rendering a video first. Both projects have one, and they are built very differently.</p>
+
+  <div class="two">
+    <div class="pro"><h3>🟣 Hyperframes: <code>&lt;hyperframes-player&gt;</code></h3><ul>
+      <li>🧱 A <b>web component</b> (custom element). Works in plain HTML or any framework.</li>
+      <li>📦 <code>@hyperframes/player</code>, or one script tag from a CDN.</li>
+      <li>📄 Plays an <b>HTML composition file</b> by URL (<code>src="./intro.html"</code>), or an ordinary video file when you add <code>type="video/mp4"</code>.</li>
+      <li>⏱️ Time is in <b>seconds</b>: <code>player.seek(2.5)</code>.</li>
+    </ul></div>
+    <div class="con"><h3>🔵 Remotion: <code>&lt;Player&gt;</code></h3><ul>
+      <li>⚛️ A <b>React component</b>. Needs a React app (Next.js, Vite and so on).</li>
+      <li>📦 <code>@remotion/player</code>.</li>
+      <li>🧩 Plays a <b>React component</b> you pass in directly (<code>component</code> or <code>lazyComponent</code>), with <code>durationInFrames</code>, <code>fps</code>, width and height. It does not use <code>&lt;Composition&gt;</code>.</li>
+      <li>🎞️ Time is in <b>frames</b>: <code>seekTo(frame)</code>.</li>
+    </ul></div>
+  </div>
+
+  <h3 style="margin-top:20px">🔬 Side by side</h3>
+  <div class="tw"><table>
+    <tr><th>🔍 Aspect</th><th>🟣 Hyperframes player</th><th>🔵 Remotion Player</th></tr>
+    <tr><td>🧰 Built as</td><td>Framework-free web component</td><td>React component</td></tr>
+    <tr><td>📥 What it plays</td><td>An HTML composition by URL, a string of HTML (<code>srcdoc</code>), or a video file</td><td>A React component passed as a prop</td></tr>
+    <tr><td>🕒 Time unit</td><td>Seconds</td><td>Frames (<code>durationInFrames</code>, <code>seekTo(frame)</code>)</td></tr>
+    <tr><td>🎛️ Playback controls</td><td><code>controls</code>: play, scrub, speed, time, volume, fullscreen</td><td><code>controls</code>, <code>showVolumeControls</code>, <code>allowFullscreen</code>, <code>clickToPlay</code>, <code>spaceKeyToPlayOrPause</code>, <code>doubleClickToFullscreen</code>, <code>moveToBeginningWhenEnded</code></td></tr>
+    <tr><td>🔁 Looping and autoplay</td><td><code>loop</code>, <code>autoplay muted</code> (browsers block unmuted autoplay)</td><td><code>loop</code>, <code>autoPlay</code> (same browser rule)</td></tr>
+    <tr><td>✂️ Play just a range</td><td><b>Yes</b>: <code>range-start</code> and <code>range-end</code> in film seconds</td><td>Not covered on the pages I read</td></tr>
+    <tr><td>🎚️ Changing content at runtime</td><td>Composition players expose <code>setRuntimeData()</code> and <code>setColorGrading()</code>, and compositions can take variables</td><td><b>Strong point:</b> <code>inputProps</code> passes typed props into your component, so viewers can change colours and text live</td></tr>
+    <tr><td>📡 Events</td><td>DOM events: <code>ready</code>, <code>timeupdate</code> (about 10 per second), <code>play</code>, <code>pause</code>, <code>ended</code>, <code>scenes</code>, <code>error</code>, <code>playbackerror</code> and more</td><td>A <code>PlayerRef</code> with <code>toggle</code>, <code>seekTo</code>, <code>pauseAndReturnToPlayStart</code> and event listeners, driven from React</td></tr>
+    <tr><td>🎨 Customising the UI</td><td>Slots: replace the play, pause, volume and loading icons with your own SVG</td><td>Custom controls built as React components (recipes for Play buttons, volume sliders, current time)</td></tr>
+    <tr><td>⚡ Many players on one page</td><td><code>low-power-idle</code> for pages with many players</td><td>Standard React performance advice</td></tr>
+    <tr><td>🔊 Autoplay with sound</td><td>Blocked by browsers unless muted</td><td>Blocked by browsers unless muted</td></tr>
+    <tr><td>🤝 Shares code with rendering</td><td>Same HTML file is what the renderer captures</td><td>Same React component is shared between Player, Studio and rendering</td></tr>
+  </table></div>
+
+  <h2>🛠️ And the editors beside them</h2>
+  <div class="tw"><table>
+    <tr><th>🟣 Hyperframes</th><th>🔵 Remotion</th></tr>
+    <tr><td>🖥️ <b>Studio app</b> (desktop, agent chat) and 🌐 <b>browser editor</b> (<code>npx hyperframes preview</code>). Both edit the HTML directly. Auto-saves edits back into the source.</td><td>🎬 <b>Remotion Studio</b>, started from the CLI (<code>npx remotion studio</code>), opens in the browser. Previews, and renders when a server is connected. Edits React compositions. Can import an OpenTimelineIO timeline.</td></tr>
+    <tr><td>Edit what you see, the timing and the motion by hand; or tell the agent.</td><td>Code-first: you or your agent change the React; the Studio shows the result.</td></tr>
+  </table></div>
+
+  <h2>🧪 What this means for <i>this</i> site</h2>
+  <ul>
+    <li>📝 The <a href="../review.html">Review page</a> plays the <b>exported MP4</b> in a plain <code>&lt;video&gt;</code>. That is deliberate: your feedback is tied to the exact file you will publish, to the frame, and drawings land on real pixels.</li>
+    <li>🟣 A <code>&lt;hyperframes-player&gt;</code> would play the <b>live composition</b> with no render, seeking in seconds, and it reports the scene list. That would suit a "preview while editing" embed. <span class="mid">I have not tested it here</span>: it needs the <code>video/</code> folder served and the CDN script, and frame-accurate drawing would be harder than on a video file.</li>
+    <li>🔵 Remotion's Player would need this site to be a React app, so it is not a fit.</li>
+    <li>🏁 <b>Recommendation:</b> keep the plain video for review, use the desktop app for footage and scrubbing, and consider the Hyperframes player only if you later want a live-preview embed.</li>
+  </ul>
+
+  <h2>🔗 Sources</h2>
+  <ul>
+    <li><a href="https://hyperframes.heygen.com/studio-app/index.md">Install the Studio app</a> · <a href="https://hyperframes.heygen.com/studio-app/existing-project.md">Continue a Claude Code project in Studio</a> · <a href="https://hyperframes.heygen.com/studio/index.md">Browser editor</a></li>
+    <li><a href="https://hyperframes.heygen.com/packages/player.md">@hyperframes/player</a> · <a href="https://hyperframes.heygen.com/developers/overview.md">How Hyperframes fits into an application</a></li>
+    <li><a href="https://www.remotion.dev/docs/player">Remotion Player</a> · <a href="https://www.remotion.dev/docs/player/api">Player API</a> · <a href="https://www.remotion.dev/docs/studio">Remotion Studio</a></li>
+    <li>More comparison: <a href="../compare.html">Hyperframes vs Remotion</a> · <a href="../why-pay.html">Why pay?</a></li>
+  </ul>
+
+  <p class="next"><a href="signin.html">&larr; Sign-in</a><a href="rendering.html">Rendering paths &rarr;</a></p>
+</main>
+</body>
+</html>
