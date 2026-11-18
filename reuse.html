@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<script src="nav.js?v=1.9.1"></script>
+<script src="nav.js?v=1.10.0"></script>
 <main>
-  <div class="crumbs">📦 Postprod</div>
+  <div class="crumbs">⚙️ Project</div>
   <h1>♻️ Reuse as template</h1>
   <p class="lead">This repo is built so the next video starts from it, not from scratch. Keep the engine, replace the content.</p>
 
@@ -31,7 +31,7 @@
     <li>Add your <code>FAL_KEY</code> to a git-ignored <code>.env</code> if you want fal.ai drafts, then run <code>scripts/gen-backgrounds.sh</code> and <code>scripts/gen-voiceover.sh</code>.</li>
     <li>Build the pages (see the commands below), then rewrite the text on <code>index.html</code>, <code>kanban.html</code> and <code>recommendations.html</code> for the new video.</li>
     <li>Reset <code>versions.json</code> (site <code>1.0.0</code>, an empty changelog with one entry) and run <code>node scripts/version.mjs bump minor "new video: ..."</code>.</li>
-    <li>Create the GitHub repo, turn on Pages from <code>main</code>, and push. Work through Preprod, Prod and Postprod, committing, pushing and deploying every change.</li>
+    <li>Create the GitHub repo, turn on Pages from <code>main</code>, and push. Work through the five stages (Plan, Build, Review, Publish, Project), committing, pushing and deploying every change.</li>
   </ol>
 <pre>node scripts/build-storyboard.mjs
 node scripts/build-script-page.mjs

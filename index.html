@@ -16,10 +16,58 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.9.1"></script>
+<script src="nav.js?v=1.10.0"></script>
 <main>
   <h1>Using AI to Beat the Red Tape: Part 1 of 3</h1>
-  <p class="sub">Working hub for the video: how I used AI to get through the red tape of closing a UK company, about 3:38, built in Hyperframes.</p>
+  <p class="sub">How I used AI to get through the red tape of closing a UK company: 3:54 film, 10 scenes, built in Hyperframes. Draft v2 is the latest cut.</p>
+  <!--PIPELINE-START-->
+<style>
+#pipeline{margin:22px 0 8px}#pipeline h2{margin:0 0 4px;font-size:20px}#pipeline .sub2{color:var(--mute);margin:0 0 14px;font-size:14px}
+#pipeline ol.stages{list-style:none;padding:0;margin:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+#pipeline .stg{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:12px 14px;margin:0;color:var(--ink)}
+#pipeline .sh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}#pipeline .n{background:var(--accent);color:#04222a;font-weight:800;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+#pipeline .ic{font-size:20px}#pipeline .sh b{font-size:17px}#pipeline .sh small{color:var(--mute);margin-left:auto}
+#pipeline .purpose{margin:8px 0 4px;color:var(--mute);font-size:14px}#pipeline .status{margin:4px 0 8px;font-size:13px;font-weight:600;color:var(--accent)}
+#pipeline ul{list-style:none;padding:0;margin:0}#pipeline ul li{margin:6px 0;font-size:14px;color:var(--ink)}#pipeline ul a{color:var(--accent);font-weight:600;text-decoration:none}#pipeline ul a:hover{text-decoration:underline}#pipeline ul span{display:block;color:var(--mute);font-size:12.5px}
+#pipeline .more{margin:6px 0 0;color:var(--mute);font-size:12.5px}
+@media(min-width:1100px){#pipeline .stg+.stg:before{content:"→";position:absolute;left:-13px;top:50%;transform:translateY(-50%);color:var(--mute);font-size:16px}}
+</style>
+<section id="pipeline">
+  <h2>🧭 The pipeline</h2>
+  <p class="sub2">Five stages, in production order. The menu at the top has the same stages in the same order. Each card shows where that stage stands right now.</p>
+  <ol class="stages"><li class="stg" id="stage-plan">
+    <div class="sh"><span class="n">1</span><span class="ic">📋</span><b>Plan</b><small>Preprod</small></div>
+    <p class="purpose">Decide what the film is: the brief, the words and the frames.</p>
+    <p class="status">📊 10 scenes · 3:54 · 6 open decisions</p>
+    <ul><li><a href="master-spec.html">📘 Master spec</a> <span>brief, rules, acceptance criteria</span></li><li><a href="script.html">📜 Script</a> <span>the words, scene by scene</span></li><li><a href="storyboard/">🎞️ Storyboard</a> <span>frames, voice and editable text</span></li><li><a href="recommendations.html">✅ Recommendations</a> <span>what I would do next</span></li></ul>
+    
+  </li><li class="stg" id="stage-build">
+    <div class="sh"><span class="n">2</span><span class="ic">🎬</span><b>Build</b><small>Prod</small></div>
+    <p class="purpose">Make the film in Hyperframes and see how long it takes.</p>
+    <p class="status">📊 Draft v2 · 3:54 · check: 0 errors, 0 warnings</p>
+    <ul><li><a href="first-draft.html">🎞️ Draft video</a> <span>the latest cut and what changed</span></li><li><a href="performance.html">⏱️ Performance</a> <span>how long the pipeline takes</span></li><li><a href="hyperframes-guide/">🧩 Overview</a> <span>what it is and how it renders</span></li></ul>
+    <p class="more">+ 8 more in the menu</p>
+  </li><li class="stg" id="stage-review">
+    <div class="sh"><span class="n">3</span><span class="ic">🔍</span><b>Review</b><small>Feedback loop</small></div>
+    <p class="purpose">Watch it, say what to change, and see what is still open.</p>
+    <p class="status">📊 19 things waiting on you · 9 block the final video</p>
+    <ul><li><a href="review.html">📝 Review</a> <span>timestamped notes and drawings on the video</span></li><li><a href="gaps.html">🧩 Gaps (waiting on you)</a> <span>what is waiting on you, and how to deliver it</span></li><li><a href="kanban.html">📋 Kanban</a> <span>every task</span></li><li><a href="changes.html">🔄 Changes</a> <span>what changed, word by word</span></li></ul>
+    
+  </li><li class="stg" id="stage-publish">
+    <div class="sh"><span class="n">4</span><span class="ic">🚀</span><b>Publish</b><small>Postprod</small></div>
+    <p class="purpose">Finish and ship: title, description, thumbnail and the checklist.</p>
+    <p class="status">📊 Title and thumbnail chosen · 4 blockers</p>
+    <ul><li><a href="publish.html">📣 Title, description, thumbnail</a> <span>the publish copy, ready to paste</span></li><li><a href="release-checklist.html">🚀 Release checklist</a> <span>render QA, privacy, YouTube packaging</span></li></ul>
+    
+  </li><li class="stg" id="stage-project">
+    <div class="sh"><span class="n">5</span><span class="ic">⚙️</span><b>Project</b><small>How this works</small></div>
+    <p class="purpose">How the system works, and how to reuse it for the next video.</p>
+    <p class="status">📊 site v1.10.0 · 24 pages</p>
+    <ul><li><a href="reuse.html">♻️ Reuse as template</a> <span>keep the engine, replace the content</span></li><li><a href="agents.html">🤖 AGENTS.md</a> <span>the rules any AI agent follows here</span></li><li><a href="changelog.html">🕘 Changelog</a> <span>every release</span></li></ul>
+    <p class="more">+ 2 more in the menu</p>
+  </li></ol>
+</section>
+<!--PIPELINE-END-->
   <!--ARCH-START-->
 <style>
 #arch{margin:24px 0 8px}#arch h2{margin:0 0 4px;font-size:20px}#arch .sub2{color:var(--mute);margin:0 0 12px;font-size:14px}
@@ -163,31 +211,6 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
   <details open><summary>Dependencies, part by part</summary><div class="tw"><table><tr><th></th><th>Part</th><th>Depends on</th></tr><tr><td>📜</td><td><b>script/scenes.json</b></td><td>Edited by you and Claude. Read by every generator and by the video project.</td></tr><tr><td>📘</td><td><b>spec/project.json</b></td><td>Edited by you and Claude. Read by build-master-spec.</td></tr><tr><td>🕘</td><td><b>versions.json</b></td><td>Written only by version.mjs. Read by nav.js (footer, menu), changelog and the changes page.</td></tr><tr><td>🎨</td><td><b>gen-backgrounds.sh, gen-voiceover.sh</b></td><td>scenes.json, FAL_KEY in .env, the fal.ai API, plus curl, jq and ffmpeg.</td></tr><tr><td>🏗️</td><td><b>build-*.mjs</b></td><td>Node.js, scenes.json, project.json, versions.json, AGENTS.md, and git history (changes page).</td></tr><tr><td>🔖</td><td><b>version.mjs</b></td><td>versions.json. Rewrites nav.js data, changelog.html and the ?v= cache-busters in every page.</td></tr><tr><td>🌐</td><td><b>Site pages</b></td><td>The build scripts, plus nav.js, feedback.js and site.css loaded by every page.</td></tr><tr><td>🧩</td><td><b>nav.js, feedback.js</b></td><td>versions data stamped into nav.js, and your browser's localStorage for notes and ticks.</td></tr><tr><td>🐙</td><td><b>GitHub Pages</b></td><td>A push to main. Pages caches for about 10 minutes, so assets carry a ?v= version.</td></tr><tr><td>🎬</td><td><b>video/ project</b></td><td>Generated by build-video.mjs from scenes.json (timings, text), plus assets/bg, assets/vo, the npm package hyperframes@0.9.67 and GSAP from a CDN.</td></tr><tr><td>⏱️</td><td><b>render-draft.mjs</b></td><td>build-video, the Hyperframes CLI (check, render), ffmpeg and gh (deploy history). Feeds the First draft, Review and Performance pages.</td></tr><tr><td>📼</td><td><b>Final MP4</b></td><td>The video project rendered by the Hyperframes CLI using headless Chrome and FFmpeg.</td></tr><tr><td>📣</td><td><b>Publish page, thumbnails</b></td><td>publish.json, scenes.json (chapters), project.json (disclaimer); thumbnails need headless Chrome, ffmpeg and the fal.ai red-tape plate.</td></tr><tr><td>🤖</td><td><b>Claude Code</b></td><td>AGENTS.md for the rules, your pasted feedback as input, git, and gh to check the deploy.</td></tr></table></div></details>
 </section>
 <!--ARCH-END-->
-  <div class="grid">
-    <a class="card" href="script.html"><b>Script &rarr;</b><span>Preprod: the full script by scene, with timing and what each scene needs.</span></a>
-    <a class="card" href="hyperframes-guide/"><b>Hyperframes guide &rarr;</b><span>Prod: overview, rendering paths, CLI cheat sheet.</span></a>
-    <a class="card" href="hyperframes-guide/speed.html"><b>Cloud vs local speed &rarr;</b><span>Measured local render times and when cloud is worth it.</span></a>
-    <a class="card" href="master-spec.html"><b>Master spec &rarr;</b><span>Postprod: the full spec, reusable as a template for the next video.</span></a>
-    <a class="card" href="release-checklist.html"><b>Release checklist &rarr;</b><span>Render QA, privacy, YouTube packaging and chapters.</span></a>
-    <a class="card" href="changes.html"><b>Changes &rarr;</b><span>Postprod: what changed in the latest release, with word-by-word script diffs.</span></a>
-    <a class="card" href="agents.html"><b>AGENTS.md &rarr;</b><span>Postprod: the instructions any AI agent follows in this repo. Reusable.</span></a>
-    <a class="card" href="reuse.html"><b>Reuse as template &rarr;</b><span>Postprod: keep the engine, replace the content for the next video.</span></a>
-    <a class="card" href="gaps.html"><b>Gaps &rarr;</b><span>Preprod: everything that is waiting on you, what it blocks and how to deliver it.</span></a>
-    <a class="card" href="kanban.html"><b>Kanban &rarr;</b><span>Every task, who owns it, and boxes for your instructions.</span></a>
-    <a class="card" href="storyboard/"><b>Storyboard &rarr;</b><span>10 panels with timing, voiceover and overlays.</span></a>
-    <a class="card" href="compare.html"><b>Hyperframes vs Remotion &rarr;</b><span>What differs, what each does better, and why Hyperframes fits this video.</span></a>
-    <a class="card" href="why-pay.html"><b>Why pay for Hyperframes? &rarr;</b><span>What is free, what costs money, and whether this video needs it.</span></a>
-    <a class="card" href="recommendations.html"><b>Recommendations &rarr;</b><span>Prioritised next steps: security, timing fixes, footage and YouTube packaging.</span></a>
-    <a class="card" href="https://github.com/rifaterdemsahin/hyperframes"><b>Repository &rarr;</b><span>Script data, design doc and the Hyperframes project.</span></a>
-  </div>
-  <h2>Stages</h2>
-  <ol>
-    <li>Scaffold, design doc, scene data (done)</li>
-    <li>Storyboard with fal.ai backgrounds (done)</li>
-    <li>Your review of the storyboard</li>
-    <li>Build scenes in Hyperframes with placeholders</li>
-    <li>Swap in real footage and voiceover, render MP4</li>
-  </ol>
   <p class="note">AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.</p>
 </main>
 </body>

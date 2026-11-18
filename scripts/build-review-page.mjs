@@ -65,7 +65,7 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 </style></head><body data-feedback="custom">
 <script src="nav.js?v=${V.site}"></script>
 <div class="wrap">
-  <div class="crumbs">📦 Postprod</div>
+  <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review <span class="badge" id="total">0</span></h1>
   <p class="lead">Watch the draft, pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Nothing is sent anywhere: copy the feedback into the chat when you are done.</p>
   <div class="grid2">

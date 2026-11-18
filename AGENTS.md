@@ -4,7 +4,7 @@ Instructions for AI coding agents (Claude Code, Codex, Cursor) working in this r
 
 ## What this repo is
 
-A video production workspace. It holds the script, a storyboard, a master spec and a Hyperframes project (`video/`) that renders the MP4, plus a GitHub Pages site that the owner uses to review work and give feedback. Work moves through three stages: Preprod (script, storyboard, feedback), Prod (build in Hyperframes), Postprod (render, QA, publish).
+A video production workspace. It holds the script, a storyboard, a master spec and a Hyperframes project (`video/`) that renders the MP4, plus a GitHub Pages site that the owner uses to review work and give feedback. Work moves through five stages, shown on the intro page and in the top menu in this order: 1 Plan (Preprod), 2 Build (Prod), 3 Review, 4 Publish (Postprod), 5 Project. The menu and the intro come from `spec/menu.json` (run `node scripts/build-menu.mjs`); add a new page there, in the stage where it belongs.
 
 The single source of truth for the current video is `script/scenes.json` (scenes, voiceover text, timings, overlays) and `spec/project.json` (brief, rules, acceptance criteria, risks, decisions). Everything on the site that describes the video is generated from those two files.
 
@@ -36,6 +36,7 @@ node scripts/build-architecture.mjs   # architecture diagram + dependency table 
 node scripts/build-video.mjs          # regenerate video/index.html + video/compositions from scenes.json
 node scripts/render-draft.mjs [--version=N]  # build, check, render and TIME draft vN (default: latest in draft/versions.json); refreshes the draft, review and performance pages
 #   new draft version: add an entry (n, date, label, changes) to draft/versions.json, set "latest", then run render-draft. Older versions stay in draft/vN and are hidden on the page (?all=1)
+node scripts/build-menu.mjs           # the top menu (nav.js) and the pipeline on the intro, from spec/menu.json
 node scripts/build-gaps-page.mjs      # gaps.html from the kanban "Needs your input" column + spec/gaps.json (keep both in step: when the owner delivers something, move its kanban card to Done)
 node scripts/build-changes-page.mjs   # changes.html: latest release, script diffs, commits (run after the bump, before the commit)
 scripts/gen-backgrounds.sh            # fal.ai background images (needs FAL_KEY in .env)

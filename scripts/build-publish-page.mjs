@@ -39,7 +39,7 @@ pre.desc{white-space:pre-wrap;font-size:14px}.ths{display:grid;gap:16px;grid-tem
 </style></head><body>
 <script src="nav.js?v=${V.site}"></script>
 <main>
-  <div class="crumbs">📦 Postprod</div>
+  <div class="crumbs">🚀 4 Publish</div>
   <h1>📣 Title, description and thumbnail</h1>
   <p class="lead">The publish copy for <b>${esc(S.title)}</b>, ready to paste into YouTube. Generated from <code>spec/publish.json</code> by <code>scripts/build-publish-page.mjs</code>; thumbnails by <code>scripts/build-thumbnails.sh</code>.</p>
   <p class="note">These are drafts for you to choose from. The description makes the same claims as the script, so have the practitioner read it too. Two placeholders in square brackets need your input.</p>

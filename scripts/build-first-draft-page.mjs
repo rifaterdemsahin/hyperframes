@@ -28,7 +28,7 @@ video{width:100%;max-width:860px;border-radius:12px;background:#000;display:bloc
 </style></head><body>
 <script src="nav.js?v=${V.site}"></script>
 <main>
-  <div class="crumbs">📦 Postprod</div>
+  <div class="crumbs">🎬 2 Build</div>
   <h1>🎞️ Draft v${N}</h1>
   <p class="lead">${esc(S.title)}: the whole film, ${tc(total)}, built from your script with the AI draft voice. Real footage is still to come, so each place that needs it shows a dashed frame.</p>
   ${M ? `<div class="stat"><div><b>${tc(Math.round(M.duration))}</b><small>length</small></div><div><b>${M.renderSeconds ?? "?"} s</b><small>to render</small></div><div><b>${esc(M.check)}</b><small>Hyperframes check</small></div><div><b>${mb(M.webBytes)}</b><small>web copy (full 1080p: ${mb(M.fullBytes)})</small></div></div>` : ""}

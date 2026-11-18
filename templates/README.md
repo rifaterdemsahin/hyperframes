@@ -6,6 +6,6 @@
 4. Put `FAL_KEY=...` in a git-ignored `.env` if you want fal.ai drafts, then run `scripts/gen-backgrounds.sh` and `scripts/gen-voiceover.sh`. Both read scenes from `script/scenes.json`.
 5. Build the pages: `node scripts/build-storyboard.mjs && node scripts/build-script-page.mjs && node scripts/build-master-spec.mjs`.
 6. Update the `pages` list in `versions.json` and the menu in `nav.js` if you add or remove pages. Then `node scripts/version.mjs bump minor "new video: <title>"`.
-7. Work through Preprod (script, storyboard, feedback), Prod (build in `video/`), Postprod (render, release checklist). Commit, push and deploy after every change.
+7. Work through the five stages on the intro page: Plan, Build, Review, Publish, Project. Commit, push and deploy after every change.
 
 `templates/MASTER-SPEC.md` is generated for the current video. It is also a good example of a finished spec.

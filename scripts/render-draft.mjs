@@ -107,7 +107,7 @@ try {
 save();
 
 step("Build the site pages", "storyboard, script, spec, agents, publish, architecture, draft + performance pages", () => {
-  for (const f of ["build-storyboard", "build-script-page", "build-master-spec", "build-agents-page", "build-publish-page", "build-architecture", "build-first-draft-page", "build-review-page", "build-gaps-page"]) {
+  for (const f of ["build-storyboard", "build-script-page", "build-master-spec", "build-agents-page", "build-publish-page", "build-architecture", "build-first-draft-page", "build-review-page", "build-gaps-page", "build-menu"]) {
     if (existsSync(`${root}/scripts/${f}.mjs`)) need(sh("node", [`scripts/${f}.mjs`]), f);
   }
 });

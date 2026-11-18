@@ -1,0 +1,63 @@
+{
+  "_about": "The single definition of the site menu and the pipeline on the intro. Stages run in production order. 'hub': true shows a page on the intro card; every page is always in the top menu. Run: node scripts/build-menu.mjs",
+  "stages": [
+    {
+      "id": "plan", "n": 1, "icon": "📋", "label": "Plan", "alias": "Preprod",
+      "purpose": "Decide what the film is: the brief, the words and the frames.",
+      "items": [
+        { "label": "📘 Master spec", "href": "master-spec.html", "desc": "brief, rules, acceptance criteria", "hub": true },
+        { "label": "📜 Script", "href": "script.html", "desc": "the words, scene by scene", "hub": true },
+        { "label": "🎞️ Storyboard", "href": "storyboard/", "desc": "frames, voice and editable text", "hub": true },
+        { "label": "✅ Recommendations", "href": "recommendations.html", "desc": "what I would do next", "hub": true }
+      ]
+    },
+    {
+      "id": "build", "n": 2, "icon": "🎬", "label": "Build", "alias": "Prod",
+      "purpose": "Make the film in Hyperframes and see how long it takes.",
+      "items": [
+        { "label": "🎞️ Draft video", "href": "first-draft.html", "desc": "the latest cut and what changed", "hub": true },
+        { "label": "⏱️ Performance", "href": "performance.html", "desc": "how long the pipeline takes", "hub": true },
+        { "heading": "Hyperframes: how it works" },
+        { "label": "🧩 Overview", "href": "hyperframes-guide/", "desc": "what it is and how it renders", "hub": true },
+        { "label": "🛠️ Rendering paths", "href": "hyperframes-guide/rendering.html" },
+        { "label": "⚡ Cloud vs local speed", "href": "hyperframes-guide/speed.html" },
+        { "label": "⌨️ CLI cheat sheet", "href": "hyperframes-guide/cli.html" },
+        { "label": "🖥️ Desktop app & players", "href": "hyperframes-guide/app-and-players.html" },
+        { "label": "🔐 Hyperframes sign-in", "href": "hyperframes-guide/signin.html" },
+        { "label": "🌐 hyperframes.studio ↗", "href": "https://hyperframes.studio/" },
+        { "heading": "Choosing the tool" },
+        { "label": "⚖️ Hyperframes vs Remotion", "href": "compare.html" },
+        { "label": "💳 Why pay?", "href": "why-pay.html" }
+      ]
+    },
+    {
+      "id": "review", "n": 3, "icon": "🔍", "label": "Review", "alias": "Feedback loop",
+      "purpose": "Watch it, say what to change, and see what is still open.",
+      "items": [
+        { "label": "📝 Review", "href": "review.html", "desc": "timestamped notes and drawings on the video", "hub": true },
+        { "label": "🧩 Gaps (waiting on you)", "href": "gaps.html", "desc": "what is waiting on you, and how to deliver it", "hub": true },
+        { "label": "📋 Kanban", "href": "kanban.html", "desc": "every task", "hub": true },
+        { "label": "🔄 Changes", "href": "changes.html", "desc": "what changed, word by word", "hub": true }
+      ]
+    },
+    {
+      "id": "publish", "n": 4, "icon": "🚀", "label": "Publish", "alias": "Postprod",
+      "purpose": "Finish and ship: title, description, thumbnail and the checklist.",
+      "items": [
+        { "label": "📣 Title, description, thumbnail", "href": "publish.html", "desc": "the publish copy, ready to paste", "hub": true },
+        { "label": "🚀 Release checklist", "href": "release-checklist.html", "desc": "render QA, privacy, YouTube packaging", "hub": true }
+      ]
+    },
+    {
+      "id": "project", "n": 5, "icon": "⚙️", "label": "Project", "alias": "How this works",
+      "purpose": "How the system works, and how to reuse it for the next video.",
+      "items": [
+        { "label": "♻️ Reuse as template", "href": "reuse.html", "desc": "keep the engine, replace the content", "hub": true },
+        { "label": "🤖 AGENTS.md", "href": "agents.html", "desc": "the rules any AI agent follows here", "hub": true },
+        { "label": "🕘 Changelog", "href": "changelog.html", "desc": "every release", "hub": true },
+        { "label": "📄 Design doc", "href": "https://github.com/rifaterdemsahin/hyperframes/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md" },
+        { "label": "🐙 Repo", "href": "https://github.com/rifaterdemsahin/hyperframes" }
+      ]
+    }
+  ]
+}

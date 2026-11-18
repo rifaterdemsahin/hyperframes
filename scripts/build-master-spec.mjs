@@ -77,9 +77,11 @@ const spec = `${head("Master Spec")}
 
   <h2>2. Pipeline</h2>
   ${table(["Stage", "What happens", "Pages", "Done when"], [
-    ["📝 <b>Preprod</b>", "Script, storyboard, feedback loop, task tracking, recommendations", `<a href="script.html">Script</a>, <a href="storyboard/">Storyboard</a>, <a href="kanban.html">Kanban</a>, <a href="recommendations.html">Recommendations</a>`, "You approve the storyboard and the open decisions below are closed"],
-    ["🎬 <b>Prod</b>", "Build the scenes in Hyperframes, bring in real footage and voiceover, check and snapshot", `<a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, <code>npm run check</code> passes, snapshots reviewed"],
-    ["🎞️ <b>Postprod</b>", "Final render, quality control, captions, publish", `<a href="master-spec.html">Master spec</a>, <a href="release-checklist.html">Release checklist</a>, <a href="publish.html">Publish copy</a>, <a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>`, "All acceptance criteria met and the release checklist is complete"],
+    ["📋 <b>1 Plan</b> (Preprod)", "The brief, the words and the frames", `<a href="master-spec.html">Master spec</a>, <a href="script.html">Script</a>, <a href="storyboard/">Storyboard</a>, <a href="recommendations.html">Recommendations</a>`, "You approve the script and storyboard, and the open decisions are closed"],
+    ["🎬 <b>2 Build</b> (Prod)", "Build the film in Hyperframes, with real footage and voice, check and snapshot", `<a href="first-draft.html">Draft video</a>, <a href="performance.html">Performance</a>, <a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, the check passes, snapshots reviewed"],
+    ["🔍 <b>3 Review</b>", "Watch the draft, leave timestamped notes, close the gaps", `<a href="review.html">Review</a>, <a href="gaps.html">Gaps</a>, <a href="kanban.html">Kanban</a>, <a href="changes.html">Changes</a>`, "No notes or gaps are left open"],
+    ["🚀 <b>4 Publish</b> (Postprod)", "Title, description, thumbnail, checklist, publish", `<a href="publish.html">Publish copy</a>, <a href="release-checklist.html">Release checklist</a>`, "All acceptance criteria met and the release checklist is complete"],
+    ["⚙️ <b>5 Project</b>", "How the system works and how to reuse it", `<a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>, <a href="changelog.html">Changelog</a>`, "The template notes for the next video are written down"],
   ])}
   <p><b>Working rule:</b> every change is committed, pushed and deployed to GitHub Pages, and every release bumps the version (<a href="changelog.html">changelog</a>).</p>
 

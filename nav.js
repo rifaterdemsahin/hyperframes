@@ -4,56 +4,9 @@
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
   var G = "https://github.com/rifaterdemsahin/hyperframes";
   // Written by scripts/version.mjs from versions.json. Do not edit by hand.
-  /*VERSIONS-START*/ var VERSIONS = {"site":"1.9.1","date":"2026-11-18","cleared":{"*":"2026-11-18T21:55:42.014Z","script.html":"2026-11-18T22:07:30.860Z","publish.html":"2026-11-18T22:18:45.249Z","review.html":"2026-11-18T23:01:32.862Z"},"pages":{"index.html":{"t":"Home","v":"1.7.0","d":"2026-11-18","deps":["scripts/build-architecture.mjs"]},"script.html":{"t":"Script","v":"1.5.0","d":"2026-11-18","deps":["script/scenes.json","scripts/build-script-page.mjs"]},"storyboard/":{"t":"Storyboard","v":"1.5.0","d":"2026-11-18","deps":["script/scenes.json","scripts/build-storyboard.mjs","scripts/storyboard-editor.js","video/assets/bg/","video/assets/vo/"]},"kanban.html":{"t":"Kanban","v":"1.7.1","d":"2026-11-18","deps":[]},"recommendations.html":{"t":"Recommendations","v":"1.6.0","d":"2026-11-18","deps":["script/scenes.json","first-draft.html","publish.html"]},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.4.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/introduction.md","video/CLAUDE.md"]},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.3.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/deploy/overview.md","https://hyperframes.heygen.com/guides/rendering.md"]},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.4.0","d":"2026-11-18","deps":["spec/performance.json","performance.html","https://hyperframes.heygen.com/deploy/aws-lambda.md"]},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.3.0","d":"2026-11-18","deps":["video/CLAUDE.md","https://hyperframes.heygen.com/packages/cli.md"]},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.3.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md","https://www.remotion.pro/pricing","https://github.com/heygen-com/hyperframes","https://github.com/remotion-dev/remotion","https://www.npmjs.com/package/hyperframes"]},"why-pay.html":{"t":"Why pay?","v":"1.3.0","d":"2026-11-18","deps":["https://hyperframes.studio/pricing","https://hyperframes.heygen.com/faq.md","https://hyperframes.heygen.com/guides/free-agents.md"]},"changelog.html":{"t":"Changelog","v":"1.9.1","d":"2026-11-18","deps":["versions.json","scripts/version.mjs"]},"master-spec.html":{"t":"Master spec","v":"1.8.0","d":"2026-11-18","deps":["spec/project.json","script/scenes.json","scripts/build-master-spec.mjs"]},"release-checklist.html":{"t":"Release checklist","v":"1.6.0","d":"2026-11-18","deps":["spec/project.json","spec/publish.json","script/scenes.json","scripts/build-master-spec.mjs"]},"agents.html":{"t":"AGENTS.md","v":"1.8.0","d":"2026-11-18","deps":["AGENTS.md","scripts/build-agents-page.mjs"]},"reuse.html":{"t":"Reuse as template","v":"1.6.0","d":"2026-11-18","deps":["templates/README.md","AGENTS.md","templates/"]},"changes.html":{"t":"Changes","v":"1.6.0","d":"2026-11-18","deps":["versions.json","script/scenes.json","scripts/build-changes-page.mjs","https://github.com/rifaterdemsahin/hyperframes/commits/main"]},"publish.html":{"t":"Title, description, thumbnail","v":"1.8.0","d":"2026-11-18","deps":["spec/publish.json","script/scenes.json","spec/project.json","thumbnails/thumb-a.html","thumbnails/thumb-b.html","scripts/build-publish-page.mjs","scripts/build-thumbnails.sh"]},"hyperframes-guide/signin.html":{"t":"Hyperframes sign-in","v":"1.6.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/guides/authentication.md","https://hyperframes.studio/"]},"first-draft.html":{"t":"Draft video","v":"1.8.0","d":"2026-11-18","deps":["draft/versions.json","draft/","script/scenes.json","video/","scripts/render-draft.mjs","scripts/build-first-draft-page.mjs"]},"review.html":{"t":"Review","v":"1.8.0","d":"2026-11-18","deps":["draft/versions.json","script/scenes.json","spec/publish.json","first-draft.html","scripts/build-review-page.mjs"]},"performance.html":{"t":"Performance","v":"1.8.0","d":"2026-11-18","deps":["spec/performance.json","scripts/render-draft.mjs","scripts/build-performance-page.mjs","https://docs.github.com/en/rest/pages/pages"]},"hyperframes-guide/app-and-players.html":{"t":"Desktop app and players","v":"1.8.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/studio-app/index.md","https://hyperframes.heygen.com/packages/player.md","https://www.remotion.dev/docs/player","https://www.remotion.dev/docs/studio"]},"gaps.html":{"t":"Gaps","v":"1.9.1","d":"2026-11-18","deps":["kanban.html","spec/gaps.json","scripts/build-gaps-page.mjs","first-draft.html","publish.html"]}}}; /*VERSIONS-END*/
-  var MENU = [
-    { label: "🏠 Home", href: "" },
-    {
-      label: "📝 Preprod",
-      items: [
-        ["🧩 Gaps (waiting on you)", "gaps.html"],
-        ["📜 Script", "script.html"],
-        ["🎞️ Storyboard", "storyboard/"],
-        ["📋 Kanban", "kanban.html"],
-        ["✅ Recommendations", "recommendations.html"],
-      ],
-    },
-    {
-      label: "🎬 Prod / Hyperframes",
-      items: [
-        ["🧩 Overview", "hyperframes-guide/"],
-        ["🔐 Hyperframes sign-in", "hyperframes-guide/signin.html"],
-        ["🖥️ Desktop app & players", "hyperframes-guide/app-and-players.html"],
-        ["🌐 hyperframes.studio ↗", "https://hyperframes.studio/"],
-        ["🛠️ Rendering paths", "hyperframes-guide/rendering.html"],
-        ["⚡ Cloud vs local speed", "hyperframes-guide/speed.html"],
-        ["⌨️ CLI cheat sheet", "hyperframes-guide/cli.html"],
-        ["⚖️ Hyperframes vs Remotion", "compare.html"],
-        ["💳 Why pay?", "why-pay.html"],
-      ],
-    },
-    {
-      label: "📦 Postprod",
-      items: [
-        ["📘 Master spec (template)", "master-spec.html"],
-        ["🚀 Release checklist", "release-checklist.html"],
-        ["🎞️ Draft video", "first-draft.html"],
-        ["📝 Review", "review.html"],
-        ["📣 Title, description, thumbnail", "publish.html"],
-        ["⏱️ Performance", "performance.html"],
-        ["🔄 Changes", "changes.html"],
-        ["🤖 AGENTS.md", "agents.html"],
-        ["♻️ Reuse as template", "reuse.html"],
-      ],
-    },
-    {
-      label: "🔗 Project",
-      items: [
-        ["🕘 Changelog", "changelog.html"],
-        ["📄 Design doc", G + "/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],
-        ["🐙 Repo", G],
-      ],
-    },
-  ];
+  /*VERSIONS-START*/ var VERSIONS = {"site":"1.10.0","date":"2026-11-18","cleared":{"*":"2026-11-18T21:55:42.014Z","script.html":"2026-11-18T22:07:30.860Z","publish.html":"2026-11-18T22:18:45.249Z","review.html":"2026-11-18T23:01:32.862Z"},"pages":{"index.html":{"t":"Home","v":"1.8.0","d":"2026-11-18","deps":["scripts/build-architecture.mjs"]},"script.html":{"t":"Script","v":"1.6.0","d":"2026-11-18","deps":["script/scenes.json","scripts/build-script-page.mjs"]},"storyboard/":{"t":"Storyboard","v":"1.6.0","d":"2026-11-18","deps":["script/scenes.json","scripts/build-storyboard.mjs","scripts/storyboard-editor.js","video/assets/bg/","video/assets/vo/"]},"kanban.html":{"t":"Kanban","v":"1.8.0","d":"2026-11-18","deps":[]},"recommendations.html":{"t":"Recommendations","v":"1.7.0","d":"2026-11-18","deps":["script/scenes.json","first-draft.html","publish.html"]},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.5.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/introduction.md","video/CLAUDE.md"]},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.4.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/deploy/overview.md","https://hyperframes.heygen.com/guides/rendering.md"]},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.5.0","d":"2026-11-18","deps":["spec/performance.json","performance.html","https://hyperframes.heygen.com/deploy/aws-lambda.md"]},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.4.0","d":"2026-11-18","deps":["video/CLAUDE.md","https://hyperframes.heygen.com/packages/cli.md"]},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.4.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md","https://www.remotion.pro/pricing","https://github.com/heygen-com/hyperframes","https://github.com/remotion-dev/remotion","https://www.npmjs.com/package/hyperframes"]},"why-pay.html":{"t":"Why pay?","v":"1.4.0","d":"2026-11-18","deps":["https://hyperframes.studio/pricing","https://hyperframes.heygen.com/faq.md","https://hyperframes.heygen.com/guides/free-agents.md"]},"changelog.html":{"t":"Changelog","v":"1.10.0","d":"2026-11-18","deps":["versions.json","scripts/version.mjs"]},"master-spec.html":{"t":"Master spec","v":"1.9.0","d":"2026-11-18","deps":["spec/project.json","script/scenes.json","scripts/build-master-spec.mjs"]},"release-checklist.html":{"t":"Release checklist","v":"1.7.0","d":"2026-11-18","deps":["spec/project.json","spec/publish.json","script/scenes.json","scripts/build-master-spec.mjs"]},"agents.html":{"t":"AGENTS.md","v":"1.9.0","d":"2026-11-18","deps":["AGENTS.md","scripts/build-agents-page.mjs"]},"reuse.html":{"t":"Reuse as template","v":"1.7.0","d":"2026-11-18","deps":["templates/README.md","AGENTS.md","templates/"]},"changes.html":{"t":"Changes","v":"1.7.0","d":"2026-11-18","deps":["versions.json","script/scenes.json","scripts/build-changes-page.mjs","https://github.com/rifaterdemsahin/hyperframes/commits/main"]},"publish.html":{"t":"Title, description, thumbnail","v":"1.9.0","d":"2026-11-18","deps":["spec/publish.json","script/scenes.json","spec/project.json","thumbnails/thumb-a.html","thumbnails/thumb-b.html","scripts/build-publish-page.mjs","scripts/build-thumbnails.sh"]},"hyperframes-guide/signin.html":{"t":"Hyperframes sign-in","v":"1.7.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/guides/authentication.md","https://hyperframes.studio/"]},"first-draft.html":{"t":"Draft video","v":"1.9.0","d":"2026-11-18","deps":["draft/versions.json","draft/","script/scenes.json","video/","scripts/render-draft.mjs","scripts/build-first-draft-page.mjs"]},"review.html":{"t":"Review","v":"1.9.0","d":"2026-11-18","deps":["draft/versions.json","script/scenes.json","spec/publish.json","first-draft.html","scripts/build-review-page.mjs"]},"performance.html":{"t":"Performance","v":"1.9.0","d":"2026-11-18","deps":["spec/performance.json","scripts/render-draft.mjs","scripts/build-performance-page.mjs","https://docs.github.com/en/rest/pages/pages"]},"hyperframes-guide/app-and-players.html":{"t":"Desktop app and players","v":"1.9.0","d":"2026-11-18","deps":["https://hyperframes.heygen.com/studio-app/index.md","https://hyperframes.heygen.com/packages/player.md","https://www.remotion.dev/docs/player","https://www.remotion.dev/docs/studio"]},"gaps.html":{"t":"Gaps","v":"1.10.0","d":"2026-11-18","deps":["kanban.html","spec/gaps.json","scripts/build-gaps-page.mjs","first-draft.html","publish.html"]}}}; /*VERSIONS-END*/
+  // Written by scripts/build-menu.mjs from spec/menu.json. Do not edit by hand.
+  /*MENU-START*/ var MENU = [{"label": "🏠 Home","href": ""},{"label": "📋 1 Plan","items": [["📘 Master spec","master-spec.html"],["📜 Script","script.html"],["🎞️ Storyboard","storyboard/"],["✅ Recommendations","recommendations.html"]]},{"label": "🎬 2 Build","items": [["🎞️ Draft video","first-draft.html"],["⏱️ Performance","performance.html"],{"h": "Hyperframes: how it works"},["🧩 Overview","hyperframes-guide/"],["🛠️ Rendering paths","hyperframes-guide/rendering.html"],["⚡ Cloud vs local speed","hyperframes-guide/speed.html"],["⌨️ CLI cheat sheet","hyperframes-guide/cli.html"],["🖥️ Desktop app & players","hyperframes-guide/app-and-players.html"],["🔐 Hyperframes sign-in","hyperframes-guide/signin.html"],["🌐 hyperframes.studio ↗","https://hyperframes.studio/"],{"h": "Choosing the tool"},["⚖️ Hyperframes vs Remotion","compare.html"],["💳 Why pay?","why-pay.html"]]},{"label": "🔍 3 Review","items": [["📝 Review","review.html"],["🧩 Gaps (waiting on you)","gaps.html"],["📋 Kanban","kanban.html"],["🔄 Changes","changes.html"]]},{"label": "🚀 4 Publish","items": [["📣 Title, description, thumbnail","publish.html"],["🚀 Release checklist","release-checklist.html"]]},{"label": "⚙️ 5 Project","items": [["♻️ Reuse as template","reuse.html"],["🤖 AGENTS.md","agents.html"],["🕘 Changelog","changelog.html"],["📄 Design doc","https://github.com/rifaterdemsahin/hyperframes/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],["🐙 Repo","https://github.com/rifaterdemsahin/hyperframes"]]}]; /*MENU-END*/
 
   var url = function (h) { return /^https?:/.test(h) ? h : base + h; };
   var norm = function (u) { return u.split("#")[0].split("?")[0].replace(/index\.html$/, ""); };
@@ -72,7 +25,7 @@
     "#site-nav .menu{display:none;position:absolute;top:100%;left:0;min-width:240px;padding:4px;background:#171b22;border:1px solid #232a35;border-radius:8px;box-shadow:0 8px 24px #0008;z-index:1001}" +
     "#site-nav .dd.open .menu{display:block}" +
     "@media(hover:hover){#site-nav .dd:hover .menu{display:block}}" +
-    "#site-nav .menu a{display:block}" +
+    "#site-nav .menu a{display:block}#site-nav .mh{padding:8px 10px 2px;color:#8b95a5;font-size:11px;text-transform:uppercase;letter-spacing:.06em}" +
     "@media(max-width:600px){#site-nav .menu{position:static;box-shadow:none;min-width:0}}";
   document.head.appendChild(css);
 
@@ -85,9 +38,10 @@
       html += '<a href="' + url(m.href) + '"' + (isHere(m.href) ? ' class="on"' : "") + ">" + m.label + "</a>";
       return;
     }
-    var active = m.items.some(function (it) { return isHere(it[1]); });
+    var active = m.items.some(function (it) { return !it.h && isHere(it[1]); });
     html += '<div class="dd" data-i="' + i + '"><button class="top' + (active ? " on" : "") + '" aria-haspopup="true" aria-expanded="false">' + m.label + ' ▾</button><div class="menu">';
     m.items.forEach(function (it) {
+      if (it.h) { html += '<div class="mh">' + it.h + "</div>"; return; }
       html += '<a href="' + url(it[1]) + '"' + (isHere(it[1]) ? ' class="on" aria-current="page"' : "") + ">" + it[0] + "</a>";
     });
     html += "</div></div>";

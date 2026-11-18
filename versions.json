@@ -1,10 +1,10 @@
 {
-  "site": "1.9.1",
+  "site": "1.10.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "date": "2026-11-18",
       "deps": [
         "scripts/build-architecture.mjs"
@@ -12,7 +12,7 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "date": "2026-11-18",
       "deps": [
         "script/scenes.json",
@@ -21,7 +21,7 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "date": "2026-11-18",
       "deps": [
         "script/scenes.json",
@@ -33,13 +33,13 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.7.1",
+      "version": "1.8.0",
       "date": "2026-11-18",
       "deps": []
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18",
       "deps": [
         "script/scenes.json",
@@ -49,7 +49,7 @@
     },
     "hyperframes-guide/": {
       "title": "Hyperframes overview",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.heygen.com/introduction.md",
@@ -58,7 +58,7 @@
     },
     "hyperframes-guide/rendering.html": {
       "title": "Rendering paths",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.heygen.com/deploy/overview.md",
@@ -67,7 +67,7 @@
     },
     "hyperframes-guide/speed.html": {
       "title": "Cloud vs local speed",
-      "version": "1.4.0",
+      "version": "1.5.0",
       "date": "2026-11-18",
       "deps": [
         "spec/performance.json",
@@ -77,7 +77,7 @@
     },
     "hyperframes-guide/cli.html": {
       "title": "CLI cheat sheet",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18",
       "deps": [
         "video/CLAUDE.md",
@@ -86,7 +86,7 @@
     },
     "compare.html": {
       "title": "Hyperframes vs Remotion",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md",
@@ -98,7 +98,7 @@
     },
     "why-pay.html": {
       "title": "Why pay?",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.studio/pricing",
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.9.1",
+      "version": "1.10.0",
       "date": "2026-11-18",
       "deps": [
         "versions.json",
@@ -117,7 +117,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "spec/project.json",
@@ -127,7 +127,7 @@
     },
     "release-checklist.html": {
       "title": "Release checklist",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18",
       "deps": [
         "spec/project.json",
@@ -138,7 +138,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "AGENTS.md",
@@ -147,7 +147,7 @@
     },
     "reuse.html": {
       "title": "Reuse as template",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18",
       "deps": [
         "templates/README.md",
@@ -157,7 +157,7 @@
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18",
       "deps": [
         "versions.json",
@@ -168,7 +168,7 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "spec/publish.json",
@@ -182,7 +182,7 @@
     },
     "hyperframes-guide/signin.html": {
       "title": "Hyperframes sign-in",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.heygen.com/guides/authentication.md",
@@ -191,7 +191,7 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "draft/versions.json",
@@ -204,7 +204,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "draft/versions.json",
@@ -216,7 +216,7 @@
     },
     "performance.html": {
       "title": "Performance",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "spec/performance.json",
@@ -227,7 +227,7 @@
     },
     "hyperframes-guide/app-and-players.html": {
       "title": "Desktop app and players",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-18",
       "deps": [
         "https://hyperframes.heygen.com/studio-app/index.md",
@@ -238,7 +238,7 @@
     },
     "gaps.html": {
       "title": "Gaps",
-      "version": "1.9.1",
+      "version": "1.10.0",
       "date": "2026-11-18",
       "deps": [
         "kanban.html",
@@ -250,6 +250,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.10.0",
+      "date": "2026-11-18",
+      "pages": [
+        "all"
+      ],
+      "changes": [
+        "Menu regrouped into five stages in production order: 1 Plan, 2 Build, 3 Review, 4 Publish, 5 Project (Preprod, Prod and Postprod are kept as aliases). The intro now opens with the pipeline: five cards in the same order, each showing where that stage stands right now (scenes and length, draft version and check, what is waiting on you, whether title and thumbnail are chosen). The old card grid and stale stage list are gone. Menu and pipeline both come from spec/menu.json."
+      ]
+    },
     {
       "version": "1.9.1",
       "date": "2026-11-18",

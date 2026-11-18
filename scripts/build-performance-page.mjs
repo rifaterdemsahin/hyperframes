@@ -66,7 +66,7 @@ const html = `<!doctype html>
 </style></head><body>
 <script src="nav.js?v=${V.site}"></script>
 <main>
-  <div class="crumbs">📦 Postprod</div>
+  <div class="crumbs">🎬 2 Build</div>
   <h1>⏱️ Performance</h1>
   <p class="lead">How long this is taking right now: the pipeline that turns the script into a checked, rendered film and a published site.</p>
   <p class="note">Every number is measured by <code>scripts/render-draft.mjs</code> on the real project, not estimated. Deploy times come from GitHub. Rebuild the figures with <code>node scripts/render-draft.mjs</code>.</p>
