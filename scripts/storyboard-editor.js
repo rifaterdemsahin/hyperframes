@@ -4,8 +4,24 @@
   var KEY = "storyboard-feedback-v1";
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  var cleared = (window.SITE_INFO && window.SITE_INFO.clearedAt) || "";
+  var ts = saved.__ts = saved.__ts || {};
+  // Edits and notes written before the last "feedback implemented" release are deleted; newer ones stay.
+  Object.keys(saved).forEach(function (id) {
+    if (id === "__ts") return;
+    if (id === "__general") {
+      if (cleared && (!ts.__general || ts.__general < cleared)) { delete saved.__general; delete ts.__general; }
+      return;
+    }
+    Object.keys(saved[id] || {}).forEach(function (f) {
+      var k = id + "." + f;
+      if (cleared && (!ts[k] || ts[k] < cleared)) { delete saved[id][f]; delete ts[k]; }
+    });
+    if (!Object.keys(saved[id] || {}).length) delete saved[id];
+  });
   var persist = function () { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} };
 
+  persist();
   var panels = Array.prototype.slice.call(document.querySelectorAll("article.panel"));
   var general = document.getElementById("general");
 
@@ -27,11 +43,12 @@
 
   document.addEventListener("input", function (e) {
     var el = e.target;
-    if (el === general) { saved.__general = general.value; persist(); return; }
+    if (el === general) { saved.__general = general.value; ts.__general = new Date().toISOString(); persist(); return; }
     var p = el.closest && el.closest("article.panel");
     if (!p || !el.dataset.f) return;
     var s = saved[p.dataset.id] = saved[p.dataset.id] || {};
     s[el.dataset.f] = el.tagName === "TEXTAREA" ? el.value : el.textContent;
+    ts[p.dataset.id + "." + el.dataset.f] = new Date().toISOString();
     mark(el); persist(); count();
   });
 

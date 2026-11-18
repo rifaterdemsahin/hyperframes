@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.2.0"></script>
+<script src="nav.js?v=1.3.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -67,6 +67,11 @@ const TASKS=[
 const KEY="liquidation-kanban-v1";
 let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}};
+// Instructions written before the last "feedback implemented" release are deleted (column moves are kept).
+const cleared=(window.SITE_INFO&&window.SITE_INFO.clearedAt)||"";
+const ts=saved.__ts=saved.__ts||{};
+Object.keys(saved).forEach(id=>{if(id==="__ts")return;const x=saved[id];if(x&&x.note&&cleared&&ts[id]&&ts[id]<cleared){x.note="";delete ts[id]}});
+save();
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const state=t=>Object.assign({col:t.col,note:""},saved[t.id]||{});
 function render(){
@@ -81,7 +86,7 @@ function render(){
 document.getElementById("board").addEventListener("input",e=>{
   const id=e.target.dataset.id;if(!id)return;
   const t=TASKS.find(x=>x.id===id),s=state(t);
-  if(e.target.tagName==="TEXTAREA")s.note=e.target.value;
+  if(e.target.tagName==="TEXTAREA"){s.note=e.target.value;ts[id]=new Date().toISOString()}
   else{s.col=e.target.value;saved[id]=s;save();render();return}
   saved[id]=s;save();
 });

@@ -7,8 +7,16 @@
   var KEY = "fb-v1:" + (info.key || location.pathname);
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+  var cleared = info.clearedAt || "";
+  var ts = saved.__ts = saved.__ts || {};
+  // Notes written before the last "feedback implemented" release are deleted. Notes typed since stay, and so do older notes with no timestamp.
+  Object.keys(saved).forEach(function (k) {
+    if (k === "__ts") return;
+    if (cleared && ts[k] && ts[k] < cleared) { delete saved[k]; delete ts[k]; }  // notes with no timestamp are kept: their age is unknown
+  });
   var persist = function () { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} };
 
+  persist();
   var main = document.querySelector("main") || document.body;
   var st = document.createElement("style");
   st.textContent =
@@ -37,7 +45,7 @@
     var sync = function () { d.classList.toggle("has", !!t.value.trim()); };
     sync();
     if (t.value.trim()) d.open = true;
-    t.addEventListener("input", function () { saved[id] = t.value; persist(); sync(); count(); });
+    t.addEventListener("input", function () { saved[id] = t.value; ts[id] = new Date().toISOString(); persist(); sync(); count(); });
     boxes.push({ id: id, title: title, el: t });
     return d;
   }

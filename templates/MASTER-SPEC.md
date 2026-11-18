@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: The Real Process
 
-Spec v1.0 · site v1.2.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.0 · site v1.3.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: the AI automation behind it, Part 3: how it ends)

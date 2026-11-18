@@ -32,7 +32,7 @@ scripts/gen-voiceover.sh [voice]  # fal.ai draft voiceover -> video/assets/vo
 node scripts/build-storyboard.mjs # storyboard/index.html from script/scenes.json
 node scripts/build-script-page.mjs # script.html from script/scenes.json
 node scripts/build-master-spec.mjs # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
-node scripts/version.mjs bump minor "what changed" [page ...] # version every page + changelog
+node scripts/version.mjs bump minor "what changed" [page ...] [--clear-notes] # version every page + changelog; --clear-notes deletes implemented feedback notes
 ```
 
 The fal.ai key lives in a git-ignored `.env` (`FAL_KEY=...`). Never commit it.

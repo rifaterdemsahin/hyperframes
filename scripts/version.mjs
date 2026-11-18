@@ -1,8 +1,9 @@
 // Versioning for every page. Source of truth: versions.json.
 //   node scripts/version.mjs                      re-stamp only (nav.js data, changelog.html, ?v= cache-busters)
-//   node scripts/version.mjs bump minor|patch|major "what changed" [page ...]
+//   node scripts/version.mjs bump minor|patch|major "what changed" [page ...] [--clear-notes]
 //        bumps the site version, bumps the listed pages (default: all) by the same kind,
-//        adds a changelog entry, then re-stamps.
+//        adds a changelog entry, then re-stamps. --clear-notes deletes, on every page, the notes written before now
+//        (use it when the feedback has been implemented; notes typed afterwards are kept).
 // Page keys are the ones in versions.json, e.g. compare.html or storyboard/ .
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, resolve, join } from "node:path";
@@ -17,7 +18,9 @@ const inc = (ver, kind) => {
   return kind === "major" ? `${a + 1}.0.0` : kind === "minor" ? `${a}.${b + 1}.0` : `${a}.${b}.${c + 1}`;
 };
 
-const [cmd, kind, msg, ...pages] = process.argv.slice(2);
+const rawArgs = process.argv.slice(2);
+const clearNotes = rawArgs.includes("--clear-notes");
+const [cmd, kind, msg, ...pages] = rawArgs.filter((a) => a !== "--clear-notes");
 if (cmd === "bump") {
   if (!["major", "minor", "patch"].includes(kind) || !msg) {
     console.error('usage: version.mjs bump major|minor|patch "message" [page ...]');
@@ -32,6 +35,8 @@ if (cmd === "bump") {
   }
   v.site = inc(v.site, kind);
   v.date = today;
+  // --clear-notes: the feedback written before this moment has been implemented, so pages delete those notes (newer notes stay)
+  if (clearNotes) { v.feedbackClearedAt = new Date().toISOString(); }
   // the changelog page is itself a page: it changes with every release
   v.pages["changelog.html"].version = v.site;
   v.pages["changelog.html"].date = today;
@@ -44,7 +49,7 @@ if (cmd === "bump") {
 const navPath = `${root}/nav.js`;
 let nav = readFileSync(navPath, "utf8");
 const pagesOut = Object.fromEntries(Object.entries(v.pages).map(([k, p]) => [k, { t: p.title, v: p.version, d: p.date }]));
-const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site, date: v.date, pages: pagesOut })}; /*VERSIONS-END*/`;
+const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site, date: v.date, cleared: v.feedbackClearedAt || "", pages: pagesOut })}; /*VERSIONS-END*/`;
 nav = nav.replace(/\/\*VERSIONS-START\*\/[\s\S]*?\/\*VERSIONS-END\*\//, block);
 writeFileSync(navPath, nav);
 
