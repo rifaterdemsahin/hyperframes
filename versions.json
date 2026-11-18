@@ -1,5 +1,5 @@
 {
-  "site": "1.9.0",
+  "site": "1.9.1",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -33,7 +33,7 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "date": "2026-11-18",
       "deps": []
     },
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.9.0",
+      "version": "1.9.1",
       "date": "2026-11-18",
       "deps": [
         "versions.json",
@@ -238,7 +238,7 @@
     },
     "gaps.html": {
       "title": "Gaps",
-      "version": "1.9.0",
+      "version": "1.9.1",
       "date": "2026-11-18",
       "deps": [
         "kanban.html",
@@ -250,6 +250,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.9.1",
+      "date": "2026-11-18",
+      "pages": [
+        "gaps.html",
+        "kanban.html"
+      ],
+      "changes": [
+        "Fix: the footer's dependency chips and label now follow each page's light or dark theme (the label was nearly invisible on light pages), and the first Gaps card no longer repeats itself."
+      ]
+    },
     {
       "version": "1.9.0",
       "date": "2026-11-18",

@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.9.0"></script>
+<script src="nav.js?v=1.9.1"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -40,7 +40,7 @@ textarea{min-height:60px;resize:vertical}
 const COLS=[["input","Needs your input"],["ready","Ready for Claude"],["doing","In progress"],["done","Done"]];
 const TASKS=[
  // Needs your input
- {id:"t01",col:"input",who:"you",title:"Review draft v2 and approve it, or send more notes",desc:"Watch it on the Review page. Paste your notes, or say approved."},
+ {id:"t01",col:"input",who:"you",title:"Review draft v2 and approve it, or send more notes",desc:"Draft v2 is rendered and waiting for your verdict."},
  {id:"t02",col:"input",who:"you",title:"HMRC screen for step 1 (S2), optional",desc:"The hook no longer shows figures, so this is only an optional inset for step 1. Blur the UTR and login and hide the balance."},
  {id:"t03",col:"input",who:"you",title:"Face-cam clip for the intro",desc:"About 15 s, Part 1 intro. Say if the face-cam audio is the voiceover or if you record it separately."},
  {id:"t04",col:"input",who:"you",title:"Voiceover: keep the AI draft or record your own",desc:"A British male AI draft plays on each storyboard panel, regenerated for the rewritten script. No scene overruns now. Keep it, change the voice, or send your own recording."},
