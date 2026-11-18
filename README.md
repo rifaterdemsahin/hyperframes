@@ -1,6 +1,6 @@
 # hyperframes
 
-Video project: **UK Director Liquidation, Part 1 of 3: the real process** (about 3 minutes), built with [Hyperframes](https://hyperframes.heygen.com).
+Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape** (about 3:38), built with [Hyperframes](https://hyperframes.heygen.com).
 
 ## Links
 
@@ -15,6 +15,9 @@ Video project: **UK Director Liquidation, Part 1 of 3: the real process** (about
 | Master spec (Postprod, template) | https://rifaterdemsahin.github.io/hyperframes/master-spec.html |
 | Release checklist | https://rifaterdemsahin.github.io/hyperframes/release-checklist.html |
 | Changelog | https://rifaterdemsahin.github.io/hyperframes/changelog.html |
+| Changes (Postprod) | https://rifaterdemsahin.github.io/hyperframes/changes.html |
+| AGENTS.md page | https://rifaterdemsahin.github.io/hyperframes/agents.html |
+| Reuse as template | https://rifaterdemsahin.github.io/hyperframes/reuse.html |
 | Kanban (tasks + your instructions) | https://rifaterdemsahin.github.io/hyperframes/kanban.html |
 | Storyboard (editable, with draft voiceover and a copy-feedback bar) | https://rifaterdemsahin.github.io/hyperframes/storyboard/ |
 | Hyperframes vs Remotion | https://rifaterdemsahin.github.io/hyperframes/compare.html |
@@ -32,12 +35,18 @@ scripts/gen-voiceover.sh [voice]  # fal.ai draft voiceover -> video/assets/vo
 node scripts/build-storyboard.mjs # storyboard/index.html from script/scenes.json
 node scripts/build-script-page.mjs # script.html from script/scenes.json
 node scripts/build-master-spec.mjs # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
+node scripts/build-agents-page.mjs # agents.html from AGENTS.md
+node scripts/build-changes-page.mjs # changes.html from git (run after the bump, before the commit)
 node scripts/version.mjs bump minor "what changed" [page ...] [--clear-notes] # version every page + changelog; --clear-notes deletes implemented feedback notes
 ```
 
 The fal.ai key lives in a git-ignored `.env` (`FAL_KEY=...`). Never commit it.
 
 *AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.*
+
+## For AI agents
+
+See [AGENTS.md](AGENTS.md) (`CLAUDE.md` points to it).
 
 ## Reuse as a template
 

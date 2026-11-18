@@ -79,7 +79,7 @@ const spec = `${head("Master Spec")}
   ${table(["Stage", "What happens", "Pages", "Done when"], [
     ["📝 <b>Preprod</b>", "Script, storyboard, feedback loop, task tracking, recommendations", `<a href="script.html">Script</a>, <a href="storyboard/">Storyboard</a>, <a href="kanban.html">Kanban</a>, <a href="recommendations.html">Recommendations</a>`, "You approve the storyboard and the open decisions below are closed"],
     ["🎬 <b>Prod</b>", "Build the scenes in Hyperframes, bring in real footage and voiceover, check and snapshot", `<a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, <code>npm run check</code> passes, snapshots reviewed"],
-    ["🎞️ <b>Postprod</b>", "Final render, quality control, captions, publish", `<a href="master-spec.html">Master spec</a>, <a href="release-checklist.html">Release checklist</a>`, "All acceptance criteria met and the release checklist is complete"],
+    ["🎞️ <b>Postprod</b>", "Final render, quality control, captions, publish", `<a href="master-spec.html">Master spec</a>, <a href="release-checklist.html">Release checklist</a>, <a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>`, "All acceptance criteria met and the release checklist is complete"],
   ])}
   <p><b>Working rule:</b> every change is committed, pushed and deployed to GitHub Pages, and every release bumps the version (<a href="changelog.html">changelog</a>).</p>
 
@@ -119,7 +119,7 @@ const spec = `${head("Master Spec")}
 
   <h2>10. Use this as a template</h2>
   <ol class="steps">
-    <li>Copy the repo (or start from this one) and keep <code>nav.js</code>, <code>feedback.js</code>, <code>site.css</code>, <code>versions.json</code> and <code>scripts/</code>.</li>
+    <li>Copy the repo (or start from this one) and keep <code>nav.js</code>, <code>feedback.js</code>, <code>site.css</code>, <code>versions.json</code>, <code>AGENTS.md</code> and <code>scripts/</code> (see <a href="reuse.html">Reuse</a>).</li>
     <li>Copy <code>templates/project.template.json</code> to <code>spec/project.json</code> and fill it in. Copy <code>templates/scenes.template.json</code> to <code>script/scenes.json</code> and write your scenes.</li>
     <li>Run <code>scripts/gen-backgrounds.sh</code> and <code>scripts/gen-voiceover.sh</code> if you want fal.ai drafts (needs <code>FAL_KEY</code> in <code>.env</code>).</li>
     <li>Run <code>node scripts/build-storyboard.mjs</code>, <code>build-script-page.mjs</code> and <code>build-master-spec.mjs</code>.</li>
@@ -144,6 +144,7 @@ const groups = [
   ["Privacy and legal", [
     "No UTR, login, name or address readable in any frame (check the exported file, not the preview)",
     "No debt figure on screen or in the voice",
+    "Anything shown about AI emailing the parties was checked with the practitioner",
     "The practitioner has read the script, or personal claims are framed as your own experience",
     "The disclaimer is on screen and in the description",
     "No API key or secret in the repo, the video or the description",
@@ -156,6 +157,7 @@ const groups = [
     "Captions file uploaded or auto-captions reviewed",
     "End screen and one call to action set: " + P.singleCallToAction,
     "Added to the series playlist",
+    "Skool community link on the end screen and in the description (one soft mention, not a second call to action)",
   ]],
   ["After publishing", [
     "Add the video link to the repo README and the hub",

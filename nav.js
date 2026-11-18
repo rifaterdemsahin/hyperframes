@@ -4,7 +4,7 @@
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
   var G = "https://github.com/rifaterdemsahin/hyperframes";
   // Written by scripts/version.mjs from versions.json. Do not edit by hand.
-  /*VERSIONS-START*/ var VERSIONS = {"site":"1.3.1","date":"2026-11-18","cleared":"2026-11-18T21:55:42.014Z","pages":{"index.html":{"t":"Home","v":"1.3.0","d":"2026-11-18"},"script.html":{"t":"Script","v":"1.2.0","d":"2026-11-18"},"storyboard/":{"t":"Storyboard","v":"1.2.1","d":"2026-11-18"},"kanban.html":{"t":"Kanban","v":"1.2.0","d":"2026-11-18"},"recommendations.html":{"t":"Recommendations","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.2.0","d":"2026-11-18"},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.2.0","d":"2026-11-18"},"why-pay.html":{"t":"Why pay?","v":"1.2.0","d":"2026-11-18"},"changelog.html":{"t":"Changelog","v":"1.3.1","d":"2026-11-18"},"master-spec.html":{"t":"Master spec","v":"1.3.0","d":"2026-11-18"},"release-checklist.html":{"t":"Release checklist","v":"1.3.0","d":"2026-11-18"}}}; /*VERSIONS-END*/
+  /*VERSIONS-START*/ var VERSIONS = {"site":"1.4.0","date":"2026-11-18","cleared":{"*":"2026-11-18T21:55:42.014Z","script.html":"2026-11-18T22:07:30.860Z"},"pages":{"index.html":{"t":"Home","v":"1.4.0","d":"2026-11-18"},"script.html":{"t":"Script","v":"1.3.0","d":"2026-11-18"},"storyboard/":{"t":"Storyboard","v":"1.3.0","d":"2026-11-18"},"kanban.html":{"t":"Kanban","v":"1.3.0","d":"2026-11-18"},"recommendations.html":{"t":"Recommendations","v":"1.3.0","d":"2026-11-18"},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.2.0","d":"2026-11-18"},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.2.0","d":"2026-11-18"},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.2.0","d":"2026-11-18"},"why-pay.html":{"t":"Why pay?","v":"1.2.0","d":"2026-11-18"},"changelog.html":{"t":"Changelog","v":"1.4.0","d":"2026-11-18"},"master-spec.html":{"t":"Master spec","v":"1.4.0","d":"2026-11-18"},"release-checklist.html":{"t":"Release checklist","v":"1.4.0","d":"2026-11-18"},"agents.html":{"t":"AGENTS.md","v":"1.4.0","d":"2026-11-18"},"reuse.html":{"t":"Reuse as template","v":"1.4.0","d":"2026-11-18"},"changes.html":{"t":"Changes","v":"1.4.0","d":"2026-11-18"}}}; /*VERSIONS-END*/
   var MENU = [
     { label: "🏠 Home", href: "" },
     {
@@ -32,6 +32,9 @@
       items: [
         ["📘 Master spec (template)", "master-spec.html"],
         ["🚀 Release checklist", "release-checklist.html"],
+        ["🔄 Changes", "changes.html"],
+        ["🤖 AGENTS.md", "agents.html"],
+        ["♻️ Reuse as template", "reuse.html"],
       ],
     },
     {
@@ -106,7 +109,7 @@
   rel = rel.replace(/index\.html$/, "");
   var key = rel === "" ? "index.html" : rel;
   var pg = (VERSIONS.pages || {})[key] || { t: document.title, v: "?", d: "" };
-  window.SITE_INFO = { site: VERSIONS.site, siteDate: VERSIONS.date, clearedAt: VERSIONS.cleared || "", key: key, title: pg.t, version: pg.v, date: pg.d, url: location.origin + location.pathname };
+  window.SITE_INFO = { site: VERSIONS.site, siteDate: VERSIONS.date, clearedAt: (function () { var c = VERSIONS.cleared || {}; var a = c[key] || "", b = c["*"] || ""; return a > b ? a : b; })(), key: key, title: pg.t, version: pg.v, date: pg.d, url: location.origin + location.pathname };
 
   var ready = function (fn) { document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", fn) : fn(); };
   ready(function () {

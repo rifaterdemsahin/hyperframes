@@ -37,3 +37,6 @@ A ~3:18 YouTube video (landscape 1920x1080) explaining the real liquidation proc
 
 ## Left to the builder
 Palette and type, motion details, background prompts, caption style.
+
+## Revision, v1.4.0 (after the Script page feedback)
+The video is now AI-focused: it shows how to use AI to get through real-world red tape, with closing a UK company as the example, and not a walk through the liquidation process. New title: "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape". Target length 3:38. Themes added: AI as support and leverage, learn the process and delegate with AI, low expectations of AI, divide and conquer, Gmail and Drive as data sources over MCP, learn from problems and iterate. The call to action stays "subscribe"; the Skool community is one soft mention in the outro. The master spec (`spec/project.json`) is the current source of truth for the brief.

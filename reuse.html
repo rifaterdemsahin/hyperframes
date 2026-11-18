@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reuse as Template</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<script src="nav.js?v=1.4.0"></script>
+<main>
+  <div class="crumbs">📦 Postprod</div>
+  <h1>♻️ Reuse as template</h1>
+  <p class="lead">This repo is built so the next video starts from it, not from scratch. Keep the engine, replace the content.</p>
+
+  <h2>What to keep, replace and never edit</h2>
+  <div class="tw"><table>
+    <tr><th>Keep as is (the engine)</th><th>Replace for each video (the content)</th><th>Generated, never edit by hand</th></tr>
+    <tr>
+      <td><code>nav.js</code>, <code>feedback.js</code>, <code>site.css</code><br><code>versions.json</code> (reset the changelog)<br><code>scripts/</code><br><code>AGENTS.md</code>, <code>CLAUDE.md</code><br><code>templates/</code>, <code>.gitignore</code><br><code>hyperframes-guide/</code>, <code>compare.html</code>, <code>why-pay.html</code></td>
+      <td><code>script/scenes.json</code><br><code>spec/project.json</code><br><code>video/</code> (the Hyperframes project and its assets)<br><code>.env</code> (your own keys, never committed)<br><code>index.html</code>, <code>kanban.html</code>, <code>recommendations.html</code> (their text is about the current video)<br><code>docs/superpowers/specs/</code></td>
+      <td><code>script.html</code><br><code>storyboard/</code><br><code>master-spec.html</code><br><code>release-checklist.html</code><br><code>agents.html</code><br><code>changes.html</code>, <code>changelog.html</code><br><code>templates/MASTER-SPEC.md</code></td>
+    </tr>
+  </table></div>
+
+  <h2>Start a new video</h2>
+  <ol>
+    <li>Copy this repo to a new one. Delete <code>video/assets/*</code>, <code>storyboard/</code> and the old spec doc.</li>
+    <li><code>cp templates/project.template.json spec/project.json</code> and fill in every <code>&lt;&lt;...&gt;&gt;</code>.</li>
+    <li><code>cp templates/scenes.template.json script/scenes.json</code> and write your scenes.</li>
+    <li>Add your <code>FAL_KEY</code> to a git-ignored <code>.env</code> if you want fal.ai drafts, then run <code>scripts/gen-backgrounds.sh</code> and <code>scripts/gen-voiceover.sh</code>.</li>
+    <li>Build the pages (see the commands below), then rewrite the text on <code>index.html</code>, <code>kanban.html</code> and <code>recommendations.html</code> for the new video.</li>
+    <li>Reset <code>versions.json</code> (site <code>1.0.0</code>, an empty changelog with one entry) and run <code>node scripts/version.mjs bump minor "new video: ..."</code>.</li>
+    <li>Create the GitHub repo, turn on Pages from <code>main</code>, and push. Work through Preprod, Prod and Postprod, committing, pushing and deploying every change.</li>
+  </ol>
+<pre>node scripts/build-storyboard.mjs
+node scripts/build-script-page.mjs
+node scripts/build-master-spec.mjs
+node scripts/build-agents-page.mjs
+node scripts/build-changes-page.mjs
+node scripts/version.mjs bump minor "what changed" [page ...] [--clear-notes=page,page]</pre>
+
+  <h2>What lives where</h2>
+  <ul>
+    <li><b>Instructions for AI agents:</b> <a href="agents.html">AGENTS.md</a> (the file is in the repo root; <code>CLAUDE.md</code> points to it).</li>
+    <li><b>The spec and checklist:</b> <a href="master-spec.html">Master spec</a> and <a href="release-checklist.html">Release checklist</a>, also as <a href="templates/MASTER-SPEC.md">Markdown</a>.</li>
+    <li><b>What is changing:</b> <a href="changes.html">Changes</a> and the <a href="changelog.html">Changelog</a>.</li>
+    <li><b>Blank files for the next video:</b> <a href="https://github.com/rifaterdemsahin/hyperframes/tree/main/templates"><code>templates/</code></a> on GitHub.</li>
+  </ul>
+
+  <h2>Things worth changing in the template itself</h2>
+  <p>After each video, write down what slowed you down and fix it in the template: a missing field in <code>project.json</code>, a checklist item you forgot, a rule in <code>AGENTS.md</code> that an agent broke. Release those as a normal version bump so the next video starts better.</p>
+</main>
+</body>
+</html>

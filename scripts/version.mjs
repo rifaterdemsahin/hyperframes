@@ -1,9 +1,9 @@
 // Versioning for every page. Source of truth: versions.json.
 //   node scripts/version.mjs                      re-stamp only (nav.js data, changelog.html, ?v= cache-busters)
-//   node scripts/version.mjs bump minor|patch|major "what changed" [page ...] [--clear-notes]
+//   node scripts/version.mjs bump minor|patch|major "what changed" [page ...] [--clear-notes[=page,page]]
 //        bumps the site version, bumps the listed pages (default: all) by the same kind,
-//        adds a changelog entry, then re-stamps. --clear-notes deletes, on every page, the notes written before now
-//        (use it when the feedback has been implemented; notes typed afterwards are kept).
+//        adds a changelog entry, then re-stamps. --clear-notes=page,page deletes the notes written before now on those pages
+//        (use it when that feedback has been implemented; notes typed afterwards are kept). Plain --clear-notes = every page.
 // Page keys are the ones in versions.json, e.g. compare.html or storyboard/ .
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, resolve, join } from "node:path";
@@ -19,8 +19,12 @@ const inc = (ver, kind) => {
 };
 
 const rawArgs = process.argv.slice(2);
-const clearNotes = rawArgs.includes("--clear-notes");
-const [cmd, kind, msg, ...pages] = rawArgs.filter((a) => a !== "--clear-notes");
+// --clear-notes=page1,page2 deletes the notes on those pages only; plain --clear-notes means every page ("*").
+const clearArg = rawArgs.find((a) => a === "--clear-notes" || a.startsWith("--clear-notes="));
+const clearTargets = clearArg ? (clearArg.includes("=") ? clearArg.split("=")[1].split(",").filter(Boolean) : ["*"]) : [];
+const [cmd, kind, msg, ...pages] = rawArgs.filter((a) => a !== clearArg);
+// older versions.json kept one global time; it becomes the "*" entry
+if (v.feedbackClearedAt) { v.feedbackCleared = { ...(v.feedbackCleared || {}), "*": v.feedbackClearedAt }; delete v.feedbackClearedAt; }
 if (cmd === "bump") {
   if (!["major", "minor", "patch"].includes(kind) || !msg) {
     console.error('usage: version.mjs bump major|minor|patch "message" [page ...]');
@@ -35,8 +39,15 @@ if (cmd === "bump") {
   }
   v.site = inc(v.site, kind);
   v.date = today;
-  // --clear-notes: the feedback written before this moment has been implemented, so pages delete those notes (newer notes stay)
-  if (clearNotes) { v.feedbackClearedAt = new Date().toISOString(); }
+  // Feedback written before now on the target pages has been implemented, so those pages delete it on next load (newer notes stay).
+  if (clearTargets.length) {
+    v.feedbackCleared = v.feedbackCleared || {};
+    const now = new Date().toISOString();
+    for (const t of clearTargets) {
+      if (t !== "*" && !v.pages[t]) { console.error(`unknown page for --clear-notes: ${t}`); process.exit(1); }
+      v.feedbackCleared[t] = now;
+    }
+  }
   // the changelog page is itself a page: it changes with every release
   v.pages["changelog.html"].version = v.site;
   v.pages["changelog.html"].date = today;
@@ -49,7 +60,7 @@ if (cmd === "bump") {
 const navPath = `${root}/nav.js`;
 let nav = readFileSync(navPath, "utf8");
 const pagesOut = Object.fromEntries(Object.entries(v.pages).map(([k, p]) => [k, { t: p.title, v: p.version, d: p.date }]));
-const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site, date: v.date, cleared: v.feedbackClearedAt || "", pages: pagesOut })}; /*VERSIONS-END*/`;
+const block = `/*VERSIONS-START*/ var VERSIONS = ${JSON.stringify({ site: v.site, date: v.date, cleared: v.feedbackCleared || {}, pages: pagesOut })}; /*VERSIONS-END*/`;
 nav = nav.replace(/\/\*VERSIONS-START\*\/[\s\S]*?\/\*VERSIONS-END\*\//, block);
 writeFileSync(navPath, nav);
 

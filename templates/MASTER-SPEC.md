@@ -1,15 +1,15 @@
-# Master spec: UK Director Liquidation, Part 1 of 3: The Real Process
+# Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.0 · site v1.3.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.1 · site v1.4.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
-- **Series:** Part 1 of 3 (Part 2: the AI automation behind it, Part 3: how it ends)
+- **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
 - **Owner:** Rifat
-- **Audience:** UK company directors facing insolvency, and anyone who wants to see how the process really works
-- **Goal:** Explain how a UK liquidation works in plain words, with the real costs and the five things to do first, and show that you learn the process and delegate the busywork to AI while still using a professional.
+- **Audience:** UK company directors facing insolvency, and anyone stuck in real-world red tape who wants to use AI to get moving
+- **Goal:** Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.
 - **One call to action:** Subscribe for Part 2
-- **Tone:** Honest, calm, first person. No hype, no promises about outcomes.
-- **Length:** 3:16 target, plan 3:16
+- **Tone:** Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.
+- **Length:** 3:38 target, plan 3:38
 - **Language:** en-GB
 - **Disclaimer:** AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.
 
@@ -30,21 +30,22 @@ Every change: commit, push, deploy, bump version.
 
 ## 4. Scenes
 1. 0:00 **Hook** (33 words, slot 12 s). B-roll: Goal image, slow push-in. No figures on screen
-2. 0:12 **Part 1 of 3: the real process** (28 words, slot 11 s). B-roll: Face cam, lower-third: Part 1 of 3
-3. 0:23 **The goal** (33 words, slot 15 s). B-roll: Goal infographic, the three-step process highlighted
-4. 0:38 **Five things to do first** (103 words, slot 39 s). B-roll: On-screen numbered list 1 to 5. Optional HMRC screen inset for step 1 (S2), UTR, login and balance hidden
-5. 1:17 **What it costs and how long it takes** (78 words, slot 28 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait
-6. 1:45 **The exceptions** (63 words, slot 26 s). B-roll: Four exception cards on screen, red accent
-7. 2:11 **What my emails taught me** (67 words, slot 24 s). B-roll: Email timeline graphic (S12): chase reminders, the receipt, the liquidation-date email (names and addresses blurred)
-8. 2:35 **How I keep track of it** (45 words, slot 22 s). B-roll: n8n canvas, 20 seconds (S3), then the dashboard (S10)
-9. 2:57 **Subscribe for Part 2** (18 words, slot 8 s). B-roll: Subscribe button animation, Part 2 title card
-10. 3:05 **Disclaimer + outro** (20 words, slot 11 s). B-roll: Goal image again, end screen: Part 2 teaser
+2. 0:12 **Part 1 of 3: AI and real-world red tape** (43 words, slot 16 s). B-roll: Face cam, lower-third: Part 1 of 3
+3. 0:28 **The goal** (33 words, slot 15 s). B-roll: Goal infographic, the three-step process highlighted
+4. 0:43 **Five things to do first, with AI** (96 words, slot 36 s). B-roll: On-screen numbered list 1 to 5. Optional HMRC screen inset for step 1 (S2), UTR, login and balance hidden
+5. 1:19 **What it costs and how long it takes** (73 words, slot 27 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait
+6. 1:46 **The exceptions** (82 words, slot 32 s). B-roll: Four exception cards on screen, red accent
+7. 2:18 **What my emails taught me** (73 words, slot 27 s). B-roll: Email timeline graphic (S12): chase reminders, the receipt (names and addresses blurred), then a simple diagram of Gmail and Drive connected to AI over MCP
+8. 2:45 **How I keep track of it** (54 words, slot 22 s). B-roll: n8n canvas, 20 seconds (S3), then the dashboard (S10)
+9. 3:07 **Subscribe for Part 2** (34 words, slot 13 s). B-roll: Subscribe button animation, Part 2 title card
+10. 3:20 **Disclaimer + outro** (39 words, slot 18 s). B-roll: Goal image again, end screen: Part 2 teaser and Skool community link
 
 ## 5. Asset manifest
-- Part 1 of 3: the real process: Face cam clip (Your footage / capture), Needed
-- Five things to do first: HMRC screen (S2), optional (Your footage / capture), Needed
+- Part 1 of 3: AI and real-world red tape: Face cam clip (Your footage / capture), Needed
+- Five things to do first, with AI: HMRC screen (S2), optional (Your footage / capture), Needed
 - What my emails taught me: Email screenshots (S12), blurred (Your footage / capture), Needed
 - How I keep track of it: n8n canvas recording (S3) + dashboard (S10) (Your footage / capture), Needed
+- Disclaimer + outro: Skool community link (Your footage / capture), Needed
 - All: Background plates (6 images) (fal.ai, text-free), Done
 - All: Draft voiceover (per scene) (fal.ai Kokoro), Done, to be replaced by your recording
 - All: Music and sound effects (TBD), Open
@@ -55,9 +56,11 @@ Every change: commit, push, deploy, bump version.
 - Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups.
 - Blur UTR, logins, names and addresses in the source image, then check the exported frame.
 - No secrets in the repo. Keys live in a git-ignored .env.
-- No figure for the company's debt in the video. Fees and dates only where the viewer needs them.
+- No figure for the company's debt in the video. Fees only where the viewer needs them.
 - Keep the disclaimer. Have the insolvency practitioner read the script before publishing.
-- One call to action per video.
+- One main call to action: subscribe for Part 2. The Skool community gets one soft mention in the outro, not a second ask.
+- Frame AI as support with low expectations: it gives courage and an assist, and it does not replace the insolvency practitioner.
+- Anything about AI agents emailing the parties is shown as your own approach. Messages to creditors and other parties go through or with the practitioner.
 
 ## 7. Open decisions
 - Palette and font: Open (You)
@@ -65,6 +68,8 @@ Every change: commit, push, deploy, bump version.
 - Final voice: your recording or AI: Open (recording recommended) (You)
 - Repo stays public until release?: Open (You)
 - Thumbnail and title wording: Open (You and Claude)
+- Skool community name and link for the end screen and description: Open (You)
+- Gmail and Drive over MCP: show a real demo or a diagram?: Open (diagram planned) (You)
 
 ## 8. Acceptance criteria
 - [ ] Final MP4 plays end to end at 1920x1080, 30 fps, with audio in sync with every scene.
@@ -81,16 +86,19 @@ Every change: commit, push, deploy, bump version.
 - Public repo and site reveal the story before release. Mitigation: Decide before release whether to make the repo private or rewrite history
 - Exposed API key. Mitigation: Rotate the fal.ai key, keep it only in .env
 - Hyperframes is pre-1.0 and ships many releases. Mitigation: Pin the version, read release notes before upgrading
+- Viewers read AI emailing as advice to bulk-contact creditors. Mitigation: Say 'the right parties', show it as your own approach, and check creditor communication with the practitioner first
+- Overclaiming what AI can do in a legal or tax process. Mitigation: Keep the low-expectations message and the disclaimer; the practitioner decides
 
 ## 10. Chapters (starting point)
 ```
 0:00 Hook
-0:12 Part 1 of 3: the real process
-0:23 The goal
-0:38 Five things to do first
-1:17 What it costs and how long it takes
-1:45 The exceptions
-2:11 What my emails taught me
-2:35 How I keep track of it
-2:57 Subscribe for Part 2 and Disclaimer + outro
+0:12 Part 1 of 3: AI and real-world red tape
+0:28 The goal
+0:43 Five things to do first, with AI
+1:19 What it costs and how long it takes
+1:46 The exceptions
+2:18 What my emails taught me
+2:45 How I keep track of it
+3:07 Subscribe for Part 2
+3:20 Disclaimer + outro
 ```
