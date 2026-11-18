@@ -29,7 +29,7 @@
   ],
   "thumbnailRules": [
     "1280 x 720, 16:9, JPG, under 2 MB (YouTube's guidance).",
-    "Five words or fewer of text, large enough to read at 168 x 94 pixels.",
+    "Six words or fewer of text, large enough to read at 168 x 94 pixels.",
     "All text is HTML, never AI-drawn, so it can be edited and is spelled right.",
     "No figures, no UTR, no names, no personal data, no fake documents.",
     "Do not promise an outcome (no 'fixed', 'solved' or 'saved').",

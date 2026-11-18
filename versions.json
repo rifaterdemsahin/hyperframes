@@ -1,10 +1,10 @@
 {
-  "site": "1.5.1",
+  "site": "1.5.2",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.5.1",
+      "version": "1.5.2",
       "date": "2026-11-18"
     },
     "script.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.5.1",
+      "version": "1.5.2",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -89,7 +89,7 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "date": "2026-11-18"
     },
     "hyperframes-guide/signin.html": {
@@ -99,6 +99,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.5.2",
+      "date": "2026-11-18",
+      "pages": [
+        "index.html",
+        "publish.html"
+      ],
+      "changes": [
+        "Fix: the thumbnail rule now says six words or fewer (thumbnail A has six), and one diagram caption no longer touches its box edge."
+      ]
+    },
     {
       "version": "1.5.1",
       "date": "2026-11-18",

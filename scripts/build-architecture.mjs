@@ -26,7 +26,7 @@ const NODES = {
   build:   { c: 2, r: 1, i: "🏗️", t: "build-*.mjs", s: "pages from the sources", k: "gen" },
   ver:     { c: 2, r: 2, i: "🔖", t: "version.mjs", s: "bump + changelog", k: "gen" },
   genfal:  { c: 2, r: 3, i: "🎨", t: "gen-*.sh", s: "image + voice drafts", k: "gen" },
-  pages:   { c: 3, r: 0, i: "🌐", t: "Site pages", s: "Preprod, Prod, Postprod", k: "out" },
+  pages:   { c: 3, r: 0, i: "🌐", t: "Site pages", s: "Preprod to Postprod", k: "out" },
   engine:  { c: 3, r: 1, i: "🧩", t: "nav, feedback, css", s: "menu + feedback bar", k: "out" },
   vproj:   { c: 3, r: 4, i: "🎬", t: "video/ project", s: "HTML composition", k: "out" },
   mp4:     { c: 3, r: 5, i: "📼", t: "Final MP4", s: "1080p, 30 fps", k: "out" },
