@@ -57,7 +57,7 @@
   var countEl = document.getElementById("count");
   function count() {
     var t = build();
-    countEl.textContent = t ? (t.split("\n## ").length) + " section(s) with changes" : "No changes yet";
+    countEl.textContent = t ? (t.split("\n## ").length - 1) + " section(s) with changes" : "No changes yet";
   }
   count();
 
