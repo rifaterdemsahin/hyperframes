@@ -1,0 +1,19 @@
+{
+  "title": "<<Video title>>",
+  "totalSecondsApprox": 0,
+  "scenes": [
+    {
+      "id": "s01-hook",
+      "label": "HOOK",
+      "title": "Hook",
+      "start": 0,
+      "duration": 12,
+      "broll": "<<What is on screen: footage, graphic, face cam>>",
+      "vo": "<<The exact words you say in this scene.>>",
+      "realAsset": null,
+      "bg": "goal",
+      "overlay": ["<<Headline on screen>>", "<<Optional second line>>"],
+      "ph": null
+    }
+  ]
+}

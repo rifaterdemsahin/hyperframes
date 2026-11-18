@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Release Checklist</title>
+<link rel="stylesheet" href="site.css">
+<style>.kv{display:grid;grid-template-columns:170px 1fr;gap:6px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}.kv b{color:var(--accent)}
+@media(max-width:560px){.kv{grid-template-columns:1fr}}.step{counter-increment:s}.steps li{margin:6px 0}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:6px 0}.chk input{margin-top:5px;width:18px;height:18px}.chk.done span{color:var(--mute);text-decoration:line-through}
+.prog{font-weight:700;color:var(--accent)}</style></head><body>
+<script src="nav.js?v=1.2.0"></script>
+<main>
+  <h1>🚀 Release checklist</h1>
+  <p class="lead">Everything to do between "scenes built" and "published". Ticks are saved in this browser. Generated from the <a href="master-spec.html">master spec</a>.</p>
+  <p class="prog" id="total"></p>
+<h2>Render and quality <small class="prog" data-prog></small></h2>
+<div class="card" data-group><label class="chk"><input type="checkbox" data-id="Render and quality:0"><span>Run npm run check in video/ and fix every error</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:1"><span>Take snapshots of every scene and look at them</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:2"><span>Render the final MP4 at 1920x1080, 30 fps, default quality</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:3"><span>Watch the whole file once, with sound, end to end</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:4"><span>Every scene starts within about 1 second of its planned time</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:5"><span>Audio is in sync, no clipping, music sits under the voice</span></label><label class="chk"><input type="checkbox" data-id="Render and quality:6"><span>Captions match the audio and stay inside the safe area</span></label></div>
+<h2>Privacy and legal <small class="prog" data-prog></small></h2>
+<div class="card" data-group><label class="chk"><input type="checkbox" data-id="Privacy and legal:0"><span>No UTR, login, name or address readable in any frame (check the exported file, not the preview)</span></label><label class="chk"><input type="checkbox" data-id="Privacy and legal:1"><span>No debt figure on screen or in the voice</span></label><label class="chk"><input type="checkbox" data-id="Privacy and legal:2"><span>The practitioner has read the script, or personal claims are framed as your own experience</span></label><label class="chk"><input type="checkbox" data-id="Privacy and legal:3"><span>The disclaimer is on screen and in the description</span></label><label class="chk"><input type="checkbox" data-id="Privacy and legal:4"><span>No API key or secret in the repo, the video or the description</span></label></div>
+<h2>YouTube packaging <small class="prog" data-prog></small></h2>
+<div class="card" data-group><label class="chk"><input type="checkbox" data-id="YouTube packaging:0"><span>Title written (leads with the viewer's question, promises no outcome)</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:1"><span>Description written, with the disclaimer and the link to Part 2 once it exists</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:2"><span>Chapters pasted into the description (below)</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:3"><span>Thumbnail made and checked at small size</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:4"><span>Captions file uploaded or auto-captions reviewed</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:5"><span>End screen and one call to action set: Subscribe for Part 2</span></label><label class="chk"><input type="checkbox" data-id="YouTube packaging:6"><span>Added to the series playlist</span></label></div>
+<h2>After publishing <small class="prog" data-prog></small></h2>
+<div class="card" data-group><label class="chk"><input type="checkbox" data-id="After publishing:0"><span>Add the video link to the repo README and the hub</span></label><label class="chk"><input type="checkbox" data-id="After publishing:1"><span>Bump the site version and write the changelog entry</span></label><label class="chk"><input type="checkbox" data-id="After publishing:2"><span>Commit, push, deploy</span></label><label class="chk"><input type="checkbox" data-id="After publishing:3"><span>Decide whether to make the repo private or rewrite history</span></label><label class="chk"><input type="checkbox" data-id="After publishing:4"><span>Note what to change in the template for the next video</span></label></div>
+  <h2>Chapters for the description</h2>
+  <p class="note">Computed from the scene timings: the first chapter is 0:00 and each is at least 10 seconds, so short scenes are merged. Retime after the final edit.</p>
+  <pre id="chapters">0:00 Hook
+0:12 Part 1 of 3: the real process
+0:23 The goal
+0:38 Five things to do first
+1:17 What it costs and how long it takes
+1:45 The exceptions
+2:11 What my emails taught me
+2:35 How I keep track of it
+2:57 Subscribe for Part 2 and Disclaimer + outro</pre>
+  <p><button id="cc" style="font:inherit;background:var(--accent);color:#04222a;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer">Copy chapters</button> <small id="cm"></small></p>
+<script>
+(function(){
+  var KEY="rc-v1:release", saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+  var boxes=[].slice.call(document.querySelectorAll("input[data-id]"));
+  function paint(){
+    var all=0;
+    document.querySelectorAll("[data-group]").forEach(function(g){
+      var b=g.querySelectorAll("input"),n=0;b.forEach(function(x){if(x.checked)n++;x.parentNode.classList.toggle("done",x.checked)});
+      all+=n;var p=g.previousElementSibling.querySelector("[data-prog]");if(p)p.textContent=n+" / "+b.length;
+    });
+    document.getElementById("total").textContent="Overall: "+all+" / "+boxes.length+" done";
+  }
+  boxes.forEach(function(b){b.checked=!!saved[b.dataset.id];b.onchange=function(){saved[b.dataset.id]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}paint()}});
+  paint();
+  document.getElementById("cc").onclick=function(){var m=document.getElementById("cm");
+    (navigator.clipboard?navigator.clipboard.writeText(document.getElementById("chapters").textContent):Promise.reject()).then(function(){m.textContent="Copied"},function(){m.textContent="Copy failed"})};
+})();
+</script>
+</main></body></html>

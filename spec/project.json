@@ -1,0 +1,57 @@
+{
+  "specVersion": "1.0",
+  "title": "UK Director Liquidation, Part 1 of 3: The Real Process",
+  "series": "Part 1 of 3 (Part 2: the AI automation behind it, Part 3: how it ends)",
+  "owner": "Rifat",
+  "audience": "UK company directors facing insolvency, and anyone who wants to see how the process really works",
+  "goal": "Explain how a UK liquidation works in plain words, with the real costs and the five things to do first, and show that you learn the process and delegate the busywork to AI while still using a professional.",
+  "singleCallToAction": "Subscribe for Part 2",
+  "tone": "Honest, calm, first person. No hype, no promises about outcomes.",
+  "targetLengthSeconds": 196,
+  "language": "en-GB",
+  "disclaimer": "AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.",
+  "format": {
+    "resolution": "1920x1080",
+    "fps": 30,
+    "container": "MP4 (H.264)",
+    "quality": "Hyperframes default 'looks' (CRF 16); 'draft' for review cuts",
+    "render": "Local, npx hyperframes render, project pinned to hyperframes@0.9.67"
+  },
+  "voice": {
+    "now": "AI draft: fal.ai Kokoro, British male (bm_george), used for timing and review",
+    "final": "Your own recording (recommended). Re-time the scene slots after recording",
+    "captions": "Burned in, timed from the final transcript"
+  },
+  "rules": [
+    "No AI-generated text, numbers, documents or screens. Backgrounds are mood plates only; every figure on screen is editable HTML text.",
+    "Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups.",
+    "Blur UTR, logins, names and addresses in the source image, then check the exported frame.",
+    "No secrets in the repo. Keys live in a git-ignored .env.",
+    "No figure for the company's debt in the video. Fees and dates only where the viewer needs them.",
+    "Keep the disclaimer. Have the insolvency practitioner read the script before publishing.",
+    "One call to action per video."
+  ],
+  "acceptance": [
+    "Final MP4 plays end to end at 1920x1080, 30 fps, with audio in sync with every scene.",
+    "Every scene in scenes.json appears, in order, within about 1 second of its planned slot.",
+    "No UTR, login, name or address is readable in any frame.",
+    "Captions are present, match the audio and stay inside the safe area.",
+    "npm run check passes and snapshots of every scene were looked at.",
+    "The practitioner has confirmed the factual claims, or you have noted which claims are your own experience.",
+    "Chapters, title, description and thumbnail are ready (see the release checklist)."
+  ],
+  "risks": [
+    { "risk": "Factual claims about liability and process may be wrong or out of date", "mitigation": "Practitioner reads the script; present personal details as your own experience" },
+    { "risk": "Personal data visible in footage", "mitigation": "Blur at source, inspect the exported frames" },
+    { "risk": "Public repo and site reveal the story before release", "mitigation": "Decide before release whether to make the repo private or rewrite history" },
+    { "risk": "Exposed API key", "mitigation": "Rotate the fal.ai key, keep it only in .env" },
+    { "risk": "Hyperframes is pre-1.0 and ships many releases", "mitigation": "Pin the version, read release notes before upgrading" }
+  ],
+  "decisions": [
+    { "item": "Palette and font", "status": "Open", "owner": "You" },
+    { "item": "Music", "status": "Open", "owner": "You" },
+    { "item": "Final voice: your recording or AI", "status": "Open (recording recommended)", "owner": "You" },
+    { "item": "Repo stays public until release?", "status": "Open", "owner": "You" },
+    { "item": "Thumbnail and title wording", "status": "Open", "owner": "You and Claude" }
+  ]
+}

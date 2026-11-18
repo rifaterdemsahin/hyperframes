@@ -4,7 +4,7 @@
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
   var G = "https://github.com/rifaterdemsahin/hyperframes";
   // Written by scripts/version.mjs from versions.json. Do not edit by hand.
-  /*VERSIONS-START*/ var VERSIONS = {"site":"1.1.0","date":"2026-11-18","pages":{"index.html":{"t":"Home","v":"1.1.0","d":"2026-11-18"},"script.html":{"t":"Script","v":"1.1.0","d":"2026-11-18"},"storyboard/":{"t":"Storyboard","v":"1.1.0","d":"2026-11-18"},"kanban.html":{"t":"Kanban","v":"1.1.0","d":"2026-11-18"},"recommendations.html":{"t":"Recommendations","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.1.0","d":"2026-11-18"},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.1.0","d":"2026-11-18"},"why-pay.html":{"t":"Why pay?","v":"1.1.0","d":"2026-11-18"},"changelog.html":{"t":"Changelog","v":"1.1.0","d":"2026-11-18"}}}; /*VERSIONS-END*/
+  /*VERSIONS-START*/ var VERSIONS = {"site":"1.2.0","date":"2026-11-18","pages":{"index.html":{"t":"Home","v":"1.2.0","d":"2026-11-18"},"script.html":{"t":"Script","v":"1.1.0","d":"2026-11-18"},"storyboard/":{"t":"Storyboard","v":"1.1.0","d":"2026-11-18"},"kanban.html":{"t":"Kanban","v":"1.1.0","d":"2026-11-18"},"recommendations.html":{"t":"Recommendations","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/":{"t":"Hyperframes overview","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/rendering.html":{"t":"Rendering paths","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/speed.html":{"t":"Cloud vs local speed","v":"1.1.0","d":"2026-11-18"},"hyperframes-guide/cli.html":{"t":"CLI cheat sheet","v":"1.1.0","d":"2026-11-18"},"compare.html":{"t":"Hyperframes vs Remotion","v":"1.1.0","d":"2026-11-18"},"why-pay.html":{"t":"Why pay?","v":"1.1.0","d":"2026-11-18"},"changelog.html":{"t":"Changelog","v":"1.2.0","d":"2026-11-18"},"master-spec.html":{"t":"Master spec","v":"1.2.0","d":"2026-11-18"},"release-checklist.html":{"t":"Release checklist","v":"1.2.0","d":"2026-11-18"}}}; /*VERSIONS-END*/
   var MENU = [
     { label: "🏠 Home", href: "" },
     {
@@ -25,6 +25,13 @@
         ["⌨️ CLI cheat sheet", "hyperframes-guide/cli.html"],
         ["⚖️ Hyperframes vs Remotion", "compare.html"],
         ["💳 Why pay?", "why-pay.html"],
+      ],
+    },
+    {
+      label: "📦 Postprod",
+      items: [
+        ["📘 Master spec (template)", "master-spec.html"],
+        ["🚀 Release checklist", "release-checklist.html"],
       ],
     },
     {
