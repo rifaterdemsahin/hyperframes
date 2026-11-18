@@ -16,7 +16,9 @@
         "£39,475.54",
         "owed to HMRC"
       ],
-      "ph": "HMRC balance screenshot goes here (UTR + login blurred)"
+      "ph": "HMRC balance screenshot goes here (UTR + login blurred)",
+      "voSeconds": 16.6,
+      "voice": "bm_george"
     },
     {
       "id": "s02-intro",
@@ -32,7 +34,9 @@
         "Part 1 of 3",
         "The real process"
       ],
-      "ph": "Face cam placeholder · lower-third: Rifat · Cambridge, UK"
+      "ph": "Face cam placeholder · lower-third: Rifat · Cambridge, UK",
+      "voSeconds": 13.8,
+      "voice": "bm_george"
     },
     {
       "id": "s03-goal",
@@ -48,7 +52,9 @@
         "Company debt stays the company's",
         "1 Hand over  →  2 Sell assets  →  3 Pay creditors in order"
       ],
-      "ph": null
+      "ph": null,
+      "voSeconds": 14.6,
+      "voice": "bm_george"
     },
     {
       "id": "s04-five-things",
@@ -67,7 +73,9 @@
         "4 Stop trading, no creditor preferred",
         "5 Close invoices, banks to zero (£2,203.17 recovered)"
       ],
-      "ph": "HMRC screen (S2) inset for step 1"
+      "ph": "HMRC screen (S2) inset for step 1",
+      "voSeconds": 45.0,
+      "voice": "bm_george"
     },
     {
       "id": "s05-cost-timeline",
@@ -83,7 +91,9 @@
         "£1,500 deposit + £2,100 balance",
         "Stage 3 signed 30 Oct · creditors 19 Nov · liquidation 2 Dec"
       ],
-      "ph": null
+      "ph": null,
+      "voSeconds": 27.9,
+      "voice": "bm_george"
     },
     {
       "id": "s06-exceptions",
@@ -101,7 +111,9 @@
         "Overdrawn director's loan account",
         "Paying one creditor first"
       ],
-      "ph": null
+      "ph": null,
+      "voSeconds": 20.0,
+      "voice": "bm_george"
     },
     {
       "id": "s07-emails",
@@ -118,7 +130,9 @@
         "2 Answer in writing, list what is outstanding",
         "3 Records are part of the process"
       ],
-      "ph": "Email timeline (S12) · names + addresses blurred"
+      "ph": "Email timeline (S12) · names + addresses blurred",
+      "voSeconds": 24.9,
+      "voice": "bm_george"
     },
     {
       "id": "s08-tracking",
@@ -134,7 +148,9 @@
         "n8n + AI agents",
         "Planner · Risk checker · Director"
       ],
-      "ph": "n8n canvas (S3) 20 s, then dashboard (S10)"
+      "ph": "n8n canvas (S3) 20 s, then dashboard (S10)",
+      "voSeconds": 17.0,
+      "voice": "bm_george"
     },
     {
       "id": "s09-cta",
@@ -149,7 +165,9 @@
       "overlay": [
         "Subscribe for Part 2"
       ],
-      "ph": null
+      "ph": null,
+      "voSeconds": 5.2,
+      "voice": "bm_george"
     },
     {
       "id": "s10-outro",
@@ -166,7 +184,9 @@
         "The insolvency practitioner decides.",
         "Information, not legal advice."
       ],
-      "ph": "End screen: Part 2 teaser"
+      "ph": "End screen: Part 2 teaser",
+      "voSeconds": 10.1,
+      "voice": "bm_george"
     }
   ]
 }
