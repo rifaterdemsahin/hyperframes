@@ -1,10 +1,10 @@
 {
-  "site": "1.5.0",
+  "site": "1.5.1",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "date": "2026-11-18"
     },
     "script.html": {
@@ -59,7 +59,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "date": "2026-11-18"
     },
     "master-spec.html": {
@@ -99,6 +99,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.5.1",
+      "date": "2026-11-18",
+      "pages": [
+        "index.html"
+      ],
+      "changes": [
+        "Architecture diagram: shorter node captions so nothing is clipped, labels beside short vertical arrows, and the column labels no longer cut off at the bottom."
+      ]
+    },
     {
       "version": "1.5.0",
       "date": "2026-11-18",

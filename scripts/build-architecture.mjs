@@ -12,27 +12,27 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 const W = 170, H = 64;
 const COLX = [8, 248, 488, 728, 968];
 const ROWY = [56, 146, 236, 326, 416, 506];
-const VB = { w: 1146, h: 584 };
+const VB = { w: 1146, h: 604 };
 
 // kind: person | src (source of truth) | gen (generator) | out (output) | ext (external service) | secret
 const NODES = {
-  you:     { c: 0, r: 0, i: "👤", t: "You", s: "feedback, footage, voice", k: "person" },
+  you:     { c: 0, r: 0, i: "👤", t: "You", s: "feedback + footage", k: "person" },
   claude:  { c: 0, r: 1, i: "🤖", t: "Claude Code", s: "follows AGENTS.md", k: "person" },
   env:     { c: 0, r: 3, i: "🔑", t: ".env  FAL_KEY", s: "git-ignored secret", k: "secret" },
-  scenes:  { c: 1, r: 0, i: "📜", t: "scenes.json", s: "script, timings, overlays", k: "src" },
+  scenes:  { c: 1, r: 0, i: "📜", t: "scenes.json", s: "script + timings", k: "src" },
   project: { c: 1, r: 1, i: "📘", t: "project.json", s: "brief, rules, checks", k: "src" },
   versions:{ c: 1, r: 2, i: "🕘", t: "versions.json", s: "versions, changelog", k: "src" },
   assets:  { c: 1, r: 4, i: "🖼️", t: "assets/bg + vo", s: "images, voiceover", k: "src" },
   build:   { c: 2, r: 1, i: "🏗️", t: "build-*.mjs", s: "pages from the sources", k: "gen" },
-  ver:     { c: 2, r: 2, i: "🔖", t: "version.mjs", s: "bump, changelog, cache", k: "gen" },
+  ver:     { c: 2, r: 2, i: "🔖", t: "version.mjs", s: "bump + changelog", k: "gen" },
   genfal:  { c: 2, r: 3, i: "🎨", t: "gen-*.sh", s: "image + voice drafts", k: "gen" },
   pages:   { c: 3, r: 0, i: "🌐", t: "Site pages", s: "Preprod, Prod, Postprod", k: "out" },
-  engine:  { c: 3, r: 1, i: "🧩", t: "nav, feedback, css", s: "menu, versions, copy bar", k: "out" },
-  vproj:   { c: 3, r: 4, i: "🎬", t: "video/ project", s: "Hyperframes composition", k: "out" },
+  engine:  { c: 3, r: 1, i: "🧩", t: "nav, feedback, css", s: "menu + feedback bar", k: "out" },
+  vproj:   { c: 3, r: 4, i: "🎬", t: "video/ project", s: "HTML composition", k: "out" },
   mp4:     { c: 3, r: 5, i: "📼", t: "Final MP4", s: "1080p, 30 fps", k: "out" },
   gh:      { c: 4, r: 0, i: "🐙", t: "GitHub Pages", s: "hosts the live site", k: "ext" },
-  fal:     { c: 4, r: 3, i: "✨", t: "fal.ai", s: "flux images, Kokoro voice", k: "ext" },
-  hf:      { c: 4, r: 4, i: "🎞️", t: "Hyperframes CLI", s: "Chrome + FFmpeg render", k: "ext" },
+  fal:     { c: 4, r: 3, i: "✨", t: "fal.ai", s: "images + voice API", k: "ext" },
+  hf:      { c: 4, r: 4, i: "🎞️", t: "Hyperframes CLI", s: "Chrome + FFmpeg", k: "ext" },
 };
 const box = (n) => ({ x: COLX[n.c], y: ROWY[n.r] });
 // anchor on a side of a node; f = fraction along that side
@@ -95,7 +95,8 @@ const edgeSvg = (e) => {
   const [x1, y1] = anchor(e.a, e.sa, e.fa ?? 0.5), [x2, y2] = anchor(e.b, e.sb, e.fb ?? 0.5);
   const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
   const line = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#ah)"${e.both ? ' marker-start="url(#ah)"' : ""}/>`;
-  const label = e.l ? `<text class="el" x="${mx}" y="${my - 5}" text-anchor="middle">${esc(e.l)}</text>` : "";
+  const vertical = Math.abs(x1 - x2) < 5; // short vertical arrows: put the label beside the line, not on top of the boxes
+  const label = e.l ? (vertical ? `<text class="el" x="${mx + 8}" y="${my + 3}" text-anchor="start">${esc(e.l)}</text>` : `<text class="el" x="${mx}" y="${my - 5}" text-anchor="middle">${esc(e.l)}</text>`) : "";
   return `<g class="ed">${line}${label}</g>`;
 };
 const [gx, gy] = anchor("gh", "t", 0.5), [yx, yy] = anchor("you", "t", 0.5);
