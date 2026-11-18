@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.1 · site v1.5.3. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.1 · site v1.6.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -67,7 +67,6 @@ Every change: commit, push, deploy, bump version.
 - Music: Open (You)
 - Final voice: your recording or AI: Open (recording recommended) (You)
 - Repo stays public until release?: Open (You)
-- Title and thumbnail: Decided: title "Stuck in Red Tape? How I Use AI When a Process Gets Confusing", thumbnail A (You (decided))
 - Skool community name and link for the end screen and description: Open (You)
 - Gmail and Drive over MCP: show a real demo or a diagram?: Open (diagram planned) (You)
 

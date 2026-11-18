@@ -18,9 +18,9 @@ The single source of truth for the current video is `script/scenes.json` (scenes
 | `versions.json` | Site and page versions, changelog, note-clearing times | Only through `scripts/version.mjs` |
 | `nav.js`, `feedback.js`, `site.css` | Shared menu, version footer, copy-feedback bar, styles | Yes |
 | `scripts/` | Generators and fal.ai helpers | Yes |
-| `video/` | The Hyperframes project (`index.html` is the render composition) | Yes |
+| `video/` | The Hyperframes project. `index.html` and `compositions/*.html` are generated from `scenes.json` by `scripts/build-video.mjs` | Edit the script, not these files |
 | `templates/` | Blank spec, scenes and a reuse guide for the next video | Yes |
-| `script.html`, `storyboard/`, `master-spec.html`, `release-checklist.html`, `agents.html`, `publish.html`, `changes.html`, `changelog.html`, `templates/MASTER-SPEC.md` | Generated | No. Regenerate |
+| `script.html`, `storyboard/`, `master-spec.html`, `release-checklist.html`, `agents.html`, `publish.html`, `first-draft.html`, `review.html`, `performance.html`, `changes.html`, `changelog.html`, `templates/MASTER-SPEC.md` | Generated | No. Regenerate |
 | `index.html` (the architecture block between the ARCH markers is generated), `kanban.html`, `recommendations.html`, `compare.html`, `why-pay.html`, `reuse.html`, `hyperframes-guide/` | Hand-written pages | Yes |
 
 ## Commands
@@ -33,6 +33,8 @@ node scripts/build-agents-page.mjs    # agents.html from this file
 node scripts/build-publish-page.mjs   # publish.html from spec/publish.json (titles, description, tags, thumbnails)
 scripts/build-thumbnails.sh           # thumbnails/thumb-*.html to 1280x720 JPG with headless Chrome + ffmpeg
 node scripts/build-architecture.mjs   # architecture diagram + dependency table inside index.html (edit NODES/EDGES/DEPS in the script)
+node scripts/build-video.mjs          # regenerate video/index.html + video/compositions from scenes.json
+node scripts/render-draft.mjs         # build, check, render and TIME the whole draft; refreshes first-draft, review and performance pages
 node scripts/build-changes-page.mjs   # changes.html: latest release, script diffs, commits (run after the bump, before the commit)
 scripts/gen-backgrounds.sh            # fal.ai background images (needs FAL_KEY in .env)
 scripts/gen-voiceover.sh [voice]      # fal.ai draft voiceover, writes voSeconds into scenes.json
@@ -51,7 +53,8 @@ Regenerate in this order after changing `scenes.json`: voiceover (only scenes wh
 3. **Feedback loop.** The owner pastes text copied from the copy-feedback bars (the storyboard, the kanban, and the bar on every other page). Implement it, update every related section (script, spec, checklist, recommendations, kanban, hub, README), then release with `--clear-notes=<the pages you implemented>`. That deletes only those pages' notes from the owner's browser; the version is the only record kept. Never clear notes on pages you did not implement.
 4. **Do not touch the owner's browser storage when testing.** Browser automation runs in the owner's real Chrome profile, so `localStorage` on the live site holds their real notes. Test read-only. If a test must write, save the existing value first and put it back. Never call `removeItem` or `clear` on a key you did not create.
 5. **No secrets in git.** The repo is public. `FAL_KEY` lives only in `.env` (git-ignored). Run `git grep` for key prefixes before every commit.
-6. **State what you did not verify.** Say when a number is your estimate, when a source is the vendor's own, and when you did not look at the rendered result.
+6. **Signal, not noise.** When the owner selects an option, hide the ones not selected (collapse them out of the page, keep them in the source file, and reveal them with `?all=1` where it makes sense). Show decided items as decided, not as open. Keep pages and replies to what the owner needs to act on.
+7. **State what you did not verify.** Say when a number is your estimate, when a source is the vendor's own, and when you did not look at the rendered result.
 
 ## Content rules
 

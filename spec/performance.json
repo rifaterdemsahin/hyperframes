@@ -1,0 +1,142 @@
+{
+  "runs": [
+    {
+      "at": "2026-11-18T22:32:59.721Z",
+      "machine": "Apple M1 Max, 10 cores, 64 GB",
+      "hyperframes": "0.9.67",
+      "node": "v26.10.0",
+      "videoSeconds": 218,
+      "scenes": 10,
+      "steps": [
+        {
+          "name": "Generate the Hyperframes project",
+          "seconds": 0,
+          "note": "10 scene files + root from scenes.json"
+        },
+        {
+          "name": "Hyperframes check",
+          "seconds": 6.6,
+          "note": "lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 0 warnings"
+        },
+        {
+          "name": "Render the draft (1080p, 30 fps, with sound)",
+          "seconds": 48.1,
+          "note": "local, drawelement capture · 3 workers"
+        },
+        {
+          "name": "Make the light web copy (960x540)",
+          "seconds": 9.2,
+          "note": "H.264 CRF 29, AAC 64k"
+        },
+        {
+          "name": "Extract one frame per scene",
+          "seconds": 0.6,
+          "note": "10 JPG frames"
+        },
+        {
+          "name": "Build the site pages",
+          "seconds": 0.3,
+          "note": "storyboard, script, spec, agents, publish, architecture, draft + performance pages"
+        }
+      ],
+      "total": 64.8
+    }
+  ],
+  "deploys": [
+    {
+      "at": "2026-11-18T22:18:49Z",
+      "commit": "ff574af",
+      "seconds": 44.873
+    },
+    {
+      "at": "2026-11-18T22:16:19Z",
+      "commit": "b0a61ca",
+      "seconds": 37.145
+    },
+    {
+      "at": "2026-11-18T22:14:58Z",
+      "commit": "6a4bd93",
+      "seconds": 34.96
+    },
+    {
+      "at": "2026-11-18T22:13:37Z",
+      "commit": "1ba1eaa",
+      "seconds": 45.979
+    },
+    {
+      "at": "2026-11-18T22:07:43Z",
+      "commit": "ef45aee",
+      "seconds": 34.379
+    },
+    {
+      "at": "2026-11-18T21:57:21Z",
+      "commit": "19a81c6",
+      "seconds": 42.146
+    },
+    {
+      "at": "2026-11-18T21:55:45Z",
+      "commit": "2604545",
+      "seconds": 39.286
+    },
+    {
+      "at": "2026-11-18T21:53:56Z",
+      "commit": "a5959ec",
+      "seconds": 35.651
+    },
+    {
+      "at": "2026-11-18T21:49:38Z",
+      "commit": "1979720",
+      "seconds": 33.64
+    },
+    {
+      "at": "2026-11-18T21:42:32Z",
+      "commit": "5d52c24",
+      "seconds": 41.163
+    },
+    {
+      "at": "2026-11-18T21:41:30Z",
+      "commit": "f0cfe4b",
+      "seconds": 38.586
+    },
+    {
+      "at": "2026-11-18T21:31:56Z",
+      "commit": "b89f10f",
+      "seconds": 41.186
+    },
+    {
+      "at": "2026-11-18T21:29:37Z",
+      "commit": "efb41f2",
+      "seconds": 38.774
+    },
+    {
+      "at": "2026-11-18T21:27:11Z",
+      "commit": "4ca63dc",
+      "seconds": 32.149
+    },
+    {
+      "at": "2026-11-18T21:16:48Z",
+      "commit": "4c40051",
+      "seconds": 32.687
+    },
+    {
+      "at": "2026-11-18T21:15:48Z",
+      "commit": "7e37f3a",
+      "seconds": 32.828
+    },
+    {
+      "at": "2026-11-18T21:09:34Z",
+      "commit": "a347104",
+      "seconds": 34.522
+    },
+    {
+      "at": "2026-11-18T21:08:34Z",
+      "commit": "3bd91cb",
+      "seconds": 37.316
+    },
+    {
+      "at": "2026-11-18T20:52:31Z",
+      "commit": "dcd57ba",
+      "seconds": 35.472
+    }
+  ]
+}

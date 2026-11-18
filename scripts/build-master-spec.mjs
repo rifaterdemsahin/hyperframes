@@ -108,7 +108,7 @@ const spec = `${head("Master Spec")}
   ${list(P.rules)}
 
   <h2>7. Open decisions</h2>
-  ${table(["Decision", "Status", "Owner"], P.decisions.map((d) => [esc(d.item), esc(d.status), esc(d.owner)]))}
+  ${P.decisions.filter((d) => !/^decided/i.test(d.status)).length ? "" : "<p>No open decisions.</p>"}${table(["Decision", "Status", "Owner"], P.decisions.filter((d) => !/^decided/i.test(d.status)).map((d) => [esc(d.item), esc(d.status), esc(d.owner)]))}
 
   <h2>8. Acceptance criteria</h2>
   <p>The video is done when all of these are true:</p>
@@ -245,7 +245,7 @@ ${assets.map((a) => `- ${a.scene}: ${a.asset} (${a.kind}), ${a.status}`).join("\
 ${P.rules.map((r) => `- ${r}`).join("\n")}
 
 ## 7. Open decisions
-${P.decisions.map((d) => `- ${d.item}: ${d.status} (${d.owner})`).join("\n")}
+${P.decisions.filter((d) => !/^decided/i.test(d.status)).map((d) => `- ${d.item}: ${d.status} (${d.owner})`).join("\n")}
 
 ## 8. Acceptance criteria
 ${P.acceptance.map((r) => `- [ ] ${r}`).join("\n")}

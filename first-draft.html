@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>First Draft</title>
+<link rel="stylesheet" href="site.css">
+<style>
+video{width:100%;max-width:860px;border-radius:12px;background:#000;display:block;border:1px solid var(--line)}
+.strip{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-top:12px}.strip button{all:unset;cursor:pointer;display:block;border:2px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}.strip button:hover,.strip button:focus-visible{border-color:var(--accent)}.strip img{width:100%;display:block}.strip span{display:block;padding:4px 8px;font-size:12px;color:var(--mute)}
+.stat{display:flex;gap:10px 24px;flex-wrap:wrap;margin:12px 0}.stat div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 14px}.stat b{display:block;font-size:20px;color:var(--accent)}.stat small{color:var(--mute)}
+</style></head><body>
+<script src="nav.js?v=1.6.0"></script>
+<main>
+  <div class="crumbs">📦 Postprod</div>
+  <h1>🎞️ First draft</h1>
+  <p class="lead">UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape: the whole film, 3:38, built from your script with the AI draft voice. Real footage is still to come, so each place that needs it shows a dashed frame.</p>
+  <div class="stat"><div><b>3:38</b><small>length</small></div><div><b>46.1 s</b><small>to render</small></div><div><b>0 errors, 0 warnings</b><small>Hyperframes check</small></div><div><b>4.6 MB</b><small>web copy (full 1080p: 36.5 MB)</small></div></div>
+  <video id="v" controls preload="metadata" poster="draft/frames/s01-hook.jpg" src="draft/first-draft.mp4"></video>
+  <div class="strip"><button data-t="0" title="Jump to 0:00"><img src="draft/frames/s01-hook.jpg" alt="" loading="lazy"><span>0:00 · Hook</span></button><button data-t="12" title="Jump to 0:12"><img src="draft/frames/s02-intro.jpg" alt="" loading="lazy"><span>0:12 · Part 1 of 3: AI and real-world red tape</span></button><button data-t="28" title="Jump to 0:28"><img src="draft/frames/s03-goal.jpg" alt="" loading="lazy"><span>0:28 · The goal</span></button><button data-t="43" title="Jump to 0:43"><img src="draft/frames/s04-five-things.jpg" alt="" loading="lazy"><span>0:43 · Five things to do first, with AI</span></button><button data-t="79" title="Jump to 1:19"><img src="draft/frames/s05-cost-timeline.jpg" alt="" loading="lazy"><span>1:19 · What it costs and how long it takes</span></button><button data-t="106" title="Jump to 1:46"><img src="draft/frames/s06-exceptions.jpg" alt="" loading="lazy"><span>1:46 · The exceptions</span></button><button data-t="138" title="Jump to 2:18"><img src="draft/frames/s07-emails.jpg" alt="" loading="lazy"><span>2:18 · What my emails taught me</span></button><button data-t="165" title="Jump to 2:45"><img src="draft/frames/s08-tracking.jpg" alt="" loading="lazy"><span>2:45 · How I keep track of it</span></button><button data-t="187" title="Jump to 3:07"><img src="draft/frames/s09-cta.jpg" alt="" loading="lazy"><span>3:07 · Subscribe for Part 2</span></button><button data-t="200" title="Jump to 3:20"><img src="draft/frames/s10-outro.jpg" alt="" loading="lazy"><span>3:20 · Disclaimer + outro</span></button></div>
+
+  <h2>What you need to supply</h2>
+  <p>Only these scenes wait on your footage. Everything else in the draft is final-quality layout.</p>
+  <div class="tw"><table><tr><th>When</th><th>Scene</th><th>Footage</th></tr><tr><td>0:12</td><td>Part 1 of 3: AI and real-world red tape</td><td>Face cam clip</td></tr><tr><td>0:43</td><td>Five things to do first, with AI</td><td>HMRC screen (S2), optional</td></tr><tr><td>2:18</td><td>What my emails taught me</td><td>Email screenshots (S12), blurred</td></tr><tr><td>2:45</td><td>How I keep track of it</td><td>n8n canvas recording (S3) + dashboard (S10)</td></tr><tr><td>3:20</td><td>Disclaimer + outro</td><td>Skool community link</td></tr></table></div>
+
+  <h2>Edit it in the Hyperframes Studio app</h2>
+  <ol>
+    <li>Open the Studio app and choose <b>Open project</b>, then pick the <code>video</code> folder of this repo. Or run <code>npx hyperframes open</code> inside <code>video/</code>.</li>
+    <li>Each scene is its own file in <code>video/compositions/</code>, so the timeline shows ten scene rows plus the voiceover and the draft tag.</li>
+    <li>For wording, edit the script on the <a href="storyboard/">storyboard</a> instead: <code>video/</code> is regenerated from <code>script/scenes.json</code>, so edits made directly in the Studio app can be overwritten by the next build.</li>
+  </ol>
+
+  <h2>Known gaps in this draft</h2>
+  <ul>
+    <li>The voice is the AI draft, not yours. Record yours and the timings get re-set around it.</li>
+    <li>No music or sound effects yet.</li>
+    <li>Captions are timed from sentence length, not word by word. Final captions will come from your real recording.</li>
+    <li>Backgrounds are mood plates. The face cam, HMRC screen, emails and n8n canvas are placeholders.</li>
+  </ul>
+  <p><small>How long this takes to build is on the <a href="performance.html">Performance</a> page. Rebuild with <code>node scripts/render-draft.mjs</code>.</small></p>
+</main>
+<script>
+var v=document.getElementById("v");document.querySelectorAll(".strip button").forEach(function(b){b.onclick=function(){v.currentTime=+b.dataset.t;v.play();v.scrollIntoView({block:"center",behavior:"smooth"})}});
+</script>
+</body></html>

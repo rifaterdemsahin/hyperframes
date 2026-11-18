@@ -16,6 +16,9 @@ Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red 
 | Release checklist | https://rifaterdemsahin.github.io/hyperframes/release-checklist.html |
 | Changelog | https://rifaterdemsahin.github.io/hyperframes/changelog.html |
 | Title, description, thumbnail (Postprod) | https://rifaterdemsahin.github.io/hyperframes/publish.html |
+| First draft (Postprod) | https://rifaterdemsahin.github.io/hyperframes/first-draft.html |
+| Review (Postprod) | https://rifaterdemsahin.github.io/hyperframes/review.html |
+| Performance (Postprod) | https://rifaterdemsahin.github.io/hyperframes/performance.html |
 | Changes (Postprod) | https://rifaterdemsahin.github.io/hyperframes/changes.html |
 | AGENTS.md page | https://rifaterdemsahin.github.io/hyperframes/agents.html |
 | Reuse as template | https://rifaterdemsahin.github.io/hyperframes/reuse.html |
@@ -37,6 +40,8 @@ node scripts/build-storyboard.mjs # storyboard/index.html from script/scenes.jso
 node scripts/build-script-page.mjs # script.html from script/scenes.json
 node scripts/build-master-spec.mjs # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
 node scripts/build-agents-page.mjs # agents.html from AGENTS.md
+node scripts/build-video.mjs # video/ project from scenes.json
+node scripts/render-draft.mjs # build, check, render and time the draft; refreshes the draft, review and performance pages
 node scripts/build-architecture.mjs # architecture diagram on the hub
 node scripts/build-publish-page.mjs # publish.html; scripts/build-thumbnails.sh for the JPGs
 node scripts/build-changes-page.mjs # changes.html from git (run after the bump, before the commit)

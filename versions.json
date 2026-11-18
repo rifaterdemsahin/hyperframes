@@ -1,10 +1,10 @@
 {
-  "site": "1.5.3",
+  "site": "1.6.0",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "script.html": {
@@ -19,7 +19,7 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.4.1",
+      "version": "1.5.0",
       "date": "2026-11-18"
     },
     "recommendations.html": {
@@ -39,7 +39,7 @@
     },
     "hyperframes-guide/speed.html": {
       "title": "Cloud vs local speed",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/cli.html": {
@@ -59,12 +59,12 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.5.3",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.5.1",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "release-checklist.html": {
@@ -74,7 +74,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "reuse.html": {
@@ -89,16 +89,49 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.5.2",
+      "version": "1.6.0",
       "date": "2026-11-18"
     },
     "hyperframes-guide/signin.html": {
       "title": "Hyperframes sign-in",
       "version": "1.5.0",
       "date": "2026-11-18"
+    },
+    "first-draft.html": {
+      "title": "First draft",
+      "version": "1.6.0",
+      "date": "2026-11-18"
+    },
+    "review.html": {
+      "title": "Review",
+      "version": "1.6.0",
+      "date": "2026-11-18"
+    },
+    "performance.html": {
+      "title": "Performance",
+      "version": "1.6.0",
+      "date": "2026-11-18"
     }
   },
   "changelog": [
+    {
+      "version": "1.6.0",
+      "date": "2026-11-18",
+      "pages": [
+        "first-draft.html",
+        "review.html",
+        "performance.html",
+        "publish.html",
+        "master-spec.html",
+        "kanban.html",
+        "index.html",
+        "agents.html",
+        "hyperframes-guide/speed.html"
+      ],
+      "changes": [
+        "First draft of the film: built in Hyperframes from the script (one file per scene, AI voice, captions), rendered in 48 s and embedded on a new First draft page under Postprod. New Review page (timestamped notes and drawings on any frame, tied to the script scene, copy for the chat) and Performance page (measured pipeline times and real deploy times). Selected options are now hidden: unselected titles and thumbnails disappear from the Publish page (?all=1 shows them) and decided items leave the open-decisions list. Speed page corrected with the real render time."
+      ]
+    },
     {
       "version": "1.5.3",
       "date": "2026-11-18",

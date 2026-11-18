@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:14px 0}.kpis div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}.kpis b{display:block;font-size:26px;color:var(--accent)}.kpis small{color:var(--mute)}
+.meas{color:var(--mute);font-size:14px}.bars{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.row{display:grid;grid-template-columns:minmax(120px,300px) 1fr 90px;gap:10px;align-items:center;margin:7px 0;font-size:14px}.row .tr{background:var(--bg);border-radius:6px;height:14px;overflow:hidden}.row i{display:block;height:100%;background:var(--accent);border-radius:6px}.row.top i{background:var(--warn)}.row .v{text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:600px){.row{grid-template-columns:1fr 70px}.row .tr{grid-column:1/-1;order:3}}
+</style></head><body>
+<script src="nav.js?v=1.6.0"></script>
+<main>
+  <div class="crumbs">📦 Postprod</div>
+  <h1>⏱️ Performance</h1>
+  <p class="lead">How long this is taking right now: the pipeline that turns the script into a checked, rendered film and a published site.</p>
+  <p class="note">Every number is measured by <code>scripts/render-draft.mjs</code> on the real project, not estimated. Deploy times come from GitHub. Rebuild the figures with <code>node scripts/render-draft.mjs</code>.</p>
+  
+  <div class="kpis">
+    <div><b>1 min 5 s</b><small>whole pipeline, script to published pages</small></div>
+    <div><b>48.1 s</b><small>to render 218 s of video (4.5x faster than real time)</small></div>
+    <div><b>about 39 s</b><small>for a push to go live (average of the last 8 deploys, slowest 46 s)</small></div>
+  </div>
+  <p class="meas">Measured <span id="ago" data-at="2026-11-18T22:32:59.721Z"></span> on Apple M1 Max, 10 cores, 64 GB, Hyperframes 0.9.67, Node v26.10.0.</p>
+
+  <h2>Where the time goes</h2>
+  <div class="bars"><div class="row"><span class="nm">Generate the Hyperframes project</span><span class="tr"><i style="width:2%"></i></span><span class="v">0 s</span></div><div class="row"><span class="nm">Hyperframes check</span><span class="tr"><i style="width:13.72141372141372%"></i></span><span class="v">6.6 s</span></div><div class="row top"><span class="nm">Render the draft (1080p, 30 fps, with sound)</span><span class="tr"><i style="width:100%"></i></span><span class="v">48.1 s</span></div><div class="row"><span class="nm">Make the light web copy (960x540)</span><span class="tr"><i style="width:19.126819126819125%"></i></span><span class="v">9.2 s</span></div><div class="row"><span class="nm">Extract one frame per scene</span><span class="tr"><i style="width:2%"></i></span><span class="v">0.6 s</span></div><div class="row"><span class="nm">Build the site pages</span><span class="tr"><i style="width:2%"></i></span><span class="v">0.3 s</span></div></div>
+  <p>The slowest step is <b>render the draft (1080p, 30 fps, with sound)</b> at 48.1 s, 74% of the total.</p>
+  <div class="tw"><table><tr><th>Step</th><th>Time</th><th>Detail</th></tr><tr><td>Generate the Hyperframes project</td><td>0 s</td><td>10 scene files + root from scenes.json</td></tr><tr><td>Hyperframes check</td><td>6.6 s</td><td>lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 0 warnings</td></tr><tr><td>Render the draft (1080p, 30 fps, with sound)</td><td>48.1 s</td><td>local, drawelement capture · 3 workers</td></tr><tr><td>Make the light web copy (960x540)</td><td>9.2 s</td><td>H.264 CRF 29, AAC 64k</td></tr><tr><td>Extract one frame per scene</td><td>0.6 s</td><td>10 JPG frames</td></tr><tr><td>Build the site pages</td><td>0.3 s</td><td>storyboard, script, spec, agents, publish, architecture, draft + performance pages</td></tr></table></div>
+
+  <h2>Deploys: push to live</h2>
+  <p>GitHub's own record of each Pages build (build time only; the page then needs up to a few seconds to appear everywhere).</p>
+  <div class="bars"><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/ff574af">ff574af</a></span><span class="tr"><i style="width:97.59455403553797%"></i></span><span class="v">45 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/b0a61ca">b0a61ca</a></span><span class="tr"><i style="width:80.78688096739816%"></i></span><span class="v">37 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/6a4bd93">6a4bd93</a></span><span class="tr"><i style="width:76.03471149872767%"></i></span><span class="v">35 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/1ba1eaa">1ba1eaa</a></span><span class="tr"><i style="width:100%"></i></span><span class="v">46 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/ef45aee">ef45aee</a></span><span class="tr"><i style="width:74.77109115030774%"></i></span><span class="v">34 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/19a81c6">19a81c6</a></span><span class="tr"><i style="width:91.66358554992496%"></i></span><span class="v">42 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/2604545">2604545</a></span><span class="tr"><i style="width:85.44335457491464%"></i></span><span class="v">39 s</span></div><div class="row"><span class="nm"><a href="https://github.com/rifaterdemsahin/hyperframes/commit/a5959ec">a5959ec</a></span><span class="tr"><i style="width:77.53757150003263%"></i></span><span class="v">36 s</span></div></div>
+
+  
+
+  <h2>What this means</h2>
+  <ul>
+    <li>A full draft, from changed script to a rendered, checked film, takes about <b>1 min 5 s</b> on this Mac. Most of that is waiting for checks and the render, not typing.</li>
+    <li>Page-only changes (wording, spec, checklist) skip the render entirely and go live in about 39 seconds after the push.</li>
+    <li>Rendering is local and free. See <a href="hyperframes-guide/speed.html">Cloud vs local speed</a> for why cloud rarely pays off at this length.</li>
+  </ul>
+</main>
+<script>
+(function(){var el=document.getElementById("ago");if(!el)return;var t=new Date(el.dataset.at);
+function p(){var s=Math.max(0,Math.round((Date.now()-t)/1000)),m=Math.floor(s/60),h=Math.floor(m/60);
+el.textContent=s<60?"just now":m<60?m+" min ago":h<48?h+" h ago":Math.floor(h/24)+" days ago";}
+p();setInterval(p,30000);})();
+</script>
+</body></html>

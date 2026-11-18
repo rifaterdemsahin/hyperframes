@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../site.css">
 </head>
 <body>
-<script src="../nav.js?v=1.5.3"></script>
+<script src="../nav.js?v=1.6.0"></script>
 <main>
   <div class="crumbs">🎬 Prod / Hyperframes &rsaquo; Speed</div>
   <h1>⚡ Cloud vs local render speed</h1>
@@ -44,6 +44,9 @@
     <tr><td>4K master</td><td>about 6.6 minutes</td></tr>
   </table></div>
   <p>Your real footage (face cam, screen recordings) adds decoding work, so budget more. I will measure the real thing once the scenes are built.</p>
+
+  <h3>The real draft, measured</h3>
+  <p>Later the same day I rendered the actual first draft: <b>3 min 38 s, 1080p, 30 fps, with sound, in about 48 seconds</b> (3 workers on the same Mac), about 4.5x faster than real time. That is faster than the "about 1.5 minutes" scaled estimate above, so treat the estimate as pessimistic. The whole pipeline, including the quality check and a web copy, took about 65 seconds. Live figures are on the <a href="../performance.html">Performance</a> page.</p>
 
   <h2>2. Cloud: what the docs say</h2>
   <p class="note">No wall-clock timings are published. These are the documented mechanics.</p>

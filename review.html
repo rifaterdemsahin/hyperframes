@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.wrap{max-width:1500px;margin:0 auto;padding:16px 16px 90px}
+.grid2{display:grid;grid-template-columns:minmax(0,2fr) minmax(300px,1fr);gap:16px;align-items:start}@media(max-width:950px){.grid2{grid-template-columns:1fr}}
+h1{margin:0 0 8px}.badge{display:inline-block;min-width:22px;text-align:center;padding:1px 9px;border-radius:999px;background:var(--accent);color:#04222a;font:700 14px system-ui;vertical-align:middle}
+.stage{position:relative;line-height:0;background:#000;border-radius:10px;overflow:hidden}.stage video{width:100%;display:block;max-height:68vh;object-fit:contain;background:#000}
+#cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;touch-action:none}#cv.on{pointer-events:auto;cursor:crosshair}
+#bigplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;border:3px solid #fff;background:#1f8f4acc;color:#fff;font-size:38px;padding:0 0 0 8px;cursor:pointer;z-index:3}#bigplay.hide{display:none}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button,select{font:inherit;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}button.pri{background:var(--accent);color:#04222a;border-color:var(--accent);font-weight:700}button.on{outline:2px solid var(--accent)}
+button.big{padding:9px 18px;font-size:16px;font-weight:700;background:#1f8f4a;color:#fff;border-color:#27b95f}button.big.stop{background:#8a2a2a;border-color:#c44}
+#tc{font:700 22px ui-monospace,monospace;color:var(--accent);min-width:120px}
+.now{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:14px}.now b{color:var(--accent)}.now .ln{color:var(--mute);margin-top:2px}
+kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font:12px ui-monospace,monospace}.hint,small{color:var(--mute)}
+#panel{position:sticky;top:56px;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card)}#panel textarea,.box textarea{width:100%;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical}
+#tools{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:10px}#tools.on{display:flex}input[type=color]{width:40px;height:34px;padding:0;border:1px solid var(--line);border-radius:6px;background:none}
+.m{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:8px 0;background:var(--card)}.m b{font-family:ui-monospace,monospace;color:var(--accent);cursor:pointer}.m textarea{width:100%;margin-top:6px;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px;resize:vertical}.m .x{float:right;padding:1px 8px}.m.isdone{opacity:.6}
+.pill{font-size:13px;padding:2px 10px;border-radius:999px;border:1px solid var(--line)}.pill.p{border-color:var(--accent);color:var(--accent)}.pill.d{border-color:var(--ok);color:var(--ok)}
+.box{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--card)}pre.post{white-space:pre-wrap;font:13px/1.5 system-ui;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0}
+#msg{min-height:20px;font-size:14px}.ok{color:var(--ok)}.err{color:#ff6b6b}
+</style></head><body data-feedback="custom">
+<script src="nav.js?v=1.6.0"></script>
+<div class="wrap">
+  <div class="crumbs">📦 Postprod</div>
+  <h1>📝 Review <span class="badge" id="total">0</span></h1>
+  <p class="lead">Watch the draft, pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Nothing is sent anywhere: copy the feedback into the chat when you are done.</p>
+  <div class="grid2">
+  <section>
+    <div class="stage"><video id="v" controls preload="metadata" playsinline poster="draft/frames/s01-hook.jpg"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
+    <div class="bar"><button id="play" class="big">▶ Play</button><button id="stop" class="big stop">⏹ Stop</button><span id="tc">00:00.00</span><small id="fr">frame 0</small>
+      <button id="fm">◀ frame</button><button id="fp">frame ▶</button><button id="b5">−5s</button><button id="f5">+5s</button>
+      <select id="rate"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select></div>
+    <div class="now" id="now"></div>
+    <p class="hint"><kbd>M</kbd> add feedback &nbsp; <kbd>D</kbd> draw &nbsp; <kbd>A</kbd> arrow &nbsp; <kbd>Space</kbd>/<kbd>K</kbd> play/pause &nbsp; <kbd>←</kbd><kbd>→</kbd> frame &nbsp; <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd> 1 s &nbsp; <kbd>J</kbd> −5 s <kbd>L</kbd> +5 s &nbsp; <kbd>⌘/Ctrl Z</kbd> undo stroke</p>
+    <div class="box"><h3 style="margin:0 0 6px">📣 Post copy</h3><div id="posts"></div></div>
+  </section>
+  <aside id="panel">
+    <h2 style="margin:0 0 8px">➕ Add feedback <span class="badge" id="count2">0</span></h2>
+    <div class="hint" style="margin-bottom:6px">At <b id="atTc">00:00.00</b> · <b id="atScene"></b></div>
+    <textarea id="note" rows="3" placeholder="What should change at this moment? (Enter adds, Shift+Enter new line)"></textarea>
+    <div class="bar"><button class="pri" id="add" style="flex:1;padding:11px">📍 Add feedback (M)</button><button id="draw">✏️ Draw (D)</button><button id="arrowBtn">➡️ Arrow (A)</button></div>
+    <div id="tools"><button data-tool="pen" class="on">🖊️</button><button data-tool="arrow">➡️</button><button data-tool="rect">▭</button><button data-tool="circle">◯</button><button data-tool="text">🔤</button><input type="color" id="col" value="#ff3b30"><select id="wid"><option value="3">thin</option><option value="6" selected>medium</option><option value="11">thick</option></select><button id="undo">↩️</button><button id="clr">🧹</button><small style="flex-basis:100%">Draw on the paused frame, then <b>Add feedback</b>.</small></div>
+    <div id="msg"></div>
+    <div class="bar"><button class="pri" id="copy" style="flex:1;padding:11px">📋 Copy feedback for Claude</button></div>
+    <small class="hint">Open items only. Done items stay in the list but are left out of the copy.</small>
+  </aside>
+  </div>
+  <div class="bar" style="justify-content:space-between;margin-top:18px"><h2 style="margin:0">🗂️ Feedback <span class="badge" id="count">0</span></h2><div id="states" class="bar" style="margin:0"></div>
+    <div class="bar" style="margin:0"><select id="sfilter"><option value="open" selected>Open (backlog + in progress)</option><option value="backlog">Backlog</option><option value="in-progress">In progress</option><option value="done">Done</option><option value="">All</option></select><button id="clear">🗑️ Clear all</button></div></div>
+  <div id="list"></div>
+  <textarea id="fallback" hidden readonly style="width:100%;height:150px;font:12px ui-monospace,monospace"></textarea>
+</div>
+<script>
+const R = {"fps":30,"src":"draft/first-draft.mp4","poster":"draft/frames/s01-hook.jpg","label":"🎬 First draft","duration":218,"scenes":[{"id":"s01-hook","n":1,"title":"Hook","start":0,"end":12,"lines":[{"t":0.25,"text":"My company is coming to an end, and I'm closing it properly."},{"t":4.36,"text":"If you're a UK director in the same spot, here's how a liquidation works, and the five things to do first."}]},{"id":"s02-intro","n":2,"title":"Part 1 of 3: AI and real-world red tape","start":12,"end":28,"lines":[{"t":12.25,"text":"I'm Rifat, from Cambridge."},{"t":13.62,"text":"This is Part 1 of three: using AI to get through real-world red tape."},{"t":18.4,"text":"It's time to say goodbye to this company, and doing the numbers is a hassle."},{"t":23.53,"text":"And you don't want to make a mistake you'd regret."}]},{"id":"s03-goal","n":3,"title":"The goal","start":28,"end":43,"lines":[{"t":28.25,"text":"Here's the goal."},{"t":29.49,"text":"Company debt stays the company's."},{"t":31.55,"text":"A licensed practitioner takes over, sells the assets and pays creditors in order."},{"t":36.9,"text":"There's a lot of red tape in society, so understand it first."}]},{"id":"s04-five-things","n":4,"title":"Five things to do first, with AI","start":43,"end":79,"lines":[{"t":43.25,"text":"Five things to do first, with AI as your support."},{"t":46.86,"text":"Every time I'm on the HMRC site, I leave with more questions than answers, so I ask AI to explain each step before I act."},{"t":55.9,"text":"One: check your HMRC balance."},{"t":57.71,"text":"Two: gather the company's books and records."},{"t":60.24,"text":"Three: get a licensed insolvency practitioner."},{"t":62.41,"text":"I chose one with 4.8 stars on Trustpilot."},{"t":65.3,"text":"Four: stop trading, and don't pay one creditor ahead of the others."},{"t":69.64,"text":"Your practitioner will confirm this."},{"t":71.44,"text":"Five: close your invoices and bring every bank account to zero, or the money goes to the Crown."}]},{"id":"s05-cost-timeline","n":5,"title":"What it costs and how long it takes","start":79,"end":106,"lines":[{"t":79.25,"text":"Here's what it costs: a £1,500 deposit, then a £2,100 balance."},{"t":83.11,"text":"I've paid both, and the process takes about two months."},{"t":86.61,"text":"Don't try to do it with AI alone."},{"t":89.42,"text":"Learn the process, delegate with AI, and still use a professional."},{"t":93.28,"text":"Using AI gives you leverage, so use it on processes like this to get better at AI, not just to finish one."},{"t":100.99,"text":"The skills you learn here carry over to your next project."}]},{"id":"s06-exceptions","n":6,"title":"The exceptions","start":106,"end":138,"lines":[{"t":106.25,"text":"Now the exceptions, because this matters."},{"t":108.51,"text":"The protection isn't absolute."},{"t":110.02,"text":"A director can still be personally liable for wrongful or fraudulent trading, personal guarantees, an overdrawn director's loan account, or paying one creditor first."},{"t":119.06,"text":"That's why the practitioner decides."},{"t":120.95,"text":"Understand the basics, because even the people closest to you won't get what you're really doing."},{"t":126.98,"text":"And keep your expectations of AI low: it gives you the courage and the assist you need."},{"t":133.38,"text":"Most people get stuck in red tape and can't move."}]},{"id":"s07-emails","n":7,"title":"What my emails taught me","start":138,"end":165,"lines":[{"t":138.25,"text":"Three lessons from my own emails."},{"t":140.37,"text":"One: the process stops until the balance is paid, and my provider chased me six times."},{"t":146.03,"text":"Two: answer everything in writing, and keep a list of what's still outstanding."},{"t":150.62,"text":"Three: treat Google Drive and Gmail as data sources, and get ready to connect them to AI over MCP, instead of sending everything by hand."},{"t":159.46,"text":"From time to time things will go wrong."},{"t":162.28,"text":"Learn from them, and iterate."}]},{"id":"s08-tracking","n":8,"title":"How I keep track of it","start":165,"end":187,"lines":[{"t":165.25,"text":"I keep track of it all with an n8n workflow and a few AI agents: a planner, a risk checker and a director."},{"t":172.58,"text":"Divide and conquer is the key."},{"t":174.49,"text":"Even if people make fun of you for it, use that as a learning tool, and build your system and mindset for your next role."}]},{"id":"s09-cta","n":9,"title":"Subscribe for Part 2","start":187,"end":200,"lines":[{"t":187.25,"text":"In Part 2, I'll showcase how I build the stages and the app, and how AI agents email the right parties to move the needle in the right direction."},{"t":197.83,"text":"If this was useful, subscribe."}]},{"id":"s10-outro","n":10,"title":"Disclaimer + outro","start":200,"end":218,"lines":[{"t":200.25,"text":"AI organises and explains."},{"t":202,"text":"The insolvency practitioner decides."},{"t":203.76,"text":"This is information, not legal advice."},{"t":206.39,"text":"I might see you in Part 2, depending on your feedback."},{"t":211.21,"text":"And if you're interested in building bots and automation, check out our Skool community."}]}],"title":"Stuck in Red Tape? How I Use AI When a Process Gets Confusing","description":"Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolvency practitioner.\n\nThis is Part 1 of 3: how I use AI to get through real-world red tape, using closing my own company as the example.\n\nIn this video:\n• Why you need support, and why AI is only support\n• Five things to do first\n• What it costs, and how to use AI as leverage\n• The exceptions, and why the practitioner decides\n• Gmail and Drive as data sources over MCP\n• Divide and conquer, and learning from every problem\n\nCHAPTERS\n0:00 Hook\n0:12 Part 1 of 3: AI and real-world red tape\n0:28 The goal\n0:43 Five things to do first, with AI\n1:19 What it costs and how long it takes\n1:46 The exceptions\n2:18 What my emails taught me\n2:45 How I keep track of it\n3:07 Subscribe for Part 2\n3:20 Disclaimer + outro\n\nNEXT\nPart 2, how I build the stages and the app: [PART 2 LINK: add when it is published]\nBuilding bots and automation? Join our Skool community: [SKOOL LINK: needed from you]\n\nAI organises and explains. The insolvency practitioner decides. This is information, not legal advice.\n\n#UKDirector #AI #RedTape","pageKey":"review.html","videoTitle":"UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape"};
+const KEY = "review-v2", FPS = R.fps;
+const $ = (id) => document.getElementById(id), v = $("v"), cv = $("cv"), ctx = cv.getContext("2d");
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const uid = () => Math.random().toString(16).slice(2, 10);
+const fmt = (t) => { const m = Math.floor(t / 60), s = Math.floor(t % 60), f = Math.round((t % 1) * FPS) % FPS; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0") + "." + String(f).padStart(2, "0"); };
+const sceneAt = (t) => R.scenes.find((s) => t >= s.start && t < s.end) || R.scenes[R.scenes.length - 1];
+v.src = R.src;
+
+// ---- notes live in this browser; those written before the last "feedback implemented" release are deleted (newer stay)
+let items = []; try { items = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
+const cleared = (window.SITE_INFO && window.SITE_INFO.clearedAt) || "";
+if (cleared) items = items.filter((i) => !(i.ts && new Date(i.ts).toISOString() < cleared));
+const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {} };
+persist();
+
+let tool = "pen", drawing = false, shapes = [], cur = null, drawMode = false;
+
+// ---- player
+function syncPlay() { const p = !v.paused; $("play").textContent = p ? "⏸ Pause" : "▶ Play"; $("bigplay").classList.toggle("hide", p || drawMode); }
+const toggle = () => { if (v.paused) v.play(); else v.pause(); };
+function tick() {
+  const t = v.currentTime, s = sceneAt(t);
+  $("tc").textContent = fmt(t); $("atTc").textContent = fmt(t); $("fr").textContent = "frame " + Math.round(t * FPS);
+  $("atScene").textContent = "scene " + s.n + " · " + s.title;
+  let line = s.lines[0]; s.lines.forEach((l) => { if (t >= l.t) line = l; });
+  $("now").innerHTML = "<b>Scene " + s.n + " of " + R.scenes.length + "</b> · " + esc(s.title) + "<div class='ln'>“" + esc(line.text) + "”</div>";
+}
+["timeupdate", "seeked", "loadedmetadata"].forEach((e) => v.addEventListener(e, tick));
+v.addEventListener("play", syncPlay); v.addEventListener("pause", syncPlay);
+$("play").onclick = toggle; $("bigplay").onclick = toggle; $("stop").onclick = () => { v.pause(); v.currentTime = 0; };
+const step = (n) => { v.pause(); v.currentTime = Math.max(0, v.currentTime + n / FPS); };
+const seekBy = (s) => { v.currentTime = Math.max(0, v.currentTime + s); };
+$("fm").onclick = () => step(-1); $("fp").onclick = () => step(1); $("b5").onclick = () => seekBy(-5); $("f5").onclick = () => seekBy(5);
+$("rate").onchange = () => { v.playbackRate = +$("rate").value; };
+v.addEventListener("click", (e) => { if (!drawMode) { /* native controls handle clicks */ } });
+
+// ---- feedback items
+function add() {
+  v.pause();
+  const n = $("note");
+  const it = { cid: uid(), ts: Date.now(), state: "backlog", kind: "marker", t: v.currentTime, frame: Math.round(v.currentTime * FPS), scene: sceneAt(v.currentTime).id, note: n.value.trim(), shapes: JSON.parse(JSON.stringify(shapes)) };
+  if (!it.note && !it.shapes.length) { $("msg").className = "err"; $("msg").textContent = "Type a note or draw something first."; return; }
+  items.push(it); n.value = ""; shapes = []; redraw(); persist(); render();
+  $("msg").className = "ok"; $("msg").textContent = "Added at " + fmt(it.t) + ".";
+}
+$("add").onclick = add;
+const open = (i) => (i.state || "backlog") !== "done";
+function render() {
+  const sf = $("sfilter").value;
+  const all = items.filter((i) => i.kind === "marker" || i.note);
+  const list = all.filter((i) => !sf || (sf === "open" ? open(i) : (i.state || "backlog") === sf)).sort((a, b) => (a.kind === "text") - (b.kind === "text") || a.t - b.t);
+  const box = $("list"); box.innerHTML = "";
+  list.forEach((m) => {
+    const d = document.createElement("div"); d.className = "m" + (m.state === "done" ? " isdone" : "");
+    const sc = R.scenes.find((s) => s.id === m.scene);
+    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + "</small>";
+    d.innerHTML = '<button class="x" title="Delete">✕</button>' + where + ' <select class="state"><option value="backlog">📋 Backlog</option><option value="in-progress">🛠️ In progress</option><option value="done">✅ Done</option></select>' + (m.shapes && m.shapes.length ? ' <button class="dl" title="Download this frame with the drawing">⬇ frame</button>' : "") + '<textarea rows="2" placeholder="Feedback…"></textarea>';
+    const b = d.querySelector("b"); if (b) b.onclick = () => goto(m);
+    d.querySelector(".x").onclick = () => { items = items.filter((i) => i !== m); persist(); render(); renderPosts(); };
+    const ta = d.querySelector("textarea"); ta.value = m.note || ""; ta.oninput = () => { m.note = ta.value; m.ts = Date.now(); persist(); };
+    const sel = d.querySelector("select.state"); sel.value = m.state || "backlog"; sel.onchange = () => { m.state = sel.value; persist(); render(); };
+    const dl = d.querySelector(".dl"); if (dl) dl.onclick = () => downloadFrame(m);
+    box.appendChild(d);
+  });
+  if (!list.length) box.innerHTML = '<p class="hint">' + (all.length ? "Nothing in this view." : "No feedback yet. Pause the video, type a note, press <kbd>M</kbd>.") + "</p>";
+  const cnt = (s) => all.filter((i) => (i.state || "backlog") === s).length;
+  $("states").innerHTML = '<span class="pill">📋 ' + cnt("backlog") + ' backlog</span><span class="pill p">🛠️ ' + cnt("in-progress") + ' in progress</span><span class="pill d">✅ ' + cnt("done") + " done</span>";
+  $("count").textContent = list.length; $("count2").textContent = all.filter(open).length; $("total").textContent = all.filter(open).length;
+  document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review";
+}
+function goto(m) { v.pause(); v.currentTime = m.t; shapes = JSON.parse(JSON.stringify(m.shapes || [])); redraw(); if (shapes.length) setDraw(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
+
+// ---- post copy (title and description), each with its own feedback box
+function renderPosts() {
+  const box = $("posts"); box.innerHTML = "";
+  [["TITLE", R.title], ["DESCRIPTION", R.description]].forEach(([sec, txt]) => {
+    const d = document.createElement("div");
+    d.innerHTML = "<b>" + sec + "</b> <small>" + txt.length + ' characters</small><pre class="post">' + esc(txt) + '</pre><textarea rows="2" placeholder="Feedback on this text (rewrite, tone, length)…"></textarea>';
+    const ta = d.querySelector("textarea"); const mine = items.find((i) => i.kind === "text" && i.section === sec); ta.value = mine ? mine.note : "";
+    ta.oninput = () => {
+      let it = items.find((i) => i.kind === "text" && i.section === sec);
+      if (!it) { it = { cid: uid(), ts: Date.now(), state: "backlog", kind: "text", section: sec, t: 0, frame: 0, note: "", shapes: [] }; items.push(it); }
+      it.note = ta.value; it.ts = Date.now();
+      if (!it.note.trim()) items = items.filter((x) => x !== it);
+      persist(); render();
+    };
+    box.appendChild(d);
+  });
+}
+
+// ---- drawing: shapes use 0..1 coordinates of the video frame
+function sizeCv() { const c = v.parentElement.getBoundingClientRect(); cv.width = Math.round(c.width * devicePixelRatio); cv.height = Math.round(c.height * devicePixelRatio); redraw(); }
+function videoBox(w, h) { const vw = v.videoWidth || 16, vh = v.videoHeight || 9, s = Math.min(w / vw, h / vh); return { x: (w - vw * s) / 2, y: (h - vh * s) / 2, w: vw * s, h: vh * s }; }
+function paint(c, list, box) {
+  list.forEach((s) => {
+    c.strokeStyle = c.fillStyle = s.c; c.lineWidth = s.w * (box.w / 1280); c.lineCap = c.lineJoin = "round";
+    const P = (p) => [box.x + p[0] * box.w, box.y + p[1] * box.h];
+    if (s.k === "pen") { c.beginPath(); s.p.forEach((p, i) => { const q = P(p); i ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1]); }); c.stroke(); }
+    else if (s.k === "rect") { const a = P(s.p[0]), b = P(s.p[1]); c.strokeRect(a[0], a[1], b[0] - a[0], b[1] - a[1]); }
+    else if (s.k === "circle") { const a = P(s.p[0]), b = P(s.p[1]); c.beginPath(); c.ellipse((a[0] + b[0]) / 2, (a[1] + b[1]) / 2, Math.abs(b[0] - a[0]) / 2, Math.abs(b[1] - a[1]) / 2, 0, 0, 7); c.stroke(); }
+    else if (s.k === "arrow") { const a = P(s.p[0]), b = P(s.p[1]), g = Math.atan2(b[1] - a[1], b[0] - a[0]), L = 14 * (box.w / 1280) * (s.w / 4 + 1); c.beginPath(); c.moveTo(a[0], a[1]); c.lineTo(b[0], b[1]); c.stroke(); c.beginPath(); c.moveTo(b[0], b[1]); c.lineTo(b[0] - L * Math.cos(g - 0.45), b[1] - L * Math.sin(g - 0.45)); c.lineTo(b[0] - L * Math.cos(g + 0.45), b[1] - L * Math.sin(g + 0.45)); c.closePath(); c.fill(); }
+    else if (s.k === "text") { const a = P(s.p[0]); c.font = "700 " + Math.round(26 * box.w / 1280) + "px system-ui"; c.lineWidth = 5 * box.w / 1280; c.strokeStyle = "#000"; c.strokeText(s.t, a[0], a[1]); c.fillText(s.t, a[0], a[1]); }
+  });
+}
+function redraw() { ctx.clearRect(0, 0, cv.width, cv.height); paint(ctx, cur ? shapes.concat([cur]) : shapes, videoBox(cv.width, cv.height)); }
+function setDraw(on) { drawMode = on; syncPlay(); cv.classList.toggle("on", on); $("tools").classList.toggle("on", on); $("draw").classList.toggle("on", on); if (on) v.pause(); }
+function pt(e) { const r = cv.getBoundingClientRect(), b = videoBox(r.width, r.height); return [Math.min(1, Math.max(0, (e.clientX - r.left - b.x) / b.w)), Math.min(1, Math.max(0, (e.clientY - r.top - b.y) / b.h))]; }
+cv.addEventListener("pointerdown", (e) => {
+  if (!drawMode) return; e.preventDefault(); const p = pt(e), base = { c: $("col").value, w: +$("wid").value };
+  if (tool === "text") { const t = window.prompt("Text on the frame:"); if (t) { shapes.push({ ...base, k: "text", p: [p], t }); redraw(); } return; }
+  drawing = true; cur = { ...base, k: tool, p: tool === "pen" ? [p] : [p, p] }; cv.setPointerCapture(e.pointerId);
+});
+cv.addEventListener("pointermove", (e) => { if (!drawing) return; const p = pt(e); tool === "pen" ? cur.p.push(p) : (cur.p[1] = p); redraw(); });
+const endDraw = () => {
+  if (!drawing) return; drawing = false;
+  if (cur.k === "arrow" && Math.hypot(cur.p[1][0] - cur.p[0][0], cur.p[1][1] - cur.p[0][1]) < 0.015) { const [x, y] = cur.p[1]; cur.p = [[Math.max(0.02, x - 0.13), Math.max(0.03, y - 0.16)], [x, y]]; }
+  shapes.push(cur); cur = null; redraw();
+};
+cv.addEventListener("pointerup", endDraw); cv.addEventListener("pointercancel", endDraw);
+document.querySelectorAll("[data-tool]").forEach((b) => (b.onclick = () => { tool = b.dataset.tool; document.querySelectorAll("[data-tool]").forEach((x) => x.classList.toggle("on", x === b)); }));
+$("arrowBtn").onclick = () => { setDraw(true); document.querySelector('[data-tool="arrow"]').click(); };
+$("undo").onclick = () => { shapes.pop(); redraw(); }; $("clr").onclick = () => { shapes = []; redraw(); }; $("draw").onclick = () => setDraw(!drawMode);
+if (window.ResizeObserver) new ResizeObserver(sizeCv).observe(v.parentElement); window.addEventListener("resize", sizeCv); v.addEventListener("loadedmetadata", sizeCv);
+
+// ---- download the frame with its drawing (same origin, so the canvas stays clean)
+const seekTo = (t) => new Promise((ok) => { const done = () => { v.removeEventListener("seeked", done); ok(); }; v.addEventListener("seeked", done); v.currentTime = t; });
+async function downloadFrame(m) {
+  v.pause(); const keep = v.currentTime; await seekTo(m.t);
+  const w = v.videoWidth || 960, h = v.videoHeight || 540, c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d"); g.drawImage(v, 0, 0, w, h); paint(g, m.shapes, { x: 0, y: 0, w, h });
+  const a = document.createElement("a"); a.href = c.toDataURL("image/png"); a.download = "review-" + fmt(m.t).replace(/[:.]/g, "-") + ".png"; a.click(); await seekTo(keep);
+}
+
+// ---- copy for the chat: grouped by scene, in time order, open items only
+function describeShapes(sh) { const n = {}; sh.forEach((s) => (n[s.k] = (n[s.k] || 0) + 1)); return Object.entries(n).map(([k, c]) => c + " " + k).join(", "); }
+function build() {
+  const mine = items.filter((i) => (i.kind === "marker" || i.note) && open(i));
+  if (!mine.length) return "";
+  const info = window.SITE_INFO || {};
+  const out = ['Review feedback on "' + R.videoTitle + ' (first draft)" (page v' + (info.version || "?") + ", site v" + (info.site || "?") + ")", info.url || location.href, ""];
+  R.scenes.forEach((s) => {
+    const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
+    out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");
+    list.forEach((i) => out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + (i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "") + (i.state === "in-progress" ? " [in progress]" : "") + ": " + (i.note || "(no note)")));
+    out.push("");
+  });
+  const texts = mine.filter((i) => i.kind === "text");
+  if (texts.length) { out.push("## Post copy"); texts.forEach((i) => out.push("- [" + i.section + "] " + i.note)); }
+  return out.join("\n").trim();
+}
+$("copy").onclick = () => {
+  const t = build(), b = $("copy"), label = "📋 Copy feedback for Claude";
+  if (!t) { b.textContent = "Nothing open to copy"; return setTimeout(() => (b.textContent = label), 1600); }
+  const done = (ok) => { b.textContent = ok ? "Copied. Paste it in the chat" : "Copy failed: select the text below"; if (!ok) { const f = $("fallback"); f.hidden = false; f.value = t; f.select(); } setTimeout(() => (b.textContent = label), 2500); };
+  if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => done(true), () => done(false)); else done(false);
+};
+$("clear").onclick = () => { if (window.confirm("Delete ALL review feedback in this browser?")) { items = []; persist(); render(); renderPosts(); } };
+$("sfilter").onchange = render;
+
+// ---- keyboard
+document.addEventListener("keydown", (e) => {
+  const tg = e.target.tagName; if (tg === "TEXTAREA" || tg === "INPUT" || tg === "SELECT") { if (e.target.id === "note" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); add(); } return; }
+  const k = e.key.toLowerCase();
+  if ((e.metaKey || e.ctrlKey) && k === "z") { shapes.pop(); redraw(); e.preventDefault(); }
+  else if (k === " " || k === "k") { e.preventDefault(); toggle(); }
+  else if (k === "m") { e.preventDefault(); $("note").focus(); }
+  else if (k === "d") setDraw(!drawMode);
+  else if (k === "a") $("arrowBtn").click();
+  else if (k === "arrowleft") { e.preventDefault(); e.shiftKey ? seekBy(-1) : step(-1); }
+  else if (k === "arrowright") { e.preventDefault(); e.shiftKey ? seekBy(1) : step(1); }
+  else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);
+});
+
+renderPosts(); render(); tick(); syncPlay();
+</script>
+</body></html>
