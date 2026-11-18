@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Script</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.scene{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:14px 0}
+.head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.head h2{margin:0;font-size:18px}
+.tc{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}.lab{font-size:11px;font-weight:700;color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:0 8px}
+.vo{font-size:17px;margin:10px 0}.meta{margin:4px 0;color:var(--mute);font-size:13.5px}.meta b{color:var(--accent)}.over{color:#ff6b6b;font-weight:600}.ok{color:var(--ok)}.asset{color:var(--warn)}
+button{font:inherit;background:var(--accent);color:#04222a;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+</style></head><body>
+<script src="nav.js"></script>
+<main>
+  <h1>📜 Script</h1>
+  <p class="lead">UK Director Liquidation, Part 1 of 3: The Real Process. 10 scenes, 500 words, about 3:18.</p>
+  <p class="note">Generated from <code>script/scenes.json</code>, the single source of truth. To change wording, edit it on the <a href="storyboard/">storyboard</a> and paste the copied feedback into the chat. Draft voiceover runs 195s in total; red means it overruns its slot.</p>
+  <p><button id="copy">Copy whole script</button> <small id="msg"></small></p>
+<section class="scene" id="s01-hook">
+  <div class="head"><span class="tc">0:00</span><span class="lab">HOOK</span><h2>01 · Hook</h2></div>
+  <p class="vo">My company owes HMRC £39,475.54, and I don't have the money. If you're a UK director in the same spot, here's exactly how a liquidation works, with the real costs, and the five things to do first.</p>
+  <p class="meta"><b>B-roll:</b> Goal image, zoom on the HMRC balance (blur the UTR and login)</p>
+  <p class="meta">37 words · slot 15s · voice <span class="over">16.6s</span> · <span class="asset">needs: HMRC balance screenshot (blur UTR + login)</span></p>
+</section>
+<section class="scene" id="s02-intro">
+  <div class="head"><span class="tc">0:15</span><span class="lab">INTRO</span><h2>02 · Part 1 of 3: the real process</h2></div>
+  <p class="vo">I'm Rifat, from Cambridge in the United Kingdom. This is Part 1 of three. Part 1 is the real process. Part 2 shows the AI automation I built to run it, and Part 3 shows how it ends.</p>
+  <p class="meta"><b>B-roll:</b> Face cam, lower-third: Part 1 of 3</p>
+  <p class="meta">38 words · slot 15s · voice <span class="ok">13.8s</span> · <span class="asset">needs: Face cam clip</span></p>
+</section>
+<section class="scene" id="s03-goal">
+  <div class="head"><span class="tc">0:30</span><span class="lab">CHAPTER 1</span><h2>03 · The goal</h2></div>
+  <p class="vo">Here's the goal. Company debt stays the company's. Liquidation hands the company to a licensed practitioner, who sells the assets and pays creditors in order. Generally, the director isn't personally liable.</p>
+  <p class="meta"><b>B-roll:</b> Goal infographic, the three-step process highlighted</p>
+  <p class="meta">31 words · slot 12s · voice <span class="over">14.6s</span></p>
+</section>
+<section class="scene" id="s04-five-things">
+  <div class="head"><span class="tc">0:42</span><span class="lab">CHAPTER 2</span><h2>04 · Five things to do first</h2></div>
+  <p class="vo">Five things to do first. One: check your HMRC balance. Mine is £39,475.54. Two: gather the company's books and records. Mine are in a storage unit, and I'm only paying for it until I get access to the documents. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. I've recovered both outstanding customer invoices, £2,203.17 in total, and that's everything I received from my customers.</p>
+  <p class="meta"><b>B-roll:</b> On-screen numbered list 1 to 5, HMRC screen for step 1 (S2)</p>
+  <p class="meta">105 words · slot 42s · voice <span class="over">45s</span> · <span class="asset">needs: HMRC screen (S2)</span></p>
+</section>
+<section class="scene" id="s05-cost-timeline">
+  <div class="head"><span class="tc">1:24</span><span class="lab">CHAPTER 3</span><h2>05 · What it costs and how long it takes</h2></div>
+  <p class="vo">Here's what it costs, and how long it takes. A £1,500 deposit, then a £2,100 balance. I've paid both. There are five stages: the deposit, the information pack, the board meeting, the liquidator taking over, and finally the banks at zero and the Gazette notice, followed by a wait of about two months. In my case, I signed Stage 3 on 30 October, the creditors are notified on 19 November, and the proposed liquidation date is 2 December.</p>
+  <p class="meta"><b>B-roll:</b> Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait</p>
+  <p class="meta">78 words · slot 31s · voice <span class="ok">27.9s</span></p>
+</section>
+<section class="scene" id="s06-exceptions">
+  <div class="head"><span class="tc">1:55</span><span class="lab">CHAPTER 4</span><h2>06 · The exceptions</h2></div>
+  <p class="vo">Now the exceptions, because this matters. The protection isn't absolute. A director can still be personally liable for wrongful or fraudulent trading, for personal guarantees, for an overdrawn director's loan account, and for paying one creditor ahead of the others. That's why the practitioner decides, not me.</p>
+  <p class="meta"><b>B-roll:</b> Four exception cards on screen, red accent</p>
+  <p class="meta">47 words · slot 19s · voice <span class="over">20s</span></p>
+</section>
+<section class="scene" id="s07-emails">
+  <div class="head"><span class="tc">2:14</span><span class="lab">CHAPTER 5</span><h2>07 · What my emails taught me</h2></div>
+  <p class="vo">Three lessons from my own emails. One: the process stops until the balance is paid. My provider chased me six times, so don't leave it to the end. Two: answer everything in writing, and keep a list of what's still outstanding. I still owe my provider a few records before 19 November. Three: your records are part of the process. Mine are in a storage unit and on Drive, and the practitioner arranges the collection.</p>
+  <p class="meta"><b>B-roll:</b> Email timeline graphic (S12): chase reminders, the receipt, the liquidation-date email (names and addresses blurred)</p>
+  <p class="meta">75 words · slot 30s · voice <span class="ok">24.9s</span> · <span class="asset">needs: Email screenshots (S12), blurred</span></p>
+</section>
+<section class="scene" id="s08-tracking">
+  <div class="head"><span class="tc">2:44</span><span class="lab">CHAPTER 6</span><h2>08 · How I keep track of it</h2></div>
+  <p class="vo">I keep track of all of it with an n8n workflow and a few AI agents: a planner, a risk checker and a director. I type what I'm trying to do, and I get a plan and a risk list back. Part 2 shows exactly how it's built, and the workflow is free to import.</p>
+  <p class="meta"><b>B-roll:</b> n8n canvas, 20 seconds (S3), then the dashboard (S10)</p>
+  <p class="meta">55 words · slot 22s · voice <span class="ok">17s</span> · <span class="asset">needs: n8n canvas recording (S3) + dashboard (S10)</span></p>
+</section>
+<section class="scene" id="s09-cta">
+  <div class="head"><span class="tc">3:06</span><span class="lab">CTA</span><h2>09 · Subscribe for Part 2</h2></div>
+  <p class="vo">If this was useful, subscribe, so you get Part 2 the moment it lands.</p>
+  <p class="meta"><b>B-roll:</b> Subscribe button animation, Part 2 title card</p>
+  <p class="meta">14 words · slot 6s · voice <span class="ok">5.2s</span></p>
+</section>
+<section class="scene" id="s10-outro">
+  <div class="head"><span class="tc">3:12</span><span class="lab">OUTRO</span><h2>10 · Disclaimer + outro</h2></div>
+  <p class="vo">AI organises and explains. The insolvency practitioner decides. This is information, not legal advice. I'll see you in Part 2.</p>
+  <p class="meta"><b>B-roll:</b> Goal image again, end screen: Part 2 teaser</p>
+  <p class="meta">20 words · slot 6s · voice <span class="over">10.1s</span></p>
+</section>
+  <p class="next"><a href="storyboard/">Next: storyboard &rarr;</a><a href="kanban.html">Kanban &rarr;</a></p>
+</main>
+<script>
+document.getElementById("copy").onclick=function(){var t="[0:00] HOOK: Hook\nMy company owes HMRC £39,475.54, and I don't have the money. If you're a UK director in the same spot, here's exactly how a liquidation works, with the real costs, and the five things to do first.\nB-roll: Goal image, zoom on the HMRC balance (blur the UTR and login)\n\n[0:15] INTRO: Part 1 of 3: the real process\nI'm Rifat, from Cambridge in the United Kingdom. This is Part 1 of three. Part 1 is the real process. Part 2 shows the AI automation I built to run it, and Part 3 shows how it ends.\nB-roll: Face cam, lower-third: Part 1 of 3\n\n[0:30] CHAPTER 1: The goal\nHere's the goal. Company debt stays the company's. Liquidation hands the company to a licensed practitioner, who sells the assets and pays creditors in order. Generally, the director isn't personally liable.\nB-roll: Goal infographic, the three-step process highlighted\n\n[0:42] CHAPTER 2: Five things to do first\nFive things to do first. One: check your HMRC balance. Mine is £39,475.54. Two: gather the company's books and records. Mine are in a storage unit, and I'm only paying for it until I get access to the documents. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. I've recovered both outstanding customer invoices, £2,203.17 in total, and that's everything I received from my customers.\nB-roll: On-screen numbered list 1 to 5, HMRC screen for step 1 (S2)\n\n[1:24] CHAPTER 3: What it costs and how long it takes\nHere's what it costs, and how long it takes. A £1,500 deposit, then a £2,100 balance. I've paid both. There are five stages: the deposit, the information pack, the board meeting, the liquidator taking over, and finally the banks at zero and the Gazette notice, followed by a wait of about two months. In my case, I signed Stage 3 on 30 October, the creditors are notified on 19 November, and the proposed liquidation date is 2 December.\nB-roll: Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait\n\n[1:55] CHAPTER 4: The exceptions\nNow the exceptions, because this matters. The protection isn't absolute. A director can still be personally liable for wrongful or fraudulent trading, for personal guarantees, for an overdrawn director's loan account, and for paying one creditor ahead of the others. That's why the practitioner decides, not me.\nB-roll: Four exception cards on screen, red accent\n\n[2:14] CHAPTER 5: What my emails taught me\nThree lessons from my own emails. One: the process stops until the balance is paid. My provider chased me six times, so don't leave it to the end. Two: answer everything in writing, and keep a list of what's still outstanding. I still owe my provider a few records before 19 November. Three: your records are part of the process. Mine are in a storage unit and on Drive, and the practitioner arranges the collection.\nB-roll: Email timeline graphic (S12): chase reminders, the receipt, the liquidation-date email (names and addresses blurred)\n\n[2:44] CHAPTER 6: How I keep track of it\nI keep track of all of it with an n8n workflow and a few AI agents: a planner, a risk checker and a director. I type what I'm trying to do, and I get a plan and a risk list back. Part 2 shows exactly how it's built, and the workflow is free to import.\nB-roll: n8n canvas, 20 seconds (S3), then the dashboard (S10)\n\n[3:06] CTA: Subscribe for Part 2\nIf this was useful, subscribe, so you get Part 2 the moment it lands.\nB-roll: Subscribe button animation, Part 2 title card\n\n[3:12] OUTRO: Disclaimer + outro\nAI organises and explains. The insolvency practitioner decides. This is information, not legal advice. I'll see you in Part 2.\nB-roll: Goal image again, end screen: Part 2 teaser";var m=document.getElementById("msg");
+(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){m.textContent="Copied"},function(){m.textContent="Copy failed"});};
+</script>
+</body></html>

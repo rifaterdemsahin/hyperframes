@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes Rendering Paths</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<script src="../nav.js"></script>
+<main>
+  <div class="crumbs">🎬 Prod / Hyperframes &rsaquo; Rendering</div>
+  <h1>🛠️ Rendering paths</h1>
+  <p class="lead">Every path starts with the same project. The difference is who runs Chrome and FFmpeg, and where.</p>
+  <p class="note">From the official <a href="https://hyperframes.heygen.com/deploy/overview.md">Choose a rendering path</a> and <a href="https://hyperframes.heygen.com/guides/rendering.md">Render from the command line</a> docs, checked 18 Nov 2026.</p>
+
+  <h2>The paths</h2>
+  <div class="tw"><table>
+    <tr><th>Path</th><th>Use it when</th><th>You operate</th></tr>
+    <tr><td><b>CLI</b> (local or CI)</td><td>Rendering while you create, or in a CI job. <b>Start here.</b></td><td>The machine running the command</td></tr>
+    <tr><td><b>Producer</b></td><td>A Node app starts renders and needs progress and cancel</td><td>The Node service</td></tr>
+    <tr><td><b>Engine</b></td><td>Building specialised frame-capture infrastructure</td><td>Capture, encoding, orchestration</td></tr>
+    <tr><td><b>HyperFrames Cloud</b></td><td>Render without local Chrome or FFmpeg</td><td>Nothing beyond the request</td></tr>
+    <tr><td><b>AWS Lambda</b></td><td>Distributed renders in your own AWS account</td><td>The deployed AWS stack</td></tr>
+    <tr><td><b>Google Cloud Run</b></td><td>Distributed renders in your own Google Cloud account</td><td>The deployed GCP resources</td></tr>
+    <tr><td><b>Hosted templates</b></td><td>A small preview app plus render API on Vercel, Cloudflare or Modal</td><td>The hosting account</td></tr>
+  </table></div>
+  <p>The docs' rule: pick the highest-level surface that completes the job (CLI, then Producer, then Engine). For this video that is the <b>CLI on your own computer</b>. See <a href="speed.html">Cloud vs local speed</a> for why.</p>
+
+  <h2>Local render</h2>
+<pre>npx hyperframes check
+npx hyperframes render --output final.mp4</pre>
+  <p>Rendering uses parallel workers by default (<code>--workers auto</code>); each worker is a separate Chrome process.</p>
+
+  <h2>Cloud render</h2>
+<pre>npx hyperframes cloud render ./project --output video.mp4   # HeyGen-managed
+npx hyperframes lambda deploy                                # once, your AWS account
+npx hyperframes lambda render --wait                         # chunks render in parallel</pre>
+  <ul>
+    <li><b>HyperFrames Cloud:</b> projects up to 200 MB are sent as one zip; larger media is uploaded separately, eight files at a time and cached for re-renders. Billed through HeyGen; the Free Studio plan includes 5 cloud exports a month.</li>
+    <li><b>AWS Lambda:</b> a Step Functions workflow runs Plan, then many parallel chunk renders, then Assemble, with intermediate files in S3. Billed by AWS compute time.</li>
+    <li><b>Cloud Run:</b> the same plan, parallel chunks, assemble shape, on Google Cloud.</li>
+  </ul>
+
+  <h2>Formats</h2>
+  <div class="tw"><table>
+    <tr><th>Format</th><th>Use it for</th></tr>
+    <tr><td>MP4</td><td>Sharing and publishing. <b>This is what YouTube needs.</b></td></tr>
+    <tr><td>MOV (ProRes)</td><td>Editing handoff, transparent intermediates</td></tr>
+    <tr><td>WebM</td><td>Web delivery and transparent overlays</td></tr>
+    <tr><td>GIF</td><td>Short silent previews, capped at 30 fps</td></tr>
+    <tr><td>PNG sequence</td><td>Frame-by-frame handoff to compositing software</td></tr>
+    <tr><td>HLS</td><td>Streaming playlists. Not offered on Lambda or Cloud Run yet</td></tr>
+  </table></div>
+
+  <h2>Quality, size and frame rate</h2>
+  <div class="tw"><table>
+    <tr><th>Flag</th><th>Effect</th></tr>
+    <tr><td><code>--quality draft</code></td><td>Faster review version</td></tr>
+    <tr><td><code>--quality looks</code> (default)</td><td>CRF 16, right for most finished work</td></tr>
+    <tr><td><code>--quality delivery</code> / <code>high</code></td><td>Larger final master</td></tr>
+    <tr><td><code>--resolution 4k</code></td><td>3840x2160. The docs say roughly 4x slower per frame and 3 to 5x larger files. <a href="speed.html">I measured less</a></td></tr>
+    <tr><td><code>--fps 60</code></td><td>More frames, so longer rendering. Default is the composition's <code>data-fps</code> or 30</td></tr>
+    <tr><td><code>--chroma-subsampling 444</code></td><td>Sharper thin coloured text for masters; the docs say 2 to 3.5x slower. Not for files you publish, and not on Lambda or Cloud Run</td></tr>
+    <tr><td><code>--workers N</code></td><td>Parallel local Chrome workers</td></tr>
+    <tr><td><code>--gpu</code>, <code>--browser-gpu</code></td><td>GPU encoding, or GPU for Chrome capture. Cloud paths are software-rendered for determinism</td></tr>
+  </table></div>
+
+  <p class="next"><a href="index.html">&larr; Overview</a><a href="speed.html">Next: cloud vs local speed &rarr;</a></p>
+</main>
+</body>
+</html>

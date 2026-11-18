@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes Cloud vs Local Speed</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<script src="../nav.js"></script>
+<main>
+  <div class="crumbs">🎬 Prod / Hyperframes &rsaquo; Speed</div>
+  <h1>⚡ Cloud vs local render speed</h1>
+  <p class="lead">How fast is a cloud render compared with rendering on your own computer?</p>
+
+  <p class="tldr"><b>Local is measured. Cloud is not.</b> On this Mac a 20 second 1080p video rendered in about 14 seconds. Hyperframes publishes no timing figures for cloud rendering, and I have not rendered in the cloud, so I give you what the docs say and a clearly labelled model instead of a made-up number. For a video about 3 minutes long, my reasoning says local is already fast enough that cloud saves little or nothing.</p>
+
+  <h2>1. Local: what I measured</h2>
+  <p class="note"><b>Setup:</b> Apple M1 Max, 10 cores, 64 GB, Hyperframes 0.9.67, <code>npx hyperframes render</code>. Test composition: 20 s, 1920x1080, 30 fps (600 frames), a slowly zooming background image, a headline and three text cards fading in. No video footage, no audio. Measured 18 Nov 2026. Real compositions with footage or heavy effects will be slower.</p>
+
+  <div class="card">
+    <div class="barrow"><span>Draft quality</span><div><div class="bar" style="width:23%"></div></div><span class="v">9.3 s</span></div>
+    <div class="barrow"><span>Default (looks)</span><div><div class="bar" style="width:35%"></div></div><span class="v">14.0 s</span></div>
+    <div class="barrow alt"><span>Default at 4K</span><div><div class="bar" style="width:100%"></div></div><span class="v">40.0 s</span></div>
+  </div>
+  <div class="tw"><table>
+    <tr><th>Run</th><th>Wall time</th><th>Frames per second</th><th>Speed vs real time</th><th>File</th></tr>
+    <tr><td>Draft (warm)</td><td>9.3 s</td><td>about 65</td><td>2.2x faster</td><td>4.2 MB</td></tr>
+    <tr><td>Default, three runs</td><td>14.1 / 14.0 / 13.9 s</td><td>about 43</td><td>1.4x faster</td><td>7.0 MB</td></tr>
+    <tr><td>Default at 4K</td><td>40.0 s</td><td>about 15</td><td>0.5x (slower than real time)</td><td>22.1 MB</td></tr>
+  </table></div>
+  <ul>
+    <li>The default render split into roughly 7.6 s capturing frames, 3.4 s encoding, 1 s setup. Chrome used the hardware GPU.</li>
+    <li>The very first draft run took 25.6 s because of one-off browser warm-up, so I reran it. Expect the first render on a fresh machine to be slower.</li>
+    <li><b>4K was 2.9x slower here</b>, with a 3.1x larger file. The docs say "roughly 4x slower per frame" and "3 to 5x larger". My simple composition came in under that, but detailed footage likely lands nearer the docs' figure.</li>
+  </ul>
+
+  <h3>What that means for our 198 second video</h3>
+  <p>Scaling my numbers linearly (an <b>estimate</b>, not a measurement, and assuming scenes as simple as the test):</p>
+  <div class="tw"><table>
+    <tr><th>Output</th><th>Estimated local time on this Mac</th></tr>
+    <tr><td>Draft review cut</td><td>about 1.5 minutes</td></tr>
+    <tr><td>Final 1080p (default)</td><td>about 2.3 minutes</td></tr>
+    <tr><td>4K master</td><td>about 6.6 minutes</td></tr>
+  </table></div>
+  <p>Your real footage (face cam, screen recordings) adds decoding work, so budget more. I will measure the real thing once the scenes are built.</p>
+
+  <h2>2. Cloud: what the docs say</h2>
+  <p class="note">No wall-clock timings are published. These are the documented mechanics.</p>
+  <ul>
+    <li><b>Parallel chunks.</b> On AWS Lambda a workflow runs <i>Plan</i>, then many <i>RenderChunk</i> workers in parallel, then <i>Assemble</i>. By default it uses up to 90% of the account's unreserved Lambda concurrency, at most 256 chunks at once. Cloud Run follows the same plan, chunks, assemble shape.</li>
+    <li><b>Limits.</b> Each Plan, chunk and Assemble invocation must finish within 15 minutes. Distributed renders are SDR only, 4:2:0 only, and HLS is not offered.</li>
+    <li><b>Overheads exist.</b> Cold starts, planning, S3 transfer and assembly are fixed costs before any parallel gain. The docs themselves warn that "cloud dispatch adds latency to a fast local loop".</li>
+    <li><b>HyperFrames Cloud (HeyGen managed).</b> Projects over 200 MB upload media separately; uploads are cached for re-renders. The Free Studio plan includes 5 cloud exports a month.</li>
+    <li><b>The docs' own advice:</b> stay local while iterating. Use Lambda for "multi-minute videos, 4K masters, or large parallel batches", the work "too long or too large for one host".</li>
+    <li><b>Cost shape.</b> Lambda bills compute time (GB-seconds) plus a tiny Step Functions fee. The docs show a sample progress line of $0.0214 for one render; treat that as format illustration, not a quote.</li>
+  </ul>
+
+  <h2>3. A model for when cloud wins</h2>
+  <p class="note"><b>This is my illustration with assumed numbers, not a measurement.</b> It assumes cloud workers are as fast as this Mac, which may not be true.</p>
+  <p>If a render takes <i>L</i> seconds locally, cloud time is roughly <b>O + L / N</b>, where <i>O</i> is the fixed overhead (cold start, plan, upload, assemble, download) and <i>N</i> the chunks running at once. Cloud is faster only when <b>O &lt; L x (1 &minus; 1/N)</b>.</p>
+  <div class="tw"><table>
+    <tr><th>Case (L = 139 s, our 3 min final)</th><th>N = 4</th><th>N = 16</th><th>N = 64</th></tr>
+    <tr><td>Overhead 60 s</td><td>95 s</td><td>69 s</td><td>62 s</td></tr>
+    <tr><td>Overhead 120 s</td><td>155 s <small>(slower than local)</small></td><td>129 s</td><td>122 s</td></tr>
+  </table></div>
+  <p>Now the 4K master (L = 396 s): with 60 s overhead and N = 16 it is about 85 s, which is a real gain. The longer or heavier the render, the more parallelism pays off, which matches the docs' advice.</p>
+
+  <h2>Verdict for this video</h2>
+  <div class="card">
+    <ul>
+      <li><b>Render locally.</b> A 3 minute 1080p video should take a few minutes on this Mac, with no account, no upload and no cost.</li>
+      <li><b>Cloud would matter if</b> your computer is much slower than this one, you want a 4K master, you render many versions, or you want to keep working while it renders.</li>
+      <li><b>Cheap middle path:</b> use <code>--quality draft</code> for review cuts and the default quality only for the final.</li>
+    </ul>
+  </div>
+
+  <h2>Reproduce my test</h2>
+<pre>cd video
+npx hyperframes render --quality draft --output out/draft.mp4
+npx hyperframes render --quality looks --output out/looks.mp4
+npx hyperframes render --quality looks --resolution 4k --output out/4k.mp4</pre>
+  <p><small>Run each twice and ignore the first (warm-up). To measure cloud yourself, deploy with <code>npx hyperframes lambda deploy</code> and compare <code>lambda render --wait</code> against the local figure for the same project. I can do that if you want to supply AWS or HeyGen credentials, but I would not use credentials unprompted.</small></p>
+
+  <p class="next"><a href="rendering.html">&larr; Rendering paths</a><a href="cli.html">Next: CLI cheat sheet &rarr;</a></p>
+</main>
+</body>
+</html>

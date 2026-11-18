@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hyperframes Overview</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<script src="../nav.js"></script>
+<main>
+  <div class="crumbs">🎬 Prod / Hyperframes</div>
+  <h1>🧩 Hyperframes: overview</h1>
+  <p class="lead">Hyperframes makes video from web pages. You write HTML, CSS and JavaScript, a command renders it to MP4. It is open source (Apache 2.0), made by HeyGen, and designed for AI agents to write.</p>
+  <p class="note">Based on the official docs at <a href="https://hyperframes.heygen.com/introduction.md">hyperframes.heygen.com</a> and on running version 0.9.67 in this project. Where a number is mine, it says so.</p>
+
+  <h2>Guide pages</h2>
+  <div class="grid">
+    <a class="tile" href="rendering.html"><b>🛠️ Rendering paths</b><span>CLI, Producer, Engine, HyperFrames Cloud, AWS Lambda, Cloud Run, formats and quality.</span></a>
+    <a class="tile" href="speed.html"><b>⚡ Cloud vs local speed</b><span>Measured local render times, what the docs say about cloud, and when cloud wins.</span></a>
+    <a class="tile" href="cli.html"><b>⌨️ CLI cheat sheet</b><span>The commands you will actually use on this project.</span></a>
+    <a class="tile" href="../compare.html"><b>⚖️ vs Remotion</b><span>Differences, cost and which fits.</span></a>
+    <a class="tile" href="../why-pay.html"><b>💳 Why pay?</b><span>What is free and what HeyGen charges for.</span></a>
+  </div>
+
+  <h2>How it works</h2>
+  <div class="card">
+    <p>A video is an HTML file. Three things make it render:</p>
+    <ul>
+      <li><b>Timed elements.</b> The root element has <code>data-composition-id</code>, <code>data-start</code>, <code>data-duration</code>, <code>data-width</code> and <code>data-height</code>. Each visible piece is <code>class="clip"</code> with its own <code>data-start</code>, <code>data-duration</code> and <code>data-track-index</code>.</li>
+      <li><b>A paused animation timeline.</b> Motion is a GSAP timeline, created paused and registered as <code>window.__timelines["your-id"]</code>.</li>
+      <li><b>Seeking, not playing.</b> The renderer jumps the timeline to the exact moment of each frame, captures it in headless Chrome, and encodes the frames with FFmpeg. Because it seeks instead of watching a clock, the same frame comes out the same every time.</li>
+    </ul>
+    <p>The rule that matters most: only deterministic logic. No <code>Date.now()</code>, no <code>Math.random()</code>, no network fetches during render.</p>
+  </div>
+<pre>&lt;div data-composition-id="main" data-start="0" data-duration="10"
+     data-width="1920" data-height="1080"&gt;
+  &lt;h1 id="title" class="clip" data-start="0" data-duration="10"
+      data-track-index="0"&gt;£39,475.54 owed to HMRC&lt;/h1&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#title", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0);
+  window.__timelines["main"] = tl;
+&lt;/script&gt;</pre>
+
+  <h2>What is in a project</h2>
+  <div class="tw"><table>
+    <tr><th>File</th><th>Purpose</th></tr>
+    <tr><td><code>index.html</code></td><td>The main composition and root timeline</td></tr>
+    <tr><td><code>compositions/</code></td><td>Sub-compositions, pulled in with <code>data-composition-src</code>. One per scene is a good fit for our 10 scenes</td></tr>
+    <tr><td><code>meta.json</code>, <code>hyperframes.json</code></td><td>Project id, name and settings</td></tr>
+    <tr><td><code>assets/</code></td><td>Images and audio. This project has <code>assets/bg</code> (fal.ai backgrounds) and <code>assets/vo</code> (draft voiceover)</td></tr>
+  </table></div>
+
+  <h2>The work loop</h2>
+  <ol>
+    <li>Write or edit the composition (an agent does this from your instructions).</li>
+    <li><code>npm run check</code>: lint, runtime, layout, motion and contrast in one go.</li>
+    <li><code>npx hyperframes snapshot --at 1,3,5</code>: PNG frames to look at before rendering.</li>
+    <li><code>npm run render</code>: the MP4.</li>
+  </ol>
+
+  <h2>Where this project is</h2>
+  <p>The <code>video/</code> folder is still the blank starter. After you approve the <a href="../storyboard/">storyboard</a>, I build the ten scenes there as sub-compositions with placeholders, then swap in your real footage.</p>
+
+  <p class="next"><span></span><a href="rendering.html">Next: rendering paths &rarr;</a></p>
+</main>
+</body>
+</html>

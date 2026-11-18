@@ -1,32 +1,92 @@
-// Shared top menu. Include with <script src="nav.js"></script> (or ../nav.js from a subfolder) right after <body>.
+// Shared top menu with sub menus. Include with <script src="nav.js"></script> (or ../nav.js from a subfolder) right after <body>.
+// To add a page: add a row to MENU below. Every page picks it up.
 (function () {
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
-  var links = [
-    ["🏠 Home", base],
-    ["📋 Kanban", base + "kanban.html"],
-    ["🎞️ Storyboard", base + "storyboard/"],
-    ["⚖️ Hyperframes vs Remotion", base + "compare.html"],
-    ["💳 Why pay?", base + "why-pay.html"],
-    ["✅ Recommendations", base + "recommendations.html"],
-    ["📄 Design doc", "https://github.com/rifaterdemsahin/hyperframes/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],
-    ["🐙 Repo", "https://github.com/rifaterdemsahin/hyperframes"],
+  var G = "https://github.com/rifaterdemsahin/hyperframes";
+  var MENU = [
+    { label: "🏠 Home", href: "" },
+    {
+      label: "📝 Preprod",
+      items: [
+        ["📜 Script", "script.html"],
+        ["🎞️ Storyboard", "storyboard/"],
+        ["📋 Kanban", "kanban.html"],
+        ["✅ Recommendations", "recommendations.html"],
+      ],
+    },
+    {
+      label: "🎬 Prod / Hyperframes",
+      items: [
+        ["🧩 Overview", "hyperframes-guide/"],
+        ["🛠️ Rendering paths", "hyperframes-guide/rendering.html"],
+        ["⚡ Cloud vs local speed", "hyperframes-guide/speed.html"],
+        ["⌨️ CLI cheat sheet", "hyperframes-guide/cli.html"],
+        ["⚖️ Hyperframes vs Remotion", "compare.html"],
+        ["💳 Why pay?", "why-pay.html"],
+      ],
+    },
+    {
+      label: "🔗 Project",
+      items: [
+        ["📄 Design doc", G + "/blob/main/docs/superpowers/specs/2026-11-18-liquidation-video-design.md"],
+        ["🐙 Repo", G],
+      ],
+    },
   ];
-  var here = location.href.split("#")[0].replace(/index\.html$/, "");
+
+  var url = function (h) { return /^https?:/.test(h) ? h : base + h; };
+  var norm = function (u) { return u.split("#")[0].split("?")[0].replace(/index\.html$/, ""); };
+  var here = norm(location.href);
+  var isHere = function (h) { return norm(url(h)) === here; };
+
   var css = document.createElement("style");
   css.textContent =
-    "#site-nav{position:sticky;top:0;z-index:100;display:flex;gap:4px;align-items:center;flex-wrap:wrap;padding:8px 16px;" +
+    "#site-nav{position:sticky;top:0;z-index:1000;display:flex;gap:2px;align-items:center;flex-wrap:wrap;padding:6px 12px;" +
     "background:#0e1116;border-bottom:1px solid #232a35;font:14px system-ui,sans-serif}" +
-    "#site-nav b{color:#e8ecf1;margin-right:12px}#site-nav a{color:#8b95a5;text-decoration:none;padding:5px 10px;border-radius:6px}" +
-    "#site-nav a:hover{color:#e8ecf1;background:#171b22}#site-nav a.on{color:#04222a;background:#4cc3d9;font-weight:600}";
+    "#site-nav .brand{color:#e8ecf1;font-weight:700;margin-right:10px}" +
+    "#site-nav a,#site-nav button.top{color:#8b95a5;text-decoration:none;padding:6px 10px;border-radius:6px;background:none;border:0;font:inherit;cursor:pointer;white-space:nowrap}" +
+    "#site-nav a:hover,#site-nav button.top:hover,#site-nav .dd.open>button.top{color:#e8ecf1;background:#171b22}" +
+    "#site-nav .on{color:#04222a!important;background:#4cc3d9!important;font-weight:600}" +
+    "#site-nav .dd{position:relative}" +
+    "#site-nav .menu{display:none;position:absolute;top:100%;left:0;min-width:240px;padding:4px;background:#171b22;border:1px solid #232a35;border-radius:8px;box-shadow:0 8px 24px #0008;z-index:1001}" +
+    "#site-nav .dd.open .menu{display:block}" +
+    "@media(hover:hover){#site-nav .dd:hover .menu{display:block}}" +
+    "#site-nav .menu a{display:block}" +
+    "@media(max-width:600px){#site-nav .menu{position:static;box-shadow:none;min-width:0}}";
   document.head.appendChild(css);
+
   var nav = document.createElement("nav");
   nav.id = "site-nav";
-  nav.innerHTML =
-    "<b>🎬 Liquidation Part 1</b>" +
-    links
-      .map(function (l) {
-        return '<a href="' + l[1] + '"' + (here === l[1] ? ' class="on"' : "") + ">" + l[0] + "</a>";
-      })
-      .join("");
+  nav.setAttribute("aria-label", "Site");
+  var html = '<span class="brand">🎬 Liquidation Part 1</span>';
+  MENU.forEach(function (m, i) {
+    if (!m.items) {
+      html += '<a href="' + url(m.href) + '"' + (isHere(m.href) ? ' class="on"' : "") + ">" + m.label + "</a>";
+      return;
+    }
+    var active = m.items.some(function (it) { return isHere(it[1]); });
+    html += '<div class="dd" data-i="' + i + '"><button class="top' + (active ? " on" : "") + '" aria-haspopup="true" aria-expanded="false">' + m.label + ' ▾</button><div class="menu">';
+    m.items.forEach(function (it) {
+      html += '<a href="' + url(it[1]) + '"' + (isHere(it[1]) ? ' class="on" aria-current="page"' : "") + ">" + it[0] + "</a>";
+    });
+    html += "</div></div>";
+  });
+  nav.innerHTML = html;
   document.body.insertBefore(nav, document.body.firstChild);
+
+  var closeAll = function () {
+    nav.querySelectorAll(".dd.open").forEach(function (d) {
+      d.classList.remove("open");
+      d.querySelector("button").setAttribute("aria-expanded", "false");
+    });
+  };
+  nav.addEventListener("click", function (e) {
+    var b = e.target.closest("button.top");
+    if (!b) return;
+    var dd = b.parentNode, was = dd.classList.contains("open");
+    closeAll();
+    if (!was) { dd.classList.add("open"); b.setAttribute("aria-expanded", "true"); }
+  });
+  document.addEventListener("click", function (e) { if (!nav.contains(e.target)) closeAll(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
 })();
