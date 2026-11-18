@@ -1,16 +1,65 @@
 {
   "titles": [
-    { "text": "Closing My UK Company With AI: What I Learned (Part 1/3)", "why": "Says exactly what the video is, names the series, promises no outcome. Pairs with Thumbnail A: the title gives the subject, the thumbnail gives the hook.", "recommended": true, "pair": "A" },
-    { "text": "UK Director? How I Used AI to Get Through the Red Tape", "why": "Calls out the audience in the first words. Pairs with Thumbnail B, which says what the video is about.", "recommended": false, "pair": "B" },
-    { "text": "Every Time I Open the HMRC Site I Have More Questions. So I Used AI", "why": "Personal and specific, from your own script. Longer, so it may be cut off on phones.", "recommended": false, "pair": "A" },
-    { "text": "Stuck in Red Tape? How I Use AI When a Process Gets Confusing", "why": "Broadest, speaks to anyone with red tape, not only directors.", "recommended": false, "pair": "A" }
+    {
+      "text": "Closing My UK Company With AI: What I Learned (Part 1/3)",
+      "why": "Says exactly what the video is, names the series, promises no outcome. Pairs with Thumbnail A: the title gives the subject, the thumbnail gives the hook.",
+      "recommended": true,
+      "pair": "A"
+    },
+    {
+      "text": "UK Director? How I Used AI to Get Through the Red Tape",
+      "why": "Calls out the audience in the first words. Pairs with Thumbnail B, which says what the video is about.",
+      "recommended": false,
+      "pair": "B"
+    },
+    {
+      "text": "Every Time I Open the HMRC Site I Have More Questions. So I Used AI",
+      "why": "Personal and specific, from your own script. Longer, so it may be cut off on phones.",
+      "recommended": false,
+      "pair": "A"
+    },
+    {
+      "text": "Stuck in Red Tape? How I Use AI When a Process Gets Confusing",
+      "why": "Broadest, speaks to anyone with red tape, not only directors.",
+      "recommended": false,
+      "pair": "A",
+      "selected": true
+    }
   ],
   "descriptionTemplate": "Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolvency practitioner.\n\nThis is Part 1 of 3: how I use AI to get through real-world red tape, using closing my own company as the example.\n\nIn this video:\n• Why you need support, and why AI is only support\n• Five things to do first\n• What it costs, and how to use AI as leverage\n• The exceptions, and why the practitioner decides\n• Gmail and Drive as data sources over MCP\n• Divide and conquer, and learning from every problem\n\nCHAPTERS\n{{chapters}}\n\nNEXT\nPart 2, how I build the stages and the app: [PART 2 LINK: add when it is published]\nBuilding bots and automation? Join our Skool community: [SKOOL LINK: needed from you]\n\n{{disclaimer}}\n\n#UKDirector #AI #RedTape",
-  "tags": ["UK director", "closing a UK company", "company liquidation", "insolvency practitioner", "HMRC", "red tape", "AI for business", "AI agents", "AI automation", "n8n", "MCP", "Gmail", "Google Drive", "Skool"],
+  "tags": [
+    "UK director",
+    "closing a UK company",
+    "company liquidation",
+    "insolvency practitioner",
+    "HMRC",
+    "red tape",
+    "AI for business",
+    "AI agents",
+    "AI automation",
+    "n8n",
+    "MCP",
+    "Gmail",
+    "Google Drive",
+    "Skool"
+  ],
   "pinnedComment": "Suggestion: \"What is the most confusing bit of red tape you have faced? Tell me below and I will look at it for Part 2.\" Keep it a question, and do not promise advice on individual cases.",
   "thumbnails": [
-    { "file": "thumbnails/thumb-a.jpg", "html": "thumbnails/thumb-a.html", "name": "A: Stuck in red tape? Use AI", "idea": "A knot of red tape (made by fal.ai, no text) on a dark desk. Big yellow hook, a red 'USE AI' bar. Reads at small size, and the tape is a literal picture of the problem.", "recommended": true },
-    { "file": "thumbnails/thumb-b.jpg", "html": "thumbnails/thumb-b.html", "name": "B: Closing my company with AI", "idea": "The empty chair from the hook scene. Calmer and more personal. The right half is left clear for a photo of your face.", "recommended": false }
+    {
+      "file": "thumbnails/thumb-a.jpg",
+      "html": "thumbnails/thumb-a.html",
+      "name": "A: Stuck in red tape? Use AI",
+      "idea": "A knot of red tape (made by fal.ai, no text) on a dark desk. Big yellow hook, a red 'USE AI' bar. Reads at small size, and the tape is a literal picture of the problem.",
+      "recommended": true,
+      "selected": true
+    },
+    {
+      "file": "thumbnails/thumb-b.jpg",
+      "html": "thumbnails/thumb-b.html",
+      "name": "B: Closing my company with AI",
+      "idea": "The empty chair from the hook scene. Calmer and more personal. The right half is left clear for a photo of your face.",
+      "recommended": false
+    }
   ],
   "thumbnailRules": [
     "1280 x 720, 16:9, JPG, under 2 MB (YouTube's guidance).",
@@ -21,10 +70,10 @@
     "When you have a clear photo of your face, add it on the clear side: expression matters more than polish."
   ],
   "openItems": [
-    "Choose the title and the thumbnail (the pairing above is my recommendation).",
     "Send the Skool community link and replace [SKOOL LINK].",
     "Replace [PART 2 LINK] once Part 2 is published, and update the description.",
     "Decide whether to add your face to the thumbnail.",
     "Have the practitioner read the description as well as the script: it makes the same claims."
-  ]
+  ],
+  "selectionNote": "Your title and thumbnail both open with 'Stuck in red tape'. The words repeat, so neither adds anything new to the other. Keep it if you want the message to be unmistakable. If you want them to complement each other, change the thumbnail to a different hook (for example 'USE AI' over the red tape knot) and keep this title. The title is 61 characters, so phones may cut off the end ('Confusing') in some views."
 }

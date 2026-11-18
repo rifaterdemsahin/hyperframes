@@ -1,5 +1,5 @@
 {
-  "site": "1.5.2",
+  "site": "1.5.3",
   "date": "2026-11-18",
   "pages": {
     "index.html": {
@@ -19,12 +19,12 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "date": "2026-11-18"
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "date": "2026-11-18"
     },
     "hyperframes-guide/": {
@@ -59,12 +59,12 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.5.2",
+      "version": "1.5.3",
       "date": "2026-11-18"
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "date": "2026-11-18"
     },
     "release-checklist.html": {
@@ -89,7 +89,7 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.5.1",
+      "version": "1.5.2",
       "date": "2026-11-18"
     },
     "hyperframes-guide/signin.html": {
@@ -99,6 +99,19 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.5.3",
+      "date": "2026-11-18",
+      "pages": [
+        "publish.html",
+        "master-spec.html",
+        "kanban.html",
+        "recommendations.html"
+      ],
+      "changes": [
+        "Publish page: your selection is marked, the title 'Stuck in Red Tape? How I Use AI When a Process Gets Confusing' and thumbnail A, with a note that the two repeat each other. Spec decision, kanban and recommendations updated. Publish-page notes cleared."
+      ]
+    },
     {
       "version": "1.5.2",
       "date": "2026-11-18",
@@ -207,6 +220,7 @@
   ],
   "feedbackCleared": {
     "*": "2026-11-18T21:55:42.014Z",
-    "script.html": "2026-11-18T22:07:30.860Z"
+    "script.html": "2026-11-18T22:07:30.860Z",
+    "publish.html": "2026-11-18T22:18:45.249Z"
   }
 }
