@@ -32,11 +32,25 @@ a{color:var(--accent)}small{color:var(--mute)}
     <tr><td>You write</td><td>HTML, CSS and JavaScript</td><td>React and TypeScript</td></tr>
     <tr><td>How motion is timed</td><td>Markup declares when things are on screen (<code>data-start</code>, <code>data-duration</code>); a paused GSAP timeline declares how they move, in seconds. The renderer <em>seeks</em> it to each exact moment.</td><td>A component reads the current frame number and returns the values for that frame. You do the timing math in frames.</td></tr>
     <tr><td>Existing web material</td><td>HTML, CSS, GSAP or Lottie usually drop in close to as-is</td><td>Rewritten as React components</td></tr>
-    <tr><td>Licence</td><td>Apache 2.0</td><td>Its own licence: free for individuals and companies up to three people, paid above that (check <a href="https://www.remotion.pro/license">current terms</a>)</td></tr>
+    <tr><td>Licence</td><td>Apache 2.0</td><td>Its own licence: free for individuals and companies up to three people, paid above that (check <a href="https://www.remotion.pro/pricing">current pricing</a>)</td></tr>
     <tr><td>Rendering</td><td>Local (free, no account), HeyGen cloud, Google Cloud Run, AWS Lambda</td><td>Local and AWS Lambda; Lambda is mature and heavily documented</td></tr>
     <tr><td>Visual editor</td><td>Studio edits the same DOM the renderer captures</td><td>Remotion Studio edits React compositions</td></tr>
     <tr><td>Maturity</td><td>Newer</td><td>Older: more templates, tutorials, answers and production history</td></tr>
   </table></div>
+
+  <h2>💷 Cost difference</h2>
+  <p><small>Prices checked 18 Nov 2026 on each vendor's own pages. They change, so confirm before buying.</small></p>
+  <div class="tw"><table>
+    <tr><th></th><th>Hyperframes</th><th>Remotion</th></tr>
+    <tr><td>Tool licence, solo or team of up to 3</td><td><b>$0</b> (Apache 2.0)</td><td><b>$0</b> (Free License, unlimited commercial use)</td></tr>
+    <tr><td>Tool licence, team of 4+ or an ineligible company</td><td><b>$0</b> (Apache 2.0, no seat fee)</td><td>Company License required: <b>$25/month per seat</b> (Creators), or <b>$0.01 per render, $100/month minimum</b> (Automators). Enterprise starts at <b>$500/month</b></td></tr>
+    <tr><td>Rendering on your own computer or CI</td><td>Free, no account</td><td>Free</td></tr>
+    <tr><td>Cloud rendering</td><td>AWS Lambda or Google Cloud Run in your own account (you pay the cloud bill). HeyGen cloud rendering is optional and billed through HeyGen</td><td>AWS Lambda in your own account. Remotion's own examples show roughly <b>$0.001 to $0.11 per render</b>, more at 4K or with nested video, plus S3 transfer</td></tr>
+    <tr><td>Optional paid extras</td><td>Studio app: Free plan (5 cloud exports a month); Pro <b>$25/month</b> for unlimited cloud exports and HeyGen's top models. Local exports are unlimited on every plan</td><td>Nothing required beyond the licence above</td></tr>
+    <tr><td>Your AI agent</td><td colspan="2">Billed separately by whichever agent you use, in both cases</td></tr>
+  </table></div>
+  <p><b>The difference in practice:</b> the tools cost the same for one person ($0). The gap appears when a team grows past three people or a company wants to automate rendering at volume: Remotion then charges a licence, Hyperframes does not. Cloud rendering costs are comparable, because both run on your own AWS account.</p>
+  <p><b>For this video:</b> £0 licence cost either way, and rendering locally is free. So cost does not decide it, and the choice rests on the points in the section below.</p>
 
   <h2>Same request, two agents (HeyGen's test)</h2>
   <p>Claude Code was given one prompt twice: a 15 second launch video, once with Remotion's agent skills and once with Hyperframes'. One run each, no retries. Both produced good videos; one run decides nothing about quality.</p>
@@ -110,7 +124,8 @@ export const TitleCard = () =&gt; {
     <li><a href="https://hyperframes.heygen.com/guides/hyperframes-vs-remotion.md">HyperFrames vs Remotion</a> (HeyGen)</li>
     <li><a href="https://hyperframes.heygen.com/prompting/remotion-migration.md">Move from Remotion to Hyperframes</a></li>
     <li><a href="https://hyperframes.heygen.com/faq.md">Hyperframes FAQ</a></li>
-    <li><a href="https://www.remotion.pro/license">Remotion licence</a></li>
+    <li><a href="https://www.remotion.pro/pricing">Remotion pricing</a> and <a href="https://www.remotion.dev/docs/lambda/cost-example">Lambda cost examples</a></li>
+    <li><a href="https://hyperframes.heygen.com/faq.md#is-hyperframes-free">Hyperframes FAQ: is it free?</a></li>
   </ul>
 </main>
 </body>

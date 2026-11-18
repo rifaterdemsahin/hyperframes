@@ -2,11 +2,11 @@
 (function () {
   var base = document.currentScript.src.replace(/nav\.js(\?.*)?$/, "");
   var links = [
-    ["Home", base],
-    ["Kanban", base + "kanban.html"],
-    ["Storyboard", base + "storyboard/"],
-    ["Hyperframes vs Remotion", base + "compare.html"],
-    ["Repo", "https://github.com/rifaterdemsahin/hyperframes"],
+    ["🏠 Home", base],
+    ["📋 Kanban", base + "kanban.html"],
+    ["🎞️ Storyboard", base + "storyboard/"],
+    ["⚖️ Hyperframes vs Remotion", base + "compare.html"],
+    ["🐙 Repo", "https://github.com/rifaterdemsahin/hyperframes"],
   ];
   var here = location.href.split("#")[0].replace(/index\.html$/, "");
   var css = document.createElement("style");
@@ -19,7 +19,7 @@
   var nav = document.createElement("nav");
   nav.id = "site-nav";
   nav.innerHTML =
-    "<b>Liquidation Part 1</b>" +
+    "<b>🎬 Liquidation Part 1</b>" +
     links
       .map(function (l) {
         return '<a href="' + l[1] + '"' + (here === l[1] ? ' class="on"' : "") + ">" + l[0] + "</a>";
