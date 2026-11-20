@@ -1,5 +1,5 @@
 {
-  "latest": 3,
+  "latest": 4,
   "versions": [
     {
       "n": 1,
@@ -35,7 +35,17 @@
         "Scene 07: Removed footage placeholder, animated online methods as structured database, MCP pipeline to AI.",
         "Scene 08: n8n deterministic (known) vs AI probabilistic (unknown) comparison cards, authenticity quote card, official n8n logo.",
         "Scene 09: Part 2 feedback prompt for YouTube comments section, animated subscribe callout.",
-        "Scene 10: Prominent disclaimer with emojis, Delivery Pilot community Skool badge with official Skool logo and link."
+        "Scene 10: Prominent disclaimer with emojis, Delivery Pilot community Skool badge with link."
+      ]
+    },
+    {
+      "n": 4,
+      "date": "2026-11-20",
+      "label": "Fourth draft",
+      "changes": [
+        "Animated serious style subtitles: kinetic phrase containers with progressive word illumination and cadence tracker line.",
+        "Integrated official Skool brand logo image into Scene 10 outro panel.",
+        "Passed full WCAG AA contrast check (137/137 checks passed)."
       ]
     }
   ]

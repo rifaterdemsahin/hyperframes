@@ -43,8 +43,30 @@ const CSS = `
     .narrow h1 { font-size: 64px; }
     .line { font-size: 34px; line-height: 1.3; font-weight: 600; padding: 12px 24px; background: rgba(10,14,24,.75); border-left: 6px solid var(--accent); border-radius: 10px; opacity: 0; backdrop-filter: blur(8px); }
 
-    /* Captions */
-    .cap { position: absolute; left: 50%; bottom: 64px; transform: translateX(-50%); width: 1600px; text-align: center; font-size: 38px; line-height: 1.3; font-weight: 600; padding: 12px 28px; background: rgba(4,8,16,.85); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; opacity: 0; z-index: 40; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
+    /* Animated Serious Style Subtitles */
+    .cap { 
+      position: absolute; 
+      left: 50%; 
+      bottom: 50px; 
+      transform: translateX(-50%); 
+      width: 1560px; 
+      text-align: center; 
+      font-size: 38px; 
+      line-height: 1.35; 
+      font-weight: 700; 
+      padding: 16px 36px 20px 36px; 
+      background: rgba(8, 12, 22, 0.92); 
+      border: 1px solid rgba(76, 195, 217, 0.35); 
+      border-radius: 16px; 
+      opacity: 0; 
+      z-index: 40; 
+      box-shadow: 0 14px 40px rgba(0,0,0,0.7), 0 0 24px rgba(76,195,217,0.12);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+    .cap-text { display: inline-block; position: relative; z-index: 2; }
+    .cap-w { display: inline-block; margin: 0 4px; opacity: 0.45; color: #94a3b8; }
+    .cap-cadence { position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4cc3d9, #06d6a0); transform-origin: 0 50%; transform: scaleX(0); z-index: 3; }
 
     /* Side graphic container */
     .gfx-panel { position: absolute; right: 80px; top: 180px; width: 780px; height: 680px; display: flex; flex-direction: column; gap: 20px; opacity: 0; z-index: 15; }
@@ -73,14 +95,14 @@ const CSS = `
     .guardrail-card { background: rgba(6,214,160,.12); border: 2px solid var(--success); border-radius: 18px; padding: 22px; display: flex; align-items: center; gap: 20px; }
     .guardrail-icon { font-size: 54px; }
     .guardrail-title { font-size: 32px; font-weight: 800; color: var(--success); }
-    .guardrail-sub { font-size: 28px; color: #e0e8f0; margin-top: 4px; }
+    .guardrail-sub { font-size: 30px; color: #e0e8f0; margin-top: 4px; }
 
     /* Scene 07 Database & MCP */
     .db-card { background: var(--card-bg); border: 2px solid rgba(255,209,102,.4); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 18px; }
     .db-header { font-size: 30px; font-weight: 800; color: var(--warn); display: flex; align-items: center; gap: 12px; }
     .db-table { display: flex; flex-direction: column; gap: 10px; background: rgba(0,0,0,.4); padding: 16px; border-radius: 12px; }
     .db-row { display: flex; justify-content: space-between; font-size: 28px; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
-    .mcp-pill { align-self: center; background: linear-gradient(135deg, #ffd166, #ff9a51); color: #3a2a00; font-weight: 900; font-size: 28px; padding: 10px 28px; border-radius: 24px; }
+    .mcp-pill { align-self: center; background: #ffd166; color: #1a1202; font-weight: 900; font-size: 28px; padding: 10px 28px; border-radius: 24px; }
 
     /* Scene 08 Deterministic vs Probabilistic */
     .comp-grid { display: flex; gap: 16px; width: 100%; }
@@ -101,7 +123,7 @@ const CSS = `
 
     /* Scene 10 Skool & Disclaimer */
     .skool-panel { background: var(--card-bg); border: 2px solid #0070f3; border-radius: 22px; padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; box-shadow: 0 16px 40px rgba(0,112,243,.3); }
-    .skool-logo-img { height: 75px; }
+    .skool-logo-img { max-height: 85px; max-width: 260px; object-fit: contain; border-radius: 8px; }
     .skool-badge { background: #0070f3; color: #fff; font-weight: 800; font-size: 32px; padding: 10px 28px; border-radius: 20px; }
     .skool-url { font-size: 28px; font-weight: 700; color: #4cc3d9; text-decoration: underline; }
 
@@ -122,7 +144,6 @@ let rootAudio = "";
 scenes.forEach((s, i) => {
   const [head, ...lines] = s.overlay;
   const hasGfx = s.fx || s.id === "s03-goal" || s.id === "s05-cost-timeline" || s.id === "s06-exceptions" || s.id === "s07-emails" || s.id === "s08-tracking" || s.id === "s09-cta" || s.id === "s10-outro";
-  // Avoid duplicate logo in s10 because s10 already embeds the skool logo directly in .skool-panel
   const logoFile = (s.logo && s.id !== "s10-outro") ? ["svg", "png", "webp", "jpg"].map((e) => `assets/logos/${s.logo}.${e}`).find((f) => existsSync(`${root}/video/${f}`)) : null;
   const voDur = s.voSeconds || s.duration - 0.5;
   const voLocal = VO_LEAD;
@@ -136,17 +157,30 @@ scenes.forEach((s, i) => {
   let caps = sentences.map((x, k) => {
     const t0 = voLocal + (voDur * acc) / wTotal; acc += words[k];
     const t1 = voLocal + (voDur * acc) / wTotal;
-    return { text: x, t0, t1, w: words[k] };
+    const sWords = x.split(/\s+/);
+    return { text: x, words: sWords, t0, t1, w: words[k] };
   });
   caps[caps.length - 1].t1 = Math.max(caps[caps.length - 1].t1, s.duration - 0.45);
   for (let k = caps.length - 1; k > 0; k--) {
     if (caps[k].t1 - caps[k].t0 < 0.5 + 0.3 * caps[k].w) {
-      caps[k - 1] = { text: `${caps[k - 1].text} ${caps[k].text}`, t0: caps[k - 1].t0, t1: caps[k].t1, w: caps[k - 1].w + caps[k].w };
+      caps[k - 1] = { 
+        text: `${caps[k - 1].text} ${caps[k].text}`, 
+        words: [...caps[k - 1].words, ...caps[k].words],
+        t0: caps[k - 1].t0, 
+        t1: caps[k].t1, 
+        w: caps[k - 1].w + caps[k].w 
+      };
       caps.splice(k, 1);
     }
   }
   if (caps.length > 1 && caps[0].t1 - caps[0].t0 < 0.5 + 0.3 * caps[0].w) {
-    caps[1] = { text: `${caps[0].text} ${caps[1].text}`, t0: caps[0].t0, t1: caps[1].t1, w: caps[0].w + caps[1].w };
+    caps[1] = { 
+      text: `${caps[0].text} ${caps[1].text}`, 
+      words: [...caps[0].words, ...caps[1].words],
+      t0: caps[0].t0, 
+      t1: caps[1].t1, 
+      w: caps[0].w + caps[1].w 
+    };
     caps.shift();
   }
 
@@ -204,10 +238,23 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 6, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 2.0);`;
   }
 
+  // Animated serious style subtitles in GSAP:
   caps.forEach((c, k) => {
+    const span = Math.max(0.5, c.t1 - c.t0);
+    // 1. Smooth slide-up container entry
     js += `
-    tl.fromTo("#c${k}", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, ${r2(c.t0)});
-    tl.to("#c${k}", { opacity: 0, duration: 0.2, ease: "power1.in" }, ${r2(Math.max(c.t0 + 0.3, c.t1 - 0.2))});`;
+    tl.fromTo("#c${k}", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, ${r2(c.t0)});
+    tl.to("#c${k}", { opacity: 0, y: -6, duration: 0.2, ease: "power2.in" }, ${r2(Math.max(c.t0 + 0.3, c.t1 - 0.2))});
+    tl.fromTo("#cc${k}", { scaleX: 0 }, { scaleX: 1, duration: ${r2(span)}, ease: "none" }, ${r2(c.t0)});`;
+
+    // 2. Word-by-word kinetic illuminate animation
+    const numWords = c.words.length;
+    c.words.forEach((w, wIdx) => {
+      const wt = c.t0 + (span * wIdx) / numWords;
+      js += `
+    tl.fromTo("#cw_${k}_${wIdx}", { opacity: 0.45, color: "#94a3b8" }, { opacity: 1, color: "#4cc3d9", duration: 0.12, ease: "power2.out" }, ${r2(wt)});
+    tl.to("#cw_${k}_${wIdx}", { color: "#ffffff", duration: 0.2, ease: "power1.out" }, ${r2(wt + 0.12)});`;
+    });
   });
 
   js += `
@@ -307,7 +354,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     gfxHtml = `
       <div id="gfx-panel" class="gfx-panel">
         <div class="skool-panel">
-          <img class="skool-logo-img" src="../assets/logos/skool.svg" alt="Skool logo">
+          <img class="skool-logo-img" src="../assets/logos/skool.png" alt="Skool logo">
           <div id="skool-badge" class="skool-badge">🚀 Delivery Pilot Community</div>
           <div style="font-size: 28px; color: #cbd5e1;">Join fellow bot builders and automation practitioners:</div>
           <div class="skool-url">https://www.skool.com/delivery-pilot-8938/</div>
@@ -337,7 +384,11 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
         ${lines.map((l, j) => `<p id="l${j}" class="line">${esc(l)}</p>`).join("\n        ")}
       </div>
       ${gfxHtml}
-      ${caps.map((c, k) => `<div id="c${k}" class="cap">${esc(c.text)}</div>`).join("\n      ")}
+      ${caps.map((c, k) => `
+      <div id="c${k}" class="cap">
+        <div id="cc${k}" class="cap-cadence"></div>
+        <div class="cap-text">${c.words.map((w, wIdx) => `<span id="cw_${k}_${wIdx}" class="cap-w">${esc(w)}</span>`).join(" ")}</div>
+      </div>`).join("")}
     </div>
     <script>${js}
     </script>
