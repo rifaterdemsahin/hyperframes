@@ -50,6 +50,9 @@ Each feedback annotation is stored in browser `localStorage` under `review-v2` a
 interface ReviewMarker {
   cid: string;                      // Unique identifier (e.g. 'fb-1270-38a4')
   ts: number;                       // Creation timestamp (epoch ms)
+  createdAt: string;                // ISO 8601 creation timestamp
+  resolvedAt?: string;              // ISO 8601 resolution timestamp (when marked done)
+  resolvedTs?: number;              // Epoch ms when marked done
   state: "backlog" | "in-progress" | "done";
   kind: "marker" | "text";          // Video frame marker vs copy/post feedback
   t: number;                        // Exact timecode in seconds (e.g. 42.10)
@@ -85,6 +88,9 @@ interface CompletedTask {
   draft: string;                    // Draft or site version
   desc: string;                     // Technical description of the change
   imgUrl?: string;                  // Optional reference image URL
+  createdAt?: string;               // ISO 8601 creation timestamp
+  resolvedAt?: string;              // ISO 8601 resolution timestamp
+  duration?: string;                // Human-readable resolution turnaround (e.g. '24m 41s')
 }
 ```
 

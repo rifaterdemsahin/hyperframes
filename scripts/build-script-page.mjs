@@ -37,7 +37,7 @@ const html = `<!doctype html>
 .vo{font-size:17px;margin:10px 0}.meta{margin:4px 0;color:var(--mute);font-size:13.5px}.meta b{color:var(--accent)}.over{color:#ff6b6b;font-weight:600}.ok{color:var(--ok)}.asset{color:var(--warn)}
 button{font:inherit;background:var(--accent);color:#04222a;border:0;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
 </style></head><body>
-<script src="nav.js?v=1.27.0"></script>
+<script src="nav.js?v=1.28.0"></script>
 <main>
   <h1>📜 Script</h1>
   <p class="lead">${esc(data.title)}. ${data.scenes.length} scenes, ${totalWords} words, about ${tc(data.totalSecondsApprox)}.</p>

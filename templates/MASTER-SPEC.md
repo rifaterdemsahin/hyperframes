@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.1 · site v1.27.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.2 · site v1.28.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -105,3 +105,5 @@ Every change: commit, push, deploy, bump version.
 - Preserving SAS Query Parameters for AI Agents: Azure Blob Storage containers without public anonymous access reject unauthenticated requests with 409 Conflict. Appending and preserving the SAS query string (?se=...&sp=...) makes frame drawings immediately consumable by Claude, external tools, curl, and browsers without credential headers.
 - Pre-Copy Upload Flush: Reviewers click 'Copy feedback for Claude' as soon as they finish writing notes; ensuring the copy handler flushes and awaits pending image uploads prevents missing visual links in feedback prompts.
 - Automated Release Asset Pipelines: Large binary outputs (1080p master MP4, ~63MB) exceed git repository best practices; automated GitHub Releases via `gh release create` solve delivery without bloating git history.
+- Collapsible Creation vs Sticky Audit Workflow: Reviewers switch between drafting critique and verifying implemented changes. Making the feedback input form collapsible (<details>) with persistent browser storage brings verification tasks to the top of the sticky sidebar for distraction-free auditing.
+- Turnaround and Verification Traceability: Stamping creation and resolution timestamps on feedback cards alongside turnaround duration pills (e.g. 'Resolved in 24m 41s') and dedicated Verified/Not Verified filtering creates a transparent, high-velocity iteration loop between human reviewers and coding agents.
