@@ -80,6 +80,8 @@ test("Server requestHandler: Health endpoint", async () => {
   const data = JSON.parse(res.body);
   assert.equal(data.status, "ok");
   assert.equal(data.app, "hyperframes-review");
+  assert.equal(data.version, JSON.parse(fs.readFileSync(path.join(root, "versions.json"), "utf8")).site, "health reports the live site version");
+  assert.equal(data.latestDraft, JSON.parse(fs.readFileSync(path.join(root, "draft/versions.json"), "utf8")).latest);
 });
 
 test("Server requestHandler: CORS preflight (OPTIONS)", async () => {

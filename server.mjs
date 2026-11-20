@@ -100,12 +100,16 @@ export async function requestHandler(req, res) {
     pathname = "/";
   }
 
+  // Read live from the repo so /health never reports a stale hard-coded version.
+  const readJsonSafe = (rel) => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, rel), "utf8")); } catch { return {}; } };
+
   // --- API: Health ---
   if (pathname === "/health" || pathname === "/api/health") {
     return sendJson(res, 200, {
       status: "ok",
       app: "hyperframes-review",
-      version: "1.30.1",
+      version: readJsonSafe("versions.json").site || null,
+      latestDraft: readJsonSafe("draft/versions.json").latest || null,
       azureConfigured: !!AZURE_SAS,
       keyVault: KEY_VAULT_NAME,
       uptimeSec: Math.round(process.uptime()),
