@@ -1,10 +1,10 @@
 {
-  "site": "1.36.0",
+  "site": "1.37.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "date": "2026-11-20",
       "deps": [
         "scripts/build-architecture.mjs"
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.36.0",
+      "version": "1.37.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -278,9 +278,32 @@
         "first-draft.html",
         "publish.html"
       ]
+    },
+    "compare-drafts.html": {
+      "title": "Compare drafts",
+      "version": "1.1.0",
+      "date": "2026-11-20",
+      "deps": [
+        "review.html",
+        "renders.html",
+        "draft/versions.json",
+        "script/scenes.json",
+        "scripts/build-compare-drafts-page.mjs"
+      ]
     }
   },
   "changelog": [
+    {
+      "version": "1.37.0",
+      "date": "2026-11-20",
+      "pages": [
+        "compare-drafts.html",
+        "index.html"
+      ],
+      "changes": [
+        "New page: Compare drafts, two rendered drafts side by side with one synced set of controls, scene jumps, audio A/B, changes and scene frames side by side, shareable ?a=&b= links"
+      ]
+    },
     {
       "version": "1.36.0",
       "date": "2026-11-20",

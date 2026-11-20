@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compare Drafts · Hyperframes</title>
+<link rel="stylesheet" href="site.css?v=1.37.0">
+<style>
+.picker{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+.picker label{font-size:13px;color:var(--mute);font-weight:700}
+.picker select{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);max-width:100%}
+.btn{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#04222a;font-weight:800}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:860px){.pair{grid-template-columns:1fr}}
+.side{min-width:0}
+.side h3{margin:0 0 6px;font-size:15px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.tagA,.tagB{display:inline-block;min-width:24px;text-align:center;border-radius:6px;font-weight:900;font-size:12px;padding:1px 6px;color:#04222a}
+.tagA{background:#ffd166}.tagB{background:var(--accent)}
+.side video{width:100%;aspect-ratio:16/9;background:#000;border-radius:10px;border:1px solid var(--line);display:block}
+.controls{position:sticky;bottom:52px;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.controls input[type=range]{flex:1 1 220px;min-width:0;accent-color:var(--accent)}
+.time{font:600 14px ui-monospace,monospace;min-width:120px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:12px;border:0;background:transparent;color:var(--ink);padding:5px 9px;cursor:pointer}
+.seg button.on{background:var(--accent);color:#04222a;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.chips button{font:inherit;font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.chips button:hover{border-color:var(--accent)}
+.stat{font-size:13px;color:var(--mute);margin:6px 0 0}
+.stat b{color:var(--ink)}
+.changes{font-size:13.5px;margin:6px 0;padding-left:18px}
+.frames td{width:50%}.frames img{width:100%;border-radius:6px;display:block;background:#000}
+.frames .none{font-size:12px;color:var(--mute)}
+.drift{font-size:12px;color:var(--mute)}
+</style></head><body>
+<script src="nav.js?v=1.37.0"></script>
+<main style="max-width:1280px">
+  <div class="crumbs">🔍 3 Review &nbsp;·&nbsp; Compare drafts</div>
+  <h1 style="margin:0 0 4px">🆚 Compare drafts</h1>
+  <p class="lead" style="margin:0">Pick two rendered drafts and watch them side by side, in sync. One set of controls drives both.</p>
+
+  <div class="picker">
+    <label for="selA"><span class="tagA">A</span></label>
+    <select id="selA"><option value="1">Draft v1 · First draft (2026-11-18)</option><option value="2">Draft v2 · Second draft (2026-11-18)</option><option value="3">Draft v3 · Third draft (2026-11-20)</option><option value="4">Draft v4 · Fourth draft (2026-11-20)</option><option value="5">Draft v5 · Fifth draft (2026-11-20)</option><option value="6">Draft v6 · Sixth draft (2026-11-20)</option><option value="7">Draft v7 · Seventh draft (2026-11-20)</option><option value="8">Draft v8 · Eighth draft (2026-11-20)</option><option value="9">Draft v9 · Ninth draft (2026-11-20)</option><option value="10">Draft v10 · Tenth draft (2026-11-20)</option><option value="11">Draft v11 · Eleventh draft: keynote cut (2026-11-20)</option></select>
+    <button class="btn" id="swap" title="Swap A and B">⇄ Swap</button>
+    <label for="selB"><span class="tagB">B</span></label>
+    <select id="selB"><option value="1">Draft v1 · First draft (2026-11-18)</option><option value="2">Draft v2 · Second draft (2026-11-18)</option><option value="3">Draft v3 · Third draft (2026-11-20)</option><option value="4">Draft v4 · Fourth draft (2026-11-20)</option><option value="5">Draft v5 · Fifth draft (2026-11-20)</option><option value="6">Draft v6 · Sixth draft (2026-11-20)</option><option value="7">Draft v7 · Seventh draft (2026-11-20)</option><option value="8">Draft v8 · Eighth draft (2026-11-20)</option><option value="9">Draft v9 · Ninth draft (2026-11-20)</option><option value="10">Draft v10 · Tenth draft (2026-11-20)</option><option value="11">Draft v11 · Eleventh draft: keynote cut (2026-11-20)</option></select>
+    <button class="btn" id="copyLink" title="Copy a link to this comparison">🔗 Copy link</button>
+  </div>
+
+  <div class="pair">
+    <div class="side"><h3><span class="tagA">A</span><span id="titleA"></span></h3><video id="vA" preload="auto" playsinline></video><p class="stat" id="statA"></p></div>
+    <div class="side"><h3><span class="tagB">B</span><span id="titleB"></span></h3><video id="vB" preload="auto" playsinline></video><p class="stat" id="statB"></p></div>
+  </div>
+
+  <div class="controls" id="controls">
+    <button class="btn pri" id="play">▶ Play</button>
+    <button class="btn" id="back5" title="Back 5 s (J)">−5s</button>
+    <button class="btn" id="backF" title="Back one frame (←)">◀ frame</button>
+    <button class="btn" id="fwdF" title="Forward one frame (→)">frame ▶</button>
+    <button class="btn" id="fwd5" title="Forward 5 s (L)">+5s</button>
+    <span class="time" id="time">0:00.00</span>
+    <input type="range" id="scrub" min="0" max="244" step="0.01" value="0" aria-label="Position">
+    <span class="seg" id="audio" title="Which side you hear"><button data-a="A">🔊 A</button><button data-a="B" class="on">🔊 B</button><button data-a="off">🔇</button></span>
+    <select id="rate" class="btn" title="Speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+    <span class="drift" id="drift"></span>
+  </div>
+
+  <div class="chips" id="chips"><button data-t="0" title="Hook">S01 · 0:00</button><button data-t="14" title="Part 1 of 3: AI and real-world red tape">S02 · 0:14</button><button data-t="37" title="The goal">S03 · 0:37</button><button data-t="57" title="Five things to do first, with AI">S04 · 0:57</button><button data-t="97" title="What it costs and how long it takes">S05 · 1:37</button><button data-t="124" title="The exceptions">S06 · 2:04</button><button data-t="153" title="What my emails taught me">S07 · 2:33</button><button data-t="177" title="How I keep track of it">S08 · 2:57</button><button data-t="202" title="Subscribe for Part 2">S09 · 3:22</button><button data-t="225" title="Disclaimer + outro">S10 · 3:45</button></div>
+  <p style="font-size:12.5px;color:var(--mute);margin:2px 0 0">Scene jumps use the current script's timings; older drafts can be timed a little differently. Keys: Space play/pause · ← → one frame · J L five seconds.</p>
+
+  <h2 style="margin-top:28px">What changed</h2>
+  <div class="pair">
+    <div class="card"><b><span class="tagA">A</span> <span id="chTitleA"></span></b><ul class="changes" id="chA"></ul></div>
+    <div class="card"><b><span class="tagB">B</span> <span id="chTitleB"></span></b><ul class="changes" id="chB"></ul></div>
+  </div>
+
+  <h2 style="margin-top:28px">Scene by scene</h2>
+  <p style="font-size:13px;color:var(--mute);margin-top:-6px">One frame per scene, taken by render-draft.mjs a few seconds into each scene. Click a row to jump both players there.</p>
+  <div class="tw"><table class="frames">
+    <thead><tr><th><span class="tagA">A</span> <span id="fhA"></span></th><th><span class="tagB">B</span> <span id="fhB"></span></th></tr></thead>
+    <tbody id="frames"></tbody>
+  </table></div>
+</main>
+
+<script>
+(function () {
+  var DRAFTS = [{"n":1,"label":"First draft","date":"2026-11-18","changes":["First cut: the whole film from the script, AI draft voice, captions, placeholders for your footage."],"src":"draft/v1/video.mp4","mb":4.6,"duration":218,"renderSeconds":46.1,"check":"0 errors, 0 warnings","frames":{"s01-hook":"draft/v1/frames/s01-hook.jpg","s02-intro":"draft/v1/frames/s02-intro.jpg","s03-goal":"draft/v1/frames/s03-goal.jpg","s04-five-things":"draft/v1/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v1/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v1/frames/s06-exceptions.jpg","s07-emails":"draft/v1/frames/s07-emails.jpg","s08-tracking":"draft/v1/frames/s08-tracking.jpg","s09-cta":"draft/v1/frames/s09-cta.jpg","s10-outro":"draft/v1/frames/s10-outro.jpg"}},{"n":2,"label":"Second draft","date":"2026-11-18","changes":["Hook: \"here's how a liquidation works in the age of AI\".","Five things: connect all of the parts to AI so you can iterate; be ready to learn the details; AI doesn't mean you won't learn, it means you're ready to learn and act on the fly.","Costs: these are average UK figures, yours could be higher or lower; new lever animation for \"AI gives you leverage\".","Exceptions: \"AI helps when the stakes increase\" on screen.","Emails: the footage frame is much bigger.","Tracking: n8n logo slot (needs the official logo file), and \"next journey\" instead of \"next role\"."],"src":"draft/v2/video.mp4","mb":4.9,"duration":234,"renderSeconds":140.1,"check":"0 errors, 0 warnings","frames":{"s01-hook":"draft/v2/frames/s01-hook.jpg","s02-intro":"draft/v2/frames/s02-intro.jpg","s03-goal":"draft/v2/frames/s03-goal.jpg","s04-five-things":"draft/v2/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v2/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v2/frames/s06-exceptions.jpg","s07-emails":"draft/v2/frames/s07-emails.jpg","s08-tracking":"draft/v2/frames/s08-tracking.jpg","s09-cta":"draft/v2/frames/s09-cta.jpg","s10-outro":"draft/v2/frames/s10-outro.jpg"}},{"n":3,"label":"Third draft","date":"2026-11-20","changes":["Scene 03: Added industrial & information revolution red tape mention with BAM impact animation and AI background.","Audio: Regenerated all 10 audio clips via fal.ai Kokoro with serious British tone voice (bm_lewis).","Scene 04: Removed footage placeholder boxes, verified British English spelling, added learning with AI disclaimer.","Scene 05: Animate learn and act on the fly, fee breakdown (£1,500 + £2,100), 2-month prep/close timeline, and YOU + AI leverage graphic.","Scene 06: Not hands-off animation (hands-on to secure, adapt & train), practitioner as security guardrail, added emojis, removed low expectation script line to sync.","Scene 07: Removed footage placeholder, animated online methods as structured database, MCP pipeline to AI.","Scene 08: n8n deterministic (known) vs AI probabilistic (unknown) comparison cards, authenticity quote card, official n8n logo.","Scene 09: Part 2 feedback prompt for YouTube comments section, animated subscribe callout.","Scene 10: Prominent disclaimer with emojis, Delivery Pilot community Skool badge with link."],"src":"draft/v3/video.mp4","mb":5.1,"duration":244,"renderSeconds":82.3,"check":"0 errors, 2 warnings","frames":{"s01-hook":"draft/v3/frames/s01-hook.jpg","s02-intro":"draft/v3/frames/s02-intro.jpg","s03-goal":"draft/v3/frames/s03-goal.jpg","s04-five-things":"draft/v3/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v3/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v3/frames/s06-exceptions.jpg","s07-emails":"draft/v3/frames/s07-emails.jpg","s08-tracking":"draft/v3/frames/s08-tracking.jpg","s09-cta":"draft/v3/frames/s09-cta.jpg","s10-outro":"draft/v3/frames/s10-outro.jpg"}},{"n":4,"label":"Fourth draft","date":"2026-11-20","changes":["Animated serious style subtitles: kinetic phrase containers with progressive word illumination and cadence tracker line.","Integrated official Skool brand logo image into Scene 10 outro panel.","Passed full WCAG AA contrast check (137/137 checks passed)."],"src":"draft/v4/video.mp4","mb":5.4,"duration":244,"renderSeconds":90.2,"check":"0 errors, 1 warnings","frames":{"s01-hook":"draft/v4/frames/s01-hook.jpg","s02-intro":"draft/v4/frames/s02-intro.jpg","s03-goal":"draft/v4/frames/s03-goal.jpg","s04-five-things":"draft/v4/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v4/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v4/frames/s06-exceptions.jpg","s07-emails":"draft/v4/frames/s07-emails.jpg","s08-tracking":"draft/v4/frames/s08-tracking.jpg","s09-cta":"draft/v4/frames/s09-cta.jpg","s10-outro":"draft/v4/frames/s10-outro.jpg"}},{"n":5,"label":"Fifth draft","date":"2026-11-20","changes":["Voiceover reader accelerated to 1.1x speed with warm, charismatic British tone (bm_george) across all scenes.","Scene 02: Included IT contractor context, UK tax changes, and involuntary push inside IR35 during market downturn.","Scene 03: Generated BAM audio sound effect via fal.ai stable audio and mixed into soundtrack; removed BAM UI box in favor of sleek Legal Separation Rule & 3-step liquidation pipeline graphic.","Scene 09: Generated motivational dawn background with fal.ai; added Shame to Grace guidance (don't attach personality to company, vehicle can always restart); Part 2 feedback prompt.","Re-timed all scene durations and timeline offsets for seamless transition flow."],"src":"draft/v5/video.mp4","mb":5.4,"duration":243,"renderSeconds":111.5,"check":"0 errors, 8 warnings","frames":{"s01-hook":"draft/v5/frames/s01-hook.jpg","s02-intro":"draft/v5/frames/s02-intro.jpg","s03-goal":"draft/v5/frames/s03-goal.jpg","s04-five-things":"draft/v5/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v5/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v5/frames/s06-exceptions.jpg","s07-emails":"draft/v5/frames/s07-emails.jpg","s08-tracking":"draft/v5/frames/s08-tracking.jpg","s09-cta":"draft/v5/frames/s09-cta.jpg","s10-outro":"draft/v5/frames/s10-outro.jpg"}},{"n":6,"label":"Sixth draft","date":"2026-11-20","changes":["Scene 01: Added dynamic 'In the Age of AI' core strategy reactor animation.","Scene 04: Added interactive ChatGPT co-pilot simulation with live learning from AI card.","Scene 08: Added visual workflow diagram comparing n8n deterministic scheduled email cron vs AI bot handling unknown inbound replies; dedicated golden honour card backdrop for friend quote.","Scene 10: Added animated Bot-to-Human Handover flow with data stream pulse into licensed practitioner decision block.","Visual Quality: Upgraded Hyperframes render quality to high-fidelity 'looks' (CRF 16) and razor-sharp 720p HD web copy."],"src":"draft/v6/video.mp4","mb":14.1,"duration":243,"renderSeconds":152.2,"check":"0 errors, 9 warnings","frames":{"s01-hook":"draft/v6/frames/s01-hook.jpg","s02-intro":"draft/v6/frames/s02-intro.jpg","s03-goal":"draft/v6/frames/s03-goal.jpg","s04-five-things":"draft/v6/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v6/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v6/frames/s06-exceptions.jpg","s07-emails":"draft/v6/frames/s07-emails.jpg","s08-tracking":"draft/v6/frames/s08-tracking.jpg","s09-cta":"draft/v6/frames/s09-cta.jpg","s10-outro":"draft/v6/frames/s10-outro.jpg"}},{"n":7,"label":"Seventh draft","date":"2026-11-20","changes":["Video Metadata: Removed all internal scene label tags (INTRO, HOOK, CHAPTER, etc.) for clean presentation.","Visuals & Typography: Added expressive contextual emojis across all overlays, headings, and callout cards.","Scene 08: Added cinematic Hero's Journey background (heros-journey.jpg) with focused transition to Friend & Honour card during 'A friend told me...' voiceover.","Review Tooling: Prominently displayed current review version (Draft v7) on review.html and added direct Azure Blob Storage frame upload with clickable image URLs in copied feedback."],"src":"draft/v7/video.mp4","mb":14.4,"duration":243,"renderSeconds":146.9,"check":"0 errors, 9 warnings","frames":{"s01-hook":"draft/v7/frames/s01-hook.jpg","s02-intro":"draft/v7/frames/s02-intro.jpg","s03-goal":"draft/v7/frames/s03-goal.jpg","s04-five-things":"draft/v7/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v7/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v7/frames/s06-exceptions.jpg","s07-emails":"draft/v7/frames/s07-emails.jpg","s08-tracking":"draft/v7/frames/s08-tracking.jpg","s09-cta":"draft/v7/frames/s09-cta.jpg","s10-outro":"draft/v7/frames/s10-outro.jpg"}},{"n":8,"label":"Eighth draft","date":"2026-11-20","changes":["Overlay Tag Removal: Removed the top-right 'DRAFT V*' watermark tag across the entire video for a clean, distraction-free viewing experience."],"src":"draft/v8/video.mp4","mb":14.3,"duration":243,"renderSeconds":145.9,"check":"0 errors, 10 warnings","frames":{"s01-hook":"draft/v8/frames/s01-hook.jpg","s02-intro":"draft/v8/frames/s02-intro.jpg","s03-goal":"draft/v8/frames/s03-goal.jpg","s04-five-things":"draft/v8/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v8/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v8/frames/s06-exceptions.jpg","s07-emails":"draft/v8/frames/s07-emails.jpg","s08-tracking":"draft/v8/frames/s08-tracking.jpg","s09-cta":"draft/v8/frames/s09-cta.jpg","s10-outro":"draft/v8/frames/s10-outro.jpg"}},{"n":9,"label":"Ninth draft","date":"2026-11-20","changes":["Scene 03: Removed BAM sound effect from the soundtrack for a clean, professional flow.","Scene 07: Corrected core rule in script and subtitle: 'The process starts once the entire balance for the liquidation company is paid off' (chased 6 times); modularly regenerated audio via fal.ai Kokoro.","Scene 08: Modulated friend's question tone ('Become like MrBeast, why show your real work?') with a distinct British voice (bm_lewis) for character clarity; enlarged and centered the Hero's Journey card across the canvas.","Scene 10: Focused onto the Delivery Pilot Skool community panel at the end of the scene (dimmed background elements, scaled up 1.28x with radiant cyan glow).","Costs: Cataloged modular audio regeneration costs ($0.02) on costs.html highlighting iteration savings."],"src":"draft/v9/video.mp4","mb":14.5,"duration":244,"renderSeconds":149.8,"check":"0 errors, 10 warnings","frames":{"s01-hook":"draft/v9/frames/s01-hook.jpg","s02-intro":"draft/v9/frames/s02-intro.jpg","s03-goal":"draft/v9/frames/s03-goal.jpg","s04-five-things":"draft/v9/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v9/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v9/frames/s06-exceptions.jpg","s07-emails":"draft/v9/frames/s07-emails.jpg","s08-tracking":"draft/v9/frames/s08-tracking.jpg","s09-cta":"draft/v9/frames/s09-cta.jpg","s10-outro":"draft/v9/frames/s10-outro.jpg"}},{"n":10,"label":"Tenth draft","date":"2026-11-20","changes":["Scene 08 (fb-5826-c463): Removed the top n8n logo badge; the Hero's Journey quote card now sits centred and wide with the background blurred.","Scene 10 (fb-7231-718f): Delivery Pilot Skool panel glides to the centre (1.35x, blue glow) while the background and overlay text blur and dim.","Scene 04: Fixed the ChatGPT card, which had jumped to the left edge on top of the 'Five things' list; it is back on the right with the Trustpilot card popping over it.","Render fix: S08/S10 moves now use transforms only, so the Hyperframes check passes; that check failure is why v10 had not rendered before."],"src":"draft/v10/video.mp4","mb":14.6,"duration":244,"renderSeconds":129.5,"check":"0 errors, 9 warnings","frames":{"s01-hook":"draft/v10/frames/s01-hook.jpg","s02-intro":"draft/v10/frames/s02-intro.jpg","s03-goal":"draft/v10/frames/s03-goal.jpg","s04-five-things":"draft/v10/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v10/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v10/frames/s06-exceptions.jpg","s07-emails":"draft/v10/frames/s07-emails.jpg","s08-tracking":"draft/v10/frames/s08-tracking.jpg","s09-cta":"draft/v10/frames/s09-cta.jpg","s10-outro":"draft/v10/frames/s10-outro.jpg"}},{"n":11,"label":"Eleventh draft: keynote cut","date":"2026-11-20","changes":["Whole film restyled as a keynote: one idea per screen, at most 6 words, no lists, Inter 140 to 200 px on a black radial background, one blue accent word per screen.","84 single-idea beats replace the heading, bullet stacks, card panels and burned-in captions; each beat starts on the word where the voiceover says it, chained with relative data-start.","Two full-bleed image beats with a short caption: red tape (S03) and the next journey (S08).","Everything dropped from the screen is kept in an HTML comment per scene and in video/notes.md; the voiceover is unchanged.","Keynote audit (scripts/audit-keynote.mjs): v10 had 163 of 163 text moments over the limits; v11 has 0."],"src":"draft/v11/video.mp4","mb":10.1,"duration":244,"renderSeconds":109.8,"check":"0 errors, 10 warnings","frames":{"s01-hook":"draft/v11/frames/s01-hook.jpg","s02-intro":"draft/v11/frames/s02-intro.jpg","s03-goal":"draft/v11/frames/s03-goal.jpg","s04-five-things":"draft/v11/frames/s04-five-things.jpg","s05-cost-timeline":"draft/v11/frames/s05-cost-timeline.jpg","s06-exceptions":"draft/v11/frames/s06-exceptions.jpg","s07-emails":"draft/v11/frames/s07-emails.jpg","s08-tracking":"draft/v11/frames/s08-tracking.jpg","s09-cta":"draft/v11/frames/s09-cta.jpg","s10-outro":"draft/v11/frames/s10-outro.jpg"}}];
+  var SCENES = [{"id":"s01-hook","n":1,"title":"Hook","start":0},{"id":"s02-intro","n":2,"title":"Part 1 of 3: AI and real-world red tape","start":14},{"id":"s03-goal","n":3,"title":"The goal","start":37},{"id":"s04-five-things","n":4,"title":"Five things to do first, with AI","start":57},{"id":"s05-cost-timeline","n":5,"title":"What it costs and how long it takes","start":97},{"id":"s06-exceptions","n":6,"title":"The exceptions","start":124},{"id":"s07-emails","n":7,"title":"What my emails taught me","start":153},{"id":"s08-tracking","n":8,"title":"How I keep track of it","start":177},{"id":"s09-cta","n":9,"title":"Subscribe for Part 2","start":202},{"id":"s10-outro","n":10,"title":"Disclaimer + outro","start":225}];
+  var FPS = 30;
+  var byN = {}; DRAFTS.forEach(function (d) { byN[d.n] = d; });
+  var q = new URLSearchParams(location.search);
+  var newest = DRAFTS[DRAFTS.length - 1].n, prev = DRAFTS[DRAFTS.length - 2].n;
+  var a = byN[q.get("a")] ? +q.get("a") : prev, b = byN[q.get("b")] ? +q.get("b") : newest;
+  var $ = function (id) { return document.getElementById(id); };
+  var vA = $("vA"), vB = $("vB"), selA = $("selA"), selB = $("selB"), scrub = $("scrub");
+  var audio = "B", scrubbing = false;
+  var tc = function (x) { x = Math.max(0, x || 0); var m = Math.floor(x / 60), s = x - m * 60; return m + ":" + (s < 10 ? "0" : "") + s.toFixed(2); };
+  var secs = function (n) { return n == null ? "–" : n >= 60 ? Math.floor(n / 60) + " min " + Math.round(n % 60) + " s" : Math.round(n) + " s"; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var maxDur = function () { return Math.max(vA.duration || 0, vB.duration || 0) || 244; };
+  function setT(t) {
+    t = Math.max(0, Math.min(t, maxDur() - 0.01));
+    vA.currentTime = Math.min(t, (vA.duration || t + 1) - 0.01);
+    vB.currentTime = Math.min(t, (vB.duration || t + 1) - 0.01);
+    paint();
+  }
+  function applyAudio() {
+    vA.muted = audio !== "A"; vB.muted = audio !== "B";
+    document.querySelectorAll("#audio button").forEach(function (x) { x.classList.toggle("on", x.dataset.a === audio); });
+  }
+  function side(which, d) {
+    $("title" + which).textContent = "Draft v" + d.n + " · " + d.label;
+    $("stat" + which).innerHTML = "<b>" + esc(d.date) + "</b> · " + (d.duration ? tc(d.duration).replace(/\.\d+$/, "") : "?") + " long · " + d.mb + " MB · rendered in " + secs(d.renderSeconds) + (d.check ? " · check: " + esc(d.check) : "");
+    $("chTitle" + which).textContent = "Draft v" + d.n + " · " + d.label;
+    $("ch" + which).innerHTML = d.changes.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") || "<li>No notes.</li>";
+    $("fh" + which).textContent = "Draft v" + d.n;
+  }
+  function load() {
+    var t = vB.currentTime || vA.currentTime || 0, playing = !vB.paused || !vA.paused;
+    var dA = byN[a], dB = byN[b];
+    selA.value = a; selB.value = b;
+    vA.src = dA.src; vB.src = dB.src;
+    side("A", dA); side("B", dB);
+    $("frames").innerHTML = SCENES.map(function (s) {
+      var cell = function (d) { var f = d.frames[s.id]; return f ? '<img loading="lazy" src="' + f + '" alt="Draft v' + d.n + ', scene ' + s.n + '">' : '<span class="none">No frame for this scene in v' + d.n + "</span>"; };
+      return '<tr data-t="' + s.start + '" style="cursor:pointer"><td colspan="2" style="padding:8px 12px 2px;font-weight:700;font-size:13px">S' + (s.n < 10 ? "0" : "") + s.n + " · " + esc(s.title) + '</td></tr><tr data-t="' + s.start + '" style="cursor:pointer"><td>' + cell(dA) + "</td><td>" + cell(dB) + "</td></tr>";
+    }).join("");
+    history.replaceState(null, "", "?a=" + a + "&b=" + b + location.hash);
+    var once = 0, ready = function () { if (++once === 2) { setT(t); applyAudio(); if (playing) playBoth(); } };
+    vA.addEventListener("loadedmetadata", ready, { once: true });
+    vB.addEventListener("loadedmetadata", ready, { once: true });
+  }
+  function playBoth() { vB.currentTime = vA.currentTime; Promise.all([vA.play(), vB.play()]).catch(function () {}); $("play").textContent = "⏸ Pause"; tick(); }
+  function pauseBoth() { vA.pause(); vB.pause(); vB.currentTime = Math.min(vA.currentTime, (vB.duration || 1e9) - 0.01); $("play").textContent = "▶ Play"; paint(); }
+  function paint() {
+    var t = Math.max(vA.currentTime || 0, vB.currentTime || 0);
+    scrub.max = maxDur().toFixed(2);
+    if (!scrubbing) scrub.value = t.toFixed(2);
+    var sc = SCENES.filter(function (s) { return s.start <= t + 0.001; }).pop();
+    $("time").textContent = tc(t) + (sc ? "  S" + (sc.n < 10 ? "0" : "") + sc.n : "");
+  }
+  function tick() {
+    if (vA.paused && vB.paused) return;
+    // A is the clock; nudge B back into step when they drift more than ~3 frames
+    var d = (vB.currentTime - vA.currentTime);
+    if (!vA.ended && !vB.ended && Math.abs(d) > 0.1) vB.currentTime = vA.currentTime;
+    $("drift").textContent = "sync ±" + Math.round(Math.abs(d) * 1000) + " ms";
+    paint();
+    requestAnimationFrame(tick);
+  }
+  vA.addEventListener("ended", function () { if (vB.ended || vB.paused) pauseBoth(); });
+  vB.addEventListener("ended", function () { if (vA.ended || vA.paused) pauseBoth(); });
+  $("play").onclick = function () { (vA.paused && vB.paused) ? playBoth() : pauseBoth(); };
+  $("back5").onclick = function () { setT(vA.currentTime - 5); };
+  $("fwd5").onclick = function () { setT(vA.currentTime + 5); };
+  $("backF").onclick = function () { pauseBoth(); setT(vA.currentTime - 1 / FPS); };
+  $("fwdF").onclick = function () { pauseBoth(); setT(vA.currentTime + 1 / FPS); };
+  scrub.addEventListener("input", function () { scrubbing = true; setT(+scrub.value); });
+  scrub.addEventListener("change", function () { scrubbing = false; });
+  $("rate").onchange = function () { vA.playbackRate = vB.playbackRate = +this.value; };
+  document.querySelectorAll("#audio button").forEach(function (x) { x.onclick = function () { audio = x.dataset.a; applyAudio(); }; });
+  $("chips").onclick = function (e) { var t = e.target.closest("button"); if (t) setT(+t.dataset.t + 0.5); };
+  $("frames").onclick = function (e) { var r = e.target.closest("tr[data-t]"); if (r) { setT(+r.dataset.t + 0.5); window.scrollTo({ top: $("vA").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); } };
+  selA.onchange = function () { a = +selA.value; load(); };
+  selB.onchange = function () { b = +selB.value; load(); };
+  $("swap").onclick = function () { var x = a; a = b; b = x; load(); };
+  $("copyLink").onclick = function () { navigator.clipboard && navigator.clipboard.writeText(location.href).then(function () { $("copyLink").textContent = "✓ Copied"; setTimeout(function () { $("copyLink").textContent = "🔗 Copy link"; }, 1500); }); };
+  document.addEventListener("keydown", function (e) {
+    if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName) || e.target.isContentEditable || e.metaKey || e.ctrlKey) return;
+    if (e.key === " ") { e.preventDefault(); $("play").click(); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); $("backF").click(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); $("fwdF").click(); }
+    else if (e.key === "j" || e.key === "J") $("back5").click();
+    else if (e.key === "l" || e.key === "L") $("fwd5").click();
+  });
+  vA.addEventListener("timeupdate", paint);
+  vB.addEventListener("timeupdate", paint);
+  load();
+})();
+</script>
+</body></html>
