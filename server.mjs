@@ -126,13 +126,15 @@ export async function requestHandler(req, res) {
 
   // --- API: Verification Get (Cached & Ultra-fast) ---
   if (pathname === "/api/verification" && req.method === "GET") {
-    const draftN = reqUrl.searchParams.get("draft") || "9";
+    const draftN = reqUrl.searchParams.get("draft") || "10";
     const filename = `UK-Director-Liquidation-Draft-v${draftN}-Verification.json`;
 
     // Serve from cache if fresh
     const now = Date.now();
     if (verificationCache.data && (now - verificationCache.timestamp < verificationCache.ttlMs)) {
-      return sendJson(res, 200, { ...verificationCache.data, _cached: true });
+      if (verificationCache.data.draft === `Draft v${draftN}`) {
+        return sendJson(res, 200, { ...verificationCache.data, _cached: true });
+      }
     }
 
     if (!AZURE_SAS) {
@@ -144,12 +146,30 @@ export async function requestHandler(req, res) {
       const cleanPath = u.pathname.replace(/\/$/, "");
       const getUrl = u.origin + cleanPath + "/hyperframes/" + filename + u.search;
 
-      const blobRes = await fetch(getUrl);
+      let blobRes = await fetch(getUrl);
       if (blobRes.ok) {
         const data = await blobRes.json();
         verificationCache = { data, timestamp: now, ttlMs: 20000 };
         return sendJson(res, 200, data);
       } else {
+        // Fallback: search backwards for latest draft verification in Azure
+        let prevN = parseInt(draftN, 10) - 1;
+        while (prevN >= 1) {
+          const prevFile = `UK-Director-Liquidation-Draft-v${prevN}-Verification.json`;
+          const prevUrl = u.origin + cleanPath + "/hyperframes/" + prevFile + u.search;
+          try {
+            const prevRes = await fetch(prevUrl);
+            if (prevRes.ok) {
+              const prevData = await prevRes.json();
+              return sendJson(res, 200, {
+                ...prevData,
+                _inheritedFrom: `Draft v${prevN}`,
+                _inheritedFor: `Draft v${draftN}`
+              });
+            }
+          } catch (_) {}
+          prevN--;
+        }
         return sendJson(res, 200, { verifiedMap: {}, verifiedCount: 0, status: blobRes.status });
       }
     } catch (err) {
@@ -255,6 +275,37 @@ export async function requestHandler(req, res) {
     if (fs.existsSync(filePath + ".html")) {
       filePath = filePath + ".html";
       try { stat = fs.statSync(filePath); } catch (_) {}
+    } else {
+      // Automatic fallback for draft video/frame assets if the latest draft is still pending render
+      const vidMatch = pathname.match(/^\/draft\/v(\d+)\/video\.mp4$/);
+      if (vidMatch) {
+        let fallbackN = parseInt(vidMatch[1], 10) - 1;
+        while (fallbackN >= 1) {
+          const testPath = path.join(__dirname, "draft", `v${fallbackN}`, "video.mp4");
+          if (fs.existsSync(testPath)) {
+            filePath = testPath;
+            try { stat = fs.statSync(filePath); } catch (_) {}
+            res.setHeader("X-Draft-Video-Fallback", `v${fallbackN}`);
+            res.setHeader("X-Draft-Video-Requested", `v${vidMatch[1]}`);
+            break;
+          }
+          fallbackN--;
+        }
+      }
+      const frameMatch = pathname.match(/^\/draft\/v(\d+)\/frames\/(.+)$/);
+      if (frameMatch && !stat) {
+        let fallbackN = parseInt(frameMatch[1], 10) - 1;
+        while (fallbackN >= 1) {
+          const testPath = path.join(__dirname, "draft", `v${fallbackN}`, "frames", frameMatch[2]);
+          if (fs.existsSync(testPath)) {
+            filePath = testPath;
+            try { stat = fs.statSync(filePath); } catch (_) {}
+            res.setHeader("X-Draft-Frame-Fallback", `v${fallbackN}`);
+            break;
+          }
+          fallbackN--;
+        }
+      }
     }
   }
 

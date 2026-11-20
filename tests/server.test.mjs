@@ -121,7 +121,29 @@ test("Server requestHandler: HTTP 206 Partial Content range streaming for MP4", 
   assert.equal(res.getHeader("content-length"), 101);
 });
 
-test("Server requestHandler: 404 for non-existent file", async () => {
+test("Server requestHandler: Automatic video fallback for unrendered draft versions", async () => {
+  // Request /draft/v99/video.mp4 which does not exist; server should fall back to draft/v9/video.mp4
+  const req = createMockRequest({
+    method: "GET",
+    url: "/draft/v99/video.mp4",
+    headers: { range: "bytes=0-50" },
+  });
+  const res = new MockResponse();
+
+  await new Promise(async (resolve) => {
+    res.on("finish", resolve);
+    await requestHandler(req, res);
+    setTimeout(resolve, 300);
+  });
+
+  assert.equal(res.statusCode, 206);
+  assert.equal(res.getHeader("content-type"), "video/mp4");
+  assert.equal(res.getHeader("x-draft-video-requested"), "v99");
+  assert.equal(res.getHeader("x-draft-video-fallback"), "v9");
+  assert.equal(res.getHeader("content-length"), 51);
+});
+
+test("Server requestHandler: 404 for non-existent non-draft file", async () => {
   const req = createMockRequest({ method: "GET", url: "/non-existent-file-xyz.html" });
   const res = new MockResponse();
 

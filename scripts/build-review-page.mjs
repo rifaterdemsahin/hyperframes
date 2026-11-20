@@ -37,8 +37,36 @@ const scenes = S.scenes.map((s, i) => {
 });
 
 const videoSlug = "UK-Director-Liquidation-Part-1";
-const videoDownloadName = `${videoSlug}-Draft-v${N}-Review.mp4`;
-const DATA = { fps: FPS, src: `draft/v${N}/video.mp4`, downloadName: videoDownloadName, poster: `draft/v${N}/frames/${S.scenes[0].id}.jpg`, label: `🎬 Draft v${N}`, draftN: N, duration: M.duration, scenes, title, description, pageKey: "review.html", videoTitle: S.title };
+let renderedN = N;
+while (renderedN > 1 && !existsSync(`${root}/draft/v${renderedN}/video.mp4`)) {
+  renderedN--;
+}
+const isRenderPending = (renderedN !== N);
+const videoSrc = `draft/v${renderedN}/video.mp4`;
+const posterSrc = existsSync(`${root}/draft/v${N}/frames/${S.scenes[0].id}.jpg`)
+  ? `draft/v${N}/frames/${S.scenes[0].id}.jpg`
+  : (existsSync(`${root}/draft/v${renderedN}/frames/${S.scenes[0].id}.jpg`) ? `draft/v${renderedN}/frames/${S.scenes[0].id}.jpg` : "");
+const renderState = isRenderPending
+  ? `Draft v${N} composition updated · Serving Draft v${renderedN} video`
+  : `Draft v${N} fully rendered`;
+const videoDownloadName = `${videoSlug}-Draft-v${renderedN}-Review.mp4`;
+const DATA = {
+  fps: FPS,
+  src: videoSrc,
+  draftN: N,
+  renderedN: renderedN,
+  isRenderPending: isRenderPending,
+  renderState: renderState,
+  downloadName: videoDownloadName,
+  poster: posterSrc,
+  label: `🎬 Draft v${N}`,
+  duration: M.duration,
+  scenes,
+  title,
+  description,
+  pageKey: "review.html",
+  videoTitle: S.title
+};
 const json = JSON.stringify(DATA).replace(/</g, "\\u003c");
 
 const html = `<!doctype html>
@@ -103,6 +131,20 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
   <p class="lead">Watch <b>Draft v${N}</b> (${tc(M.duration)} runtime), pause on the exact moment, and say what to change. Notes are tied to the time, the frame, unique IDs, and the script scene, and you can draw on the frame. Drawings auto-upload to Azure when configured, and "Copy feedback for Claude" outputs timestamped notes with unique IDs and direct Azure links.</p>
   <div class="grid2">
   <section>
+    <div id="renderStateBanner" class="box" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:9px 14px;background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.35);border-radius:10px;margin:0 0 12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="pill" style="background:#ffd166;color:#04222a;font-weight:700;border:none">🎬 Render State</span>
+        <b id="renderStateText" style="color:var(--accent)">${renderState}</b>
+        <span id="renderStateSrc" style="font-size:11.5px;color:var(--mute)">Source: <code>${DATA.src}</code></span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+        <a href="video/compositions/s08-tracking.html" target="_blank" style="color:var(--accent);text-decoration:underline">Scene 08 live composition</a>
+        <span style="color:var(--mute)">·</span>
+        <a href="video/compositions/s10-outro.html" target="_blank" style="color:var(--accent);text-decoration:underline">Scene 10 live composition</a>
+        <span style="color:var(--mute)">·</span>
+        <a href="first-draft.html" style="color:var(--mute);text-decoration:underline">Draft history</a>
+      </div>
+    </div>
     <div class="stage"><video id="v" controls preload="metadata" playsinline poster="${DATA.poster}"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
     <div class="ctl">
       <button id="play" class="big">▶ Play</button><button id="stop" class="big stop">⏹ Stop</button>
@@ -203,6 +245,14 @@ const uid = () => Math.random().toString(16).slice(2, 10);
 const fmt = (t) => { const m = Math.floor(t / 60), s = Math.floor(t % 60), f = Math.round((t % 1) * FPS) % FPS; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0") + "." + String(f).padStart(2, "0"); };
 const sceneAt = (t) => R.scenes.find((s) => t >= s.start && t < s.end) || R.scenes[R.scenes.length - 1];
 v.src = R.src;
+v.addEventListener("error", () => {
+  console.warn("Video failed to load from", v.src);
+  if (R.renderedN && !v.src.endsWith("draft/v" + R.renderedN + "/video.mp4")) {
+    console.log("Switching video source to fallback draft/v" + R.renderedN + "/video.mp4");
+    v.src = "draft/v" + R.renderedN + "/video.mp4";
+    v.load();
+  }
+});
 
 function getSas() {
   try {
@@ -739,6 +789,26 @@ async function loadVerifiedFromAzure() {
       } catch (_) {}
     }
 
+    // Fallback: inherit verifications from previous draft if current draft verification is empty or missing
+    if ((!data || !data.verifiedMap || Object.keys(data.verifiedMap).length === 0) && R.draftN > 1) {
+      const fallbackN = R.renderedN || (R.draftN - 1);
+      if (sas) {
+        try {
+          const u = new URL(sas);
+          const prevFile = "UK-Director-Liquidation-Draft-v" + fallbackN + "-Verification.json";
+          const prevUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + prevFile + u.search;
+          const res2 = await fetch(prevUrl);
+          if (res2.ok) data = await res2.json();
+        } catch (_) {}
+      }
+      if (!data || !data.verifiedMap || Object.keys(data.verifiedMap).length === 0) {
+        try {
+          const bRes2 = await fetch(apiBase + "/api/verification?draft=" + fallbackN);
+          if (bRes2.ok) data = await bRes2.json();
+        } catch (_) {}
+      }
+    }
+
     if (data && data.verifiedMap) {
       let changed = false;
       Object.entries(data.verifiedMap).forEach(([k, v]) => {
@@ -753,6 +823,11 @@ async function loadVerifiedFromAzure() {
       }
       const vCount = Object.values(verifiedMap).filter(Boolean).length;
       if (azInd) azInd.textContent = "☁️ Azure: Synced (" + vCount + " ✓)";
+
+      // If data was inherited from a previous draft, save it to the current draft in Azure
+      if (data.draft && data.draft !== "Draft v" + R.draftN) {
+        saveVerifiedToAzure();
+      }
     }
   } catch (err) {
     console.warn("Could not load verified state from Azure", err);
@@ -793,7 +868,7 @@ const COMPLETED_TASKS = [
     footageTc: "+00:17.06",
     commit: "c9ce596",
     title: "Remove Top n8n Badge & Center Hero's Journey Card",
-    draft: "Draft v9",
+    draft: "Draft v10",
     desc: "Removed top n8n logo badge from header; enlarged and centered Hero's Journey quote card on screen with blurred background.",
     imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-14-06-fb-5826-c463.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
     fixedSnapshot: "docs/snapshots/s08-fixed-194.06s.png",
@@ -811,7 +886,7 @@ const COMPLETED_TASKS = [
     footageTc: "+00:16.01",
     commit: "c9ce596",
     title: "Center Skool Community Panel & Blur Background",
-    draft: "Draft v9",
+    draft: "Draft v10",
     desc: "Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.",
     imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-04-01-01-fb-7231-718f.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
     fixedSnapshot: "docs/snapshots/s10-fixed-241.01s.png",
@@ -1243,7 +1318,14 @@ function verifyTaskInVideo(targetTime, task, autoPlay = true) {
   };
 
   if (v.readyState < 1) {
-    v.addEventListener("loadedmetadata", performJump, { once: true });
+    let jumped = false;
+    const doJumpOnce = () => {
+      if (jumped) return;
+      jumped = true;
+      performJump();
+    };
+    v.addEventListener("loadedmetadata", doJumpOnce, { once: true });
+    v.addEventListener("canplay", doJumpOnce, { once: true });
     v.load();
   } else {
     performJump();
