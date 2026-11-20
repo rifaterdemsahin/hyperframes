@@ -1,0 +1,11 @@
+{
+  "check": "0 errors, 9 warnings",
+  "renderSeconds": 129.5,
+  "workers": 5,
+  "fullBytes": 67410359,
+  "webBytes": 15265894,
+  "duration": 244,
+  "date": "2026-11-20",
+  "hyperframes": "0.9.67",
+  "version": 10
+}

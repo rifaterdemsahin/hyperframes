@@ -306,11 +306,13 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s08-tracking") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
-    tl.to(".wf-box", { opacity: 0, y: -20, duration: 0.5, ease: "power2.in" }, 9.5);
+    tl.to(".wf-box", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 9.5);
     tl.to(".stack", { opacity: 0.15, filter: "blur(10px)", duration: 0.6, ease: "power2.in" }, 9.5);
     tl.to("#logo", { opacity: 0, duration: 0.3 }, 9.0);
     tl.fromTo("#bg-hero", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.12, duration: 13.5, ease: "power1.out" }, 9.5);
-    tl.to("#gfx-panel", { top: "42%", left: "50%", right: "auto", xPercent: -50, yPercent: -50, x: 0, y: 0, width: 1260, duration: 0.8, ease: "power3.out" }, 9.6);
+    // Re-lay out in one instant set while nothing in the panel is visible (wf-box gone, friend-card not in yet): no layout motion.
+    tl.set(".wf-box", { display: "none" }, 9.76);
+    tl.set("#gfx-panel", { top: "42%", left: "50%", right: "auto", xPercent: -50, yPercent: -50, x: 0, y: 0, width: 1260 }, 9.76);
     tl.fromTo("#friend-card", { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1.15, y: 0, duration: 0.8, ease: "back.out(1.5)" }, 9.8);
     tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 10.8);`;
   } else if (s.id === "s09-cta") {
@@ -327,7 +329,8 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     tl.to(".handover-card", { opacity: 0, y: -25, duration: 0.6, ease: "power2.in" }, 10.2);
     tl.to(".stack", { filter: "blur(12px)", opacity: 0.15, duration: 0.8, ease: "power2.out" }, 10.2);
     tl.to("#bg", { filter: "blur(14px) brightness(0.45)", duration: 0.8, ease: "power2.out" }, 10.2);
-    tl.to("#gfx-panel", { top: "44%", left: "50%", right: "auto", xPercent: -50, yPercent: -50, x: 0, y: 0, width: 880, duration: 0.9, ease: "power3.out" }, 10.3);
+    // Transform-only move to the centre: panel is right:80 / width 780 (left edge 1060), centre left edge is 570 -> x -490; centre vertically on 44% (475px) from top 150.
+    tl.to("#gfx-panel", { x: -490, y: 325, yPercent: -50, duration: 0.9, ease: "power3.out" }, 10.3);
     tl.fromTo("#skool-panel", { scale: 1 }, { scale: 1.35, boxShadow: "0 0 90px rgba(0,112,243,0.95), 0 30px 80px rgba(0,0,0,0.9)", borderColor: "#4cc3d9", duration: 0.9, ease: "power3.out" }, 10.5);
     tl.fromTo("#skool-badge", { scale: 1 }, { scale: 1.12, repeat: 5, yoyo: true, duration: 0.7, immediateRender: false, ease: "sine.inOut" }, 11.5);`;
   }
@@ -388,8 +391,8 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
       </div>`;
   } else if (s.id === "s04-five-things") {
     gfxHtml = `
-      <div id="gfx-panel" class="gfx-panel" data-layout-allow-overflow style="position:relative;">
-        <div id="chatgpt-card" class="chatgpt-card" data-layout-allow-overflow>
+      <div id="gfx-panel" class="gfx-panel" data-layout-allow-overflow>
+        <div id="chatgpt-card" class="chatgpt-card" data-layout-allow-overflow data-layout-allow-overlap>
           <div class="chatgpt-head">
             <div class="chatgpt-brand"><span>🟢</span><span>ChatGPT Co-Pilot</span></div>
             <div class="chatgpt-pill">GPT-4o</div>
@@ -404,7 +407,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
             🧠 LEARNING FROM AI: Synthesise rules &amp; act on the fly
           </div>
         </div>
-        <div id="trustpilot-card" class="trustpilot-card">
+        <div id="trustpilot-card" class="trustpilot-card" data-layout-allow-overlap data-layout-allow-occlusion>
           <div class="tp-logo-wrap">
             <img src="../assets/logos/trustpilot.png" alt="Trustpilot" class="tp-logo">
           </div>

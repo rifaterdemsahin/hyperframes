@@ -74,3 +74,12 @@ test("versions.json has valid semver and dependencies integrity", () => {
   assert.ok(v.pages["review.html"], "review.html tracked in versions.json");
   assert.ok(v.pages["index.html"], "index.html tracked in versions.json");
 });
+
+test("the latest draft in draft/versions.json has actually been rendered", () => {
+  const vers = JSON.parse(fs.readFileSync(path.join(root, "draft/versions.json"), "utf8"));
+  const mp4 = path.join(root, `draft/v${vers.latest}/video.mp4`);
+  assert.ok(
+    fs.existsSync(mp4),
+    `draft/versions.json says latest is v${vers.latest} but draft/v${vers.latest}/video.mp4 is missing: run node scripts/render-draft.mjs --version=${vers.latest}. The review page would silently play an older draft.`
+  );
+});

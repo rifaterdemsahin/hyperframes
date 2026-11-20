@@ -409,108 +409,149 @@
         }
       ],
       "total": 191.6
+    },
+    {
+      "at": "2026-11-20T19:50:25.610Z",
+      "machine": "Apple M1 Max, 10 cores, 64 GB",
+      "hyperframes": "0.9.67",
+      "node": "v26.10.0",
+      "videoSeconds": 244,
+      "scenes": 10,
+      "steps": [
+        {
+          "name": "Generate the Hyperframes project",
+          "seconds": 0.1,
+          "note": "10 scene files + root from scenes.json"
+        },
+        {
+          "name": "Hyperframes check",
+          "seconds": 11.4,
+          "note": "lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 9 warnings"
+        },
+        {
+          "name": "Render draft v10 (1080p, 30 fps, with sound, high quality)",
+          "seconds": 129.5,
+          "note": "local, drawelement capture · 5 workers"
+        },
+        {
+          "name": "Make the light web copy of draft v10 (1280x720 HD sharp)",
+          "seconds": 25.8,
+          "note": "H.264 CRF 23, AAC 128k"
+        },
+        {
+          "name": "Extract one frame per scene",
+          "seconds": 1.1,
+          "note": "10 JPG frames"
+        },
+        {
+          "name": "Build the site pages",
+          "seconds": 0.4,
+          "note": "storyboard, script, spec, agents, publish, architecture, draft + performance pages"
+        }
+      ],
+      "total": 168.3
     }
   ],
   "deploys": [
     {
-      "at": "2026-11-20T16:43:41Z",
-      "commit": "7065b2f",
-      "seconds": 45.247
+      "at": "2026-11-20T19:44:20Z",
+      "commit": "d2fe361",
+      "seconds": 52.254
     },
     {
-      "at": "2026-11-20T16:33:12Z",
-      "commit": "c66cae0",
-      "seconds": 45.888
+      "at": "2026-11-20T19:40:56Z",
+      "commit": "4c0646c",
+      "seconds": 40.194
     },
     {
-      "at": "2026-11-20T12:26:15Z",
-      "commit": "962a9af",
-      "seconds": 47.019
+      "at": "2026-11-20T19:38:43Z",
+      "commit": "ede912e",
+      "seconds": 42.975
     },
     {
-      "at": "2026-11-20T12:20:00Z",
-      "commit": "ea38708",
-      "seconds": 40.707
+      "at": "2026-11-20T19:26:28Z",
+      "commit": "6f6721f",
+      "seconds": 48.758
     },
     {
-      "at": "2026-11-20T12:05:30Z",
-      "commit": "f3cf2f0",
-      "seconds": 45.315
+      "at": "2026-11-20T19:20:11Z",
+      "commit": "1938edc",
+      "seconds": 48.573
     },
     {
-      "at": "2026-11-20T11:56:20Z",
-      "commit": "8ab2a2a",
-      "seconds": 50.468
+      "at": "2026-11-20T19:16:35Z",
+      "commit": "c9ce596",
+      "seconds": 56.208
     },
     {
-      "at": "2026-11-20T11:26:50Z",
-      "commit": "acb22a8",
-      "seconds": 36.562
+      "at": "2026-11-20T19:08:07Z",
+      "commit": "b2fc055",
+      "seconds": 53.914
     },
     {
-      "at": "2026-11-20T10:51:55Z",
-      "commit": "26356da",
-      "seconds": 38.606
+      "at": "2026-11-20T19:03:21Z",
+      "commit": "b0f4306",
+      "seconds": 46.201
     },
     {
-      "at": "2026-11-20T10:36:41Z",
-      "commit": "a200854",
-      "seconds": 69.091
+      "at": "2026-11-20T18:57:34Z",
+      "commit": "64b927c",
+      "seconds": 43.913
     },
     {
-      "at": "2026-11-20T10:19:35Z",
-      "commit": "f4f202e",
-      "seconds": 41.469
+      "at": "2026-11-20T18:54:08Z",
+      "commit": "9981c7d",
+      "seconds": 46.891
     },
     {
-      "at": "2026-11-18T23:26:58Z",
-      "commit": "ffedf06",
-      "seconds": 40.632
+      "at": "2026-11-20T18:46:38Z",
+      "commit": "1973f30",
+      "seconds": 44.685
     },
     {
-      "at": "2026-11-18T23:13:05Z",
-      "commit": "51c1381",
-      "seconds": 33.55
+      "at": "2026-11-20T18:45:00Z",
+      "commit": "94474aa",
+      "seconds": 40.73
     },
     {
-      "at": "2026-11-18T23:11:57Z",
-      "commit": "f8b01b4",
-      "seconds": 34.659
+      "at": "2026-11-20T18:40:13Z",
+      "commit": "a75c70d",
+      "seconds": 45.03
     },
     {
-      "at": "2026-11-18T23:01:44Z",
-      "commit": "1493252",
-      "seconds": 44.752
+      "at": "2026-11-20T18:24:28Z",
+      "commit": "b76a788",
+      "seconds": 53.73
     },
     {
-      "at": "2026-11-18T22:44:41Z",
-      "commit": "d88158c",
-      "seconds": 35.667
+      "at": "2026-11-20T18:21:29Z",
+      "commit": "e3a4fb5",
+      "seconds": 56.604
     },
     {
-      "at": "2026-11-18T22:41:12Z",
-      "commit": "f7a8018",
-      "seconds": 40.009
+      "at": "2026-11-20T18:18:16Z",
+      "commit": "94619b2",
+      "seconds": 45.305
     },
     {
-      "at": "2026-11-18T22:38:43Z",
-      "commit": "0e6fb72",
-      "seconds": 34.756
+      "at": "2026-11-20T18:06:18Z",
+      "commit": "37f2c6e",
+      "seconds": 57.302
     },
     {
-      "at": "2026-11-18T22:35:32Z",
-      "commit": "d3bdf42",
-      "seconds": 34.274
+      "at": "2026-11-20T18:02:42Z",
+      "commit": "12175a4",
+      "seconds": 42.093
     },
     {
-      "at": "2026-11-18T22:34:05Z",
-      "commit": "3ab5759",
-      "seconds": 36.202
+      "at": "2026-11-20T17:57:01Z",
+      "commit": "0cfc5e0",
+      "seconds": 95.819
     },
     {
-      "at": "2026-11-18T22:18:49Z",
-      "commit": "ff574af",
-      "seconds": 44.873
+      "at": "2026-11-20T17:54:01Z",
+      "commit": "80d7e23",
+      "seconds": 46.824
     }
   ]
 }

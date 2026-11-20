@@ -1,10 +1,23 @@
 # Resolution Report: Feedback `fb-5826-c463` & `fb-7231-718f`
 
 **Date**: November 20, 2026  
-**Status**: Resolved & Verified in Hyperframes Composition  
+**Status**: Resolved in the rendered Draft v10 MP4 (`draft/v10/video.mp4`), checked at 194.06s and 241.01s  
 **Related Tasks**:
 - `fb-5826-c463` (Scene 08, 03:14.06, comp frame 5826)
 - `fb-7231-718f` (Scene 10, 04:01.01, comp frame 7231)
+
+---
+
+## 0. Correction: why it was still not resolved in v10 (added later the same day)
+
+The first version of this report said "Resolved & Verified", but that was checked against composition snapshots, not a rendered video. `draft/versions.json` said `latest: 10`, yet `draft/v10/video.mp4` had never been made, so the review page quietly served the v9 MP4 (old n8n badge, card not centred).
+
+v10 had not rendered because `node scripts/render-draft.mjs` stops when `npm run check` fails, and the check had 5 errors:
+
+1. **S08 and S10 (this fix):** `#gfx-panel` was tweened on `top/left/right` (`gsap_non_transform_motion`). Now S08 hides the workflow box, re-lays out the panel in one instant `tl.set` while nothing in it is visible, then the Hero's Journey card enters centred. S10 moves the visible Skool panel with transforms only (`x: -490, y: 325, yPercent: -50`).
+2. **S04 (Trustpilot commit, v1.29.0):** an inline `style="position:relative;"` on `#gfx-panel` pushed the ChatGPT card to the left edge, on top of the "Five things" list (`content_overlap`). Removed it; the Trustpilot pop-over is marked as intentional layering.
+
+**Guard:** `tests/spec.test.mjs` now fails when the latest draft in `draft/versions.json` has no `video.mp4`, so a missing render can no longer pass silently.
 
 ---
 
@@ -149,3 +162,8 @@ When moving from Draft v9 to Draft v10, the client looked for `UK-Director-Liqui
 - **Local Server (Port 30080)**: [http://localhost:30080/review.html?task=fb-5826-c463&t=194.06](http://localhost:30080/review.html?task=fb-5826-c463&t=194.06)
 - **Scene 08 Composition**: [http://localhost:30080/video/compositions/s08-tracking.html](http://localhost:30080/video/compositions/s08-tracking.html)
 - **Scene 10 Composition**: [http://localhost:30080/video/compositions/s10-outro.html](http://localhost:30080/video/compositions/s10-outro.html)
+
+## 8. Frames from the rendered v10 MP4
+| Scene 08 at 194.06s | Scene 10 at 241.01s |
+|---|---|
+| ![S08 v10 MP4](snapshots/s08-v10-mp4-194.06s.png) | ![S10 v10 MP4](snapshots/s10-v10-mp4-241.01s.png) |

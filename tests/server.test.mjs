@@ -3,6 +3,11 @@ import assert from "node:assert/strict";
 import { EventEmitter } from "node:events";
 import { Readable } from "node:stream";
 import { requestHandler } from "../server.mjs";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 class MockResponse extends EventEmitter {
   constructor() {
@@ -122,7 +127,7 @@ test("Server requestHandler: HTTP 206 Partial Content range streaming for MP4", 
 });
 
 test("Server requestHandler: Automatic video fallback for unrendered draft versions", async () => {
-  // Request /draft/v99/video.mp4 which does not exist; server should fall back to draft/v9/video.mp4
+  // Request /draft/v99/video.mp4 which does not exist; server should fall back to the newest rendered draft
   const req = createMockRequest({
     method: "GET",
     url: "/draft/v99/video.mp4",
@@ -139,7 +144,10 @@ test("Server requestHandler: Automatic video fallback for unrendered draft versi
   assert.equal(res.statusCode, 206);
   assert.equal(res.getHeader("content-type"), "video/mp4");
   assert.equal(res.getHeader("x-draft-video-requested"), "v99");
-  assert.equal(res.getHeader("x-draft-video-fallback"), "v9");
+  const rendered = fs.readdirSync(path.join(root, "draft"))
+    .map((d) => /^v(\d+)$/.exec(d)).filter(Boolean).map((m) => +m[1])
+    .filter((n) => fs.existsSync(path.join(root, `draft/v${n}/video.mp4`)));
+  assert.equal(res.getHeader("x-draft-video-fallback"), `v${Math.max(...rendered)}`);
   assert.equal(res.getHeader("content-length"), 51);
 });
 

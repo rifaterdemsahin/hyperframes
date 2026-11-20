@@ -108,9 +108,10 @@
       "date": "2026-11-20",
       "label": "Tenth draft",
       "changes": [
-        "Scene 08: Removed top n8n logo badge; enlarged and centered Hero's Journey quote card on screen with blurred background.",
-        "Scene 10: Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.",
-        "Review Tooling: Made Post copy collapsible, added live verification completion percentage badge and animated progress bar with dynamic red-to-green gradient."
+        "Scene 08 (fb-5826-c463): Removed the top n8n logo badge; the Hero's Journey quote card now sits centred and wide with the background blurred.",
+        "Scene 10 (fb-7231-718f): Delivery Pilot Skool panel glides to the centre (1.35x, blue glow) while the background and overlay text blur and dim.",
+        "Scene 04: Fixed the ChatGPT card, which had jumped to the left edge on top of the 'Five things' list; it is back on the right with the Trustpilot card popping over it.",
+        "Render fix: S08/S10 moves now use transforms only, so the Hyperframes check passes; that check failure is why v10 had not rendered before."
       ]
     }
   ]
