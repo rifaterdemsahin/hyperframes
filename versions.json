@@ -1,5 +1,5 @@
 {
-  "site": "1.32.0",
+  "site": "1.32.1",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.32.0",
+      "version": "1.32.1",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.29.0",
+      "version": "1.29.1",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.32.1",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Make Post copy collapsable, show verification percentage with red-to-green gradient, and add S08/S10 review tasks"
+      ]
+    },
     {
       "version": "1.32.0",
       "date": "2026-11-20",

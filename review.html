@@ -53,7 +53,7 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s;flex-shrink:0}
 .carousel-dot.active{background:var(--accent);width:14px;border-radius:3px}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.32.0"></script>
+<script src="nav.js?v=1.32.1"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v9</span> <span class="badge" id="total">0</span></h1>
@@ -72,7 +72,13 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
     </div>
     <div class="now" id="now"></div>
     <p class="hint"><kbd>M</kbd> add feedback &nbsp; <kbd>D</kbd> draw &nbsp; <kbd>A</kbd> arrow &nbsp; <kbd>Space</kbd>/<kbd>K</kbd> play/pause &nbsp; <kbd>←</kbd><kbd>→</kbd> frame &nbsp; <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd> 1 s &nbsp; <kbd>J</kbd> −5 s <kbd>L</kbd> +5 s &nbsp; <kbd>⌘/Ctrl Z</kbd> undo stroke</p>
-    <div class="box"><h3 style="margin:0 0 6px">📣 Post copy</h3><div id="posts"></div></div>
+    <details class="box" id="postCopyBox" style="margin-bottom:12px">
+      <summary style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;outline:none" title="Click to collapse or expand Post copy">
+        <h3 style="margin:0;font-size:1.15rem;display:inline-flex;align-items:center;gap:6px">📣 Post copy</h3>
+        <span class="badge" style="font-size:0.75rem;opacity:0.8">title &amp; description</span>
+      </summary>
+      <div id="posts" style="margin-top:10px"></div>
+    </details>
   </section>
   <aside id="panel">
     <details id="addDetails" open style="border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px">
@@ -103,9 +109,15 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
       </div>
     </details>
     <div class="carousel-box" id="completedCarousel" tabindex="0">
-      <div class="carousel-head">
-        <h3>✅ Completed Tasks Verification</h3>
-        <span class="carousel-counter" id="cDoneIdx">1 / 24</span>
+      <div class="carousel-head" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <h3 style="margin:0">✅ Completed Tasks Verification</h3>
+          <span id="cPercentBadge" style="font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;color:#fff;background:hsl(0,85%,45%);transition:background 0.4s ease,box-shadow 0.4s ease">0% Verified</span>
+        </div>
+        <span class="carousel-counter" id="cDoneIdx">1 / 26</span>
+      </div>
+      <div class="c-progress-track" style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin:6px 0 10px;overflow:hidden">
+        <div id="cProgressBar" style="height:100%;width:0%;background:hsl(0,85%,45%);transition:width 0.4s ease,background 0.4s ease"></div>
       </div>
       <div class="carousel-filters" id="cFilters">
         <button class="c-filter on" data-cat="all">All (24)</button>
@@ -728,7 +740,39 @@ function fmtTiming(isoStr) {
 }
 
 const COMPLETED_TASKS = [
-  // --- Latest (Draft v8 & v9) ---
+  // --- Latest (Draft v9 Review Feedback) ---
+  {
+    id: "fb-5826-c463",
+    category: "latest",
+    scene: "Scene 08 · How I keep track of it",
+    t: 194.06,
+    preRollT: 191.0,
+    footageTc: "+00:17.06",
+    commit: "c9ce596",
+    title: "Remove Top n8n Badge & Center Hero's Journey Card",
+    draft: "Draft v9",
+    desc: "Removed top n8n logo badge from header; enlarged and centered Hero's Journey quote card on screen with blurred background.",
+    imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-14-06-fb-5826-c463.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
+    createdAt: "2026-11-20T19:11:33Z",
+    resolvedAt: "2026-11-20T19:16:11Z",
+    duration: "4m 38s"
+  },
+  {
+    id: "fb-7231-718f",
+    category: "latest",
+    scene: "Scene 10 · Disclaimer + outro",
+    t: 241.01,
+    preRollT: 238.0,
+    footageTc: "+00:16.01",
+    commit: "c9ce596",
+    title: "Center Skool Community Panel & Blur Background",
+    draft: "Draft v9",
+    desc: "Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.",
+    imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-04-01-01-fb-7231-718f.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
+    createdAt: "2026-11-20T19:11:33Z",
+    resolvedAt: "2026-11-20T19:16:11Z",
+    duration: "4m 38s"
+  },
   {
     id: "fb-s01-watermark",
     category: "latest",
@@ -1219,7 +1263,24 @@ function renderCarousel() {
     else if (cat === "platform") btn.textContent = "Platform (" + countPlatform + ")";
   });
 
-  if ($("cVerifiedSummary")) $("cVerifiedSummary").textContent = countVer + "/" + countAll + " verified";
+  const pct = countAll > 0 ? Math.round((countVer / countAll) * 100) : 0;
+  const hue = Math.min(130, Math.round((pct / 100) * 130)); // 0 = red (0%), 35 = orange, 65 = yellow, 130 = green (100%)
+  const sat = pct > 0 ? 85 : 80;
+  const light = pct > 0 ? 42 : 45;
+  const colorStr = "hsl(" + hue + ", " + sat + "%, " + light + "%)";
+  const glowStr = "hsla(" + hue + ", " + sat + "%, " + light + "%, 0.45)";
+
+  if ($("cPercentBadge")) {
+    $("cPercentBadge").textContent = pct + "% (" + countVer + "/" + countAll + ")";
+    $("cPercentBadge").style.background = colorStr;
+    $("cPercentBadge").style.boxShadow = "0 0 10px " + glowStr;
+  }
+  if ($("cProgressBar")) {
+    $("cProgressBar").style.width = pct + "%";
+    $("cProgressBar").style.background = colorStr;
+    $("cProgressBar").style.boxShadow = "0 0 8px " + glowStr;
+  }
+  if ($("cVerifiedSummary")) $("cVerifiedSummary").textContent = countVer + "/" + countAll + " verified (" + pct + "%)";
 
   const allTasks = getCarouselTasks();
   if (!allTasks.length) {
