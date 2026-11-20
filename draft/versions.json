@@ -1,5 +1,5 @@
 {
-  "latest": 7,
+  "latest": 8,
   "versions": [
     {
       "n": 1,
@@ -81,6 +81,14 @@
         "Visuals & Typography: Added expressive contextual emojis across all overlays, headings, and callout cards.",
         "Scene 08: Added cinematic Hero's Journey background (heros-journey.jpg) with focused transition to Friend & Honour card during 'A friend told me...' voiceover.",
         "Review Tooling: Prominently displayed current review version (Draft v7) on review.html and added direct Azure Blob Storage frame upload with clickable image URLs in copied feedback."
+      ]
+    },
+    {
+      "n": 8,
+      "date": "2026-11-20",
+      "label": "Eighth draft",
+      "changes": [
+        "Overlay Tag Removal: Removed the top-right 'DRAFT V*' watermark tag across the entire video for a clean, distraction-free viewing experience."
       ]
     }
   ]

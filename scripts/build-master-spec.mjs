@@ -129,6 +129,9 @@ const spec = `${head("Master Spec")}
     <li>Render, run the <a href="release-checklist.html">release checklist</a>, publish.</li>
     <li>After each change run <code>node scripts/version.mjs bump minor "what changed"</code>, then commit, push and deploy.</li>
   </ol>
+
+  <h2>11. Learnings &amp; system insights</h2>
+  ${P.learnings && P.learnings.length ? list(P.learnings) : "<p>No learnings recorded yet.</p>"}
 ${foot}`;
 writeFileSync(`${root}/master-spec.html`, spec);
 
@@ -259,6 +262,9 @@ ${P.risks.map((r) => `- ${r.risk}. Mitigation: ${r.mitigation}`).join("\n")}
 \`\`\`
 ${chapterText}
 \`\`\`
+
+## 11. Learnings and system insights
+${(P.learnings || []).map((l) => `- ${l}`).join("\n")}
 `;
 mkdirSync(`${root}/templates`, { recursive: true });
 writeFileSync(`${root}/templates/MASTER-SPEC.md`, md);

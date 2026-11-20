@@ -327,9 +327,65 @@
         }
       ],
       "total": 194.3
+    },
+    {
+      "at": "2026-11-20T16:42:23.202Z",
+      "machine": "Apple M1 Max, 10 cores, 64 GB",
+      "hyperframes": "0.9.67",
+      "node": "v26.10.0",
+      "videoSeconds": 243,
+      "scenes": 10,
+      "steps": [
+        {
+          "name": "Generate the Hyperframes project",
+          "seconds": 0,
+          "note": "10 scene files + root from scenes.json"
+        },
+        {
+          "name": "Hyperframes check",
+          "seconds": 12.7,
+          "note": "lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 10 warnings"
+        },
+        {
+          "name": "Render draft v8 (1080p, 30 fps, with sound, high quality)",
+          "seconds": 145.9,
+          "note": "local, drawelement capture · 5 workers"
+        },
+        {
+          "name": "Make the light web copy of draft v8 (1280x720 HD sharp)",
+          "seconds": 24.9,
+          "note": "H.264 CRF 23, AAC 128k"
+        },
+        {
+          "name": "Extract one frame per scene",
+          "seconds": 1.5,
+          "note": "10 JPG frames"
+        },
+        {
+          "name": "Build the site pages",
+          "seconds": 0.4,
+          "note": "storyboard, script, spec, agents, publish, architecture, draft + performance pages"
+        }
+      ],
+      "total": 185.4
     }
   ],
   "deploys": [
+    {
+      "at": "2026-11-20T16:33:12Z",
+      "commit": "c66cae0",
+      "seconds": 45.888
+    },
+    {
+      "at": "2026-11-20T12:26:15Z",
+      "commit": "962a9af",
+      "seconds": 47.019
+    },
+    {
+      "at": "2026-11-20T12:20:00Z",
+      "commit": "ea38708",
+      "seconds": 40.707
+    },
     {
       "at": "2026-11-20T12:05:30Z",
       "commit": "f3cf2f0",
@@ -414,21 +470,6 @@
       "at": "2026-11-18T22:16:19Z",
       "commit": "b0a61ca",
       "seconds": 37.145
-    },
-    {
-      "at": "2026-11-18T22:14:58Z",
-      "commit": "6a4bd93",
-      "seconds": 34.96
-    },
-    {
-      "at": "2026-11-18T22:13:37Z",
-      "commit": "1ba1eaa",
-      "seconds": 45.979
-    },
-    {
-      "at": "2026-11-18T22:07:43Z",
-      "commit": "ef45aee",
-      "seconds": 34.379
     }
   ]
 }

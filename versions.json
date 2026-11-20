@@ -1,5 +1,5 @@
 {
-  "site": "1.18.0",
+  "site": "1.19.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.18.0",
+      "version": "1.19.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -117,7 +117,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.10.0",
+      "version": "1.11.0",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -157,7 +157,7 @@
     },
     "video-releases.html": {
       "title": "Video releases & limits",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -177,8 +177,8 @@
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.7.0",
-      "date": "2026-11-18",
+      "version": "1.8.0",
+      "date": "2026-11-20",
       "deps": [
         "versions.json",
         "script/scenes.json",
@@ -211,7 +211,7 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.14.0",
+      "version": "1.15.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.15.0",
+      "version": "1.16.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -236,7 +236,7 @@
     },
     "performance.html": {
       "title": "Performance",
-      "version": "1.11.0",
+      "version": "1.12.0",
       "date": "2026-11-20",
       "deps": [
         "spec/performance.json",
@@ -270,6 +270,21 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.19.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "first-draft.html",
+        "performance.html",
+        "master-spec.html",
+        "video-releases.html",
+        "changes.html"
+      ],
+      "changes": [
+        "Draft v8 without watermark; master spec learnings updated; GitHub release"
+      ]
+    },
     {
       "version": "1.18.0",
       "date": "2026-11-20",
@@ -604,6 +619,6 @@
     "*": "2026-11-18T21:55:42.014Z",
     "script.html": "2026-11-18T22:07:30.860Z",
     "publish.html": "2026-11-18T22:18:45.249Z",
-    "review.html": "2026-11-20T12:18:59.233Z"
+    "review.html": "2026-11-20T16:42:46.321Z"
   }
 }
