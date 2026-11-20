@@ -59,6 +59,7 @@ button.big{padding:9px 18px;font-size:16px;font-weight:700;background:#1f8f4a;co
 .now{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;font-size:14px}.now b{color:var(--accent)}.now .ln{color:var(--mute);margin-top:2px}
 kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font:12px ui-monospace,monospace}.hint,small{color:var(--mute)}
 #panel{position:sticky;top:56px;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card)}#panel textarea,.box textarea{width:100%;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;resize:vertical}
+#addDetails summary::-webkit-details-marker{display:none}#addDetails summary{list-style:none}
 #tools{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:10px}#tools.on{display:flex}input[type=color]{width:40px;height:34px;padding:0;border:1px solid var(--line);border-radius:6px;background:none}
 .m{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:8px 0;background:var(--card)}.m b{font-family:ui-monospace,monospace;color:var(--accent);cursor:pointer}.m textarea{width:100%;margin-top:6px;font:inherit;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px;resize:vertical}.m .x{float:right;padding:1px 8px}.m.isdone{opacity:.6}
 .pill{font-size:13px;padding:2px 10px;border-radius:999px;border:1px solid var(--line)}.pill.p{border-color:var(--accent);color:var(--accent)}.pill.d{border-color:var(--ok);color:var(--ok)}
@@ -106,24 +107,33 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
     <div class="box"><h3 style="margin:0 0 6px">📣 Post copy</h3><div id="posts"></div></div>
   </section>
   <aside id="panel">
-    <h2 style="margin:0 0 8px">➕ Add feedback <span class="badge" id="count2">0</span></h2>
-    <div class="hint" style="margin-bottom:6px">At <b id="atTc">00:00.00</b> · <b id="atScene"></b></div>
-    <textarea id="note" rows="3" placeholder="What should change at this moment? (Enter adds, Shift+Enter new line)"></textarea>
-    <div class="ctl"><button class="pri" id="add" style="flex:1;padding:11px">📍 Add feedback (M)</button><button id="draw">✏️ Draw (D)</button><button id="arrowBtn">➡️ Arrow (A)</button></div>
-    <div id="tools"><button data-tool="pen" class="on">🖊️</button><button data-tool="arrow">➡️</button><button data-tool="rect">▭</button><button data-tool="circle">◯</button><button data-tool="text">🔤</button><input type="color" id="col" value="#ff3b30"><select id="wid"><option value="3">thin</option><option value="6" selected>medium</option><option value="11">thick</option></select><button id="undo">↩️</button><button id="clr">🧹</button><small style="flex-basis:100%">Draw on the paused frame, then <b>Add feedback</b>.</small></div>
-    <div id="msg"></div>
-    <div class="ctl"><button class="pri" id="copy" style="flex:1;padding:11px">📋 Copy feedback for Claude</button></div>
-    <small class="hint">Open items only. Done items stay in the list but are left out of the copy.</small>
-    <div style="margin-top:12px;padding:8px 10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;font-size:12px">
-      <details id="azDetails">
-        <summary style="cursor:pointer;color:var(--accent);font-weight:600">☁️ Azure Storage for Drawings <span id="azStatus" style="font-size:11px;color:var(--mute)"></span></summary>
-        <div style="margin-top:6px;display:flex;gap:6px">
-          <input id="azSas" type="password" placeholder="Azure SAS URL (stored in browser only)" style="flex:1;padding:5px 8px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)">
-          <button id="saveSas" style="padding:5px 10px;font-size:12px">Save</button>
+    <details id="addDetails" open style="border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:12px">
+      <summary style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;outline:none" title="Click to collapse or expand the Add Feedback form">
+        <h2 style="margin:0;font-size:1.15rem;display:inline-flex;align-items:center;gap:6px">➕ Add feedback <span class="badge" id="count2">0</span></h2>
+        <span id="addToggleHint" style="font-size:11.5px;color:var(--mute);display:inline-flex;align-items:center;gap:4px">
+          <span class="fold-state">▾ Collapse</span>
+        </span>
+      </summary>
+      <div style="margin-top:10px">
+        <div class="hint" style="margin-bottom:6px">At <b id="atTc">00:00.00</b> · <b id="atScene"></b></div>
+        <textarea id="note" rows="3" placeholder="What should change at this moment? (Enter adds, Shift+Enter new line)"></textarea>
+        <div class="ctl"><button class="pri" id="add" style="flex:1;padding:11px">📍 Add feedback (M)</button><button id="draw">✏️ Draw (D)</button><button id="arrowBtn">➡️ Arrow (A)</button></div>
+        <div id="tools"><button data-tool="pen" class="on">🖊️</button><button data-tool="arrow">➡️</button><button data-tool="rect">▭</button><button data-tool="circle">◯</button><button data-tool="text">🔤</button><input type="color" id="col" value="#ff3b30"><select id="wid"><option value="3">thin</option><option value="6" selected>medium</option><option value="11">thick</option></select><button id="undo">↩️</button><button id="clr">🧹</button><small style="flex-basis:100%">Draw on the paused frame, then <b>Add feedback</b>.</small></div>
+        <div id="msg"></div>
+        <div class="ctl"><button class="pri" id="copy" style="flex:1;padding:11px">📋 Copy feedback for Claude</button></div>
+        <small class="hint">Open items only. Done items stay in the list but are left out of the copy.</small>
+        <div style="margin-top:12px;padding:8px 10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;font-size:12px">
+          <details id="azDetails">
+            <summary style="cursor:pointer;color:var(--accent);font-weight:600">☁️ Azure Storage for Drawings <span id="azStatus" style="font-size:11px;color:var(--mute)"></span></summary>
+            <div style="margin-top:6px;display:flex;gap:6px">
+              <input id="azSas" type="password" placeholder="Azure SAS URL (stored in browser only)" style="flex:1;padding:5px 8px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)">
+              <button id="saveSas" style="padding:5px 10px;font-size:12px">Save</button>
+            </div>
+            <small class="hint" style="display:block;margin-top:4px">Drawings auto-upload to Azure and output direct image links in the copied feedback.</small>
+          </details>
         </div>
-        <small class="hint" style="display:block;margin-top:4px">Drawings auto-upload to Azure and output direct image links in the copied feedback.</small>
-      </details>
-    </div>
+      </div>
+    </details>
     <div class="carousel-box" id="completedCarousel" tabindex="0">
       <div class="carousel-head">
         <h3>✅ Completed Tasks Verification</h3>
@@ -194,6 +204,24 @@ if ($("saveSas")) {
     $("msg").className = "ok";
     $("msg").textContent = val ? "Azure SAS URL saved." : "Azure SAS cleared.";
   };
+}
+
+// ---- collapsable Add Feedback form
+const ADD_OPEN_KEY = "review-add-feedback-open-v1";
+const addDetails = $("addDetails");
+function syncAddFold() {
+  if (!addDetails) return;
+  const stateEl = document.querySelector("#addToggleHint .fold-state");
+  if (stateEl) stateEl.textContent = addDetails.open ? "▾ Collapse" : "▸ Expand";
+}
+if (addDetails) {
+  const saved = localStorage.getItem(ADD_OPEN_KEY);
+  if (saved !== null) addDetails.open = saved === "true";
+  syncAddFold();
+  addDetails.addEventListener("toggle", () => {
+    localStorage.setItem(ADD_OPEN_KEY, addDetails.open);
+    syncAddFold();
+  });
 }
 
 // ---- notes live in this browser; those written before the last "feedback implemented" release are deleted (newer stay)
@@ -1055,9 +1083,9 @@ document.addEventListener("keydown", (e) => {
   }
   if ((e.metaKey || e.ctrlKey) && k === "z") { shapes.pop(); redraw(); e.preventDefault(); }
   else if (k === " " || k === "k") { e.preventDefault(); toggle(); }
-  else if (k === "m") { e.preventDefault(); $("note").focus(); }
-  else if (k === "d") setDraw(!drawMode);
-  else if (k === "a") $("arrowBtn").click();
+  else if (k === "m") { e.preventDefault(); if (addDetails && !addDetails.open) { addDetails.open = true; syncAddFold(); } $("note").focus(); }
+  else if (k === "d") { if (addDetails && !addDetails.open) { addDetails.open = true; syncAddFold(); } setDraw(!drawMode); }
+  else if (k === "a") { if (addDetails && !addDetails.open) { addDetails.open = true; syncAddFold(); } $("arrowBtn").click(); }
   else if (k === "arrowleft") { e.preventDefault(); e.shiftKey ? seekBy(-1) : step(-1); }
   else if (k === "arrowright") { e.preventDefault(); e.shiftKey ? seekBy(1) : step(1); }
   else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);

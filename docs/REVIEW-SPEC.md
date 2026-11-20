@@ -223,7 +223,7 @@ git commit -m "Remove BAM sfx in Scene 03 [id: fb-1270-38a4] and update Scene 07
 
 ## 7. Completed Tasks Verification Carousel
 
-Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks Verification Carousel** allows reviewers to audit all historical and newly completed items:
+Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks Verification Carousel** allows reviewers to audit all historical and newly completed items. The **➕ Add feedback** form itself is collapsible with persistent browser memory, enabling reviewers to collapse the input controls (`▾ Collapse` / `▸ Expand`) and bring the Verification Carousel directly to the top of the sticky sidebar:
 
 1. **Category & Verification Filtering**: Chips filter tasks across `All (24)`, `✅ Verified (0)`, `⏳ Not verified (24)`, `Latest (5)`, `Scenes (16)`, and `Platform (3)`. Dynamic badge counts update in real time as reviewers verify tasks.
 2. **Quick Jump Selector**: A dropdown lists all tasks with their `[fb-...]` IDs for instant selection.
