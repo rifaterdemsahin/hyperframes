@@ -1,5 +1,5 @@
 {
-  "site": "1.41.0",
+  "site": "1.42.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -111,7 +111,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.41.0",
+      "version": "1.42.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -120,7 +120,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.16.0",
+      "version": "1.17.0",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -130,8 +130,8 @@
     },
     "release-checklist.html": {
       "title": "Release checklist",
-      "version": "1.7.0",
-      "date": "2026-11-18",
+      "version": "1.8.0",
+      "date": "2026-11-20",
       "deps": [
         "spec/project.json",
         "spec/publish.json",
@@ -297,6 +297,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.42.0",
+      "date": "2026-11-20",
+      "pages": [
+        "master-spec.html",
+        "release-checklist.html"
+      ],
+      "changes": [
+        "Master spec v2.0: Draft v13 is the approved baseline; keynote style, piano music, transcript timing, SRT captions, new acceptance criteria and risks, corrected SAS learning and six new learnings"
+      ]
+    },
     {
       "version": "1.41.0",
       "date": "2026-11-20",

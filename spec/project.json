@@ -1,7 +1,7 @@
 {
-  "specVersion": "1.2",
+  "specVersion": "2.0",
   "title": "Part 1 of 3: How I Taught Myself Anything with AI (Closing My Company Was the Test)",
-  "series": "Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)",
+  "series": "Part 1 of 3: how I taught myself a whole new process with AI, with closing my company as the test. Part 2: how I built the workflows and AI agents. Part 3: how it ends.",
   "owner": "Rifat",
   "audience": "A mass audience facing a big change or an unfamiliar process (UK directors closing a company are one example) who want to learn it quickly with AI. Every specialist term is explained in plain words.",
   "goal": "Inspire viewers to transform by teaching themselves anything with AI, using closing a UK company as the worked example: AI as a tutor and support, check facts with official sources, still use a professional, turn learning into a checklist, and grow skills that carry into the next project.",
@@ -15,12 +15,14 @@
     "fps": 30,
     "container": "MP4 (H.264)",
     "quality": "Hyperframes default 'looks' (CRF 16); 'draft' for review cuts",
-    "render": "Local, npx hyperframes render, project pinned to hyperframes@0.9.67"
+    "render": "Local, npx hyperframes render, project pinned to hyperframes@0.9.67",
+    "style": "Keynote: one idea per screen, at most 6 words, Inter 140 to 200 px on a black radial background, one blue accent (#2997ff), drawn SVG visuals for real things, no logos, no screenshots, no real footage",
+    "music": "Inspiring piano-led bed (fal.ai ACE-Step, Apache-2.0, seed 20261121), about 18 dB under the voice, swelling in the hook, the gaps and the Subscribe ending; source and licence in video/assets/music/"
   },
   "voice": {
-    "now": "AI draft: fal.ai Kokoro British male (bm_lewis, serious tone), used for timing and review",
-    "final": "Your own recording (recommended). Re-time the scene slots after recording",
-    "captions": "Burned in, timed from the final transcript"
+    "now": "AI draft: fal.ai Kokoro British male (bm_george, speed 1.1). Whisper word timestamps time every screen to the spoken word",
+    "final": "Your own recording (recommended). After recording: new transcripts, re-time the slots, re-mix the music",
+    "captions": "Not burned in (keynote cut). Upload a caption file (SRT) to YouTube made from the final voice transcript"
   },
   "rules": [
     "No AI-generated text, numbers, documents or screens. Backgrounds are mood plates only; every figure on screen is editable HTML text.",
@@ -36,9 +38,11 @@
   ],
   "acceptance": [
     "Final MP4 plays end to end at 1920x1080, 30 fps, with audio in sync with every scene.",
-    "Every scene in scenes.json appears, in order, within about 1 second of its planned slot.",
-    "No UTR, login, name or address is readable in any frame.",
-    "Captions are present, match the audio and stay inside the safe area.",
+    "Every screen appears on its spoken word, within about half a second.",
+    "The keynote audit (scripts/audit-keynote.mjs) reports 0 flagged moments: at most 6 words, no lists, one idea per screen.",
+    "Every specialist term is explained in plain words the first time it appears.",
+    "Music stays at least 15 dB under the voice while he speaks (video/assets/music/mix.json) and its source and licence are recorded.",
+    "A caption file (SRT) matching the final voice is uploaded to YouTube.",
     "npm run check passes and snapshots of every scene were looked at.",
     "The practitioner has confirmed the factual claims, or you have noted which claims are your own experience.",
     "Chapters, title, description and thumbnail are ready (see the release checklist)."
@@ -46,27 +50,31 @@
   "risks": [
     {
       "risk": "Factual claims about liability and process may be wrong or out of date",
-      "mitigation": "Practitioner reads the script; present personal details as your own experience"
+      "mitigation": "Practitioner reads the script and the description; present personal details as your own experience"
     },
     {
-      "risk": "Personal data visible in footage",
-      "mitigation": "Blur at source, inspect the exported frames"
+      "risk": "The angle overpromises ('learn anything')",
+      "mitigation": "Show one real process, keep AI as a tutor, not a lawyer; avoid 'anything' in the title or make it clearly a challenge"
+    },
+    {
+      "risk": "Azure storage write tokens are public (review.html, /api/azure-config)",
+      "mitigation": "Revoke them by rotating the storage keys; then uploads go through the server and links become short-lived and read-only"
+    },
+    {
+      "risk": "Generated music could resemble an existing recording (Content ID)",
+      "mitigation": "Keep source.json and LICENSE.md as the record; dispute, or regenerate with a new seed"
     },
     {
       "risk": "Public repo and site reveal the story before release",
       "mitigation": "Decide before release whether to make the repo private or rewrite history"
     },
     {
-      "risk": "Exposed API key",
-      "mitigation": "Rotate the fal.ai key, keep it only in .env"
+      "risk": "Exposed API keys (fal.ai, DeepInfra)",
+      "mitigation": "Rotate them, keep them only in .env"
     },
     {
       "risk": "Hyperframes is pre-1.0 and ships many releases",
       "mitigation": "Pin the version, read release notes before upgrading"
-    },
-    {
-      "risk": "Viewers read AI emailing as advice to bulk-contact creditors",
-      "mitigation": "Say 'the right parties', show it as your own approach, and check creditor communication with the practitioner first"
     },
     {
       "risk": "Overclaiming what AI can do in a legal or tax process",
@@ -128,13 +136,20 @@
   "learnings": [
     "Clean Canvas Over Watermarks: Reviewers and clients strongly prefer clean video output without intrusive 'DRAFT V*' tags on screen; review version metadata belongs in the web player header, not burned into the video composition frames.",
     "Flat-Rate Subscription Economics: Video creators on $20/mo Claude Pro and Gemini Antigravity plans producing 3 videos/week amortize agent orchestration to ~$3.08 per video ($0.00 marginal cost per revision/token), making multi-round video iteration practically free.",
-    "Preserving SAS Query Parameters for AI Agents: Azure Blob Storage containers without public anonymous access reject unauthenticated requests with 409 Conflict. Appending and preserving the SAS query string (?se=...&sp=...) makes frame drawings immediately consumable by Claude, external tools, curl, and browsers without credential headers.",
+    "Never put SAS query strings in shared links or committed files: a container-level SAS with write rights in a public page lets anyone list, overwrite or delete the container. Serve images through the server, or give short-lived, read-only, per-blob links.",
     "Pre-Copy Upload Flush: Reviewers click 'Copy feedback for Claude' as soon as they finish writing notes; ensuring the copy handler flushes and awaits pending image uploads prevents missing visual links in feedback prompts.",
     "Automated Release Asset Pipelines: Large binary outputs (1080p master MP4, ~63MB) exceed git repository best practices; automated GitHub Releases via `gh release create` solve delivery without bloating git history.",
     "Collapsible Creation vs Sticky Audit Workflow: Reviewers switch between drafting critique and verifying implemented changes. Making the feedback input form collapsible (<details>) with persistent browser storage brings verification tasks to the top of the sticky sidebar for distraction-free auditing.",
     "Turnaround and Verification Traceability: Stamping creation and resolution timestamps on feedback cards alongside turnaround duration pills (e.g. 'Resolved in 24m 41s') and dedicated Verified/Not Verified filtering creates a transparent, high-velocity iteration loop between human reviewers and coding agents.",
     "HTTP 206 Byte-Range Streaming for HTML5 Video Seeking: Modern desktop and mobile browsers (Chrome, Safari) require servers to support HTTP 206 Partial Content range requests (`Accept-Ranges: bytes`) for seeking; servers returning HTTP 200 reset playback to 0:00 when `video.currentTime` is set.",
     "Pre-Roll Auditioning for Audio Edits: Verifying audio cuts or SFX removals requires jumping to an automated pre-roll window (1.5s–2.0s before the edit) and playing unmuted; jumping directly to the edit timestamp starts playback after the event and prevents hearing the transition.",
-    "Zero-Config Cloud Sync via Azure Key Vault: Relying on browser localStorage for cloud SAS URLs creates manual friction; storing credentials in Azure Key Vault (`dp-kv-deliverypilot`) and provisioning via backend API delivers instant, secure, cross-device verification sync without exposed credentials in git."
-  ]
+    "Zero-Config Cloud Sync via Azure Key Vault: Relying on browser localStorage for cloud SAS URLs creates manual friction; storing credentials in Azure Key Vault (`dp-kv-deliverypilot`) and provisioning via backend API delivers instant, secure, cross-device verification sync without exposed credentials in git.",
+    "Render only after the check passes: render-draft stops at a failing Hyperframes check, and a fallback player hid that v10 never rendered. A test now fails when the latest draft has no MP4.",
+    "Keynote readability is measurable: stepping each scene in headless Chrome and counting words, lines, lists and font size flagged 163 of 163 moments in v10 and 0 in v11 to v13.",
+    "Time screens from a transcript, not word position: Whisper word timestamps put every screen on its spoken word, and showed which screens were too short to read.",
+    "Hand-written pages go stale silently: Recommendations stopped at Draft v2 for nine drafts. Stamp the draft it was reviewed against and fail the tests when it falls behind.",
+    "Generated music has its own ending: use the audible part and stretch it to the film, so the ending lands on the last line instead of leaving silence.",
+    "A wider angle lifts the value: reframing from a liquidation how-to to transformation with AI, and explaining every term, made the same story useful to a mass audience (estimated value 72 to 82)."
+  ],
+  "baseline": "Draft v13 (20 Nov 2026), approved by you as the baseline: transformation and teaching yourself with AI, closing the company as the example. Later drafts change from here."
 }

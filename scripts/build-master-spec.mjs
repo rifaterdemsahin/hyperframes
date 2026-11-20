@@ -33,10 +33,12 @@ const chapterText = chapters.map((c) => `${tc(c.start)} ${c.title}`).join("\n");
 
 const assets = S.scenes.filter((s) => s.realAsset).map((s) => ({ scene: s.title, asset: s.realAsset, kind: "Your footage / capture", status: "Needed" }));
 assets.push(
-  { scene: "All", asset: "Background plates (6 images)", kind: "fal.ai, text-free", status: "Done" },
-  { scene: "All", asset: "Draft voiceover (per scene)", kind: "fal.ai Kokoro", status: "Done, to be replaced by your recording" },
-  { scene: "All", asset: "Music and sound effects", kind: "TBD", status: "Open" },
-  { scene: "All", asset: "Thumbnail", kind: "TBD", status: "Open" }
+  { scene: "All", asset: "Keynote screens and drawn visuals", kind: "HTML + SVG from scenes.json (no footage, no logos)", status: "Done" },
+  { scene: "Scene 8", asset: "Mountain image (Share the real journey)", kind: "fal.ai mood plate, text-free", status: "Done" },
+  { scene: "All", asset: "Draft voiceover (per scene) + word transcripts", kind: "fal.ai Kokoro + Whisper", status: "Done, to be replaced by your recording" },
+  { scene: "All", asset: "Music bed", kind: "fal.ai ACE-Step (Apache-2.0), piano-led", status: "Done (listen once)" },
+  { scene: "All", asset: "Caption file (SRT)", kind: "From the final voice transcript", status: "Open" },
+  { scene: "All", asset: "Thumbnail", kind: "HTML, 4 options on the Publish page", status: "Pick one" }
 );
 
 const table = (head, rows) =>
@@ -64,6 +66,7 @@ const spec = `${head("Master Spec")}
   <h2>1. Brief</h2>
   <div class="kv">
     <b>Title</b><span>${esc(P.title)}</span>
+    ${P.baseline ? `<b>Baseline</b><span>${esc(P.baseline)}</span>` : ""}
     <b>Series</b><span>${esc(P.series)}</span>
     <b>Owner</b><span>${esc(P.owner)}</span>
     <b>Audience</b><span>${esc(P.audience)}</span>
@@ -78,7 +81,7 @@ const spec = `${head("Master Spec")}
   <h2>2. Pipeline</h2>
   ${table(["Stage", "What happens", "Pages", "Done when"], [
     ["📋 <b>1 Plan</b> (Preprod)", "The brief, the words and the frames", `<a href="master-spec.html">Master spec</a>, <a href="script.html">Script</a>, <a href="storyboard/">Storyboard</a>, <a href="recommendations.html">Recommendations</a>`, "You approve the script and storyboard, and the open decisions are closed"],
-    ["🎬 <b>2 Build</b> (Prod)", "Build the film in Hyperframes, with real footage and voice, check and snapshot", `<a href="first-draft.html">Draft video</a>, <a href="performance.html">Performance</a>, <a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, the check passes, snapshots reviewed"],
+    ["🎬 <b>2 Build</b> (Prod)", "Build the film in Hyperframes: voice, keynote screens, visuals and music; check, audit and snapshot", `<a href="first-draft.html">Draft video</a>, <a href="performance.html">Performance</a>, <a href="hyperframes-guide/">Hyperframes guide</a>`, "Every scene renders, the check passes, snapshots reviewed"],
     ["🔍 <b>3 Review</b>", "Watch the draft, leave timestamped notes, close the gaps", `<a href="review.html">Review</a>, <a href="gaps.html">Gaps</a>, <a href="kanban.html">Kanban</a>, <a href="changes.html">Changes</a>`, "No notes or gaps are left open"],
     ["🚀 <b>4 Publish</b> (Postprod)", "Title, description, thumbnail, checklist, publish", `<a href="publish.html">Publish copy</a>, <a href="release-checklist.html">Release checklist</a>`, "All acceptance criteria met and the release checklist is complete"],
     ["⚙️ <b>5 Project</b>", "How the system works and how to reuse it", `<a href="agents.html">AGENTS.md</a>, <a href="reuse.html">Reuse</a>, <a href="changelog.html">Changelog</a>`, "The template notes for the next video are written down"],
@@ -95,6 +98,8 @@ const spec = `${head("Master Spec")}
     <b>Voice now</b><span>${esc(P.voice.now)}</span>
     <b>Voice final</b><span>${esc(P.voice.final)}</span>
     <b>Captions</b><span>${esc(P.voice.captions)}</span>
+    ${P.format.style ? `<b>Style</b><span>${esc(P.format.style)}</span>` : ""}
+    ${P.format.music ? `<b>Music</b><span>${esc(P.format.music)}</span>` : ""}
   </div>
 
   <h2>4. Scenes</h2>
@@ -227,7 +232,7 @@ Spec v${P.specVersion} · site v${V.site}. Generated from spec/project.json and 
 
 ## 2. Pipeline
 1. Preprod: script, storyboard, feedback, kanban, recommendations. Done when the storyboard is approved and open decisions are closed.
-2. Prod: build scenes in Hyperframes, bring in real footage and voice. Done when every scene renders and the check passes.
+2. Prod: build scenes in Hyperframes: voice, keynote screens, visuals and music. Done when every scene renders and the check passes.
 3. Postprod: final render, quality control, captions, publish. Done when the acceptance criteria and release checklist are complete.
 
 Every change: commit, push, deploy, bump version.
@@ -236,6 +241,8 @@ Every change: commit, push, deploy, bump version.
 - Resolution ${P.format.resolution}, ${P.format.fps} fps, ${P.format.container}
 - Quality: ${P.format.quality}
 - Rendering: ${P.format.render}
+${P.baseline ? `- Baseline: ${P.baseline}\n` : ""}- Style: ${P.format.style || "-"}
+- Music: ${P.format.music || "-"}
 - Voice now: ${P.voice.now}
 - Voice final: ${P.voice.final}
 - Captions: ${P.voice.captions}
