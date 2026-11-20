@@ -177,7 +177,7 @@
         "🚀 Build your system & mindset for the next journey"
       ],
       "ph": null,
-      "logo": "n8n",
+      "logo": null,
       "fx": {
         "type": "deterministic-vs-probabilistic",
         "cue": "deterministic"

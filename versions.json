@@ -1,5 +1,5 @@
 {
-  "site": "1.31.4",
+  "site": "1.32.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -12,7 +12,7 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.11.0",
+      "version": "1.12.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -21,7 +21,7 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.11.0",
+      "version": "1.12.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.31.4",
+      "version": "1.32.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -117,7 +117,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.12.1",
+      "version": "1.13.0",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.28.4",
+      "version": "1.29.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,19 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.32.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "script.html",
+        "storyboard/",
+        "master-spec.html"
+      ],
+      "changes": [
+        "Implement review feedback: center Hero's Journey card & remove top n8n in S08, center Skool panel with background blur in S10"
+      ]
+    },
     {
       "version": "1.31.4",
       "date": "2026-11-20",
@@ -821,6 +834,6 @@
     "*": "2026-11-18T21:55:42.014Z",
     "script.html": "2026-11-18T22:07:30.860Z",
     "publish.html": "2026-11-18T22:18:45.249Z",
-    "review.html": "2026-11-20T17:09:51.167Z"
+    "review.html": "2026-11-20T19:16:11.860Z"
   }
 }

@@ -265,7 +265,10 @@
     tl.fromTo("#ho-human", { borderColor: "var(--accent)" }, { borderColor: "var(--success)", repeat: 3, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 3.5);
     tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 3, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 5.5);
     tl.to(".handover-card", { opacity: 0, y: -25, duration: 0.6, ease: "power2.in" }, 10.2);
-    tl.fromTo("#skool-panel", { scale: 1 }, { scale: 1.28, x: -280, y: -80, boxShadow: "0 0 70px rgba(0,112,243,0.9), 0 25px 60px rgba(0,0,0,0.85)", borderColor: "#4cc3d9", duration: 0.9, ease: "power3.out" }, 10.5);
+    tl.to(".stack", { filter: "blur(12px)", opacity: 0.15, duration: 0.8, ease: "power2.out" }, 10.2);
+    tl.to("#bg", { filter: "blur(14px) brightness(0.45)", duration: 0.8, ease: "power2.out" }, 10.2);
+    tl.to("#gfx-panel", { top: "44%", left: "50%", right: "auto", xPercent: -50, yPercent: -50, x: 0, y: 0, width: 880, duration: 0.9, ease: "power3.out" }, 10.3);
+    tl.fromTo("#skool-panel", { scale: 1 }, { scale: 1.35, boxShadow: "0 0 90px rgba(0,112,243,0.95), 0 30px 80px rgba(0,0,0,0.9)", borderColor: "#4cc3d9", duration: 0.9, ease: "power3.out" }, 10.5);
     tl.fromTo("#skool-badge", { scale: 1 }, { scale: 1.12, repeat: 5, yoyo: true, duration: 0.7, immediateRender: false, ease: "sine.inOut" }, 11.5);
     tl.fromTo("#c0", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.25);
     tl.to("#c0", { opacity: 0, y: -6, duration: 0.2, ease: "power2.in" }, 2.51);
