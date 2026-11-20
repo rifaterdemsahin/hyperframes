@@ -227,11 +227,12 @@ Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks
 
 1. **Category Filtering**: Chips filter tasks across `All (24)`, `Latest (5)`, `Scenes (16)`, and `Platform (3)`.
 2. **Quick Jump Selector**: A dropdown lists all tasks with their `[fb-...]` IDs for instant selection.
-3. **One-Click Video Scrubbing**: Clicking `▶ Verify in Video (03:13.00)` pauses playback, seeks the HTML5 video directly to the timecode, redraws vector annotations on the canvas, and smoothly scrolls to the player.
-4. **Copy Task ID**: Every task card features a `📋 Copy ID` button for instant clipboard access.
-5. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
-6. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
-7. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
+3. **Turnaround & Resolution Timing**: Each completed task card highlights creation time (`📅 Created: 2026-11-20 16:46 UTC`), resolution timestamp (`🏁 Resolved: 2026-11-20 17:10 UTC`), and the exact turnaround duration pill (`⏱️ Resolved in 24m 41s`). Live feedback items marked `✅ Done` automatically record `resolvedAt` and calculate real-time turnaround.
+4. **One-Click Video Scrubbing**: Clicking `▶ Verify in Video (03:13.00)` pauses playback, seeks the HTML5 video directly to the timecode, redraws vector annotations on the canvas, and smoothly scrolls to the player.
+5. **Copy Task ID**: Every task card features a `📋 Copy ID` button for instant clipboard access.
+6. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
+7. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
+8. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
 
 ---
 
