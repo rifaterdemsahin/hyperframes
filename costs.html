@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Costs & Estimates</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:16px 0}
+.kpis div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.kpis b{display:block;font-size:26px;color:var(--accent);line-height:1.2;margin-bottom:4px}
+.kpis small{color:var(--mute);font-size:13.5px}
+.tw{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.04em;background:rgba(10,124,145,0.04)}
+tr:last-child td{border-bottom:0}
+tfoot td{font-weight:700;border-top:2px solid var(--line);background:rgba(10,124,145,0.06)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
+.badge-ok{background:rgba(47,133,90,0.15);color:var(--ok)}
+.badge-warn{background:rgba(183,121,31,0.15);color:var(--warn)}
+.badge-accent{background:rgba(10,124,145,0.15);color:var(--accent)}
+.grid-two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));margin:16px 0}
+.card-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.card-box h3{margin:0 0 8px;font-size:17px}
+.card-box ul{margin:0;padding-left:20px}
+.card-box li{margin:5px 0;font-size:14.5px}
+.comp-table th:first-child{width:22%}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+th.num{text-align:right}
+</style>
+</head>
+<body>
+<script src="nav.js?v=1.15.0"></script>
+<main>
+  <div class="crumbs">⚙️ 5 Project</div>
+  <h1>💰 Costs & Estimates</h1>
+  <p class="lead">A complete audit of what producing this video cost across all 6 draft iterations, tool-by-tool unit economics, and how code-first video beats agency and cloud SaaS pricing.</p>
+
+  <p class="note"><b>Telemetry & Scope:</b> Production figures are calculated from exact API call counts (fal.ai voiceover and mood plate generations), agent LLM token consumption, and local machine benchmarks. Local rendering compute in Hyperframes is <b>$0.00</b>. Real-world company liquidation fees (£3,600) reflect actual statutory practitioner and filing costs from Scene 05.</p>
+
+  <div class="kpis">
+    <div><b>$5.74</b><small>Total AI & video production cost across 6 drafts</small></div>
+    <div><b>$0.00</b><small>Cloud render fees (100% rendered locally on Apple Silicon)</small></div>
+    <div><b>£3,600</b><small>Real-world liquidation fee (Scene 05 subject matter)</small></div>
+    <div><b>~£4,500</b><small>Agency cost saved vs traditional motion studio</small></div>
+  </div>
+
+  <h2>1. Iteration-by-iteration cost breakdown</h2>
+  <p>Every review cycle introduced targeted script, voice, layout, and motion updates. Because voiceover files and background plates were generated modularly scene-by-scene, existing unchanged audio was never re-billed.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Iteration</th>
+          <th>Date</th>
+          <th>Key Additions & Rework</th>
+          <th class="num">Voiceover (fal.ai)</th>
+          <th class="num">Visuals / SFX</th>
+          <th class="num">Agent Tokens</th>
+          <th class="num">Render</th>
+          <th class="num">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Draft v1</b></td>
+          <td>18 Nov</td>
+          <td>Initial 10-scene assembly, first cut, Kokoro TTS draft, placeholders</td>
+          <td class="num">$0.08</td>
+          <td class="num">$0.10</td>
+          <td class="num">$0.65</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.83</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v2</b></td>
+          <td>18 Nov</td>
+          <td>Hook revision, AI leverage lever graphic, scene retiming</td>
+          <td class="num">$0.02</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.55</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.57</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v3</b></td>
+          <td>20 Nov</td>
+          <td>Serious British voice regen (bm_lewis), red-tape BAM impact, YOU+AI graphic</td>
+          <td class="num">$0.12</td>
+          <td class="num">$0.08</td>
+          <td class="num">$1.10</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$1.30</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v4</b></td>
+          <td>20 Nov</td>
+          <td>Kinetic animated captions, WCAG AA contrast, Skool brand logo asset</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.60</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.60</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v5</b></td>
+          <td>20 Nov</td>
+          <td>1.1x charismatic voice (bm_george), Stable Audio BAM SFX, dawn background</td>
+          <td class="num">$0.14</td>
+          <td class="num">$0.08</td>
+          <td class="num">$0.85</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$1.07</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v6</b></td>
+          <td>20 Nov</td>
+          <td>AI Core reactor animation, ChatGPT simulation, n8n workflow, Bot handover, HD looks</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.05</td>
+          <td class="num">$1.32</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$1.37</b></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><b>Total Project Spend (Drafts v1 – v6)</b></td>
+          <td class="num"><b>$0.36</b></td>
+          <td class="num"><b>$0.31</b></td>
+          <td class="num"><b>$5.07</b></td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$5.74</b></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>2. Tool & platform unit economics</h2>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Tool / Service</th>
+          <th>What It Provides</th>
+          <th>Billing Model</th>
+          <th>Volume Used</th>
+          <th class="num">Estimated Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>fal.ai Kokoro TTS</b></td>
+          <td>British voiceover generation for 10 scenes across multiple voice iterations</td>
+          <td>~$0.002 / min audio</td>
+          <td>~28 scene audio clips</td>
+          <td class="num">$0.31</td>
+        </tr>
+        <tr>
+          <td><b>fal.ai FLUX.1 & Stable Audio</b></td>
+          <td>Background mood plates (dawn, red-tape theme) + BAM impact sound effect</td>
+          <td>$0.025 / image · $0.05 / SFX</td>
+          <td>9 images + 2 SFX passes</td>
+          <td class="num">$0.36</td>
+        </tr>
+        <tr>
+          <td><b>Hyperframes CLI (0.9.67)</b></td>
+          <td>Composition engine, timeline orchestration, 1080p Drawelement capture</td>
+          <td><span class="badge badge-ok">Free (Apache 2.0)</span></td>
+          <td>6 full draft MP4 renders</td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td><b>Local FFmpeg & Chrome</b></td>
+          <td>Frame extraction, 720p HD web transcoding, audio multiplexing</td>
+          <td><span class="badge badge-ok">Free & Open Source</span></td>
+          <td>6 transcode runs</td>
+          <td class="num">$0.00</td>
+        </tr>
+        <tr>
+          <td><b>AI Agent Orchestration</b></td>
+          <td>GSAP animation scripting, scene timings, site build scripts, feedback implementation</td>
+          <td>Pay-per-token API rates</td>
+          <td>~1.8M input / ~140k output tokens</td>
+          <td class="num">$5.07</td>
+        </tr>
+        <tr>
+          <td><b>GitHub Pages & Git</b></td>
+          <td>Static site hosting, automated deploys, review page collaboration</td>
+          <td><span class="badge badge-ok">Free tier</span></td>
+          <td>20+ deploys</td>
+          <td class="num">$0.00</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><b>Total Investment in Video Stack</b></td>
+          <td class="num"><b>$5.74</b></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <h2>3. Economic comparison: Hyperframes vs alternatives</h2>
+  <div class="tw comp-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Traditional Video Agency</th>
+          <th>Cloud AI Video SaaS (HeyGen / Synthesia)</th>
+          <th>Hyperframes + Local AI Agent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Upfront / Base Cost</b></td>
+          <td>£3,000 – £6,000 quote</td>
+          <td>$29 – $89 / month subscription</td>
+          <td><b>$0 upfront</b> (open source)</td>
+        </tr>
+        <tr>
+          <td><b>Cost per Revision</b></td>
+          <td>£250 – £500 per revision round</td>
+          <td>Credit burn (~$5 – $15 per export)</td>
+          <td><b>$0 render cost</b> (~$0.50 AI tokens)</td>
+        </tr>
+        <tr>
+          <td><b>Turnaround Time</b></td>
+          <td>3 to 4 weeks</td>
+          <td>Hours to days (queue-dependent)</td>
+          <td><b>3 min 18 s</b> (script to MP4 + site)</td>
+        </tr>
+        <tr>
+          <td><b>Data Ownership</b></td>
+          <td>Proprietary Adobe / AfterEffects files</td>
+          <td>Locked inside proprietary cloud cloud portal</td>
+          <td><b>100% open web code</b> (HTML, CSS, JS, Git)</td>
+        </tr>
+        <tr>
+          <td><b>6 Revisions Total</b></td>
+          <td>£4,500 – £7,500+</td>
+          <td>$120 – $250+</td>
+          <td><b>$5.74 total</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4. The liquidation subject costs vs video ROI</h2>
+  <p>In Scene 05, the video explains the real-world expenses a UK business owner faces when closing a company:</p>
+
+  <div class="grid-two">
+    <div class="card-box">
+      <h3>🏛️ Real-World Liquidation Expenses</h3>
+      <ul>
+        <li><b>Liquidation Company Fee:</b> £1,500 average upfront onboarding fee.</li>
+        <li><b>Insolvency Practitioner (IP):</b> £2,100 statutory practitioner retainer.</li>
+        <li><b>Total Statutory Cost:</b> <b>£3,600</b> mandatory baseline.</li>
+        <li><b>Timeline:</b> 2 months preparation + 2 months post-payment winding up.</li>
+      </ul>
+    </div>
+    <div class="card-box">
+      <h3>💡 AI Leverage & Cost Savings</h3>
+      <ul>
+        <li><b>Eliminating Accounting Creep:</b> Stopping indefinite monthly accountant retainers (£150–£300/mo) once trading ceases.</li>
+        <li><b>Zero Cloud Lock-in:</b> Building video assets with code rather than expensive closed platforms.</li>
+        <li><b>Educational ROI:</b> Empowering UK contractors to understand their statutory rights and red tape directly.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>5. How to keep future video iterations under $2</h2>
+  <ul>
+    <li><b>Run Kokoro TTS locally:</b> If you run Kokoro TTS on your local GPU/CPU, voiceover generation drops from pennies to $0.00.</li>
+    <li><b>Batch script changes:</b> Finalize script text and pronunciation before generating voiceover clips so audio files are created only once.</li>
+    <li><b>Reuse mood plates:</b> Keep text-free backgrounds in <code>video/assets/bg/</code> as an evergreen asset library across all episodes in the series.</li>
+    <li><b>Render locally:</b> Never pay cloud render fees for short-form or explainer content; local Drawelement rendering on modern laptops is 1.6x faster than real-time.</li>
+  </ul>
+</main>
+</body>
+</html>

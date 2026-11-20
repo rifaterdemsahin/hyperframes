@@ -1,5 +1,5 @@
 {
-  "site": "1.14.0",
+  "site": "1.15.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.14.0",
+      "version": "1.15.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -143,6 +143,16 @@
       "deps": [
         "AGENTS.md",
         "scripts/build-agents-page.mjs"
+      ]
+    },
+    "costs.html": {
+      "title": "Costs & estimates",
+      "version": "1.1.0",
+      "date": "2026-11-20",
+      "deps": [
+        "draft/versions.json",
+        "spec/performance.json",
+        "script/scenes.json"
       ]
     },
     "reuse.html": {
@@ -250,6 +260,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.15.0",
+      "date": "2026-11-20",
+      "pages": [
+        "costs.html"
+      ],
+      "changes": [
+        "Add Costs & Estimates page tracking tool, API and iteration expenses"
+      ]
+    },
     {
       "version": "1.14.0",
       "date": "2026-11-20",
