@@ -1,6 +1,6 @@
 # Video Review & Drawing Annotation Specification
 
-A portable, serverless review framework for video production pipelines (Hyperframes, Remotion, After Effects, or custom web compositions). It enables reviewers to scrub video frame-by-frame, draw visual instructions directly on video frames, automatically upload marked frames to cloud storage (Azure Blob SAS), and export structured Markdown for AI coding agents.
+A portable, serverless review framework for video production pipelines (Hyperframes, Remotion, After Effects, or custom web compositions). It enables reviewers to scrub video frame-by-frame, draw visual instructions directly on video frames, automatically upload marked frames to cloud storage (Azure Blob SAS), verify completed backlog tasks, and export structured Markdown with unique IDs for 1:1 git commit traceability by AI coding agents.
 
 ---
 
@@ -10,47 +10,54 @@ A portable, serverless review framework for video production pipelines (Hyperfra
 flowchart TD
     Reviewer["👤 Human Reviewer (Browser)"]
     Player["🎬 HTML5 Video Player + Overlay Canvas"]
-    LocalState["💾 Browser LocalStorage (review-v2)"]
+    DownloadBtn["⬇ Download Video (Slug-Draft-vN-Review.mp4)"]
+    LocalState["💾 Browser LocalStorage (review-v2, review-verified-v1)"]
+    Carousel["✅ Completed Tasks Verification Carousel"]
     AzureBlob["☁️ Azure Blob Storage (Direct SAS PUT)"]
-    Clipboard["📋 Markdown Feedback Generator"]
+    Clipboard["📋 Markdown Feedback Generator (with Unique IDs)"]
     Agent["🤖 AI Coding Agent (Claude Code / Cursor)"]
     Repo["📦 Video Codebase & Render Pipeline"]
 
-    Reviewer -->|1. Pause, Step Frame, Draw, Note| Player
-    Player -->|2. Persist Vector Shapes & Notes| LocalState
+    Reviewer -->|1. Scrub, Step Frame, Draw, Note| Player
+    Reviewer -->|Download Review Master| DownloadBtn
+    Player -->|2. Persist Vector Shapes & Unique IDs| LocalState
     Player -->|3. Composite Canvas to JPEG Blob| AzureBlob
-    AzureBlob -->|4. Return Image URL| LocalState
+    AzureBlob -->|4. Return Public SAS Image URL| LocalState
     LocalState -->|5. Click 'Copy Feedback'| Clipboard
-    Clipboard -->|6. Paste Markdown to Chat| Agent
-    Agent -->|7. Implement Feedback & Bump Version| Repo
-    Repo -->|8. Release with --clear-notes| Reviewer
+    Clipboard -->|6. Paste Markdown with [id: fb-...]| Agent
+    Agent -->|7. Implement Feedback & Reference ID in Commit| Repo
+    Repo -->|8. Release with --clear-notes & Link Commit in Carousel| Carousel
+    Carousel -->|9. Scrub to Verify & Tick Verified Box| Reviewer
 ```
 
 ### Key Principles
-1. **Zero Backend Required**: Runs as a 100% static HTML/JS web page (e.g. hosted on GitHub Pages, Vercel, or S3).
+1. **Zero Backend Required**: Runs as a 100% static HTML/JS web page (hosted on GitHub Pages, Vercel, or S3).
 2. **Deterministic Frame Accuracy**: Timecodes are converted to exact video frames based on composition FPS (`Math.round(currentTime * FPS)`).
-3. **Normalized Vector Coordinate Space**: Drawing strokes use `[0..1]` normalized coordinates so markings scale responsively across mobile, laptop, and 4K displays.
-4. **Zero-Secret Cloud Uploads**: The reviewer supplies an Azure Container SAS URL directly in their browser UI or URL hash (`#sas=...`). Secrets are never committed to git.
-5. **Lossless Communication Loop**: Outputs grouped Markdown with exact timestamps, frame indices, scene names, and clickable Azure frame URLs for the AI coding agent.
+3. **Unique Feedback Identification**: Every feedback note and drawing is stamped with a unique identifier (`fb-<frame>-<shortId>`), ensuring 1:1 traceability from review note to git commit.
+4. **Standardized Asset Naming**: Downloaded videos and frame snapshots always carry the project slug, draft version, review label, and feedback ID (e.g. `UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4`).
+5. **Interactive Verification Loop**: An embedded carousel allows the reviewer to step through all completed backlog items, seek directly to the exact frame, inspect drawing diffs, view the git commit hash, and toggle persistent verification checkboxes.
+6. **Normalized Vector Coordinate Space**: Drawing strokes use `[0..1]` normalized coordinates so markings scale responsively across mobile, laptop, and 4K displays.
+7. **Zero-Secret Cloud Uploads**: The reviewer supplies an Azure Container SAS URL directly in their browser UI or URL hash (`#sas=...`). Secrets are never committed to git.
+8. **Lossless Communication Loop**: Outputs grouped Markdown with exact timestamps, frame indices, unique IDs, scene names, and clickable Azure frame URLs for the AI coding agent.
 
 ---
 
 ## 2. Review Data Schema
 
-Each feedback annotation is stored in browser `localStorage` as a serialized JSON object:
+Each feedback annotation is stored in browser `localStorage` under `review-v2` as a serialized JSON object:
 
 ```typescript
 interface ReviewMarker {
-  cid: string;             // Unique identifier (e.g. 'a1b2c3d4')
+  cid: string;             // Unique identifier (e.g. 'fb-1270-38a4')
   ts: number;              // Creation timestamp (epoch ms)
   state: "backlog" | "in-progress" | "done";
   kind: "marker" | "text"; // Video frame marker vs copy/post feedback
-  t: number;               // Exact timecode in seconds (e.g. 17.21)
-  frame: number;           // Absolute frame index (e.g. 516 at 30 fps)
-  scene: string;           // Target scene ID (e.g. 's02-intro')
+  t: number;               // Exact timecode in seconds (e.g. 42.10)
+  frame: number;           // Absolute frame index (e.g. 1270 at 30 fps)
+  scene: string;           // Target scene ID (e.g. 's03-goal')
   note: string;            // Reviewer instructions
   shapes: Shape[];         // Vector annotations on the frame
-  imgUrl?: string;         // Direct Azure Blob Storage image URL
+  imgUrl?: string;         // Direct Azure Blob Storage image URL (preserving SAS)
 }
 
 interface Shape {
@@ -60,11 +67,55 @@ interface Shape {
   p: [number, number][];   // Normalized [x, y] coordinates (0.0 to 1.0)
   t?: string;              // Text payload if k === 'text'
 }
+
+interface CompletedTask {
+  id: string;              // Unique feedback/task ID (e.g. 'fb-s03-bam')
+  category: "latest" | "scenes" | "platform";
+  scene: string;           // Scene title or subsystem
+  t: number | null;        // Seek timecode (or null for platform pages)
+  link?: string;           // Optional link for platform pages (e.g. 'costs.html')
+  commit?: string;         // Git commit hash implementing the change (e.g. 'fbd5e1a')
+  title: string;           // Summary of what was done
+  draft: string;           // Draft or site version
+  desc: string;            // Technical description of the change
+  imgUrl?: string;         // Optional reference image URL
+}
 ```
 
 ---
 
-## 3. Drawing Engine & Canvas Synchronization
+## 3. Video & Frame Download Naming Specification
+
+To eliminate ambiguity when reviewers download assets locally or share them with editors, all downloads follow a strict, human-readable naming convention containing the project slug, draft number, and review context.
+
+### 1. Master Review Video Download
+```
+${Project-Slug}-Draft-v${DraftNumber}-Review.mp4
+```
+*Example:* `UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4`
+
+Provided as an explicit pill button in the player control bar:
+```html
+<a id="dlVideo" class="pill" download="UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4" href="draft/v9/video.mp4">
+  ⬇ Download Video (UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4)
+</a>
+```
+
+### 2. Annotated Frame Capture Download (PNG)
+```
+${Project-Slug}-Draft-v${DraftNumber}-Review-${Timecode}-${FeedbackId}.png
+```
+*Example:* `UK-Director-Liquidation-Draft-v9-Review-00-42-10-fb-1270-38a4.png`
+
+### 3. Azure Blob Cloud Upload (JPEG)
+```
+${Project-Slug}-Draft-v${DraftNumber}-Review-${Timecode}-${FeedbackId}.jpg
+```
+*Example:* `UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg`
+
+---
+
+## 4. Drawing Engine & Canvas Synchronization
 
 The review interface overlays an HTML5 `<canvas>` directly over the native `<video>` element within an absolute-positioned container:
 
@@ -92,50 +143,19 @@ function videoBox(canvasWidth, canvasHeight) {
 }
 ```
 
-### Pointer Event Mapping
-Pointer coordinates are mapped to normalized `[0..1]` fractions:
-
-```javascript
-function mapPointer(event, canvas, box) {
-  const rect = canvas.getBoundingClientRect();
-  return [
-    Math.min(1, Math.max(0, (event.clientX - rect.left - box.x) / box.w)),
-    Math.min(1, Math.max(0, (event.clientY - rect.top - box.y) / box.h))
-  ];
-}
-```
-
 ---
 
-## 4. Azure Blob Direct Upload (No Server Proxy)
+## 5. Azure Blob Direct Upload (No Server Proxy)
 
 When a reviewer marks a frame, the client composites the video frame and vector overlay into an offscreen canvas and uploads it directly to Azure Blob Storage using a container-scoped Shared Access Signature (SAS).
 
-### Upload Flow
 ```javascript
-async function captureFrameBlob(marker) {
-  video.pause();
-  const originalTime = video.currentTime;
-  await seekTo(marker.t);
-
-  const canvas = document.createElement("canvas");
-  canvas.width = video.videoWidth || 1280;
-  canvas.height = video.videoHeight || 720;
-  const ctx = canvas.getContext("2d");
-
-  // 1. Draw video frame
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  // 2. Draw vector overlays
-  paintShapes(ctx, marker.shapes, { x: 0, y: 0, w: canvas.width, h: canvas.height });
-
-  await seekTo(originalTime);
-  return new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.88));
-}
-
 async function uploadToAzure(marker, sasUrl) {
   const blob = await captureFrameBlob(marker);
   const u = new URL(sasUrl);
-  const filename = `review-${formatTimecode(marker.t)}-${marker.cid}.jpg`;
+  const cid = marker.cid || `fb-${marker.frame}-${uid()}`;
+  marker.cid = cid;
+  const filename = `UK-Director-Liquidation-Draft-v${draftN}-Review-${formatTimecode(marker.t)}-${cid}.jpg`;
   
   // Destination: https://<account>.blob.core.windows.net/<container>/<folder>/<filename>?<sasToken>
   const putUrl = `${u.origin}${u.pathname.replace(/\/$/, "")}/hyperframes/${filename}${u.search}`;
@@ -150,8 +170,7 @@ async function uploadToAzure(marker, sasUrl) {
   });
 
   if (res.ok) {
-    // Store URL for Markdown export
-    marker.imgUrl = `${u.origin}${u.pathname.replace(/\/$/, "")}/hyperframes/${filename}${u.search}`;
+    marker.imgUrl = putUrl;
     persist();
   }
 }
@@ -159,29 +178,49 @@ async function uploadToAzure(marker, sasUrl) {
 
 ---
 
-## 5. Markdown Feedback Export Format
+## 6. Markdown Feedback Export with Unique IDs
 
-Clicking **"📋 Copy feedback for Claude"** generates a standardized Markdown block:
+Clicking **"📋 Copy feedback for Claude"** generates a standardized Markdown block where every item includes an explicit `[id: fb-...]` tag:
 
 ```markdown
-Review feedback on "UK Director Liquidation (draft v7)" (page v1.16.0, site v1.16.0)
+Review feedback on "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape (draft v9)" (page v1.22.0, site v1.22.0)
 https://rifaterdemsahin.github.io/hyperframes/review.html
 
-## Scene 02 · Part 1 of 3: AI and real-world red tape (00:14 to 00:37)
-- 00:17.21 (frame 516) [drawing: 2 pen] [image: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-00-17-21-a1b2c3.jpg?...]: remove internal video metadata tags
+## Scene 03 · The goal (00:37 to 00:57)
+- 00:42.10 (frame 1270) [id: fb-1270-38a4]: remove the sound effect bang from the background
+
+## Scene 07 · What my emails taught me (02:33 to 02:56)
+- 02:38.26 (frame 4766) [id: fb-4766-9b12]: it is not process stops it is process starts when all balance in the liquidation company is paid off. Update subtitle and text.
 
 ## Scene 08 · How I keep track of it (02:56 to 03:20)
-- 03:06.25 (frame 5587) [drawing: 1 arrow, 1 pen] [image: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-03-06-25-b4c5d6.jpg?...]: transition to hero journey background on this voiceover cue
+- 03:13.00 (frame 5820) [id: fb-5820-502d] [drawing: 1 rect] [image: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...]: change the question sound tone when the friend asks; enlarge and center the quote card
+
+## 🖼️ Visual Drawing References (Public & Consumable by Claude)
+- **03:13.00 (frame 5820 · Scene 08 · [id: fb-5820-502d])**: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...
 ```
 
-### Why Agents Love This Format
-1. **Zero Ambiguity**: The agent knows the exact frame and scene.
-2. **Visual Verification**: The agent can inspect the drawing image via curl or image viewer.
-3. **Task Tracking**: Items can be ticked off in order of timecode.
+### Git Commit Traceability Contract
+When coding agents implement feedback, the commit message must reference the feedback ID:
+```bash
+git commit -m "Remove BAM sfx in Scene 03 [id: fb-1270-38a4] and update Scene 07 balance rule [id: fb-4766-9b12]"
+```
 
 ---
 
-## 6. Feedback Implementation & Auto-Clearing Loop
+## 7. Completed Tasks Verification Carousel
+
+Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks Verification Carousel** allows reviewers to audit all historical and newly completed items:
+
+1. **Category Filtering**: Chips filter tasks across `All (24)`, `Latest (5)`, `Scenes (16)`, and `Platform (3)`.
+2. **Quick Jump Selector**: A dropdown lists all tasks with their `[fb-...]` IDs for instant selection.
+3. **One-Click Video Scrubbing**: Clicking `▶ Verify in Video (03:13.00)` pauses playback, seeks the HTML5 video directly to the timecode, redraws vector annotations on the canvas, and smoothly scrolls to the player.
+4. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
+5. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
+6. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
+
+---
+
+## 8. Feedback Implementation & Auto-Clearing Loop
 
 To prevent duplicate work across releases, implemented feedback is automatically cleared from the reviewer's browser without deleting newly added notes:
 
@@ -201,14 +240,13 @@ To prevent duplicate work across releases, implemented feedback is automatically
      localStorage.setItem(KEY, JSON.stringify(items));
    }
    ```
-   *Any notes added after `clearedAt` remain intact.*
 
 ---
 
-## 7. Quick Recipe to Replicate in a New Project
+## 9. Quick Recipe to Replicate in a New Project
 
 1. **Copy the Review Generator**: Copy `scripts/build-review-page.mjs` into your new repo.
-2. **Point to Video Assets**: In your project spec, define your scenes and output MP4 path (`draft/video.mp4`).
+2. **Define Scenes and Video Slug**: In `script/scenes.json`, define scenes and set the project video slug.
 3. **Configure Azure Container SAS**:
    - Create a private Azure Blob Container (e.g. `video-reviews`).
    - Generate a container SAS token with `racwdl` permissions (Read, Add, Create, Write, Delete, List).

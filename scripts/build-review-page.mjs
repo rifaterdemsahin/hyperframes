@@ -36,7 +36,9 @@ const scenes = S.scenes.map((s, i) => {
   };
 });
 
-const DATA = { fps: FPS, src: `draft/v${N}/video.mp4`, poster: `draft/v${N}/frames/${S.scenes[0].id}.jpg`, label: `🎬 Draft v${N}`, draftN: N, duration: M.duration, scenes, title, description, pageKey: "review.html", videoTitle: S.title };
+const videoSlug = "UK-Director-Liquidation-Part-1";
+const videoDownloadName = `${videoSlug}-Draft-v${N}-Review.mp4`;
+const DATA = { fps: FPS, src: `draft/v${N}/video.mp4`, downloadName: videoDownloadName, poster: `draft/v${N}/frames/${S.scenes[0].id}.jpg`, label: `🎬 Draft v${N}`, draftN: N, duration: M.duration, scenes, title, description, pageKey: "review.html", videoTitle: S.title };
 const json = JSON.stringify(DATA).replace(/</g, "\\u003c");
 
 const html = `<!doctype html>
@@ -86,13 +88,18 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v${N}</span> <span class="badge" id="total">0</span></h1>
-  <p class="lead">Watch <b>Draft v${N}</b> (${tc(M.duration)} runtime), pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Drawings auto-upload to Azure when configured, and "Copy feedback for Claude" outputs timestamped notes with direct Azure links.</p>
+  <p class="lead">Watch <b>Draft v${N}</b> (${tc(M.duration)} runtime), pause on the exact moment, and say what to change. Notes are tied to the time, the frame, unique IDs, and the script scene, and you can draw on the frame. Drawings auto-upload to Azure when configured, and "Copy feedback for Claude" outputs timestamped notes with unique IDs and direct Azure links.</p>
   <div class="grid2">
   <section>
     <div class="stage"><video id="v" controls preload="metadata" playsinline poster="${DATA.poster}"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
-    <div class="ctl"><button id="play" class="big">▶ Play</button><button id="stop" class="big stop">⏹ Stop</button><span id="tc">00:00.00</span><small id="fr">frame 0</small>
-      <button id="fm">◀ frame</button><button id="fp">frame ▶</button><button id="b5">−5s</button><button id="f5">+5s</button>
-      <select id="rate"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select></div>
+    <div class="ctl">
+      <button id="play" class="big">▶ Play</button><button id="stop" class="big stop">⏹ Stop</button>
+      <span id="tc">00:00.00</span><small id="fr">frame 0</small>
+      <button id="fm">◀ frame</button><button id="fp">frame ▶</button>
+      <button id="b5">−5s</button><button id="f5">+5s</button>
+      <select id="rate"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select>
+      <a id="dlVideo" class="pill" download="${videoDownloadName}" href="${DATA.src}" style="text-decoration:none;font-weight:700;margin-left:auto;display:inline-flex;align-items:center;gap:6px" title="Download review video MP4">⬇ Download Video (${videoDownloadName})</a>
+    </div>
     <div class="now" id="now"></div>
     <p class="hint"><kbd>M</kbd> add feedback &nbsp; <kbd>D</kbd> draw &nbsp; <kbd>A</kbd> arrow &nbsp; <kbd>Space</kbd>/<kbd>K</kbd> play/pause &nbsp; <kbd>←</kbd><kbd>→</kbd> frame &nbsp; <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd> 1 s &nbsp; <kbd>J</kbd> −5 s <kbd>L</kbd> +5 s &nbsp; <kbd>⌘/Ctrl Z</kbd> undo stroke</p>
     <div class="box"><h3 style="margin:0 0 6px">📣 Post copy</h3><div id="posts"></div></div>
@@ -228,13 +235,16 @@ $("rate").onchange = () => { v.playbackRate = +$("rate").value; };
 v.addEventListener("click", (e) => { if (!drawMode) { /* native controls handle clicks */ } });
 
 // ---- feedback items
+const getCid = (m) => (m && m.cid ? (m.cid.startsWith("fb-") ? m.cid : "fb-" + m.cid) : ("fb-" + (m ? m.frame || 0 : 0) + "-" + uid().slice(0, 4)));
+
 function add() {
   v.pause();
   const n = $("note");
-  const it = { cid: uid(), ts: Date.now(), state: "backlog", kind: "marker", t: v.currentTime, frame: Math.round(v.currentTime * FPS), scene: sceneAt(v.currentTime).id, note: n.value.trim(), shapes: JSON.parse(JSON.stringify(shapes)) };
+  const fr = Math.round(v.currentTime * FPS);
+  const it = { cid: "fb-" + fr + "-" + uid().slice(0, 4), ts: Date.now(), state: "backlog", kind: "marker", t: v.currentTime, frame: fr, scene: sceneAt(v.currentTime).id, note: n.value.trim(), shapes: JSON.parse(JSON.stringify(shapes)) };
   if (!it.note && !it.shapes.length) { $("msg").className = "err"; $("msg").textContent = "Type a note or draw something first."; return; }
   items.push(it); n.value = ""; shapes = []; redraw(); persist(); render();
-  $("msg").className = "ok"; $("msg").textContent = "Added at " + fmt(it.t) + ".";
+  $("msg").className = "ok"; $("msg").textContent = "Added " + it.cid + " at " + fmt(it.t) + ".";
   if (it.shapes.length && getSas()) uploadToAzure(it);
 }
 $("add").onclick = add;
@@ -247,8 +257,11 @@ function render() {
   list.forEach((m) => {
     const d = document.createElement("div"); d.className = "m" + (m.state === "done" ? " isdone" : "");
     const sc = R.scenes.find((s) => s.id === m.scene);
+    const cid = getCid(m);
+    m.cid = cid;
+    const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:11px;padding:1px 6px;margin-right:6px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(cid) + '</span>';
     const imgLink = m.imgUrl ? ' <a href="' + m.imgUrl + '" target="_blank" style="color:var(--accent);font-size:12px;margin-left:6px;text-decoration:underline">🖼️ Azure image</a>' : (m.shapes && m.shapes.length && getSas() ? ' <button class="up-az" style="font-size:11px;padding:1px 6px">☁️ Upload Azure</button>' : "");
-    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
+    const where = m.kind === "text" ? idBadge + "📣 " + esc(m.section) : idBadge + "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
     d.innerHTML = '<button class="x" title="Delete">✕</button>' + where + ' <select class="state"><option value="backlog">📋 Backlog</option><option value="in-progress">🛠️ In progress</option><option value="done">✅ Done</option></select>' + (m.shapes && m.shapes.length ? ' <button class="dl" title="Download this frame with the drawing">⬇ frame</button>' : "") + '<textarea rows="2" placeholder="Feedback…"></textarea>';
     const b = d.querySelector("b"); if (b) b.onclick = () => goto(m);
     d.querySelector(".x").onclick = () => { items = items.filter((i) => i !== m); persist(); render(); renderPosts(); };
@@ -276,7 +289,7 @@ function renderPosts() {
     const ta = d.querySelector("textarea"); const mine = items.find((i) => i.kind === "text" && i.section === sec); ta.value = mine ? mine.note : "";
     ta.oninput = () => {
       let it = items.find((i) => i.kind === "text" && i.section === sec);
-      if (!it) { it = { cid: uid(), ts: Date.now(), state: "backlog", kind: "text", section: sec, t: 0, frame: 0, note: "", shapes: [] }; items.push(it); }
+      if (!it) { it = { cid: "fb-" + sec.toLowerCase() + "-" + uid().slice(0, 4), ts: Date.now(), state: "backlog", kind: "text", section: sec, t: 0, frame: 0, note: "", shapes: [] }; items.push(it); }
       it.note = ta.value; it.ts = Date.now();
       if (!it.note.trim()) items = items.filter((x) => x !== it);
       persist(); render();
@@ -335,7 +348,9 @@ async function uploadToAzure(m) {
   try {
     const blob = await captureFrameBlob(m);
     const u = new URL(sas);
-    const fname = "review-" + fmt(m.t).replace(/[:.]/g, "-") + "-" + (m.cid || uid()) + ".jpg";
+    const cid = getCid(m);
+    m.cid = cid;
+    const fname = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Review-" + fmt(m.t).replace(/[:.]/g, "-") + "-" + cid + ".jpg";
     const putUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + fname + u.search;
     const res = await fetch(putUrl, {
       method: "PUT",
@@ -346,7 +361,7 @@ async function uploadToAzure(m) {
       m.imgUrl = putUrl;
       persist();
       render();
-      if (msg) { msg.className = "ok"; msg.textContent = "Drawing saved to Azure."; }
+      if (msg) { msg.className = "ok"; msg.textContent = "Drawing saved to Azure: " + fname; }
     } else {
       if (msg) { msg.className = "err"; msg.textContent = "Azure upload failed: HTTP " + res.status; }
     }
@@ -358,7 +373,11 @@ async function downloadFrame(m) {
   v.pause(); const keep = v.currentTime; await seekTo(m.t);
   const w = v.videoWidth || 960, h = v.videoHeight || 540, c = document.createElement("canvas"); c.width = w; c.height = h;
   const g = c.getContext("2d"); g.drawImage(v, 0, 0, w, h); paint(g, m.shapes, { x: 0, y: 0, w, h });
-  const a = document.createElement("a"); a.href = c.toDataURL("image/png"); a.download = "review-" + fmt(m.t).replace(/[:.]/g, "-") + ".png"; a.click(); await seekTo(keep);
+  const a = document.createElement("a");
+  const cid = getCid(m);
+  a.href = c.toDataURL("image/png");
+  a.download = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Review-" + fmt(m.t).replace(/[:.]/g, "-") + "-" + cid + ".png";
+  a.click(); await seekTo(keep);
 }
 
 // ---- copy for the chat: grouped by scene, in time order, open items only
@@ -373,18 +392,27 @@ function build() {
     const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
     out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");
     list.forEach((i) => {
+      const cid = getCid(i);
+      i.cid = cid;
       const drawDesc = i.shapes && i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
       const imgDesc = i.imgUrl ? " [image: " + i.imgUrl + "]" : "";
       const progDesc = i.state === "in-progress" ? " [in progress]" : "";
-      out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
+      out.push("- " + fmt(i.t) + " (frame " + i.frame + ") [id: " + cid + "]" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
       if (i.imgUrl) {
-        visualRefs.push("- **" + fmt(i.t) + " (frame " + i.frame + " · Scene " + String(s.n).padStart(2, "0") + ")**: " + i.imgUrl);
+        visualRefs.push("- **" + fmt(i.t) + " (frame " + i.frame + " · Scene " + String(s.n).padStart(2, "0") + " · [id: " + cid + "])**: " + i.imgUrl);
       }
     });
     out.push("");
   });
   const texts = mine.filter((i) => i.kind === "text");
-  if (texts.length) { out.push("## Post copy"); texts.forEach((i) => out.push("- [" + i.section + "] " + i.note)); out.push(""); }
+  if (texts.length) {
+    out.push("## Post copy");
+    texts.forEach((i) => {
+      const cid = getCid(i);
+      out.push("- [" + i.section + "] [id: " + cid + "] " + i.note);
+    });
+    out.push("");
+  }
   if (visualRefs.length) {
     out.push("## 🖼️ Visual Drawing References (Public & Consumable by Claude)");
     visualRefs.forEach((r) => out.push(r));
@@ -427,48 +455,53 @@ const saveVerified = () => { try { localStorage.setItem(VERIFIED_KEY, JSON.strin
 const COMPLETED_TASKS = [
   // --- Latest (Draft v8 & v9) ---
   {
-    id: "task-01-watermark",
+    id: "fb-s01-watermark",
     category: "latest",
     scene: "Scene 01 · Hook",
     t: 0.9,
+    commit: "7065b2f",
     title: "Remove 'DRAFT V*' Watermark Across Entire Video",
     draft: "Draft v8 & v9",
     desc: "Deleted top-right draft badge across all scenes for clean, distraction-free 1080p master presentation.",
     imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-00-00-27-8cd79423.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
   },
   {
-    id: "task-03-bam",
+    id: "fb-s03-bam",
     category: "latest",
     scene: "Scene 03 · The goal",
     t: 42.1,
+    commit: "fbd5e1a",
     title: "Remove BAM Sound Effect from Audio Mix",
     draft: "Draft v9",
     desc: "Removed impact sound effect from audio mix in Scene 03 for a professional, calm narration flow."
   },
   {
-    id: "task-07-balance",
+    id: "fb-s07-balance",
     category: "latest",
     scene: "Scene 07 · What my emails taught me",
     t: 158.3,
+    commit: "fbd5e1a",
     title: "Correct Rule: Process Starts Once Balance Paid in Full",
     draft: "Draft v9",
     desc: "Updated script, subtitle & voiceover: 'One: the process starts once the entire balance for the liquidation company is paid off—my provider chased me six times.'"
   },
   {
-    id: "task-08-friend",
+    id: "fb-s08-friend",
     category: "latest",
     scene: "Scene 08 · How I keep track of it",
     t: 193.0,
+    commit: "fbd5e1a",
     title: "Friend Voice Tone & Centered Hero Quote Card",
     draft: "Draft v9",
     desc: "Voiceover modulated with distinct British tone (bm_lewis) for friend's question; enlarged & centered Hero's Journey quote card.",
     imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-03-13-00-502dd4bb.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
   },
   {
-    id: "task-10-skool",
+    id: "fb-s10-skool",
     category: "latest",
     scene: "Scene 10 · Disclaimer + outro",
     t: 238.0,
+    commit: "fbd5e1a",
     title: "End Focus Transition onto Delivery Pilot Skool Panel",
     draft: "Draft v9",
     desc: "Dimmed background and zoomed into Delivery Pilot Skool community panel (scaled 1.28x with radiant cyan glow).",
@@ -477,145 +510,161 @@ const COMPLETED_TASKS = [
 
   // --- Scenes (S01 to S10) ---
   {
-    id: "task-01-reactor",
+    id: "fb-s01-reactor",
     category: "scenes",
     scene: "Scene 01 · Hook",
     t: 11.2,
+    commit: "8ab2a2a",
     title: "'In the Age of AI' Core Strategy Rotating Reactor",
     draft: "Draft v6",
     desc: "Implemented glowing, rotating multi-ring AI core reactor graphic symbolizing AI strategy and automation."
   },
   {
-    id: "task-02-contractor",
+    id: "fb-s02-contractor",
     category: "scenes",
     scene: "Scene 02 · The wake-up call",
     t: 18.1,
+    commit: "acb22a8",
     title: "IT Contractor Context & IR35 Tax Shift During Downturn",
     draft: "Draft v5",
     desc: "Added explicit IT contractor narrative context: UK market downturn + IR35 tax shift that led to company insolvency."
   },
   {
-    id: "task-02-cleanlabels",
+    id: "fb-s02-cleanlabels",
     category: "scenes",
     scene: "Scene 02 · The wake-up call",
     t: 17.2,
+    commit: "ea38708",
     title: "Removed Internal Scene Label Tags (INTRO, CHAPTER, HOOK)",
     draft: "Draft v7",
     desc: "Stripped dev metadata tags from overlays, replacing them with professional topic badges and emojis."
   },
   {
-    id: "task-03-pipeline",
+    id: "fb-s03-pipeline",
     category: "scenes",
     scene: "Scene 03 · The goal",
     t: 38.1,
+    commit: "1493252",
     title: "Legal Separation Rule & 3-Step Liquidation Pipeline Graphic",
     draft: "Draft v2",
     desc: "Visualized the 3-phase MVL/CVL progression card and legal separation between director and corporate entity."
   },
   {
-    id: "task-04-chatgpt",
+    id: "fb-s04-chatgpt",
     category: "scenes",
     scene: "Scene 04 · Five things to do first",
     t: 70.2,
+    commit: "8ab2a2a",
     title: "ChatGPT Co-Pilot Animation & AI Learning Card",
     draft: "Draft v6",
     desc: "Added interactive ChatGPT co-pilot simulation with live learning from AI disclaimer card."
   },
   {
-    id: "task-04-british",
+    id: "fb-s04-british",
     category: "scenes",
     scene: "Scene 04 · Five things to do first",
     t: 58.0,
+    commit: "f4f202e",
     title: "Standardized British English & Cleaned Layout Boxes",
     draft: "Draft v3",
     desc: "Standardized UK spellings, removed raw placeholder boxes, and refined typography spacing."
   },
   {
-    id: "task-05-fees",
+    id: "fb-s05-fees",
     category: "scenes",
     scene: "Scene 05 · The cost & the timeline",
     t: 105.0,
+    commit: "f4f202e",
     title: "Average UK Fee Breakdown (£1,500 + £2,100) & 2-Month Timeline",
     draft: "Draft v3",
     desc: "Clarified £1,500 + £2,100 typical UK liquidation expenses and 2-month timeline graphics with caveat tags."
   },
   {
-    id: "task-05-leverage",
+    id: "fb-s05-leverage",
     category: "scenes",
     scene: "Scene 05 · The cost & the timeline",
     t: 112.0,
+    commit: "1493252",
     title: "YOU + AI Mechanical Leverage Graphic",
     draft: "Draft v3",
     desc: "Designed dynamic fulcrum lever animation showing human director amplified by AI efficiency."
   },
   {
-    id: "task-06-guardrails",
+    id: "fb-s06-guardrails",
     category: "scenes",
     scene: "Scene 06 · What AI can (and can’t) do",
     t: 135.0,
+    commit: "26356da",
     title: "Hands-On (Secure, Adapt, Train) Guardrail Animation",
     draft: "Draft v4",
     desc: "Animated green/amber/red security shields for AI boundaries: legal advice vs data summarization."
   },
   {
-    id: "task-07-mcp",
+    id: "fb-s07-mcp",
     category: "scenes",
     scene: "Scene 07 · What my emails taught me",
     t: 164.0,
+    commit: "f4f202e",
     title: "Online Records = Structured Database & MCP Pipeline",
     draft: "Draft v3",
     desc: "Created visual schematic of Gmail/Drive via MCP streaming into local SQLite evidence database."
   },
   {
-    id: "task-08-n8n",
+    id: "fb-s08-n8n",
     category: "scenes",
     scene: "Scene 08 · How I keep track of it",
     t: 178.0,
+    commit: "1493252",
     title: "n8n Deterministic Cron vs AI Probabilistic Diagram",
     draft: "Draft v2",
     desc: "Contrasted deterministic workflow scheduling (n8n node flow) with probabilistic LLM synthesis."
   },
   {
-    id: "task-08-mountain",
+    id: "fb-s08-mountain",
     category: "scenes",
     scene: "Scene 08 · How I keep track of it",
     t: 186.0,
+    commit: "ea38708",
     title: "Cinematic Hero's Journey Mountain Backdrop",
     draft: "Draft v7",
     desc: "High-resolution fal.ai mountain peak backdrop visualizing the emotional summit of overcoming liquidation stress."
   },
   {
-    id: "task-09-grace",
+    id: "fb-s09-grace",
     category: "scenes",
     scene: "Scene 09 · From shame to grace",
     t: 208.0,
+    commit: "acb22a8",
     title: "From Shame to Grace Guidance (Vehicle vs Identity)",
     draft: "Draft v5",
     desc: "Card separating company vehicle from personal identity; psychological reframing for founders."
   },
   {
-    id: "task-09-sunrise",
+    id: "fb-s09-sunrise",
     category: "scenes",
     scene: "Scene 09 · From shame to grace",
     t: 216.0,
+    commit: "1493252",
     title: "Motivational Dawn Sunrise Background & Comment CTA",
     draft: "Draft v2",
     desc: "Luminous sunrise visual with prompt inviting viewers to share liquidation questions for Part 2."
   },
   {
-    id: "task-10-handover",
+    id: "fb-s10-handover",
     category: "scenes",
     scene: "Scene 10 · Disclaimer + outro",
     t: 230.2,
+    commit: "8ab2a2a",
     title: "Bot-to-Human Handover Flow & Legal Guardrail",
     draft: "Draft v6",
     desc: "Explicit visual transition from AI data preparation to licensed insolvency practitioner decision."
   },
   {
-    id: "task-global-subtitles",
+    id: "fb-global-subtitles",
     category: "scenes",
     scene: "All Scenes (01–10)",
     t: 5.0,
+    commit: "26356da",
     title: "Kinetic Animated Subtitles & Charismatic 1.1x Voiceover",
     draft: "Draft v4/v5",
     desc: "Synchronized word-level kinetic subtitle highlighting with energetic 1.1x narration pacing."
@@ -623,31 +672,34 @@ const COMPLETED_TASKS = [
 
   // --- Platform & Tooling ---
   {
-    id: "task-platform-costs",
+    id: "fb-platform-costs",
     category: "platform",
     scene: "Platform · Costs",
     t: null,
     link: "costs.html",
+    commit: "e25854d",
     title: "Flat $20/mo Subscriptions ($3.08/video, $0 Marginal)",
     draft: "Site v1.20.1",
     desc: "Audited token spend: Claude Pro ($20) + Gemini ($20) flat memberships amortized across 3 videos/week = $3.08/video, $0 marginal revision."
   },
   {
-    id: "task-platform-releases",
+    id: "fb-platform-releases",
     category: "platform",
     scene: "Platform · Releases",
     t: null,
     link: "releases.html",
+    commit: "962a9af",
     title: "Automated 2 GB Master Delivery via GitHub Releases",
     draft: "Site v1.17.0",
     desc: "Dedicated script (publish-release.mjs) uploading full 1080p MP4 master renders directly to GitHub Releases with zero git bloat."
   },
   {
-    id: "task-tooling-azure",
+    id: "fb-tooling-azure",
     category: "platform",
     scene: "Tooling · Review",
     t: null,
     link: "review.html",
+    commit: "c66cae0",
     title: "Azure Blob Drawing Backup & Claude-Consumable SAS Links",
     draft: "Site v1.18.0",
     desc: "Drawings automatically upload to Azure container with preserved SAS tokens so copied feedback includes public links consumable by Claude."
@@ -659,7 +711,7 @@ let cIdx = 0;
 
 function getCarouselTasks() {
   const localDone = (items || []).filter((i) => i.state === "done").map((i, idx) => ({
-    id: "local-" + (i.cid || idx),
+    id: getCid(i),
     category: "scenes",
     scene: i.kind === "text" ? i.section : (sceneAt(i.t) ? "Scene " + sceneAt(i.t).n + " · " + sceneAt(i.t).title : fmt(i.t)),
     t: i.t,
@@ -699,7 +751,7 @@ function renderCarousel() {
   if (sel) {
     sel.innerHTML = allTasks.map((item, idx) => {
       const vMark = verifiedMap[item.id] ? "✓ " : "";
-      return '<option value="' + idx + '"' + (idx === cIdx ? " selected" : "") + '>' + vMark + (idx + 1) + ". " + esc(item.title) + '</option>';
+      return '<option value="' + idx + '"' + (idx === cIdx ? " selected" : "") + '>' + vMark + (idx + 1) + ". [" + esc(item.id) + "] " + esc(item.title) + '</option>';
     }).join("");
     sel.onchange = () => { cIdx = +sel.value; renderCarousel(); };
   }
@@ -711,11 +763,16 @@ function renderCarousel() {
 
   const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
   const verifyBtn = t.t !== null ? '<button id="cVerifyBtn" class="pri" style="font-size:12px;padding:6px 12px;font-weight:700">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
+  const commitHtml = t.commit ? '<span style="font-size:11px;color:var(--mute)">Commit: <a href="https://github.com/rifaterdemsahin/hyperframes/commit/' + t.commit + '" target="_blank" style="color:var(--accent);font-family:ui-monospace,monospace;font-weight:700;text-decoration:underline">' + t.commit + '</a></span>' : '';
+  const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:10px;padding:1px 5px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(t.id) + '</span>';
 
   $("cCard").className = "carousel-card" + (isV ? " is-verified" : "");
   $("cCard").innerHTML =
     '<div style="display:flex;justify-content:space-between;align-items:center">' +
-      '<span class="carousel-tag">' + esc(t.draft) + ' · ' + esc(t.scene) + '</span>' +
+      '<div style="display:flex;align-items:center;gap:6px">' +
+        idBadge +
+        '<span class="carousel-tag">' + esc(t.draft) + ' · ' + esc(t.scene) + '</span>' +
+      '</div>' +
       '<label style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;color:' + (isV ? "var(--ok)" : "var(--mute)") + '"><input type="checkbox" id="cVerifyChk"' + (isV ? " checked" : "") + '> ' + (isV ? "✅ Verified" : "Verify") + '</label>' +
     '</div>' +
     '<div class="carousel-title">' + esc(t.title) + '</div>' +
@@ -723,7 +780,10 @@ function renderCarousel() {
     (imgHtml ? '<div>' + imgHtml + '</div>' : '') +
     '<div class="carousel-actions" style="margin-top:auto;display:flex;justify-content:space-between;align-items:center">' +
       verifyBtn +
-      '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + allTasks.length + '</span>' +
+      '<div style="display:flex;align-items:center;gap:8px">' +
+        commitHtml +
+        '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + allTasks.length + '</span>' +
+      '</div>' +
     '</div>';
 
   const vBtn = $("cVerifyBtn");
@@ -760,7 +820,7 @@ function renderCarousel() {
     const d = document.createElement("div");
     d.className = "carousel-dot" + (i === cIdx ? " active" : "");
     if (verifiedMap[item.id]) d.style.background = "var(--ok)";
-    d.title = (i + 1) + ". " + item.title + (verifiedMap[item.id] ? " (Verified)" : "");
+    d.title = (i + 1) + ". [" + item.id + "] " + item.title + (verifiedMap[item.id] ? " (Verified)" : "");
     d.onclick = () => { cIdx = i; renderCarousel(); };
     dots.appendChild(d);
   });

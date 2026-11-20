@@ -1,5 +1,5 @@
 {
-  "site": "1.22.0",
+  "site": "1.23.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.22.0",
+      "version": "1.23.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -177,7 +177,7 @@
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.11.0",
+      "version": "1.12.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.19.0",
+      "version": "1.20.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.23.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "changes.html"
+      ],
+      "changes": [
+        "Add unique feedback IDs with git commit traceability, update review spec, and fix review video download naming"
+      ]
+    },
     {
       "version": "1.22.0",
       "date": "2026-11-20",
