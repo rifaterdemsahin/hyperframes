@@ -69,12 +69,10 @@ const CSS = `
     .cap-cadence { position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #4cc3d9, #06d6a0); transform-origin: 0 50%; transform: scaleX(0); z-index: 3; }
 
     /* Side graphic container */
-    .gfx-panel { position: absolute; right: 80px; top: 180px; width: 780px; height: 680px; display: flex; flex-direction: column; gap: 20px; opacity: 0; z-index: 15; }
+    .gfx-panel { position: absolute; right: 80px; top: 150px; width: 780px; display: flex; flex-direction: column; gap: 16px; opacity: 0; z-index: 15; }
 
-    /* Scene 03 BAM Effect */
-    .bam-box { position: absolute; right: 100px; top: 220px; width: 740px; height: 540px; background: radial-gradient(circle, rgba(239,71,111,.25) 0%, rgba(10,14,24,.85) 75%); border: 4px solid var(--danger); border-radius: 24px; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; box-shadow: 0 0 50px rgba(239,71,111,.4); opacity: 0; }
-    .bam-badge { font-size: 72px; font-weight: 900; color: #fff; background: var(--danger); padding: 12px 36px; border-radius: 16px; letter-spacing: .05em; text-shadow: 0 4px 16px rgba(0,0,0,.5); transform: rotate(-3deg); }
-    .bam-text { font-size: 36px; font-weight: 700; color: #ffd166; line-height: 1.3; }
+    /* Scene 03 Legal Separation & Process Graphic */
+    .debt-card { background: var(--card-bg); border: 2px solid rgba(76,195,217,.4); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
 
     /* Scene 05 Cost & Timeline aesthetic leverage graphic */
     .cost-card { background: var(--card-bg); border: 2px solid rgba(255,255,255,.15); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
@@ -86,7 +84,7 @@ const CSS = `
     .tl-label { font-size: 28px; font-weight: 700; color: #e0e8f0; }
     .tl-line { position: absolute; top: 30px; left: 40px; right: 40px; height: 6px; background: rgba(255,255,255,.2); z-index: 1; }
     .tl-line-fill { position: absolute; top: 30px; left: 40px; width: 0%; height: 6px; background: var(--accent); z-index: 1; }
-    .leverage-pill { align-self: center; background: linear-gradient(135deg, #4cc3d9, #06d6a0); color: #04222a; font-weight: 900; font-size: 32px; padding: 12px 32px; border-radius: 30px; letter-spacing: .05em; box-shadow: 0 8px 24px rgba(76,195,217,.4); }
+    .leverage-pill { align-self: center; background: #021a1f; color: #4cc3d9; border: 2px solid #4cc3d9; font-weight: 900; font-size: 32px; padding: 10px 32px; border-radius: 30px; letter-spacing: .05em; box-shadow: 0 8px 24px rgba(76,195,217,.3); }
 
     /* Scene 06 Hands-on & Guardrail */
     .loop-card { background: var(--card-bg); border: 2px solid rgba(76,195,217,.3); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
@@ -148,40 +146,43 @@ scenes.forEach((s, i) => {
   const voDur = s.voSeconds || s.duration - 0.5;
   const voLocal = VO_LEAD;
 
-  // captions
-  let sentences = s.vo.split(/(?<=[.?!])\s+/).filter(Boolean);
-  for (let k = 0; k < sentences.length - 1; k++) if (sentences[k].split(/\s+/).length < 4) { sentences[k + 1] = `${sentences[k]} ${sentences[k + 1]}`; sentences.splice(k, 1); k--; }
-  const words = sentences.map((x) => x.split(/\s+/).length);
-  const wTotal = words.reduce((a, b) => a + b, 0);
-  let acc = 0;
-  let caps = sentences.map((x, k) => {
-    const t0 = voLocal + (voDur * acc) / wTotal; acc += words[k];
-    const t1 = voLocal + (voDur * acc) / wTotal;
-    const sWords = x.split(/\s+/);
-    return { text: x, words: sWords, t0, t1, w: words[k] };
-  });
-  caps[caps.length - 1].t1 = Math.max(caps[caps.length - 1].t1, s.duration - 0.45);
-  for (let k = caps.length - 1; k > 0; k--) {
-    if (caps[k].t1 - caps[k].t0 < 0.5 + 0.3 * caps[k].w) {
-      caps[k - 1] = { 
-        text: `${caps[k - 1].text} ${caps[k].text}`, 
-        words: [...caps[k - 1].words, ...caps[k].words],
-        t0: caps[k - 1].t0, 
-        t1: caps[k].t1, 
-        w: caps[k - 1].w + caps[k].w 
-      };
-      caps.splice(k, 1);
+  // Natural phrase chunks (5 to 9 words per capsule)
+  const rawWords = s.vo.split(/\s+/).filter(Boolean);
+  const chunks = [];
+  let currentChunk = [];
+  for (const w of rawWords) {
+    currentChunk.push(w);
+    const endsSentence = /[.?!]$/.test(w);
+    const endsClause = /[,;:]$/.test(w);
+    if ((endsSentence && currentChunk.length >= 4) || (endsClause && currentChunk.length >= 6) || currentChunk.length >= 9) {
+      chunks.push(currentChunk);
+      currentChunk = [];
     }
   }
-  if (caps.length > 1 && caps[0].t1 - caps[0].t0 < 0.5 + 0.3 * caps[0].w) {
-    caps[1] = { 
-      text: `${caps[0].text} ${caps[1].text}`, 
-      words: [...caps[0].words, ...caps[1].words],
-      t0: caps[0].t0, 
-      t1: caps[1].t1, 
-      w: caps[0].w + caps[1].w 
+  if (currentChunk.length > 0) {
+    if (chunks.length > 0 && currentChunk.length < 4) {
+      chunks[chunks.length - 1].push(...currentChunk);
+    } else {
+      chunks.push(currentChunk);
+    }
+  }
+
+  const wTotal = rawWords.length;
+  let wordAcc = 0;
+  let caps = chunks.map((cWords) => {
+    const t0 = voLocal + (voDur * wordAcc) / wTotal;
+    wordAcc += cWords.length;
+    const t1 = voLocal + (voDur * wordAcc) / wTotal;
+    return {
+      text: cWords.join(" "),
+      words: cWords,
+      t0,
+      t1,
+      w: cWords.length
     };
-    caps.shift();
+  });
+  if (caps.length > 0) {
+    caps[caps.length - 1].t1 = Math.min(s.duration - 0.45, Math.max(caps[caps.length - 1].t1, caps[caps.length - 1].t0 + 1.2));
   }
 
   let js = `
@@ -209,8 +210,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   // Finite repeats for animations
   if (s.id === "s03-goal") {
     js += `
-    tl.fromTo("#bam-box", { opacity: 0, scale: 0.4, rotation: -10 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.7)" }, 5.2);
-    tl.fromTo("#bam-badge", { scale: 1 }, { scale: 1.08, repeat: 5, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 5.8);`;
+    tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);`;
   } else if (s.id === "s05-cost-timeline") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
@@ -251,9 +251,10 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     const numWords = c.words.length;
     c.words.forEach((w, wIdx) => {
       const wt = c.t0 + (span * wIdx) / numWords;
+      const dur = Math.max(0.08, span / numWords);
       js += `
-    tl.fromTo("#cw_${k}_${wIdx}", { opacity: 0.45, color: "#94a3b8" }, { opacity: 1, color: "#4cc3d9", duration: 0.12, ease: "power2.out" }, ${r2(wt)});
-    tl.to("#cw_${k}_${wIdx}", { color: "#ffffff", duration: 0.2, ease: "power1.out" }, ${r2(wt + 0.12)});`;
+    tl.fromTo("#cw_${k}_${wIdx}", { opacity: 0.45, color: "#94a3b8" }, { opacity: 1, color: "#4cc3d9", duration: ${r2(dur * 0.4)}, overwrite: "auto", ease: "power2.out" }, ${r2(wt)});
+    tl.to("#cw_${k}_${wIdx}", { color: "#ffffff", duration: ${r2(dur * 0.6)}, overwrite: "auto", ease: "power1.out" }, ${r2(wt + dur * 0.4)});`;
     });
   });
 
@@ -264,10 +265,20 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   let gfxHtml = "";
   if (s.id === "s03-goal") {
     gfxHtml = `
-      <div id="bam-box" class="bam-box">
-        <div id="bam-badge" class="bam-badge">💥 BAM!</div>
-        <div class="bam-text">Industrial & Information Revolutions Created Unprecedented Red Tape</div>
-        <div style="font-size: 28px; color: #fff; font-weight: 600;">Understand the structure first before you move</div>
+      <div id="gfx-panel" class="gfx-panel">
+        <div class="debt-card">
+          <div style="font-size: 28px; font-weight: 800; color: #4cc3d9;">🏛️ Legal Separation Rule</div>
+          <div class="fee-row" style="border-left: 5px solid #06d6a0;">
+            <span>Company Debt</span>
+            <span style="color: #06d6a0; font-size: 28px;">Stays With the Company</span>
+          </div>
+          <div style="font-size: 28px; font-weight: 700; color: #cbd5e1; margin-top: 6px;">Three-Step Liquidation Pipeline</div>
+          <div class="db-table">
+            <div class="db-row"><span style="color:#ffd166;">1. Hand Over</span><span>Licensed practitioner takes control</span></div>
+            <div class="db-row"><span style="color:#4cc3d9;">2. Sell Assets</span><span>Realise value for creditors</span></div>
+            <div class="db-row"><span style="color:#06d6a0;">3. Pay Creditors</span><span>Paid strictly in statutory order</span></div>
+          </div>
+        </div>
       </div>`;
   } else if (s.id === "s05-cost-timeline") {
     gfxHtml = `
@@ -344,9 +355,18 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s09-cta") {
     gfxHtml = `
       <div id="gfx-panel" class="gfx-panel">
-        <div class="comments-box">
-          <div class="comments-icon">💬</div>
-          <div class="comments-prompt">Should I shoot Part 2?<br>Tell me in the comments below!</div>
+        <div class="debt-card" style="border-color: rgba(255, 209, 102, 0.4); text-align: center;">
+          <div style="font-size: 32px; font-weight: 900; color: #ffd166;">🌅 From Shame to Grace</div>
+          <div style="font-size: 28px; color: #ffffff; line-height: 1.35; margin: 8px 0;">
+            A company is merely a legal vehicle.<br>
+            <strong style="color: #4cc3d9;">Do not attach your identity to it.</strong>
+          </div>
+          <div style="font-size: 28px; font-weight: 800; color: #06d6a0; background: rgba(6, 214, 160, 0.15); padding: 10px 18px; border-radius: 12px;">
+            ✨ You can always restart and rebuild
+          </div>
+        </div>
+        <div class="comments-box" style="padding: 22px;">
+          <div class="comments-prompt" style="font-size: 28px;">Should I shoot Part 2?<br>Tell me in the comments below!</div>
           <div id="sub-btn" class="sub-btn">SUBSCRIBE</div>
         </div>
       </div>`;
@@ -402,6 +422,10 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     <div id="scene-${esc(s.id)}" class="clip" data-composition-id="${esc(s.id)}" data-composition-src="compositions/${esc(s.id)}.html" data-start="${s.start}" data-duration="${s.duration}" data-track-index="0"></div>`;
   rootAudio += `
     <audio id="vo-${esc(s.id)}" src="assets/vo/${esc(s.id)}.mp3" data-start="${r2(s.start + VO_LEAD)}" data-duration="${r2(voDur)}" data-track-index="1"></audio>`;
+  if (s.id === "s03-goal" && existsSync(`${root}/video/assets/sfx/bam.mp3`)) {
+    rootAudio += `
+    <audio id="sfx-bam" src="assets/sfx/bam.mp3" data-start="${r2(s.start + 5.0)}" data-duration="2.0" data-track-index="2"></audio>`;
+  }
 });
 
 const index = `<!doctype html>

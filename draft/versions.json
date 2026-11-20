@@ -1,5 +1,5 @@
 {
-  "latest": 4,
+  "latest": 5,
   "versions": [
     {
       "n": 1,
@@ -46,6 +46,18 @@
         "Animated serious style subtitles: kinetic phrase containers with progressive word illumination and cadence tracker line.",
         "Integrated official Skool brand logo image into Scene 10 outro panel.",
         "Passed full WCAG AA contrast check (137/137 checks passed)."
+      ]
+    },
+    {
+      "n": 5,
+      "date": "2026-11-20",
+      "label": "Fifth draft",
+      "changes": [
+        "Voiceover reader accelerated to 1.1x speed with warm, charismatic British tone (bm_george) across all scenes.",
+        "Scene 02: Included IT contractor context, UK tax changes, and involuntary push inside IR35 during market downturn.",
+        "Scene 03: Generated BAM audio sound effect via fal.ai stable audio and mixed into soundtrack; removed BAM UI box in favor of sleek Legal Separation Rule & 3-step liquidation pipeline graphic.",
+        "Scene 09: Generated motivational dawn background with fal.ai; added Shame to Grace guidance (don't attach personality to company, vehicle can always restart); Part 2 feedback prompt.",
+        "Re-timed all scene durations and timeline offsets for seamless transition flow."
       ]
     }
   ]

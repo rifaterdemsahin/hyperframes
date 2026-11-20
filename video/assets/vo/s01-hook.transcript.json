@@ -4,230 +4,230 @@
   "words": [
     {
       "text": "My",
-      "start": 0.44,
-      "end": 0.58,
+      "start": 0.28,
+      "end": 0.4,
       "speaker": "speaker_0"
     },
     {
       "text": "company",
-      "start": 0.64,
-      "end": 1.04,
+      "start": 0.44,
+      "end": 0.84,
       "speaker": "speaker_0"
     },
     {
       "text": "is",
-      "start": 1.08,
-      "end": 1.22,
+      "start": 0.9,
+      "end": 1.02,
       "speaker": "speaker_0"
     },
     {
       "text": "coming",
-      "start": 1.28,
-      "end": 1.54,
+      "start": 1.08,
+      "end": 1.36,
       "speaker": "speaker_0"
     },
     {
       "text": "to",
-      "start": 1.58,
-      "end": 1.66,
+      "start": 1.38,
+      "end": 1.44,
       "speaker": "speaker_0"
     },
     {
       "text": "an",
-      "start": 1.7,
-      "end": 1.78,
+      "start": 1.48,
+      "end": 1.6,
       "speaker": "speaker_0"
     },
     {
       "text": "end,",
-      "start": 1.88,
-      "end": 2.1,
+      "start": 1.68,
+      "end": 1.96,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 2.48,
-      "end": 2.54,
+      "start": 2.3,
+      "end": 2.38,
       "speaker": "speaker_0"
     },
     {
       "text": "I'm",
-      "start": 2.6,
-      "end": 2.74,
+      "start": 2.44,
+      "end": 2.56,
       "speaker": "speaker_0"
     },
     {
       "text": "closing",
-      "start": 2.82,
-      "end": 3.22,
+      "start": 2.6,
+      "end": 2.98,
       "speaker": "speaker_0"
     },
     {
       "text": "it",
-      "start": 3.26,
-      "end": 3.42,
+      "start": 3,
+      "end": 3.16,
       "speaker": "speaker_0"
     },
     {
       "text": "properly.",
-      "start": 3.46,
-      "end": 3.86,
+      "start": 3.2,
+      "end": 3.6,
       "speaker": "speaker_0"
     },
     {
       "text": "If",
-      "start": 4.56,
-      "end": 4.66,
+      "start": 4.16,
+      "end": 4.26,
       "speaker": "speaker_0"
     },
     {
       "text": "you're",
-      "start": 4.72,
-      "end": 4.88,
+      "start": 4.32,
+      "end": 4.48,
       "speaker": "speaker_0"
     },
     {
       "text": "a",
-      "start": 4.94,
-      "end": 4.98,
+      "start": 4.54,
+      "end": 4.6,
       "speaker": "speaker_0"
     },
     {
       "text": "UK",
-      "start": 5.06,
-      "end": 5.44,
+      "start": 4.68,
+      "end": 5.02,
       "speaker": "speaker_0"
     },
     {
       "text": "director",
-      "start": 5.48,
-      "end": 5.9,
+      "start": 5.06,
+      "end": 5.48,
       "speaker": "speaker_0"
     },
     {
       "text": "in",
-      "start": 5.94,
-      "end": 6,
+      "start": 5.52,
+      "end": 5.56,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 6.02,
-      "end": 6.1,
+      "start": 5.6,
+      "end": 5.68,
       "speaker": "speaker_0"
     },
     {
       "text": "same",
-      "start": 6.18,
-      "end": 6.44,
+      "start": 5.74,
+      "end": 5.96,
       "speaker": "speaker_0"
     },
     {
       "text": "spot,",
-      "start": 6.56,
-      "end": 6.82,
+      "start": 6.14,
+      "end": 6.38,
       "speaker": "speaker_0"
     },
     {
       "text": "here's",
-      "start": 7.26,
-      "end": 7.54,
+      "start": 6.8,
+      "end": 7.08,
       "speaker": "speaker_0"
     },
     {
       "text": "how",
-      "start": 7.58,
-      "end": 7.68,
+      "start": 7.12,
+      "end": 7.22,
       "speaker": "speaker_0"
     },
     {
       "text": "a",
-      "start": 7.72,
-      "end": 7.76,
+      "start": 7.26,
+      "end": 7.28,
       "speaker": "speaker_0"
     },
     {
       "text": "liquidation",
-      "start": 7.8,
-      "end": 8.44,
+      "start": 7.32,
+      "end": 7.9,
       "speaker": "speaker_0"
     },
     {
       "text": "works",
-      "start": 8.5,
-      "end": 8.8,
+      "start": 8.02,
+      "end": 8.26,
       "speaker": "speaker_0"
     },
     {
       "text": "in",
-      "start": 8.84,
-      "end": 8.9,
+      "start": 8.3,
+      "end": 8.38,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 8.94,
-      "end": 9.06,
+      "start": 8.42,
+      "end": 8.54,
       "speaker": "speaker_0"
     },
     {
       "text": "age",
-      "start": 9.16,
-      "end": 9.34,
+      "start": 8.62,
+      "end": 8.8,
       "speaker": "speaker_0"
     },
     {
       "text": "of",
-      "start": 9.4,
-      "end": 9.52,
+      "start": 8.84,
+      "end": 8.96,
       "speaker": "speaker_0"
     },
     {
       "text": "AI",
-      "start": 9.64,
-      "end": 10,
+      "start": 9.04,
+      "end": 9.38,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 10.38,
-      "end": 10.44,
+      "start": 9.76,
+      "end": 9.84,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 10.48,
-      "end": 10.56,
+      "start": 9.88,
+      "end": 9.98,
       "speaker": "speaker_0"
     },
     {
       "text": "five",
-      "start": 10.62,
-      "end": 10.9,
+      "start": 10.02,
+      "end": 10.24,
       "speaker": "speaker_0"
     },
     {
       "text": "things",
-      "start": 10.98,
-      "end": 11.24,
+      "start": 10.32,
+      "end": 10.6,
       "speaker": "speaker_0"
     },
     {
       "text": "to",
-      "start": 11.3,
-      "end": 11.38,
+      "start": 10.64,
+      "end": 10.74,
       "speaker": "speaker_0"
     },
     {
       "text": "do",
-      "start": 11.44,
-      "end": 11.6,
+      "start": 10.78,
+      "end": 10.88,
       "speaker": "speaker_0"
     },
     {
       "text": "first.",
-      "start": 11.68,
-      "end": 12.04,
+      "start": 11.02,
+      "end": 11.42,
       "speaker": "speaker_0"
     }
   ]
