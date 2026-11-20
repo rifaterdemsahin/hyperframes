@@ -1,5 +1,5 @@
 {
-  "latest": 9,
+  "latest": 10,
   "versions": [
     {
       "n": 1,
@@ -101,6 +101,16 @@
         "Scene 08: Modulated friend's question tone ('Become like MrBeast, why show your real work?') with a distinct British voice (bm_lewis) for character clarity; enlarged and centered the Hero's Journey card across the canvas.",
         "Scene 10: Focused onto the Delivery Pilot Skool community panel at the end of the scene (dimmed background elements, scaled up 1.28x with radiant cyan glow).",
         "Costs: Cataloged modular audio regeneration costs ($0.02) on costs.html highlighting iteration savings."
+      ]
+    },
+    {
+      "n": 10,
+      "date": "2026-11-20",
+      "label": "Tenth draft",
+      "changes": [
+        "Scene 08: Removed top n8n logo badge; enlarged and centered Hero's Journey quote card on screen with blurred background.",
+        "Scene 10: Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.",
+        "Review Tooling: Made Post copy collapsible, added live verification completion percentage badge and animated progress bar with dynamic red-to-green gradient."
       ]
     }
   ]

@@ -796,6 +796,8 @@ const COMPLETED_TASKS = [
     draft: "Draft v9",
     desc: "Removed top n8n logo badge from header; enlarged and centered Hero's Journey quote card on screen with blurred background.",
     imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-14-06-fb-5826-c463.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
+    fixedSnapshot: "docs/snapshots/s08-fixed-194.06s.png",
+    compUrl: "video/compositions/s08-tracking.html",
     createdAt: "2026-11-20T19:11:33Z",
     resolvedAt: "2026-11-20T19:16:11Z",
     duration: "4m 38s"
@@ -812,6 +814,8 @@ const COMPLETED_TASKS = [
     draft: "Draft v9",
     desc: "Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.",
     imgUrl: "https://dpprojects.blob.core.windows.net/liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v9-Review-04-01-01-fb-7231-718f.jpg?se=2027-11-18T13%3A08Z&sp=racwl&sv=2026-04-06&sr=c&sig=YJlE2UXYNbG8o1CWNBGk0OmVpvMu3NGaQDHfPjL7GDY%3D",
+    fixedSnapshot: "docs/snapshots/s10-fixed-241.01s.png",
+    compUrl: "video/compositions/s10-outro.html",
     createdAt: "2026-11-20T19:11:33Z",
     resolvedAt: "2026-11-20T19:16:11Z",
     duration: "4m 38s"
@@ -1371,7 +1375,10 @@ function renderCarousel() {
       '<span class="pill" style="margin-left:auto;background:rgba(80,200,120,.12);color:var(--ok);border-color:rgba(80,200,120,.3);font-weight:700">⏱️ Resolved in ' + esc(durStr) + '</span>' +
     '</div>';
 
-  const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
+  const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ User drawing reference</a>' : "";
+  const snapHtml = t.fixedSnapshot ? '<a href="' + t.fixedSnapshot + '" target="_blank" style="font-size:11.5px;color:var(--ok);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">📸 Verified fix snapshot</a>' : "";
+  const compHtml = t.compUrl ? '<a href="' + t.compUrl + '" target="_blank" style="font-size:11.5px;color:#ffd166;text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🎬 Live Composition</a>' : "";
+  const linksRow = [imgHtml, snapHtml, compHtml].filter(Boolean).join('<span style="color:var(--mute)"> · </span>');
   const btnLabel = (t.preRollT !== undefined && typeof t.preRollT === "number")
     ? ('▶ Verify in Video (' + fmt(t.t) + ' · audition ' + fmt(t.preRollT) + ')')
     : ('▶ Verify in Video (' + fmt(t.t) + ')');
@@ -1401,7 +1408,7 @@ function renderCarousel() {
     '<div class="carousel-title">' + esc(t.title) + '</div>' +
     timingHtml +
     '<div class="carousel-desc">' + esc(t.desc) + '</div>' +
-    (imgHtml ? '<div>' + imgHtml + '</div>' : '') +
+    (linksRow ? '<div style="margin:4px 0">' + linksRow + '</div>' : '') +
     '<div class="carousel-actions" style="margin-top:auto;display:flex;justify-content:space-between;align-items:center">' +
       verifyBtn +
       '<div style="display:flex;align-items:center;gap:8px">' +

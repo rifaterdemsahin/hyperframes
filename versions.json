@@ -1,5 +1,5 @@
 {
-  "site": "1.32.1",
+  "site": "1.32.2",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.32.1",
+      "version": "1.32.2",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.29.1",
+      "version": "1.29.2",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.32.2",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Add fix snapshot & live composition links to feedback cards, and document resolution"
+      ]
+    },
     {
       "version": "1.32.1",
       "date": "2026-11-20",
