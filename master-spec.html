@@ -6,11 +6,11 @@
 @media(max-width:560px){.kv{grid-template-columns:1fr}}.step{counter-increment:s}.steps li{margin:6px 0}
 .chk{display:flex;gap:10px;align-items:flex-start;padding:6px 0}.chk input{margin-top:5px;width:18px;height:18px}.chk.done span{color:var(--mute);text-decoration:line-through}
 .prog{font-weight:700;color:var(--accent)}</style></head><body>
-<script src="nav.js?v=1.20.0"></script>
+<script src="nav.js?v=1.20.1"></script>
 <main>
   <h1>📘 Master spec</h1>
   <p class="lead">UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape. The single reference for what this video is, how it is made and when it is done. Built to be reused as a template for the next video.</p>
-  <p class="note">Generated from <code>spec/project.json</code> and <code>script/scenes.json</code> by <code>scripts/build-master-spec.mjs</code>. Spec v1.1, site v1.20.0. To change it, give feedback with the boxes below and I update the source files. <a href="templates/MASTER-SPEC.md">Download as Markdown</a>.</p>
+  <p class="note">Generated from <code>spec/project.json</code> and <code>script/scenes.json</code> by <code>scripts/build-master-spec.mjs</code>. Spec v1.1, site v1.20.1. To change it, give feedback with the boxes below and I update the source files. <a href="templates/MASTER-SPEC.md">Download as Markdown</a>.</p>
 
   <h2>1. Brief</h2>
   <div class="kv">
@@ -74,5 +74,5 @@
   </ol>
 
   <h2>11. Learnings &amp; system insights</h2>
-  <ul><li>Clean Canvas Over Watermarks: Reviewers and clients strongly prefer clean video output without intrusive 'DRAFT V*' tags on screen; review version metadata belongs in the web player header, not burned into the video composition frames.</li><li>Preserving SAS Query Parameters for AI Agents: Azure Blob Storage containers without public anonymous access reject unauthenticated requests with 409 Conflict. Appending and preserving the SAS query string (?se=...&amp;sp=...) makes frame drawings immediately consumable by Claude, external tools, curl, and browsers without credential headers.</li><li>Pre-Copy Upload Flush: Reviewers click 'Copy feedback for Claude' as soon as they finish writing notes; ensuring the copy handler flushes and awaits pending image uploads prevents missing visual links in feedback prompts.</li><li>Automated Release Asset Pipelines: Large binary outputs (1080p master MP4, ~63MB) exceed git repository best practices; automated GitHub Releases via `gh release create` solve delivery without bloating git history.</li></ul>
+  <ul><li>Clean Canvas Over Watermarks: Reviewers and clients strongly prefer clean video output without intrusive 'DRAFT V*' tags on screen; review version metadata belongs in the web player header, not burned into the video composition frames.</li><li>Flat-Rate Subscription Economics: Video creators on $20/mo Claude Pro and Gemini Antigravity plans producing 3 videos/week amortize agent orchestration to ~$3.08 per video ($0.00 marginal cost per revision/token), making multi-round video iteration practically free.</li><li>Preserving SAS Query Parameters for AI Agents: Azure Blob Storage containers without public anonymous access reject unauthenticated requests with 409 Conflict. Appending and preserving the SAS query string (?se=...&amp;sp=...) makes frame drawings immediately consumable by Claude, external tools, curl, and browsers without credential headers.</li><li>Pre-Copy Upload Flush: Reviewers click 'Copy feedback for Claude' as soon as they finish writing notes; ensuring the copy handler flushes and awaits pending image uploads prevents missing visual links in feedback prompts.</li><li>Automated Release Asset Pipelines: Large binary outputs (1080p master MP4, ~63MB) exceed git repository best practices; automated GitHub Releases via `gh release create` solve delivery without bloating git history.</li></ul>
 </main></body></html>

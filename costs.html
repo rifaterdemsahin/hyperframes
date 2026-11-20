@@ -31,23 +31,50 @@ th.num{text-align:right}
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.20.0"></script>
+<script src="nav.js?v=1.20.1"></script>
 <main>
   <div class="crumbs">⚙️ 5 Project</div>
   <h1>💰 Costs & Estimates</h1>
-  <p class="lead">A complete audit of what producing this video cost across all 6 draft iterations, tool-by-tool unit economics, and how code-first video beats agency and cloud SaaS pricing.</p>
+  <p class="lead">A complete audit of what producing this video cost across all 9 draft iterations, real-world flat-subscription amortizations (Claude Pro &amp; Gemini Antigravity $20/mo plans), and how code-first video beats agency and cloud SaaS pricing.</p>
 
-  <p class="note"><b>Telemetry & Scope:</b> Production figures are calculated from exact API call counts (fal.ai voiceover and mood plate generations), agent LLM token consumption, and local machine benchmarks. Local rendering compute in Hyperframes is <b>$0.00</b>. Real-world company liquidation fees (£3,600) reflect actual statutory practitioner and filing costs from Scene 05.</p>
+  <p class="note"><b>Telemetry &amp; Scope:</b> Production figures reflect actual creator workflows using flat-rate monthly subscriptions (<b>Claude Pro at $20/mo</b> and <b>Google Gemini / Antigravity at $20/mo</b>) publishing <b>3 videos per week</b> (~13 videos/month). Local rendering compute in Hyperframes is <b>$0.00</b>. External variable API spend (fal.ai Kokoro voiceover and mood plates) was <b>$0.73 total</b> across 9 iterations. Real-world company liquidation fees (£3,600) reflect actual statutory practitioner and filing costs from Scene 05.</p>
 
   <div class="kpis">
-    <div><b>$8.30</b><small>Total AI & video production cost across 9 drafts</small></div>
-    <div><b>$0.00</b><small>Cloud render fees (100% rendered locally on Apple Silicon)</small></div>
-    <div><b>£3,600</b><small>Real-world liquidation fee (Scene 05 subject matter)</small></div>
-    <div><b>~£4,500</b><small>Agency cost saved vs traditional motion studio</small></div>
+    <div><b>$0.73</b><small>Actual variable API spend (fal.ai voice + mood plates across 9 drafts)</small></div>
+    <div><b>$3.08</b><small>Amortized AI subscriptions ($20 Claude + $20 Gemini @ 3 videos/wk)</small></div>
+    <div><b>$3.81</b><small>Total all-in production cost per video (Variable + Amortized AI)</small></div>
+    <div><b>$0.00</b><small>Local render fees (100% rendered locally on Apple Silicon)</small></div>
+  </div>
+
+  <div class="card-box" style="margin: 16px 0; border-left: 4px solid var(--accent); background: rgba(10,124,145,0.05);">
+    <h3 style="color:var(--accent);margin-top:0;">📊 Flat-Rate Subscription Economics vs Metered Token Billing</h3>
+    <p style="margin:0 0 10px;font-size:14.5px;">Creators utilizing <b>Claude Pro ($20/month)</b> and <b>Gemini / Google Antigravity ($20/month)</b> do not pay per-token metered API invoices. Producing <b>3 videos a week</b> (~13 videos/month) amortizes fixed subscriptions across your entire content pipeline:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0;">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;">
+        <b style="color:var(--accent);display:block;font-size:16px;">Fixed Monthly Spend</b>
+        <span style="font-size:22px;font-weight:800;">$40 / month</span>
+        <small style="display:block;color:var(--mute);margin-top:4px;">$20 Claude Pro + $20 Gemini Antigravity</small>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;">
+        <b style="color:var(--accent);display:block;font-size:16px;">Production Cadence</b>
+        <span style="font-size:22px;font-weight:800;">13 videos / mo</span>
+        <small style="display:block;color:var(--mute);margin-top:4px;">3 videos / week steady publication</small>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;">
+        <b style="color:var(--accent);display:block;font-size:16px;">Amortized AI / Video</b>
+        <span style="font-size:22px;font-weight:800;color:var(--ok);">$3.08 / video</span>
+        <small style="display:block;color:var(--mute);margin-top:4px;">($1.54 / video on single subscription)</small>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;">
+        <b style="color:var(--accent);display:block;font-size:16px;">Marginal Revision Cost</b>
+        <span style="font-size:22px;font-weight:800;color:var(--ok);">$0.00 / iteration</span>
+        <small style="display:block;color:var(--mute);margin-top:4px;">Zero extra charge to revise 9 times</small>
+      </div>
+    </div>
   </div>
 
   <h2>1. Iteration-by-iteration cost breakdown</h2>
-  <p>Every review cycle introduced targeted script, voice, layout, and motion updates. Because voiceover files and background plates were generated modularly scene-by-scene, existing unchanged audio was never re-billed.</p>
+  <p>Every review cycle introduced targeted script, voice, layout, and motion updates. The table below displays the exact variable API charges (fal.ai audio and mood plates), the amortized flat-rate agent subscription value, and local render compute.</p>
 
   <div class="tw">
     <table>
@@ -55,12 +82,12 @@ th.num{text-align:right}
         <tr>
           <th>Iteration</th>
           <th>Date</th>
-          <th>Key Additions & Rework</th>
+          <th>Key Additions &amp; Rework</th>
           <th class="num">Voiceover (fal.ai)</th>
           <th class="num">Visuals / SFX</th>
-          <th class="num">Agent Tokens</th>
+          <th class="num">Agent Subscription (Amortized)</th>
           <th class="num">Render</th>
-          <th class="num">Subtotal</th>
+          <th class="num">Iteration Subtotal</th>
         </tr>
       </thead>
       <tbody>
@@ -70,9 +97,9 @@ th.num{text-align:right}
           <td>Initial 10-scene assembly, first cut, Kokoro TTS draft, placeholders</td>
           <td class="num">$0.08</td>
           <td class="num">$0.10</td>
-          <td class="num">$0.65</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.83</b></td>
+          <td class="num"><b>$0.52</b></td>
         </tr>
         <tr>
           <td><b>Draft v2</b></td>
@@ -80,9 +107,9 @@ th.num{text-align:right}
           <td>Hook revision, AI leverage lever graphic, scene retiming</td>
           <td class="num">$0.02</td>
           <td class="num">$0.00</td>
-          <td class="num">$0.55</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.57</b></td>
+          <td class="num"><b>$0.36</b></td>
         </tr>
         <tr>
           <td><b>Draft v3</b></td>
@@ -90,9 +117,9 @@ th.num{text-align:right}
           <td>Serious British voice regen (bm_lewis), red-tape BAM impact, YOU+AI graphic</td>
           <td class="num">$0.12</td>
           <td class="num">$0.08</td>
-          <td class="num">$1.10</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$1.30</b></td>
+          <td class="num"><b>$0.54</b></td>
         </tr>
         <tr>
           <td><b>Draft v4</b></td>
@@ -100,9 +127,9 @@ th.num{text-align:right}
           <td>Kinetic animated captions, WCAG AA contrast, Skool brand logo asset</td>
           <td class="num">$0.00</td>
           <td class="num">$0.00</td>
-          <td class="num">$0.60</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.60</b></td>
+          <td class="num"><b>$0.34</b></td>
         </tr>
         <tr>
           <td><b>Draft v5</b></td>
@@ -110,9 +137,9 @@ th.num{text-align:right}
           <td>1.1x charismatic voice (bm_george), Stable Audio BAM SFX, dawn background</td>
           <td class="num">$0.14</td>
           <td class="num">$0.08</td>
-          <td class="num">$0.85</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$1.07</b></td>
+          <td class="num"><b>$0.56</b></td>
         </tr>
         <tr>
           <td><b>Draft v6</b></td>
@@ -120,9 +147,9 @@ th.num{text-align:right}
           <td>AI Core reactor animation, ChatGPT simulation, n8n workflow, Bot handover, HD looks</td>
           <td class="num">$0.00</td>
           <td class="num">$0.05</td>
-          <td class="num">$1.32</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$1.37</b></td>
+          <td class="num"><b>$0.39</b></td>
         </tr>
         <tr>
           <td><b>Draft v7</b></td>
@@ -130,9 +157,9 @@ th.num{text-align:right}
           <td>Removed scene tags, emojis across project, Hero's Journey background</td>
           <td class="num">$0.00</td>
           <td class="num">$0.04</td>
-          <td class="num">$0.95</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.99</b></td>
+          <td class="num"><b>$0.38</b></td>
         </tr>
         <tr>
           <td><b>Draft v8</b></td>
@@ -140,19 +167,19 @@ th.num{text-align:right}
           <td>Removed 'DRAFT V*' watermark across entire video, master spec learnings</td>
           <td class="num">$0.00</td>
           <td class="num">$0.00</td>
-          <td class="num">$0.70</td>
+          <td class="num"><span class="badge badge-accent">$0.34</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.70</b></td>
+          <td class="num"><b>$0.34</b></td>
         </tr>
         <tr style="background: rgba(10,124,145,0.08);">
           <td><b>Draft v9</b></td>
           <td>20 Nov</td>
-          <td>Removed BAM sfx; regenerated Scene 07 ("process starts once balance paid") & Scene 08 friend voice tone; enlarged/centered friend quote; Skool outro focus</td>
+          <td>Removed BAM sfx; regenerated Scene 07 ("process starts once balance paid") &amp; Scene 08 friend voice tone; enlarged/centered friend quote; Skool outro focus</td>
           <td class="num" style="color:var(--accent);font-weight:700;">$0.02</td>
           <td class="num">$0.00</td>
-          <td class="num">$0.85</td>
+          <td class="num"><span class="badge badge-accent">$0.36</span></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$0.87</b></td>
+          <td class="num"><b>$0.38</b></td>
         </tr>
       </tbody>
       <tfoot>
@@ -160,9 +187,9 @@ th.num{text-align:right}
           <td colspan="3"><b>Total Project Spend (Drafts v1 – v9)</b></td>
           <td class="num"><b>$0.38</b></td>
           <td class="num"><b>$0.35</b></td>
-          <td class="num"><b>$7.57</b></td>
+          <td class="num"><b>$3.08</b></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$8.30</b></td>
+          <td class="num"><b style="color:var(--accent);font-size:16px;">$3.81</b></td>
         </tr>
       </tfoot>
     </table>
@@ -199,45 +226,45 @@ th.num{text-align:right}
           <td class="num">$0.31</td>
         </tr>
         <tr>
-          <td><b>fal.ai FLUX.1 & Stable Audio</b></td>
+          <td><b>fal.ai FLUX.1 &amp; Stable Audio</b></td>
           <td>Background mood plates (dawn, red-tape theme) + BAM impact sound effect</td>
           <td>$0.025 / image · $0.05 / SFX</td>
           <td>9 images + 2 SFX passes</td>
-          <td class="num">$0.36</td>
+          <td class="num">$0.35</td>
         </tr>
         <tr>
           <td><b>Hyperframes CLI (0.9.67)</b></td>
           <td>Composition engine, timeline orchestration, 1080p Drawelement capture</td>
           <td><span class="badge badge-ok">Free (Apache 2.0)</span></td>
-          <td>6 full draft MP4 renders</td>
+          <td>9 full draft MP4 renders</td>
           <td class="num">$0.00</td>
         </tr>
         <tr>
-          <td><b>Local FFmpeg & Chrome</b></td>
+          <td><b>Local FFmpeg &amp; Chrome</b></td>
           <td>Frame extraction, 720p HD web transcoding, audio multiplexing</td>
-          <td><span class="badge badge-ok">Free & Open Source</span></td>
-          <td>6 transcode runs</td>
+          <td><span class="badge badge-ok">Free &amp; Open Source</span></td>
+          <td>9 transcode runs</td>
           <td class="num">$0.00</td>
         </tr>
         <tr>
-          <td><b>AI Agent Orchestration</b></td>
+          <td><b>AI Agent Subscriptions (Claude Pro &amp; Gemini Antigravity)</b></td>
           <td>GSAP animation scripting, scene timings, site build scripts, feedback implementation</td>
-          <td>Pay-per-token API rates</td>
-          <td>~1.8M input / ~140k output tokens</td>
-          <td class="num">$5.07</td>
+          <td>Flat $20/mo subscriptions ($40/mo combined)</td>
+          <td>3 videos / week (~13 videos / mo across 9 drafts)</td>
+          <td class="num"><b style="color:var(--accent);">$3.08</b></td>
         </tr>
         <tr>
-          <td><b>GitHub Pages & Git</b></td>
-          <td>Static site hosting, automated deploys, review page collaboration</td>
+          <td><b>GitHub Pages &amp; Releases</b></td>
+          <td>Static site hosting, automated deploys, 2 GB CDN master video delivery</td>
           <td><span class="badge badge-ok">Free tier</span></td>
-          <td>20+ deploys</td>
+          <td>20+ deploys · 1080p master release</td>
           <td class="num">$0.00</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4"><b>Total Investment in Video Stack</b></td>
-          <td class="num"><b>$5.74</b></td>
+          <td colspan="4"><b>Total All-In Direct Investment (Variable API + Amortized AI Subscriptions)</b></td>
+          <td class="num"><b style="color:var(--accent);font-size:16px;">$3.81</b></td>
         </tr>
       </tfoot>
     </table>
@@ -251,7 +278,7 @@ th.num{text-align:right}
           <th>Category</th>
           <th>Traditional Video Agency</th>
           <th>Cloud AI Video SaaS (HeyGen / Synthesia)</th>
-          <th>Hyperframes + Local AI Agent</th>
+          <th>Hyperframes + Flat AI Subscriptions</th>
         </tr>
       </thead>
       <tbody>
@@ -259,31 +286,31 @@ th.num{text-align:right}
           <td><b>Upfront / Base Cost</b></td>
           <td>£3,000 – £6,000 quote</td>
           <td>$29 – $89 / month subscription</td>
-          <td><b>$0 upfront</b> (open source)</td>
+          <td><b>$0 upfront</b> (open source engine)</td>
         </tr>
         <tr>
           <td><b>Cost per Revision</b></td>
           <td>£250 – £500 per revision round</td>
           <td>Credit burn (~$5 – $15 per export)</td>
-          <td><b>$0 render cost</b> (~$0.50 AI tokens)</td>
+          <td><b>$0.00</b> ($0 render, $0 marginal AI cost)</td>
         </tr>
         <tr>
           <td><b>Turnaround Time</b></td>
           <td>3 to 4 weeks</td>
           <td>Hours to days (queue-dependent)</td>
-          <td><b>3 min 18 s</b> (script to MP4 + site)</td>
+          <td><b>3 min 12 s</b> (script to MP4 + site)</td>
         </tr>
         <tr>
           <td><b>Data Ownership</b></td>
           <td>Proprietary Adobe / AfterEffects files</td>
-          <td>Locked inside proprietary cloud cloud portal</td>
+          <td>Locked inside proprietary cloud portal</td>
           <td><b>100% open web code</b> (HTML, CSS, JS, Git)</td>
         </tr>
         <tr>
-          <td><b>6 Revisions Total</b></td>
-          <td>£4,500 – £7,500+</td>
-          <td>$120 – $250+</td>
-          <td><b>$5.74 total</b></td>
+          <td><b>9 Revisions Total</b></td>
+          <td>£5,000 – £8,500+</td>
+          <td>$180 – $350+</td>
+          <td><b style="color:var(--accent);font-size:15px;">$3.81 total</b> ($0.73 API + $3.08 sub)</td>
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.1 · site v1.20.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.1 · site v1.20.1. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -101,6 +101,7 @@ Every change: commit, push, deploy, bump version.
 
 ## 11. Learnings and system insights
 - Clean Canvas Over Watermarks: Reviewers and clients strongly prefer clean video output without intrusive 'DRAFT V*' tags on screen; review version metadata belongs in the web player header, not burned into the video composition frames.
+- Flat-Rate Subscription Economics: Video creators on $20/mo Claude Pro and Gemini Antigravity plans producing 3 videos/week amortize agent orchestration to ~$3.08 per video ($0.00 marginal cost per revision/token), making multi-round video iteration practically free.
 - Preserving SAS Query Parameters for AI Agents: Azure Blob Storage containers without public anonymous access reject unauthenticated requests with 409 Conflict. Appending and preserving the SAS query string (?se=...&sp=...) makes frame drawings immediately consumable by Claude, external tools, curl, and browsers without credential headers.
 - Pre-Copy Upload Flush: Reviewers click 'Copy feedback for Claude' as soon as they finish writing notes; ensuring the copy handler flushes and awaits pending image uploads prevents missing visual links in feedback prompts.
 - Automated Release Asset Pipelines: Large binary outputs (1080p master MP4, ~63MB) exceed git repository best practices; automated GitHub Releases via `gh release create` solve delivery without bloating git history.
