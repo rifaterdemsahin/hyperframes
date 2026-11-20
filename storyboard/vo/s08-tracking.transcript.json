@@ -4,326 +4,380 @@
   "words": [
     {
       "text": "I",
-      "start": 0.34,
-      "end": 0.4,
+      "start": 0.12,
+      "end": 0.16,
       "speaker": "speaker_0"
     },
     {
       "text": "keep",
-      "start": 0.44,
-      "end": 0.64,
+      "start": 0.26,
+      "end": 0.46,
       "speaker": "speaker_0"
     },
     {
       "text": "track",
-      "start": 0.68,
-      "end": 0.86,
+      "start": 0.5,
+      "end": 0.74,
       "speaker": "speaker_0"
     },
     {
       "text": "of",
-      "start": 0.9,
-      "end": 0.96,
+      "start": 0.78,
+      "end": 0.84,
       "speaker": "speaker_0"
     },
     {
       "text": "it",
-      "start": 0.98,
-      "end": 1.12,
+      "start": 0.88,
+      "end": 0.98,
       "speaker": "speaker_0"
     },
     {
       "text": "all",
-      "start": 1.2,
-      "end": 1.3,
+      "start": 1.04,
+      "end": 1.16,
       "speaker": "speaker_0"
     },
     {
       "text": "with",
-      "start": 1.34,
-      "end": 1.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "an",
-      "start": 1.46,
-      "end": 1.56,
+      "start": 1.2,
+      "end": 1.32,
       "speaker": "speaker_0"
     },
     {
       "text": "N8N",
-      "start": 1.64,
-      "end": 2.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "workflow",
-      "start": 2.24,
-      "end": 2.74,
+      "start": 1.44,
+      "end": 1.76,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 2.88,
-      "end": 2.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 3,
-      "end": 3.06,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "few",
-      "start": 3.08,
-      "end": 3.28,
+      "start": 1.78,
+      "end": 1.88,
       "speaker": "speaker_0"
     },
     {
       "text": "AI",
-      "start": 3.36,
-      "end": 3.66,
+      "start": 1.94,
+      "end": 2.14,
       "speaker": "speaker_0"
     },
     {
-      "text": "agents,",
-      "start": 3.82,
-      "end": 4.26,
+      "text": "agents.",
+      "start": 2.2,
+      "end": 2.7,
       "speaker": "speaker_0"
     },
     {
-      "text": "a",
-      "start": 4.72,
-      "end": 4.74,
+      "text": "Remember,",
+      "start": 3.04,
+      "end": 3.54,
       "speaker": "speaker_0"
     },
     {
-      "text": "planner,",
-      "start": 4.86,
-      "end": 5.16,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 5.56,
-      "end": 5.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "risk",
-      "start": 5.68,
-      "end": 5.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "checker,",
-      "start": 6.02,
-      "end": 6.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 6.52,
-      "end": 6.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 6.64,
-      "end": 6.7,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "director.",
-      "start": 6.74,
-      "end": 7.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Divide",
-      "start": 7.8,
-      "end": 8.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 8.28,
-      "end": 8.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "conquer",
-      "start": 8.48,
-      "end": 8.9,
+      "text": "N8N",
+      "start": 3.84,
+      "end": 4.22,
       "speaker": "speaker_0"
     },
     {
       "text": "is",
-      "start": 8.96,
-      "end": 9.06,
+      "start": 4.26,
+      "end": 4.4,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "deterministic",
+      "start": 4.42,
+      "end": 5.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 5.2,
+      "end": 5.3,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "known,",
+      "start": 5.38,
+      "end": 5.74,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "while",
+      "start": 6.02,
+      "end": 6.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "AI",
+      "start": 6.24,
+      "end": 6.44,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "is",
+      "start": 6.48,
+      "end": 6.62,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "probabilistic",
+      "start": 6.64,
+      "end": 7.44,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 7.46,
+      "end": 7.56,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "unknown.",
+      "start": 7.62,
+      "end": 8.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Build",
+      "start": 8.46,
+      "end": 8.66,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "your",
+      "start": 8.72,
+      "end": 8.82,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "process",
+      "start": 8.9,
+      "end": 9.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "around",
+      "start": 9.38,
+      "end": 9.66,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "both.",
+      "start": 9.76,
+      "end": 10.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "A",
+      "start": 10.48,
+      "end": 10.56,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "friend",
+      "start": 10.62,
+      "end": 10.84,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "told",
+      "start": 10.94,
+      "end": 11.2,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "me,",
+      "start": 11.26,
+      "end": 11.54,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "\"Become",
+      "start": 11.78,
+      "end": 12.12,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "like",
+      "start": 12.2,
+      "end": 12.38,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "MrBeast.",
+      "start": 12.46,
+      "end": 13.22,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Why",
+      "start": 13.52,
+      "end": 13.68,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "show",
+      "start": 13.8,
+      "end": 14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "your",
+      "start": 14.04,
+      "end": 14.14,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "real",
+      "start": 14.2,
+      "end": 14.42,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "work?\"",
+      "start": 14.52,
+      "end": 14.9,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Have",
+      "start": 15.18,
+      "end": 15.32,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 9.1,
-      "end": 9.2,
+      "start": 15.36,
+      "end": 15.44,
       "speaker": "speaker_0"
     },
     {
-      "text": "key.",
-      "start": 9.26,
-      "end": 9.54,
+      "text": "honor",
+      "start": 15.46,
+      "end": 15.68,
       "speaker": "speaker_0"
     },
     {
-      "text": "Even",
-      "start": 10.04,
-      "end": 10.24,
+      "text": "to",
+      "start": 15.72,
+      "end": 15.82,
       "speaker": "speaker_0"
     },
     {
-      "text": "if",
-      "start": 10.3,
-      "end": 10.44,
+      "text": "do",
+      "start": 15.86,
+      "end": 16,
       "speaker": "speaker_0"
     },
     {
-      "text": "people",
-      "start": 10.48,
-      "end": 10.76,
+      "text": "what's",
+      "start": 16.04,
+      "end": 16.3,
       "speaker": "speaker_0"
     },
     {
-      "text": "make",
-      "start": 10.8,
-      "end": 11.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "fun",
-      "start": 11.06,
-      "end": 11.18,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "of",
-      "start": 11.22,
-      "end": 11.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "you",
-      "start": 11.32,
-      "end": 11.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "for",
-      "start": 11.48,
-      "end": 11.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "it,",
-      "start": 11.62,
-      "end": 11.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "use",
-      "start": 12.18,
-      "end": 12.34,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "that",
-      "start": 12.4,
-      "end": 12.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "as",
-      "start": 12.58,
-      "end": 12.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 12.7,
-      "end": 12.76,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "learning",
-      "start": 12.82,
-      "end": 13.16,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "tool",
-      "start": 13.22,
-      "end": 13.46,
+      "text": "right",
+      "start": 16.36,
+      "end": 16.54,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 13.86,
-      "end": 13.94,
+      "start": 16.58,
+      "end": 16.66,
       "speaker": "speaker_0"
     },
     {
-      "text": "build",
-      "start": 14.02,
-      "end": 14.2,
+      "text": "share",
+      "start": 16.76,
+      "end": 17.02,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "what",
+      "start": 17.06,
+      "end": 17.2,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "you're",
+      "start": 17.26,
+      "end": 17.42,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "genuinely",
+      "start": 17.48,
+      "end": 18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "working",
+      "start": 18.04,
+      "end": 18.38,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "on.",
+      "start": 18.46,
+      "end": 18.72,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Build",
+      "start": 19.04,
+      "end": 19.22,
       "speaker": "speaker_0"
     },
     {
       "text": "your",
-      "start": 14.26,
-      "end": 14.34,
+      "start": 19.3,
+      "end": 19.4,
       "speaker": "speaker_0"
     },
     {
       "text": "system",
-      "start": 14.46,
-      "end": 14.84,
+      "start": 19.5,
+      "end": 19.84,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 14.86,
-      "end": 14.96,
+      "start": 19.86,
+      "end": 19.98,
       "speaker": "speaker_0"
     },
     {
       "text": "mindset",
-      "start": 15.04,
-      "end": 15.58,
+      "start": 20.06,
+      "end": 20.52,
       "speaker": "speaker_0"
     },
     {
       "text": "for",
-      "start": 15.76,
-      "end": 15.84,
+      "start": 20.56,
+      "end": 20.66,
       "speaker": "speaker_0"
     },
     {
-      "text": "your",
-      "start": 15.88,
-      "end": 16.02,
+      "text": "the",
+      "start": 20.7,
+      "end": 20.78,
       "speaker": "speaker_0"
     },
     {
       "text": "next",
-      "start": 16.059,
-      "end": 16.26,
+      "start": 20.84,
+      "end": 21.08,
       "speaker": "speaker_0"
     },
     {
       "text": "journey",
-      "start": 16.4,
-      "end": 16.76,
+      "start": 21.22,
+      "end": 21.62,
       "speaker": "speaker_0"
     }
   ]

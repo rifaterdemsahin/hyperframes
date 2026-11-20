@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+  <rect width="100%" height="100%" rx="16" fill="#141824"/>
+  <!-- n8n nodes logo graphic -->
+  <g transform="translate(25, 25)">
+    <circle cx="20" cy="35" r="14" fill="#EA4B71"/>
+    <circle cx="55" cy="15" r="14" fill="#FF6D5A"/>
+    <circle cx="55" cy="55" r="14" fill="#FF9A51"/>
+    <line x1="20" y1="35" x2="55" y2="15" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+    <line x1="20" y1="35" x2="55" y2="55" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="115" y="72" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="-1px">n8n</text>
+</svg>

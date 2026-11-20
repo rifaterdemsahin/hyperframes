@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.1 · site v1.10.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.1 · site v1.11.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -9,7 +9,7 @@ Spec v1.1 · site v1.10.0. Generated from spec/project.json and script/scenes.js
 - **Goal:** Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.
 - **One call to action:** Subscribe for Part 2
 - **Tone:** Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.
-- **Length:** 3:54 target, plan 3:54
+- **Length:** 3:57 target, plan 3:57
 - **Language:** en-GB
 - **Disclaimer:** AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.
 
@@ -24,27 +24,24 @@ Every change: commit, push, deploy, bump version.
 - Resolution 1920x1080, 30 fps, MP4 (H.264)
 - Quality: Hyperframes default 'looks' (CRF 16); 'draft' for review cuts
 - Rendering: Local, npx hyperframes render, project pinned to hyperframes@0.9.67
-- Voice now: AI draft: fal.ai Kokoro, British male (bm_george), used for timing and review
+- Voice now: AI draft: British English (Daniel), serious tone, used for timing and review
 - Voice final: Your own recording (recommended). Re-time the scene slots after recording
 - Captions: Burned in, timed from the final transcript
 
 ## 4. Scenes
 1. 0:00 **Hook** (38 words, slot 14 s). B-roll: Goal image, slow push-in. No figures on screen
 2. 0:14 **Part 1 of 3: AI and real-world red tape** (43 words, slot 16 s). B-roll: Face cam, lower-third: Part 1 of 3
-3. 0:30 **The goal** (33 words, slot 15 s). B-roll: Goal infographic, the three-step process highlighted
-4. 0:45 **Five things to do first, with AI** (133 words, slot 46 s). B-roll: On-screen numbered list 1 to 5. Optional HMRC screen inset for step 1 (S2), UTR, login and balance hidden
-5. 1:31 **What it costs and how long it takes** (87 words, slot 31 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait
-6. 2:02 **The exceptions** (82 words, slot 32 s). B-roll: Four exception cards on screen, red accent
-7. 2:34 **What my emails taught me** (73 words, slot 27 s). B-roll: Email timeline graphic (S12): chase reminders, the receipt (names and addresses blurred), then a simple diagram of Gmail and Drive connected to AI over MCP
-8. 3:01 **How I keep track of it** (54 words, slot 22 s). B-roll: n8n canvas, 20 seconds (S3), then the dashboard (S10)
-9. 3:23 **Subscribe for Part 2** (34 words, slot 13 s). B-roll: Subscribe button animation, Part 2 title card
-10. 3:36 **Disclaimer + outro** (39 words, slot 18 s). B-roll: Goal image again, end screen: Part 2 teaser and Skool community link
+3. 0:30 **The goal** (46 words, slot 19 s). B-roll: Goal infographic, the three-step process highlighted, BAM red tape impact
+4. 0:49 **Five things to do first, with AI** (111 words, slot 42 s). B-roll: On-screen numbered list 1 to 5. Clean full-width card layout
+5. 1:31 **What it costs and how long it takes** (82 words, slot 31 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after
+6. 2:02 **The exceptions** (80 words, slot 32 s). B-roll: Exceptions cards, security guardrail badge, hands-on AI loop
+7. 2:34 **What my emails taught me** (55 words, slot 24 s). B-roll: Online methods as database animation, MCP connection pipeline
+8. 2:58 **How I keep track of it** (63 words, slot 24 s). B-roll: n8n deterministic vs AI probabilistic comparison, honor and authenticity card
+9. 3:22 **Subscribe for Part 2** (47 words, slot 16 s). B-roll: Subscribe animation, Part 2 question prompt for comments
+10. 3:38 **Disclaimer + outro** (42 words, slot 19 s). B-roll: Disclaimer banner, Skool community link with logo
 
 ## 5. Asset manifest
 - Part 1 of 3: AI and real-world red tape: Face cam clip (Your footage / capture), Needed
-- Five things to do first, with AI: HMRC screen (S2), optional (Your footage / capture), Needed
-- What my emails taught me: Email screenshots (S12), blurred (Your footage / capture), Needed
-- How I keep track of it: n8n canvas recording (S3) + dashboard (S10) + official n8n logo file (Your footage / capture), Needed
 - Disclaimer + outro: Skool community link (Your footage / capture), Needed
 - All: Background plates (6 images) (fal.ai, text-free), Done
 - All: Draft voiceover (per scene) (fal.ai Kokoro), Done, to be replaced by your recording
@@ -93,11 +90,11 @@ Every change: commit, push, deploy, bump version.
 0:00 Hook
 0:14 Part 1 of 3: AI and real-world red tape
 0:30 The goal
-0:45 Five things to do first, with AI
+0:49 Five things to do first, with AI
 1:31 What it costs and how long it takes
 2:02 The exceptions
 2:34 What my emails taught me
-3:01 How I keep track of it
-3:23 Subscribe for Part 2
-3:36 Disclaimer + outro
+2:58 How I keep track of it
+3:22 Subscribe for Part 2
+3:38 Disclaimer + outro
 ```

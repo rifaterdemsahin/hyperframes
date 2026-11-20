@@ -1,6 +1,6 @@
 {
-  "site": "1.10.0",
-  "date": "2026-11-18",
+  "site": "1.11.0",
+  "date": "2026-11-20",
   "pages": {
     "index.html": {
       "title": "Home",
@@ -12,8 +12,8 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.6.0",
-      "date": "2026-11-18",
+      "version": "1.7.0",
+      "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
         "scripts/build-script-page.mjs"
@@ -21,8 +21,8 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.6.0",
-      "date": "2026-11-18",
+      "version": "1.7.0",
+      "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
         "scripts/build-storyboard.mjs",
@@ -108,8 +108,8 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.10.0",
-      "date": "2026-11-18",
+      "version": "1.11.0",
+      "date": "2026-11-20",
       "deps": [
         "versions.json",
         "scripts/version.mjs"
@@ -117,8 +117,8 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.10.0",
+      "date": "2026-11-20",
       "deps": [
         "spec/project.json",
         "script/scenes.json",
@@ -191,8 +191,8 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.10.0",
+      "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
         "draft/",
@@ -204,8 +204,8 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.10.0",
+      "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
         "script/scenes.json",
@@ -250,6 +250,20 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.11.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "script.html",
+        "first-draft.html",
+        "storyboard/",
+        "master-spec.html"
+      ],
+      "changes": [
+        "Implement draft v2 feedback, render draft v3 with new animations and serious tone voice"
+      ]
+    },
     {
       "version": "1.10.0",
       "date": "2026-11-18",
@@ -472,6 +486,6 @@
     "*": "2026-11-18T21:55:42.014Z",
     "script.html": "2026-11-18T22:07:30.860Z",
     "publish.html": "2026-11-18T22:18:45.249Z",
-    "review.html": "2026-11-18T23:01:32.862Z"
+    "review.html": "2026-11-20T10:18:43.296Z"
   }
 }

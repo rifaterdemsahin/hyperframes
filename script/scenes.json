@@ -1,6 +1,6 @@
 {
   "title": "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape",
-  "totalSecondsApprox": 234,
+  "totalSecondsApprox": 237,
   "scenes": [
     {
       "id": "s01-hook",
@@ -17,8 +17,8 @@
         "closing it properly"
       ],
       "ph": null,
-      "voSeconds": 12.6,
-      "voice": "bm_george"
+      "voSeconds": 11.3,
+      "voice": "Daniel"
     },
     {
       "id": "s02-intro",
@@ -36,51 +36,55 @@
         "Don't make a mistake you'd regret"
       ],
       "ph": "Face cam placeholder · lower-third: Rifat · Cambridge, UK",
-      "voSeconds": 14.7,
-      "voice": "bm_george"
+      "voSeconds": 13.7,
+      "voice": "Daniel"
     },
     {
       "id": "s03-goal",
       "label": "CHAPTER 1",
       "title": "The goal",
       "start": 30,
-      "duration": 15,
-      "broll": "Goal infographic, the three-step process highlighted",
-      "vo": "Here's the goal. Company debt stays the company's. A licensed practitioner takes over, sells the assets and pays creditors in order. There's a lot of red tape in society, so understand it first.",
+      "duration": 19,
+      "broll": "Goal infographic, the three-step process highlighted, BAM red tape impact",
+      "vo": "Here's the goal. The industrial and the information revolutions introduced so much red tape. BAM! Company debt stays the company's. A licensed practitioner takes over, sells the assets, and pays creditors in order. There is a lot of red tape in society, so understand it first.",
       "realAsset": null,
-      "bg": "calm",
+      "bg": "redtape",
       "overlay": [
-        "Company debt stays the company's",
-        "1 Hand over  →  2 Sell assets  →  3 Pay creditors in order",
-        "Lots of red tape: understand it first"
+        "Industrial & Information revolutions brought massive red tape",
+        "💥 BAM! Company debt stays the company's",
+        "1 Hand over → 2 Sell assets → 3 Pay creditors in order",
+        "Understand the red tape first"
       ],
       "ph": null,
-      "voSeconds": 13.6,
-      "voice": "bm_george"
+      "fx": {
+        "type": "bam",
+        "cue": "BAM"
+      },
+      "voSeconds": 18.0,
+      "voice": "Daniel"
     },
     {
       "id": "s04-five-things",
       "label": "CHAPTER 2",
       "title": "Five things to do first, with AI",
-      "start": 45,
-      "duration": 46,
-      "broll": "On-screen numbered list 1 to 5. Optional HMRC screen inset for step 1 (S2), UTR, login and balance hidden",
-      "vo": "Five things to do first, with AI as your support. Every time I'm on the HMRC site, I leave with more questions than answers, so I ask AI to explain each step before I act. One: check your HMRC balance. Two: gather the company's books and records. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. Connect all of these parts to AI, so you can iterate with it. Be ready to learn the details. AI doesn't mean you won't learn anything. It means you're ready to learn and act on the fly.",
-      "realAsset": "HMRC screen (S2), optional",
+      "start": 49,
+      "duration": 42,
+      "broll": "On-screen numbered list 1 to 5. Clean full-width card layout",
+      "vo": "Five things to do first, with AI as your support. Remember, this is what I learned from AI, not financial advice. Your job is to learn with AI. One: check your HMRC balance. Two: gather the company's books and records. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. Connect all of these parts to AI so you can iterate. Be ready to learn the details and act on the fly.",
+      "realAsset": null,
       "bg": "desk",
       "overlay": [
-        "Use AI to get through the red tape",
-        "1 Check your HMRC balance",
-        "2 Gather books & records",
-        "3 Get a licensed practitioner",
-        "4 Stop trading, no creditor preferred",
-        "5 Close invoices, banks to zero",
-        "Connect every part to AI, then iterate",
-        "Be ready to learn the details"
+        "Five things to do first (with AI)",
+        "⚠️ What I learned from AI · Not financial advice",
+        "🎯 Your job is to learn with AI",
+        "1 Check HMRC balance · 2 Gather books & records",
+        "3 Licensed practitioner · 4 Stop trading",
+        "5 Close invoices & bank accounts to zero",
+        "Connect every part to AI, then iterate on the fly"
       ],
-      "ph": "Optional: HMRC screen (S2) inset for step 1. Blur UTR + login, hide the balance",
-      "voSeconds": 45.4,
-      "voice": "bm_george"
+      "ph": null,
+      "voSeconds": 40.7,
+      "voice": "Daniel"
     },
     {
       "id": "s05-cost-timeline",
@@ -88,23 +92,24 @@
       "title": "What it costs and how long it takes",
       "start": 91,
       "duration": 31,
-      "broll": "Cost and timeline graphic: £1,500 + £2,100, five stages, Gazette wait",
-      "vo": "Here's what it costs: a £1,500 deposit, then a £2,100 balance. I've paid both, and the process takes about two months. These are average figures in the UK, so yours could be higher or lower. Don't try to do it with AI alone. Learn the process, delegate with AI, and still use a professional. Using AI gives you leverage, so use it on processes like this to get better at AI, not just to finish one. The skills you learn here carry over to your next project.",
+      "broll": "Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after",
+      "vo": "Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business. This is the place that I found. There could be cheaper or more expensive options, but you need to plan for it. The process before took me two months, and after the payment I expect two more months to complete. You plus AI gives you leverage. Learn and act on the fly, build your skills, and carry them over to your next project.",
       "realAsset": null,
       "bg": "calm",
       "overlay": [
-        "AI gives you leverage",
-        "Get better at AI, not just the process",
-        "£1,500 deposit + £2,100 balance · about 2 months",
-        "Average UK figures: yours could be higher or lower"
+        "⚡ YOU + AI = LEVERAGE",
+        "Fee to liquidation company: £1,500 deposit + £2,100 balance",
+        "Found this provider: cheaper or more expensive options exist",
+        "Timeline: 2 months prep + 2 months completion expected",
+        "Learn & act on the fly: build skills for the next project"
       ],
       "ph": null,
       "fx": {
-        "type": "leverage",
-        "cue": "leverage"
+        "type": "cost-timeline",
+        "cue": "costs"
       },
-      "voSeconds": 30.3,
-      "voice": "bm_george"
+      "voSeconds": 28.0,
+      "voice": "Daniel"
     },
     {
       "id": "s06-exceptions",
@@ -112,102 +117,115 @@
       "title": "The exceptions",
       "start": 122,
       "duration": 32,
-      "broll": "Four exception cards on screen, red accent",
-      "vo": "Now the exceptions, because this matters. The protection isn't absolute. A director can still be personally liable for wrongful or fraudulent trading, personal guarantees, an overdrawn director's loan account, or paying one creditor first. That's why the practitioner decides. Understand the basics, because even the people closest to you won't get what you're really doing. And keep your expectations of AI low: it gives you the courage and the assist you need. Most people get stuck in red tape and can't move.",
+      "broll": "Exceptions cards, security guardrail badge, hands-on AI loop",
+      "vo": "Now the exceptions, because this matters. ⚠️ The protection isn't absolute. When I stopped paying the accountant, I felt isolated, and AI was the place to turn to. This is what I learned from AI. But AI systems aren't hands-off: you are hands-on to secure, adapt and train them. The insolvency practitioner is your security guardrail 🛡️, so be sure on your end when inputting data to them. Personal liability remains for wrongful trading, personal guarantees, or director loan accounts.",
       "realAsset": null,
       "bg": "warning",
       "overlay": [
-        "Wrongful / fraudulent trading",
-        "Personal guarantees",
-        "Overdrawn director's loan account",
-        "Paying one creditor first",
-        "Low expectations of AI: it gives you courage and the assist",
-        "AI helps when the stakes increase"
+        "⚠️ The Exceptions & Personal Liability",
+        "💡 Stopped accountant & felt isolated: AI was the place to turn to",
+        "🛠️ Not hands-off: you are hands-on to secure, adapt & train AI",
+        "🛡️ Licensed Practitioner = Essential Security Guardrail",
+        "🚫 Wrongful trading · Personal guarantees · Overdrawn loan accounts"
       ],
       "ph": null,
-      "voSeconds": 30.9,
-      "voice": "bm_george"
+      "fx": {
+        "type": "handson-guardrail",
+        "cue": "hands-off"
+      },
+      "voSeconds": 30.5,
+      "voice": "Daniel"
     },
     {
       "id": "s07-emails",
       "label": "CHAPTER 5",
       "title": "What my emails taught me",
       "start": 154,
-      "duration": 27,
-      "broll": "Email timeline graphic (S12): chase reminders, the receipt (names and addresses blurred), then a simple diagram of Gmail and Drive connected to AI over MCP",
-      "vo": "Three lessons from my own emails. One: the process stops until the balance is paid, and my provider chased me six times. Two: answer everything in writing, and keep a list of what's still outstanding. Three: treat Google Drive and Gmail as data sources, and get ready to connect them to AI over MCP, instead of sending everything by hand. From time to time things will go wrong. Learn from them, and iterate.",
-      "realAsset": "Email screenshots (S12), blurred",
+      "duration": 24,
+      "broll": "Online methods as database animation, MCP connection pipeline",
+      "vo": "Three lessons from my emails and records. One: the process stops until the balance is paid—my provider chased me six times. Two: use online methods and keep everything in writing, because online records act as databases. Three: connect your drive and emails to AI over MCP. When things go wrong, learn from them and iterate.",
+      "realAsset": null,
       "bg": "storage",
       "overlay": [
-        "1 Process stops until paid (6 chasers)",
-        "2 Answer in writing, list what is outstanding",
-        "3 Gmail + Drive as data sources, over MCP",
-        "Things go wrong: learn, iterate"
+        "📧 Lessons from Emails & Records",
+        "1 Process stops until paid (chased 6 times)",
+        "2 Use online methods: they act as structured databases 🗄️",
+        "3 Connect Gmail & Drive to AI over MCP ⚡",
+        "🔄 Learn from every issue and iterate"
       ],
-      "ph": "Email timeline (S12) · names + addresses blurred",
-      "voSeconds": 25.8,
-      "voice": "bm_george",
-      "phSize": "large"
+      "ph": null,
+      "fx": {
+        "type": "database-pipeline",
+        "cue": "databases"
+      },
+      "voSeconds": 21.6,
+      "voice": "Daniel"
     },
     {
       "id": "s08-tracking",
       "label": "CHAPTER 6",
       "title": "How I keep track of it",
-      "start": 181,
-      "duration": 22,
-      "broll": "n8n canvas, 20 seconds (S3), then the dashboard (S10)",
-      "vo": "I keep track of it all with an n8n workflow and a few AI agents: a planner, a risk checker and a director. Divide and conquer is the key. Even if people make fun of you for it, use that as a learning tool, and build your system and mindset for your next journey.",
-      "realAsset": "n8n canvas recording (S3) + dashboard (S10) + official n8n logo file",
+      "start": 178,
+      "duration": 24,
+      "broll": "n8n deterministic vs AI probabilistic comparison, honor and authenticity card",
+      "vo": "I keep track of it all with n8n and AI agents. Remember: n8n is deterministic and known, while AI is probabilistic and unknown. Build your process around both. A friend told me: become like MrBeast, why show your real work? Have the honour to do what's right and share what you're genuinely working on. Build your system and mindset for the next journey.",
+      "realAsset": null,
       "bg": "network",
       "overlay": [
-        "Divide and conquer",
-        "Even if people make fun, learn from it",
-        "n8n + AI agents: planner, risk checker, director",
-        "Build your system and mindset for the next journey"
+        "⚙️ n8n: Deterministic (Known) vs 🧠 AI: Probabilistic (Unknown)",
+        "🏗️ Build your workflow process around both",
+        "💬 'Why show your real work?' · Have the honour to share reality",
+        "🚀 Build your system & mindset for the next journey"
       ],
-      "ph": "n8n canvas (S3) 20 s, then dashboard (S10)",
+      "ph": null,
       "logo": "n8n",
-      "voSeconds": 17.3,
-      "voice": "bm_george"
+      "fx": {
+        "type": "deterministic-vs-probabilistic",
+        "cue": "deterministic"
+      },
+      "voSeconds": 21.9,
+      "voice": "Daniel"
     },
     {
       "id": "s09-cta",
       "label": "CTA",
       "title": "Subscribe for Part 2",
-      "start": 203,
-      "duration": 13,
-      "broll": "Subscribe button animation, Part 2 title card",
-      "vo": "In Part 2, I'll showcase how I build the stages and the app, and how AI agents email the right parties to move the needle in the right direction. If this was useful, subscribe.",
+      "start": 202,
+      "duration": 16,
+      "broll": "Subscribe animation, Part 2 question prompt for comments",
+      "vo": "In Part 2, I'll showcase how I build the stages and the app, and how AI agents email the right parties. If there is interest, I will shoot Part 2. Please tell me in the comments below if you want Part 2! And subscribe to follow along.",
       "realAsset": null,
       "bg": "network",
       "overlay": [
-        "Subscribe for Part 2",
-        "How I build the stages and the app",
-        "AI agents that email the right parties"
+        "🔔 Subscribe for Part 2",
+        "💬 Tell me in the comments: Should I shoot Part 2?",
+        "🛠️ How I build the stages, the app & autonomous AI email agents"
       ],
       "ph": null,
-      "voSeconds": 12.4,
-      "voice": "bm_george"
+      "voSeconds": 14.9,
+      "voice": "Daniel"
     },
     {
       "id": "s10-outro",
       "label": "OUTRO",
       "title": "Disclaimer + outro",
-      "start": 216,
-      "duration": 18,
-      "broll": "Goal image again, end screen: Part 2 teaser and Skool community link",
-      "vo": "AI organises and explains. The insolvency practitioner decides. This is information, not legal advice. I might see you in Part 2, depending on your feedback. And if you're interested in building bots and automation, check out our Skool community.",
+      "start": 218,
+      "duration": 19,
+      "broll": "Disclaimer banner, Skool community link with logo",
+      "vo": "Important disclaimer: AI organises and explains, but the licensed practitioner decides. This is information, not legal or financial advice. If you're building bots and automation, join our Delivery Pilot community on Skool at the link below. See you in the next one!",
       "realAsset": "Skool community link",
       "bg": "goal",
       "overlay": [
-        "AI organises and explains.",
-        "The insolvency practitioner decides.",
-        "Information, not legal advice.",
-        "Building bots and automation? Join our Skool community"
+        "⚖️ DISCLAIMER: AI organises & explains. Practitioner decides.",
+        "ℹ️ Informational only · Not legal or financial advice",
+        "🚀 Join Delivery Pilot Community on Skool",
+        "🔗 https://www.skool.com/delivery-pilot-8938/"
       ],
-      "ph": "End screen: Part 2 teaser + Skool community link (link needed from you)",
-      "voSeconds": 17.1,
-      "voice": "bm_george"
+      "ph": null,
+      "logo": "skool",
+      "link": "https://www.skool.com/delivery-pilot-8938/",
+      "voSeconds": 17.7,
+      "voice": "Daniel"
     }
   ]
 }

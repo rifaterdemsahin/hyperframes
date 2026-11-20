@@ -4,206 +4,284 @@
   "words": [
     {
       "text": "In",
-      "start": 0.3,
-      "end": 0.36,
+      "start": 0.06,
+      "end": 0.14,
       "speaker": "speaker_0"
     },
     {
       "text": "part",
-      "start": 0.44,
-      "end": 0.7,
+      "start": 0.22,
+      "end": 0.48,
       "speaker": "speaker_0"
     },
     {
       "text": "two,",
-      "start": 0.76,
-      "end": 1,
+      "start": 0.54,
+      "end": 0.88,
       "speaker": "speaker_0"
     },
     {
       "text": "I'll",
-      "start": 1.32,
-      "end": 1.46,
+      "start": 1.16,
+      "end": 1.32,
       "speaker": "speaker_0"
     },
     {
       "text": "showcase",
-      "start": 1.52,
-      "end": 1.96,
+      "start": 1.36,
+      "end": 1.8,
       "speaker": "speaker_0"
     },
     {
       "text": "how",
-      "start": 2,
-      "end": 2.16,
+      "start": 1.86,
+      "end": 2.02,
       "speaker": "speaker_0"
     },
     {
       "text": "I",
-      "start": 2.26,
-      "end": 2.36,
+      "start": 2.14,
+      "end": 2.2,
       "speaker": "speaker_0"
     },
     {
       "text": "build",
-      "start": 2.38,
-      "end": 2.56,
+      "start": 2.22,
+      "end": 2.44,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 2.6,
-      "end": 2.7,
+      "start": 2.48,
+      "end": 2.58,
       "speaker": "speaker_0"
     },
     {
       "text": "stages",
-      "start": 2.76,
-      "end": 3.2,
+      "start": 2.66,
+      "end": 3.06,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 3.34,
-      "end": 3.42,
+      "start": 3.08,
+      "end": 3.18,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 3.46,
-      "end": 3.52,
+      "start": 3.22,
+      "end": 3.3,
       "speaker": "speaker_0"
     },
     {
-      "text": "app,",
-      "start": 3.66,
-      "end": 3.86,
+      "text": "app",
+      "start": 3.4,
+      "end": 3.6,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 4.28,
-      "end": 4.38,
+      "start": 3.84,
+      "end": 3.96,
       "speaker": "speaker_0"
     },
     {
       "text": "how",
-      "start": 4.44,
-      "end": 4.72,
+      "start": 4.019,
+      "end": 4.16,
       "speaker": "speaker_0"
     },
     {
       "text": "AI",
-      "start": 4.82,
-      "end": 5.18,
+      "start": 4.22,
+      "end": 4.42,
       "speaker": "speaker_0"
     },
     {
       "text": "agents",
-      "start": 5.36,
-      "end": 5.74,
+      "start": 4.48,
+      "end": 4.82,
       "speaker": "speaker_0"
     },
     {
       "text": "email",
-      "start": 5.92,
-      "end": 6.18,
+      "start": 4.88,
+      "end": 5.2,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 6.22,
-      "end": 6.32,
+      "start": 5.22,
+      "end": 5.34,
       "speaker": "speaker_0"
     },
     {
       "text": "right",
-      "start": 6.36,
-      "end": 6.54,
+      "start": 5.38,
+      "end": 5.56,
       "speaker": "speaker_0"
     },
     {
-      "text": "parties",
-      "start": 6.64,
-      "end": 7.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 7.18,
-      "end": 7.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "move",
-      "start": 7.3,
-      "end": 7.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 7.56,
-      "end": 7.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "needle",
-      "start": 7.7,
-      "end": 8.039,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "in",
-      "start": 8.08,
-      "end": 8.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 8.18,
-      "end": 8.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "right",
-      "start": 8.3,
-      "end": 8.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "direction.",
-      "start": 8.56,
-      "end": 9.1,
+      "text": "parties.",
+      "start": 5.66,
+      "end": 6.28,
       "speaker": "speaker_0"
     },
     {
       "text": "If",
-      "start": 9.7,
-      "end": 9.82,
+      "start": 6.62,
+      "end": 6.74,
       "speaker": "speaker_0"
     },
     {
-      "text": "this",
-      "start": 9.88,
-      "end": 10.06,
+      "text": "there",
+      "start": 6.8,
+      "end": 6.94,
       "speaker": "speaker_0"
     },
     {
-      "text": "was",
-      "start": 10.12,
-      "end": 10.28,
+      "text": "is",
+      "start": 6.98,
+      "end": 7.08,
       "speaker": "speaker_0"
     },
     {
-      "text": "useful,",
-      "start": 10.36,
-      "end": 10.76,
+      "text": "interest,",
+      "start": 7.12,
+      "end": 7.7,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "I",
+      "start": 8.06,
+      "end": 8.1,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "will",
+      "start": 8.14,
+      "end": 8.24,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "shoot",
+      "start": 8.32,
+      "end": 8.54,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "part",
+      "start": 8.64,
+      "end": 8.9,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "two.",
+      "start": 8.96,
+      "end": 9.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Please",
+      "start": 9.66,
+      "end": 9.9,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "tell",
+      "start": 10,
+      "end": 10.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "me",
+      "start": 10.22,
+      "end": 10.34,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "in",
+      "start": 10.38,
+      "end": 10.44,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "the",
+      "start": 10.48,
+      "end": 10.58,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "comments",
+      "start": 10.64,
+      "end": 11,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "below",
+      "start": 11.08,
+      "end": 11.32,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "if",
+      "start": 11.38,
+      "end": 11.48,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "you",
+      "start": 11.52,
+      "end": 11.62,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "want",
+      "start": 11.66,
+      "end": 11.82,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "part",
+      "start": 11.92,
+      "end": 12.18,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "two",
+      "start": 12.24,
+      "end": 12.58,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "and",
+      "start": 12.86,
+      "end": 13,
       "speaker": "speaker_0"
     },
     {
       "text": "subscribe",
-      "start": 11.12,
-      "end": 11.8,
+      "start": 13.08,
+      "end": 13.66,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "to",
+      "start": 13.7,
+      "end": 13.84,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "follow",
+      "start": 13.88,
+      "end": 14.16,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "along",
+      "start": 14.22,
+      "end": 14.66,
       "speaker": "speaker_0"
     }
   ]
