@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Renders & Render State · Hyperframes</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.crumbs{font-size:13px;color:var(--mute);margin-bottom:8px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;border:1px solid var(--line)}
+.pill.ok{background:rgba(47,133,90,.15);color:var(--ok);border-color:rgba(47,133,90,.3)}
+.pill.warn{background:rgba(255,209,102,.15);color:var(--warn);border-color:rgba(255,209,102,.35)}
+.pill.pri{background:rgba(76,195,217,.15);color:var(--accent);border-color:rgba(76,195,217,.35)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0 24px}
+.kpi-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.kpi-card .label{font-size:12px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.kpi-card .val{font-size:22px;font-weight:800;color:var(--ink);line-height:1.2}
+.kpi-card .sub{font-size:12px;color:var(--mute);margin-top:2px}
+.render-banner{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.stage{position:relative;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:16px 0}
+.stage video{width:100%;max-height:68vh;display:block;background:#000}
+.ver-switcher{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.ver-btn{font:inherit;font-size:12px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:all .15s}
+.ver-btn:hover{border-color:var(--accent);color:var(--accent)}
+.ver-btn.active{background:var(--accent);color:#04222a;border-color:var(--accent);font-weight:700}
+.table-wrap{overflow-x:auto;margin:16px 0}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin:16px 0}
+.comp-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
+.comp-card:hover{border-color:var(--accent)}
+.comp-card.updated{border-color:rgba(76,195,217,.6);box-shadow:0 0 12px rgba(76,195,217,.15)}
+pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,monospace;overflow-x:auto;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+</style></head><body>
+<script src="nav.js?v=1.33.0"></script>
+<main style="max-width:1100px">
+  <div class="crumbs">🎬 2 Build &nbsp;·&nbsp; Production Pipeline</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px">
+    <h1 style="margin:0">🎬 Video Renders &amp; Render State</h1>
+    <div style="display:flex;gap:6px;align-items:center">
+      <span class="pill pri">Composition: Draft v10</span>
+      <span class="pill ok">Active Streaming: Draft v9</span>
+    </div>
+  </div>
+  <p class="lead">Complete audit of all Hyperframes MP4 video cuts, render times, file sizes, live composition templates, and active server streaming state.</p>
+
+  <!-- Live Render State Banner -->
+  <div class="render-banner" style="border-color:rgba(255,209,102,.45);background:rgba(255,209,102,.07)">
+    <div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="pill warn">⏳ Composition Live · Render Pending</span>
+        <b style="font-size:15px;color:var(--ink)">Draft v10 composition updated · Serving Draft v9 video render</b>
+      </div>
+      <div style="font-size:12.5px;color:var(--mute);margin-top:4px">
+        Active MP4 Asset: <code>draft/v9/video.mp4</code> (14.5 MB) · Serving with HTTP 206 Partial Content range seeking
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a href="review.html" class="pill pri" style="text-decoration:none;padding:6px 14px;font-size:13px">🔍 Open Review</a>
+      <a href="first-draft.html" class="pill" style="text-decoration:none;padding:6px 14px;font-size:13px">🎞️ Draft Player</a>
+    </div>
+  </div>
+
+  <!-- KPI Grid -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <span class="label">Live Composition Code</span>
+      <span class="val" style="color:var(--accent)">Draft v10</span>
+      <span class="sub">10 scenes in <code>video/compositions/</code></span>
+    </div>
+    <div class="kpi-card">
+      <span class="label">Streaming Master Video</span>
+      <span class="val" style="color:var(--ok)">Draft v9</span>
+      <span class="sub">14.5 MB · 1080p @ 30 FPS</span>
+    </div>
+    <div class="kpi-card">
+      <span class="label">Runtime &amp; Audio Pacing</span>
+      <span class="val">4:04</span>
+      <span class="sub">172 WPM · Kokoro TTS (bm_lewis)</span>
+    </div>
+    <div class="kpi-card">
+      <span class="label">Hyperframes QA Check</span>
+      <span class="val" style="color:var(--ok)">137 / 137</span>
+      <span class="sub">0 errors · 0 warnings · WCAG AA pass</span>
+    </div>
+  </div>
+
+  <!-- Interactive Player & Switcher -->
+  <h2 style="margin-top:24px">📺 Interactive Video Player &amp; Cut Audition</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Switch between any rendered draft cut to compare audio cadence, overlay adjustments, and motion polish.</p>
+  
+  <div class="ver-switcher" id="switcher">
+    <button class="ver-btn active" data-src="draft/v9/video.mp4" data-n="9" data-label="Ninth draft" data-size="14.5 MB" data-poster="draft/v9/frames/s01-hook.jpg">Draft v9 (Ninth draft · 14.5 MB)</button><button class="ver-btn" data-src="draft/v8/video.mp4" data-n="8" data-label="Eighth draft" data-size="14.3 MB" data-poster="draft/v8/frames/s01-hook.jpg">Draft v8 (Eighth draft · 14.3 MB)</button><button class="ver-btn" data-src="draft/v7/video.mp4" data-n="7" data-label="Seventh draft" data-size="14.4 MB" data-poster="draft/v7/frames/s01-hook.jpg">Draft v7 (Seventh draft · 14.4 MB)</button><button class="ver-btn" data-src="draft/v6/video.mp4" data-n="6" data-label="Sixth draft" data-size="14.1 MB" data-poster="draft/v6/frames/s01-hook.jpg">Draft v6 (Sixth draft · 14.1 MB)</button><button class="ver-btn" data-src="draft/v5/video.mp4" data-n="5" data-label="Fifth draft" data-size="5.4 MB" data-poster="draft/v5/frames/s01-hook.jpg">Draft v5 (Fifth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v4/video.mp4" data-n="4" data-label="Fourth draft" data-size="5.4 MB" data-poster="draft/v4/frames/s01-hook.jpg">Draft v4 (Fourth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v3/video.mp4" data-n="3" data-label="Third draft" data-size="5.1 MB" data-poster="draft/v3/frames/s01-hook.jpg">Draft v3 (Third draft · 5.1 MB)</button><button class="ver-btn" data-src="draft/v2/video.mp4" data-n="2" data-label="Second draft" data-size="4.9 MB" data-poster="draft/v2/frames/s01-hook.jpg">Draft v2 (Second draft · 4.9 MB)</button><button class="ver-btn" data-src="draft/v1/video.mp4" data-n="1" data-label="First draft" data-size="4.6 MB" data-poster="draft/v1/frames/s01-hook.jpg">Draft v1 (First draft · 4.6 MB)</button>
+  </div>
+
+  <div class="stage">
+    <video id="player" controls preload="metadata" poster="draft/v9/frames/s01-hook.jpg" src="draft/v9/video.mp4"></video>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--mute);margin-top:4px">
+    <span id="playerMeta">Now playing: <b>Draft v9 (Ninth draft)</b> · 14.5 MB</span>
+    <a id="playerDl" href="draft/v9/video.mp4" download="UK-Director-Liquidation-Part-1-Draft-v9-Render.mp4" class="pill pri" style="text-decoration:none">⬇ Download this MP4</a>
+  </div>
+
+  <!-- Complete Renders Catalog Table -->
+  <h2 style="margin-top:36px">📊 All Draft Video Renders (v1 to v10)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>Date</th>
+          <th>Render Status</th>
+          <th>File Size</th>
+          <th>Duration</th>
+          <th>What Changed</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr style="background:rgba(76,195,217,.06)">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v10</b><br>
+            <small style="color:var(--mute)">Tenth draft</small>
+            <br><span class="pill pri" style="font-size:10px;padding:1px 6px;margin-top:4px">Latest Code</span>
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill warn">⏳ Render Pending</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            <span style="color:var(--mute)">In composition</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Scene 08: Removed top n8n logo badge; enlarged and centered Hero's Journey quote card on screen with blurred background.</li><li>Scene 10: Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.</li><li>Review Tooling: Made Post copy collapsible, added live verification completion percentage badge and animated progress bar with dynamic red-to-green gradient.</li>
+              
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <a href="video/compositions/s08-tracking.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">🎬 Live Compositions ↗</a>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v9</b><br>
+            <small style="color:var(--mute)">Ninth draft</small>
+            
+            <br><span class="pill ok" style="font-size:10px;padding:1px 6px;margin-top:4px">Streaming MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            14.5 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Scene 03: Removed BAM sound effect from the soundtrack for a clean, professional flow.</li><li>Scene 07: Corrected core rule in script and subtitle: 'The process starts once the entire balance for the liquidation company is paid off' (chased 6 times); modularly regenerated audio via fal.ai Kokoro.</li><li>Scene 08: Modulated friend's question tone ('Become like MrBeast, why show your real work?') with a distinct British voice (bm_lewis) for character clarity; enlarged and centered the Hero's Journey card across the canvas.</li>
+              <li><small style="color:var(--mute)">+2 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v9/video.mp4" data-n="9" data-label="Ninth draft" data-size="14.5 MB" data-poster="draft/v9/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v9/video.mp4" download="UK-Director-Liquidation-Draft-v9.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v8</b><br>
+            <small style="color:var(--mute)">Eighth draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            14.3 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Overlay Tag Removal: Removed the top-right 'DRAFT V*' watermark tag across the entire video for a clean, distraction-free viewing experience.</li>
+              
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v8/video.mp4" data-n="8" data-label="Eighth draft" data-size="14.3 MB" data-poster="draft/v8/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v8/video.mp4" download="UK-Director-Liquidation-Draft-v8.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v7</b><br>
+            <small style="color:var(--mute)">Seventh draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            14.4 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Video Metadata: Removed all internal scene label tags (INTRO, HOOK, CHAPTER, etc.) for clean presentation.</li><li>Visuals &amp; Typography: Added expressive contextual emojis across all overlays, headings, and callout cards.</li><li>Scene 08: Added cinematic Hero's Journey background (heros-journey.jpg) with focused transition to Friend &amp; Honour card during 'A friend told me...' voiceover.</li>
+              <li><small style="color:var(--mute)">+1 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v7/video.mp4" data-n="7" data-label="Seventh draft" data-size="14.4 MB" data-poster="draft/v7/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v7/video.mp4" download="UK-Director-Liquidation-Draft-v7.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v6</b><br>
+            <small style="color:var(--mute)">Sixth draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            14.1 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Scene 01: Added dynamic 'In the Age of AI' core strategy reactor animation.</li><li>Scene 04: Added interactive ChatGPT co-pilot simulation with live learning from AI card.</li><li>Scene 08: Added visual workflow diagram comparing n8n deterministic scheduled email cron vs AI bot handling unknown inbound replies; dedicated golden honour card backdrop for friend quote.</li>
+              <li><small style="color:var(--mute)">+2 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v6/video.mp4" data-n="6" data-label="Sixth draft" data-size="14.1 MB" data-poster="draft/v6/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v6/video.mp4" download="UK-Director-Liquidation-Draft-v6.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v5</b><br>
+            <small style="color:var(--mute)">Fifth draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            5.4 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Voiceover reader accelerated to 1.1x speed with warm, charismatic British tone (bm_george) across all scenes.</li><li>Scene 02: Included IT contractor context, UK tax changes, and involuntary push inside IR35 during market downturn.</li><li>Scene 03: Generated BAM audio sound effect via fal.ai stable audio and mixed into soundtrack; removed BAM UI box in favor of sleek Legal Separation Rule &amp; 3-step liquidation pipeline graphic.</li>
+              <li><small style="color:var(--mute)">+2 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v5/video.mp4" data-n="5" data-label="Fifth draft" data-size="5.4 MB" data-poster="draft/v5/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v5/video.mp4" download="UK-Director-Liquidation-Draft-v5.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v4</b><br>
+            <small style="color:var(--mute)">Fourth draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            5.4 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Animated serious style subtitles: kinetic phrase containers with progressive word illumination and cadence tracker line.</li><li>Integrated official Skool brand logo image into Scene 10 outro panel.</li><li>Passed full WCAG AA contrast check (137/137 checks passed).</li>
+              
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v4/video.mp4" data-n="4" data-label="Fourth draft" data-size="5.4 MB" data-poster="draft/v4/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v4/video.mp4" download="UK-Director-Liquidation-Draft-v4.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v3</b><br>
+            <small style="color:var(--mute)">Third draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            5.1 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Scene 03: Added industrial &amp; information revolution red tape mention with BAM impact animation and AI background.</li><li>Audio: Regenerated all 10 audio clips via fal.ai Kokoro with serious British tone voice (bm_lewis).</li><li>Scene 04: Removed footage placeholder boxes, verified British English spelling, added learning with AI disclaimer.</li>
+              <li><small style="color:var(--mute)">+6 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v3/video.mp4" data-n="3" data-label="Third draft" data-size="5.1 MB" data-poster="draft/v3/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v3/video.mp4" download="UK-Director-Liquidation-Draft-v3.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v2</b><br>
+            <small style="color:var(--mute)">Second draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-18</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            4.9 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">3:54</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>Hook: &quot;here's how a liquidation works in the age of AI&quot;.</li><li>Five things: connect all of the parts to AI so you can iterate; be ready to learn the details; AI doesn't mean you won't learn, it means you're ready to learn and act on the fly.</li><li>Costs: these are average UK figures, yours could be higher or lower; new lever animation for &quot;AI gives you leverage&quot;.</li>
+              <li><small style="color:var(--mute)">+3 more changes</small></li>
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v2/video.mp4" data-n="2" data-label="Second draft" data-size="4.9 MB" data-poster="draft/v2/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v2/video.mp4" download="UK-Director-Liquidation-Draft-v2.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+        <tr style="">
+          <td>
+            <b style="font-size:14px;color:var(--accent)">Draft v1</b><br>
+            <small style="color:var(--mute)">First draft</small>
+            
+            
+          </td>
+          <td style="white-space:nowrap;font-size:12.5px">2026-11-18</td>
+          <td>
+            <span class="pill ok">✅ Rendered MP4</span>
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
+            4.6 MB
+          </td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">3:38</td>
+          <td style="font-size:12.5px;max-width:380px">
+            <ul style="margin:2px 0;padding-left:16px">
+              <li>First cut: the whole film from the script, AI draft voice, captions, placeholders for your footage.</li>
+              
+            </ul>
+          </td>
+          <td style="white-space:nowrap">
+            
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v1/video.mp4" data-n="1" data-label="First draft" data-size="4.6 MB" data-poster="draft/v1/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v1/video.mp4" download="UK-Director-Liquidation-Draft-v1.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
+            
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Live Hyperframes Scene Compositions -->
+  <h2 style="margin-top:36px">🎬 Live Hyperframes Compositions (10 Scenes)</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Each scene runs in its own HTML/GSAP composition inside <code>video/compositions/</code>. You can open any scene directly in the browser to preview real-time vector animations before rendering to MP4.</p>
+
+  <div class="comp-grid">
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 01 · Hook</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>0:00</b> (14s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s01-hook.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s01-hook.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 02 · Part 1 of 3: AI and real-world red tape</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>0:14</b> (23s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s02-intro.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s02-intro.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 03 · The goal</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>0:37</b> (20s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s03-goal.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s03-goal.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 04 · Five things to do first, with AI</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>0:57</b> (40s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s04-five-things.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s04-five-things.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 05 · What it costs and how long it takes</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>1:37</b> (27s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s05-cost-timeline.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s05-cost-timeline.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 06 · The exceptions</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>2:04</b> (29s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s06-exceptions.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s06-exceptions.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 07 · What my emails taught me</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>2:33</b> (24s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s07-emails.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s07-emails.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card updated">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 08 · How I keep track of it</b>
+        <span class="pill pri" style="font-size:9.5px;padding:1px 5px">Draft v10 Update</span>
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>2:57</b> (25s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s08-tracking.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <a href="docs/snapshots/s08-fixed-194.06s.png" target="_blank" style="font-size:11px;color:var(--ok);text-decoration:underline">Verified Snapshot 📸</a>
+      </div>
+    </div>
+    
+    <div class="comp-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 09 · Subscribe for Part 2</b>
+        
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>3:22</b> (23s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s09-cta.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <span style="font-size:10.5px;color:var(--mute)"><code>s09-cta.html</code></span>
+      </div>
+    </div>
+    
+    <div class="comp-card updated">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b style="font-size:13px;color:var(--ink)">Scene 10 · Disclaimer + outro</b>
+        <span class="pill pri" style="font-size:9.5px;padding:1px 5px">Draft v10 Update</span>
+      </div>
+      <div style="font-size:11.5px;color:var(--mute)">
+        ⏱️ Timecode: <b>3:45</b> (19s duration)
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:6px;border-top:1px solid var(--line)">
+        <a href="video/compositions/s10-outro.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">Live Composition ↗</a>
+        <a href="docs/snapshots/s10-fixed-241.01s.png" target="_blank" style="font-size:11px;color:var(--ok);text-decoration:underline">Verified Snapshot 📸</a>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- CLI Commands Cheat Sheet -->
+  <h2 style="margin-top:36px">⌨️ Production CLI &amp; Render Commands</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Execute local renders, run comprehensive lint and WCAG contrast checks, or generate thumbnail master plates.</p>
+
+  <pre class="cli"><code><span style="color:var(--mute)"># 1. Full end-to-end draft build &amp; timed render with performance recording:</span>
+node scripts/render-draft.mjs --version=10
+
+<span style="color:var(--mute)"># 2. Local 1080p Drawelement render using pinned Hyperframes 0.9.67:</span>
+cd video && npx --yes hyperframes@0.9.67 render --quality looks --output renders/draft-v10.mp4
+
+<span style="color:var(--mute)"># 3. Comprehensive Hyperframes lint, layout, and WCAG AA contrast check:</span>
+cd video && npm run check
+
+<span style="color:var(--mute)"># 4. Generate 1280x720 thumbnail designs via headless Chrome &amp; FFmpeg:</span>
+scripts/build-thumbnails.sh</code><button class="copy-btn" id="copyCliBtn">Copy Commands</button></pre>
+
+  <div class="note" style="margin-top:20px">
+    <b>Render contract &amp; zero-bloat policy:</b> Video renders are deterministic and timed to milliseconds using GSAP timelines registered on <code>window.__timelines</code>. Heavy master 1080p MP4 files are published via GitHub Releases and Fly.io HTTP 206 streaming proxies rather than inflating git history.
+  </div>
+</main>
+
+<script>
+const player = document.getElementById("player");
+const metaEl = document.getElementById("playerMeta");
+const dlEl = document.getElementById("playerDl");
+
+document.querySelectorAll(".ver-btn").forEach((btn) => {
+  btn.onclick = () => {
+    const src = btn.dataset.src;
+    const n = btn.dataset.n;
+    const label = btn.dataset.label;
+    const size = btn.dataset.size;
+    const poster = btn.dataset.poster;
+
+    if (!src) return;
+
+    document.querySelectorAll(".ver-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    player.src = src;
+    if (poster) player.poster = poster;
+    player.load();
+    player.play().catch(() => {});
+
+    metaEl.innerHTML = "Now playing: <b>Draft v" + n + " (" + label + ")</b> · " + size;
+    dlEl.href = src;
+    dlEl.download = "UK-Director-Liquidation-Part-1-Draft-v" + n + "-Render.mp4";
+    dlEl.textContent = "⬇ Download Draft v" + n + " MP4 (" + size + ")";
+  };
+});
+
+const copyCli = document.getElementById("copyCliBtn");
+if (copyCli) {
+  copyCli.onclick = () => {
+    const txt = "node scripts/render-draft.mjs --version=10\ncd video && npx --yes hyperframes@0.9.67 render --quality looks --output renders/draft-v10.mp4\ncd video && npm run check";
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt).then(() => {
+        copyCli.textContent = "✓ Copied!";
+        setTimeout(() => (copyCli.textContent = "Copy Commands"), 1500);
+      });
+    }
+  };
+}
+</script>
+</body></html>

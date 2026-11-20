@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, "..");
 
 const htmlFiles = [
   "index.html",
+  "renders.html",
   "review.html",
   "first-draft.html",
   "script.html",

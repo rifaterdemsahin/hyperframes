@@ -15,6 +15,7 @@
       "id": "build", "n": 2, "icon": "🎬", "label": "Build", "alias": "Prod",
       "purpose": "Make the film in Hyperframes and see how long it takes.",
       "items": [
+        { "label": "🎬 Renders & State", "href": "renders.html", "desc": "all draft renders, MP4 assets and current render state", "hub": true },
         { "label": "🎞️ Draft video", "href": "first-draft.html", "desc": "the latest cut and what changed", "hub": true },
         { "label": "⏱️ Performance", "href": "performance.html", "desc": "how long the pipeline takes", "hub": true },
         { "heading": "Hyperframes: how it works" },

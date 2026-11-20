@@ -8,7 +8,16 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const J = (p) => JSON.parse(readFileSync(`${root}/${p}`, "utf8"));
 const S = J("script/scenes.json"), V = J("versions.json");
 const VERS = J("draft/versions.json"), N = VERS.latest, DV = VERS.versions.find((v) => v.n === N), PREV = VERS.versions.filter((v) => v.n !== N).sort((a, b) => b.n - a.n);
-const M = existsSync(`${root}/draft/v${N}/meta.json`) ? J(`draft/v${N}/meta.json`) : null;
+let renderedN = N;
+while (renderedN > 1 && !existsSync(`${root}/draft/v${renderedN}/video.mp4`)) {
+  renderedN--;
+}
+const isRenderPending = (renderedN !== N);
+const videoSrc = `draft/v${renderedN}/video.mp4`;
+const posterSrc = existsSync(`${root}/draft/v${N}/frames/${S.scenes[0].id}.jpg`)
+  ? `draft/v${N}/frames/${S.scenes[0].id}.jpg`
+  : (existsSync(`${root}/draft/v${renderedN}/frames/${S.scenes[0].id}.jpg`) ? `draft/v${renderedN}/frames/${S.scenes[0].id}.jpg` : "");
+const M = existsSync(`${root}/draft/v${N}/meta.json`) ? J(`draft/v${N}/meta.json`) : (existsSync(`${root}/draft/v${renderedN}/meta.json`) ? J(`draft/v${renderedN}/meta.json`) : null);
 const DIR = `draft/v${N}`;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const tc = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -32,7 +41,8 @@ video{width:100%;max-width:860px;border-radius:12px;background:#000;display:bloc
   <h1>🎞️ Draft v${N}</h1>
   <p class="lead">${esc(S.title)}: the whole film, ${tc(total)}, built from your script with the AI draft voice. Real footage is still to come, so each place that needs it shows a dashed frame.</p>
   ${M ? `<div class="stat"><div><b>${tc(Math.round(M.duration))}</b><small>length</small></div><div><b>${M.renderSeconds ?? "?"} s</b><small>to render</small></div><div><b>${esc(M.check)}</b><small>Hyperframes check</small></div><div><b>${mb(M.webBytes)}</b><small>web copy (full 1080p: ${mb(M.fullBytes)})</small></div></div>` : ""}
-  <video id="v" controls preload="metadata" poster="${DIR}/frames/${esc(S.scenes[0].id)}.jpg" src="${DIR}/video.mp4"></video>
+  ${isRenderPending ? `<div class="note" style="margin:12px 0;background:rgba(255,209,102,.12);border-color:var(--warn);color:var(--ink)"><b>🎬 Render State:</b> Draft v${N} composition updated · Playing Draft v${renderedN} MP4 render. See all versions and render status on the <a href="renders.html"><b>Renders page</b></a>.</div>` : ""}
+  <video id="v" controls preload="metadata" poster="${posterSrc}" src="${videoSrc}"></video>
   <h2 data-fb-skip>What changed in v${N}</h2>
   <div class="card"><ul>${DV.changes.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></div>${PREV.length ? `\n  <div class="alt card"><b>Earlier versions</b> (hidden unless <code>?all=1</code>): ${PREV.map((v) => `v${v.n} ${esc(v.label)}, ${esc(v.date)}: <a href="draft/v${v.n}/video.mp4">video</a>`).join(" · ")}</div>` : ""}
   <h2 data-fb-skip>Scenes</h2>
