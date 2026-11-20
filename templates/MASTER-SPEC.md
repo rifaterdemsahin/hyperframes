@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.2 · site v1.30.1. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.2 · site v1.31.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
