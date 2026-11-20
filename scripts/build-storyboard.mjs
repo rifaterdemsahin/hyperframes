@@ -63,13 +63,13 @@ audio{width:100%;margin-top:8px;height:36px}.fit{margin:.3em 0;font-size:12px}.f
 #gen{max-width:1280px;margin:0 auto;padding:0 24px 24px}#gen label{display:block;color:var(--mute);margin-bottom:6px}#gen textarea{width:100%;min-height:90px;font:inherit;background:var(--card);color:var(--ink);border:1px solid #232a35;border-radius:8px;padding:10px}
 .broll{color:var(--mute);font-size:14px;margin:.5em 0}.broll b{color:var(--accent)}.vo{margin:.4em 0 0;font-size:15px}
 </style></head><body data-feedback="custom">
-<script src="../nav.js?v=1.42.0"></script>
+<script src="../nav.js?v=1.42.1"></script>
 <header><h1>${esc(data.title)}</h1><p>Storyboard · ${data.scenes.length} scenes · about ${tc(data.totalSecondsApprox)} · generated from script/scenes.json. Dashed boxes are real footage you supply. Backgrounds and voiceover are fal.ai (British male, Kokoro); press play on each panel. <b>Click any overlay or voiceover text to edit it</b> (edited text gets a yellow outline), add feedback per panel, then use Copy at the bottom. Total voice time: ${data.scenes.reduce((a,x)=>a+(x.voSeconds||0),0).toFixed(0)}s.</p></header>
 <main>${panels}
 </main>
 <section id="gen"><label for="general">General feedback (pacing, voice, look, anything else)</label><textarea id="general" placeholder="e.g. make the hook shorter, try a female voice, warmer colours..."></textarea><textarea id="fallback" hidden style="margin-top:8px"></textarea></section>
 <div id="bar"><button id="copy">Copy feedback for Claude</button><button id="reset">Reset edits</button><span id="count"></span></div>
-<script src="editor.js?v=1.42.0"></script>
+<script src="editor.js?v=1.42.1"></script>
 </body></html>`;
 
 writeFileSync(`${root}/storyboard/index.html`, html);

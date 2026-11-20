@@ -160,3 +160,12 @@ test("Server requestHandler: 404 for non-existent non-draft file", async () => {
   await requestHandler(req, res);
   assert.equal(res.statusCode, 404);
 });
+
+test("Server requestHandler: never serves dotfiles or dot-folders (.env, .git)", async () => {
+  for (const url of ["/.env", "/.git/config", "/video/.hyperframes/x", "/%2e%2e/etc/passwd"]) {
+    const req = createMockRequest({ method: "GET", url });
+    const res = new MockResponse();
+    await requestHandler(req, res);
+    assert.ok([403, 404].includes(res.statusCode), `${url} must not be served, got ${res.statusCode}`);
+  }
+});

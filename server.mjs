@@ -261,10 +261,11 @@ export async function requestHandler(req, res) {
   // --- Static File Serving ---
   let filePath = path.join(__dirname, pathname === "/" ? "index.html" : pathname);
 
-  // Security check: ensure path stays within __dirname
-  if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403);
-    return res.end("Forbidden");
+  // Security: stay inside the repo, and never serve dotfiles or dot-folders (.env holds API keys, .git the history)
+  const rel = path.relative(__dirname, filePath);
+  if (rel.startsWith("..") || path.isAbsolute(rel) || rel.split(path.sep).some((seg) => seg.startsWith("."))) {
+    res.writeHead(404);
+    return res.end("Not found");
   }
 
   // Resolve directory or .html extensions

@@ -1,5 +1,5 @@
 {
-  "site": "1.42.0",
+  "site": "1.42.1",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -111,7 +111,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.42.0",
+      "version": "1.42.1",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -238,7 +238,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.33.0",
+      "version": "1.33.1",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -297,6 +297,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.42.1",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Security: the review server no longer serves dotfiles or dot-folders (.env, .git); test added"
+      ]
+    },
     {
       "version": "1.42.0",
       "date": "2026-11-20",
