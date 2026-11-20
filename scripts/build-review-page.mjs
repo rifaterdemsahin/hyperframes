@@ -147,6 +147,19 @@ let items = []; try { items = JSON.parse(localStorage.getItem(KEY) || "[]"); } c
 const cleared = (window.SITE_INFO && window.SITE_INFO.clearedAt) || "";
 if (cleared) items = items.filter((i) => !(i.ts && new Date(i.ts).toISOString() < cleared));
 const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {} };
+try {
+  const sasInit = getSas();
+  if (sasInit) {
+    const uInit = new URL(sasInit);
+    if (uInit.search) {
+      let changed = false;
+      items.forEach((i) => {
+        if (i.imgUrl && !i.imgUrl.includes("?")) { i.imgUrl += uInit.search; changed = true; }
+      });
+      if (changed) persist();
+    }
+  }
+} catch (_) {}
 persist();
 
 let tool = "pen", drawing = false, shapes = [], cur = null, drawMode = false;
@@ -285,7 +298,7 @@ async function uploadToAzure(m) {
       body: blob
     });
     if (res.ok) {
-      m.imgUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + fname;
+      m.imgUrl = putUrl;
       persist();
       render();
       if (msg) { msg.className = "ok"; msg.textContent = "Drawing saved to Azure."; }
@@ -310,23 +323,50 @@ function build() {
   if (!mine.length) return "";
   const info = window.SITE_INFO || {};
   const out = ['Review feedback on "' + R.videoTitle + ' (draft v' + R.draftN + ')" (page v' + (info.version || "?") + ", site v" + (info.site || "?") + ")", info.url || location.href, ""];
+  const visualRefs = [];
   R.scenes.forEach((s) => {
     const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
     out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");
     list.forEach((i) => {
-      const drawDesc = i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
+      const drawDesc = i.shapes && i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
       const imgDesc = i.imgUrl ? " [image: " + i.imgUrl + "]" : "";
       const progDesc = i.state === "in-progress" ? " [in progress]" : "";
       out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
+      if (i.imgUrl) {
+        visualRefs.push("- **" + fmt(i.t) + " (frame " + i.frame + " · Scene " + String(s.n).padStart(2, "0") + ")**: " + i.imgUrl);
+      }
     });
     out.push("");
   });
   const texts = mine.filter((i) => i.kind === "text");
-  if (texts.length) { out.push("## Post copy"); texts.forEach((i) => out.push("- [" + i.section + "] " + i.note)); }
+  if (texts.length) { out.push("## Post copy"); texts.forEach((i) => out.push("- [" + i.section + "] " + i.note)); out.push(""); }
+  if (visualRefs.length) {
+    out.push("## 🖼️ Visual Drawing References (Public & Consumable by Claude)");
+    visualRefs.forEach((r) => out.push(r));
+    out.push("");
+  }
   return out.join("\\n").trim();
 }
-$("copy").onclick = () => {
-  const t = build(), b = $("copy"), label = "📋 Copy feedback for Claude";
+$("copy").onclick = async () => {
+  const b = $("copy"), label = "📋 Copy feedback for Claude";
+  const sas = getSas();
+  if (sas) {
+    const unuploaded = items.filter((i) => open(i) && i.shapes && i.shapes.length && !i.imgUrl);
+    if (unuploaded.length) {
+      b.textContent = "Backing up " + unuploaded.length + " drawing(s) to Azure…";
+      await Promise.all(unuploaded.map((i) => uploadToAzure(i)));
+    }
+    try {
+      const u = new URL(sas);
+      if (u.search) {
+        items.forEach((i) => {
+          if (i.imgUrl && !i.imgUrl.includes("?")) i.imgUrl += u.search;
+        });
+        persist();
+      }
+    } catch (_) {}
+  }
+  const t = build();
   if (!t) { b.textContent = "Nothing open to copy"; return setTimeout(() => (b.textContent = label), 1600); }
   const done = (ok) => { b.textContent = ok ? "Copied. Paste it in the chat" : "Copy failed: select the text below"; if (!ok) { const f = $("fallback"); f.hidden = false; f.value = t; f.select(); } setTimeout(() => (b.textContent = label), 2500); };
   if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => done(true), () => done(false)); else done(false);
