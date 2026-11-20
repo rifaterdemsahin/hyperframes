@@ -1,5 +1,5 @@
 {
-  "site": "1.30.0",
+  "site": "1.30.1",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.30.0",
+      "version": "1.30.1",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.27.0",
+      "version": "1.27.1",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.30.1",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Fix syntax error in review.html restoring Completed Tasks Verification carousel"
+      ]
+    },
     {
       "version": "1.30.0",
       "date": "2026-11-20",

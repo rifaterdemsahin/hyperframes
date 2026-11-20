@@ -48,7 +48,7 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s;flex-shrink:0}
 .carousel-dot.active{background:var(--accent);width:14px;border-radius:3px}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.30.0"></script>
+<script src="nav.js?v=1.30.1"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v9</span> <span class="badge" id="total">0</span></h1>
@@ -527,7 +527,7 @@ async function saveVerifiedToAzure(taskId, wasChecked) {
   try {
     const u = new URL(sas);
     const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
-    const putUrl = u.origin + u.pathname.replace(//$/, "") + "/hyperframes/" + filename + u.search;
+    const putUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + filename + u.search;
     const verifiedKeys = Object.keys(verifiedMap).filter((k) => verifiedMap[k]);
     const payload = JSON.stringify({
       draft: "Draft v" + R.draftN,
@@ -587,7 +587,7 @@ async function loadVerifiedFromAzure() {
   try {
     const u = new URL(sas);
     const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
-    const getUrl = u.origin + u.pathname.replace(//$/, "") + "/hyperframes/" + filename + u.search;
+    const getUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + filename + u.search;
     const res = await fetch(getUrl);
     if (res.ok) {
       const data = await res.json();

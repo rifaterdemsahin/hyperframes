@@ -570,7 +570,7 @@ async function saveVerifiedToAzure(taskId, wasChecked) {
   try {
     const u = new URL(sas);
     const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
-    const putUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + filename + u.search;
+    const putUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + filename + u.search;
     const verifiedKeys = Object.keys(verifiedMap).filter((k) => verifiedMap[k]);
     const payload = JSON.stringify({
       draft: "Draft v" + R.draftN,
@@ -630,7 +630,7 @@ async function loadVerifiedFromAzure() {
   try {
     const u = new URL(sas);
     const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
-    const getUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + filename + u.search;
+    const getUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + filename + u.search;
     const res = await fetch(getUrl);
     if (res.ok) {
       const data = await res.json();
