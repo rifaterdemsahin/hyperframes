@@ -131,6 +131,8 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
       </div>
       <div class="carousel-filters" id="cFilters">
         <button class="c-filter on" data-cat="all">All (24)</button>
+        <button class="c-filter" data-cat="verified">✅ Verified (0)</button>
+        <button class="c-filter" data-cat="unverified">⏳ Not verified (24)</button>
         <button class="c-filter" data-cat="latest">Latest (5)</button>
         <button class="c-filter" data-cat="scenes">Scenes (16)</button>
         <button class="c-filter" data-cat="platform">Platform (3)</button>
@@ -879,6 +881,8 @@ function getCarouselTasks() {
   });
   const all = COMPLETED_TASKS.concat(localDone);
   if (curCat === "all") return all;
+  if (curCat === "verified") return all.filter((t) => !!verifiedMap[t.id]);
+  if (curCat === "unverified") return all.filter((t) => !verifiedMap[t.id]);
   if (curCat === "latest") return all.filter((t) => t.category === "latest");
   if (curCat === "scenes") return all.filter((t) => t.category === "scenes" || t.category === "latest");
   if (curCat === "platform") return all.filter((t) => t.category === "platform");
@@ -886,19 +890,41 @@ function getCarouselTasks() {
 }
 
 function renderCarousel() {
+  const allList = COMPLETED_TASKS.concat((items || []).filter((i) => i.state === "done"));
+  const countAll = allList.length;
+  const countVer = allList.filter((x) => !!verifiedMap[x.id]).length;
+  const countUnver = allList.filter((x) => !verifiedMap[x.id]).length;
+  const countLatest = allList.filter((x) => x.category === "latest").length;
+  const countScenes = allList.filter((x) => x.category === "scenes" || x.category === "latest").length;
+  const countPlatform = allList.filter((x) => x.category === "platform").length;
+
+  // update filter buttons with live counts
+  document.querySelectorAll(".c-filter").forEach((btn) => {
+    btn.classList.toggle("on", btn.dataset.cat === curCat);
+    const cat = btn.dataset.cat;
+    if (cat === "all") btn.textContent = "All (" + countAll + ")";
+    else if (cat === "verified") btn.textContent = "✅ Verified (" + countVer + ")";
+    else if (cat === "unverified") btn.textContent = "⏳ Not verified (" + countUnver + ")";
+    else if (cat === "latest") btn.textContent = "Latest (" + countLatest + ")";
+    else if (cat === "scenes") btn.textContent = "Scenes (" + countScenes + ")";
+    else if (cat === "platform") btn.textContent = "Platform (" + countPlatform + ")";
+  });
+
+  if ($("cVerifiedSummary")) $("cVerifiedSummary").textContent = countVer + "/" + countAll + " verified";
+
   const allTasks = getCarouselTasks();
   if (!allTasks.length) {
-    $("cCard").innerHTML = "<p class='hint' style='text-align:center;padding:20px'>No tasks in this category.</p>";
+    $("cDoneIdx").textContent = "0 / 0";
+    if ($("cTaskSelect")) $("cTaskSelect").innerHTML = "<option>No tasks match this filter</option>";
+    if ($("cDots")) $("cDots").innerHTML = "";
+    const emptyMsg = curCat === "verified" ? "No tasks verified yet. Switch to '⏳ Not verified' or 'All' and tick the 'Verify' checkbox on any task to mark it verified." : "No tasks in this category.";
+    $("cCard").innerHTML = "<p class='hint' style='text-align:center;padding:24px;line-height:1.5'>" + emptyMsg + "</p>";
     return;
   }
   if (cIdx >= allTasks.length) cIdx = allTasks.length - 1;
   if (cIdx < 0) cIdx = 0;
   const t = allTasks[cIdx];
   const isV = !!verifiedMap[t.id];
-
-  const totalAll = COMPLETED_TASKS.length;
-  const totalVerified = COMPLETED_TASKS.filter((x) => !!verifiedMap[x.id]).length;
-  if ($("cVerifiedSummary")) $("cVerifiedSummary").textContent = totalVerified + "/" + totalAll + " verified";
 
   $("cDoneIdx").textContent = (cIdx + 1) + " / " + allTasks.length;
 
@@ -911,11 +937,6 @@ function renderCarousel() {
     }).join("");
     sel.onchange = () => { cIdx = +sel.value; renderCarousel(); };
   }
-
-  // update filter buttons
-  document.querySelectorAll(".c-filter").forEach((btn) => {
-    btn.classList.toggle("on", btn.dataset.cat === curCat);
-  });
 
   const createdStr = fmtTiming(t.createdAt);
   const resolvedStr = fmtTiming(t.resolvedAt);
