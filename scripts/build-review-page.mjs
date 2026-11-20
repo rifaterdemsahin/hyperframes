@@ -1124,6 +1124,66 @@ function getCarouselTasks() {
   return all;
 }
 
+function verifyTaskInVideo(targetTime, task) {
+  if (targetTime === null || targetTime === undefined || isNaN(targetTime)) return;
+  const target = Number(targetTime);
+
+  const performJump = () => {
+    try {
+      v.currentTime = target;
+    } catch (_) {}
+    tick();
+
+    if (task && task.shapes && task.shapes.length) {
+      v.pause();
+      shapes = JSON.parse(JSON.stringify(task.shapes));
+      redraw();
+      setDraw(true);
+    } else {
+      shapes = [];
+      redraw();
+      setDraw(false);
+      v.play().catch(() => {});
+    }
+
+    if (v.scrollIntoView) {
+      v.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    const stage = v.closest(".stage") || v.parentElement;
+    if (stage) {
+      stage.style.transition = "box-shadow 0.3s ease";
+      stage.style.boxShadow = "0 0 0 3px var(--accent), 0 0 24px rgba(76,195,217,0.5)";
+      setTimeout(() => { if (stage) stage.style.boxShadow = ""; }, 2000);
+    }
+
+    if ($("msg")) {
+      $("msg").className = "ok";
+      $("msg").textContent = "▶ Jumped to " + fmt(target) + (task ? (": " + task.title) : "");
+    }
+  };
+
+  if (v.readyState < 1) {
+    v.addEventListener("loadedmetadata", performJump, { once: true });
+    v.load();
+  } else {
+    performJump();
+  }
+}
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("#cVerifyBtn, .c-verify-btn");
+  if (!btn) return;
+  const timeVal = btn.dataset.t;
+  if (timeVal !== undefined && timeVal !== "") {
+    const all = getCarouselTasks();
+    const curr = all[cIdx] || (all.find((x) => String(x.t) === String(timeVal)));
+    verifyTaskInVideo(Number(timeVal), curr);
+  }
+});
+
 function renderCarousel() {
   const allList = COMPLETED_TASKS.concat((items || []).filter((i) => i.state === "done"));
   const countAll = allList.length;
@@ -1186,7 +1246,7 @@ function renderCarousel() {
     '</div>';
 
   const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
-  const verifyBtn = t.t !== null ? '<button id="cVerifyBtn" class="pri" style="font-size:12px;padding:6px 12px;font-weight:700">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
+  const verifyBtn = (t.t !== null && t.t !== undefined) ? '<button id="cVerifyBtn" class="pri c-verify-btn" data-t="' + t.t + '" style="font-size:12px;padding:6px 12px;font-weight:700;cursor:pointer">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
   const commitHtml = t.commit ? '<span style="font-size:11px;color:var(--mute)">Commit: <a href="https://github.com/rifaterdemsahin/hyperframes/commit/' + t.commit + '" target="_blank" style="color:var(--accent);font-family:ui-monospace,monospace;font-weight:700;text-decoration:underline">' + t.commit + '</a></span>' : '';
   const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:10px;padding:1px 5px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(t.id) + '</span>' +
     '<button id="cCopyIdBtn" data-id="' + esc(t.id) + '" title="Copy unique feedback ID (' + esc(t.id) + ')" style="font-size:10px;padding:1px 5px;cursor:pointer">📋 Copy ID</button>';
@@ -1235,21 +1295,10 @@ function renderCarousel() {
   }
 
   const vBtn = $("cVerifyBtn");
-  if (vBtn && t.t !== null) {
-    vBtn.onclick = () => {
-      v.pause();
-      v.currentTime = t.t;
-      if (t.shapes && t.shapes.length) {
-        shapes = JSON.parse(JSON.stringify(t.shapes));
-        redraw();
-        setDraw(true);
-      } else {
-        shapes = [];
-        redraw();
-      }
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      $("msg").className = "ok";
-      $("msg").textContent = "Jumped to " + fmt(t.t) + " to verify: " + t.title;
+  if (vBtn && t.t !== null && t.t !== undefined) {
+    vBtn.onclick = (e) => {
+      if (e) e.preventDefault();
+      verifyTaskInVideo(t.t, t);
     };
   }
 
