@@ -1,5 +1,5 @@
 {
-  "site": "1.34.1",
+  "site": "1.35.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.34.1",
+      "version": "1.35.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -138,7 +138,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.9.1",
+      "version": "1.10.0",
       "date": "2026-11-20",
       "deps": [
         "AGENTS.md",
@@ -211,7 +211,7 @@
     },
     "renders.html": {
       "title": "Renders & State",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -281,6 +281,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.35.0",
+      "date": "2026-11-20",
+      "pages": [
+        "renders.html",
+        "agents.html"
+      ],
+      "changes": [
+        "Renders page: render-time section (typical end to end, MP4 render share, per-step breakdown, per-draft render time) from spec/performance.json; real QA check result instead of a hard-coded one; render times and the check gate recorded in AGENTS.md"
+      ]
+    },
     {
       "version": "1.34.1",
       "date": "2026-11-20",

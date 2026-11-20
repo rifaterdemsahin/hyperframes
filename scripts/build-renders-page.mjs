@@ -55,6 +55,26 @@ const drafts = VERS.versions.map((ver) => {
 
 const activeVideo = drafts.find((d) => d.isCurrentStreaming) || drafts[0];
 
+// ---- Render timing, measured by scripts/render-draft.mjs (spec/performance.json + draft/vN/meta.json)
+const secs = (n) => n == null ? "–" : n >= 60 ? `${Math.floor(n / 60)} min ${String(Math.round(n % 60)).padStart(2, "0")} s` : `${Math.round(n)} s`;
+const stepOf = (run, prefix) => run.steps.find((x) => x.name.startsWith(prefix))?.seconds ?? null;
+const median = (a) => { const b = [...a].sort((x, y) => x - y); const m = b.length >> 1; return b.length ? (b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2) : null; };
+const runs = PERF.runs || [];
+const lastRun = runs.at(-1) || null;
+const recent = runs.slice(-5);
+const timing = {
+  runs: runs.length,
+  machine: lastRun?.machine || "unknown",
+  lastTotal: lastRun?.total ?? null,
+  lastRender: lastRun ? stepOf(lastRun, "Render") : null,
+  recentTotals: recent.map((r) => r.total),
+  recentRenders: recent.map((r) => stepOf(r, "Render")).filter((x) => x != null),
+  allTotals: runs.map((r) => r.total),
+};
+timing.medianTotal = median(timing.recentTotals);
+timing.medianRender = median(timing.recentRenders);
+const stepRows = lastRun ? lastRun.steps.map((st) => `<tr><td>${esc(st.name)}</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">${secs(st.seconds)}</td><td style="font-size:12.5px;color:var(--mute)">${esc(st.note || "")}</td></tr>`).join("") : "";
+
 // Active scene compositions in video/compositions/
 const scenesList = S.scenes.map((sc, i) => {
   const compFile = `video/compositions/${sc.id}.html`;
@@ -155,8 +175,13 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
     </div>
     <div class="kpi-card">
       <span class="label">Hyperframes QA Check</span>
-      <span class="val" style="color:var(--ok)">137 / 137</span>
-      <span class="sub">0 errors · 0 warnings · WCAG AA pass</span>
+      <span class="val" style="color:var(--ok)">${esc((activeVideo.meta?.check || "not recorded").split(",")[0])}</span>
+      <span class="sub">${esc(activeVideo.meta?.check || "")} · Draft v${renderedN}</span>
+    </div>
+    <div class="kpi-card">
+      <span class="label">Time to Render a Draft</span>
+      <span class="val">${secs(timing.lastTotal)}</span>
+      <span class="sub">Last run end to end · ${secs(timing.lastRender)} of it is the MP4 render · <a href="#render-time">breakdown</a></span>
     </div>
   </div>
 
@@ -187,6 +212,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
           <th>Render Status</th>
           <th>File Size</th>
           <th>Duration</th>
+          <th>Render Time</th>
           <th>What Changed</th>
           <th>Actions</th>
         </tr>
@@ -208,6 +234,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             ${d.isRendered ? d.sizeStr : '<span style="color:var(--mute)">In composition</span>'}
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">${tc(d.duration)}</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">${d.meta?.renderSeconds != null ? `${secs(d.meta.renderSeconds)}<br><small style="color:var(--mute)">${d.meta.workers ?? "?"} workers</small>` : '<span style="color:var(--mute)">–</span>'}</td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               ${d.changes.slice(0, 3).map((c) => `<li>${esc(c)}</li>`).join("")}
@@ -230,6 +257,16 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
       </tbody>
     </table>
   </div>
+
+  <!-- Render time -->
+  <h2 id="render-time" style="margin-top:36px">⏱️ How Long a Render Takes</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Measured by <code>node scripts/render-draft.mjs</code> on every draft (${timing.runs} runs recorded, ${esc(timing.machine)}). Rendered locally; the clock covers build, check, render, web copy, frames and site pages.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card"><span class="label">Typical end to end (last 5 runs)</span><span class="val">${secs(timing.medianTotal)}</span><span class="sub">median · range ${secs(Math.min(...timing.recentTotals))} to ${secs(Math.max(...timing.recentTotals))}</span></div>
+    <div class="kpi-card"><span class="label">Of which: MP4 render (last 5)</span><span class="val">${secs(timing.medianRender)}</span><span class="sub">1080p, 30 fps, with sound, high quality</span></div>
+    <div class="kpi-card"><span class="label">All runs, end to end</span><span class="val">${secs(Math.min(...timing.allTotals))} to ${secs(Math.max(...timing.allTotals))}</span><span class="sub">grew as scenes gained animation and HD visuals</span></div>
+  </div>
+  ${lastRun ? `<div class="table-wrap"><table><thead><tr><th>Step (last run, ${esc(lastRun.at.slice(0, 16).replace("T", " "))} UTC)</th><th>Time</th><th>Note</th></tr></thead><tbody>${stepRows}<tr><td><b>Total</b></td><td style="font-family:ui-monospace,monospace"><b>${secs(lastRun.total)}</b></td><td></td></tr></tbody></table></div>` : ""}
 
   <!-- Live Hyperframes Scene Compositions -->
   <h2 style="margin-top:36px">🎬 Live Hyperframes Compositions (10 Scenes)</h2>

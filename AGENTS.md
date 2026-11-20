@@ -82,6 +82,8 @@ Pages with their own feedback UI set `<body data-feedback="custom">`.
 - Follow `video/CLAUDE.md` for the render contract: timed elements need `data-start` and `class="clip"`, the root timeline is paused and registered on `window.__timelines`, and only deterministic logic.
 - Always run `npm run check`, then look at snapshots, before reporting a scene done.
 - Render locally; see the speed page for why cloud rendering rarely pays off at this length.
+- **How long a render takes** (measured by `render-draft.mjs`, Apple M1 Max, 10 cores, 5 workers, for a ~4:04 film): about **3 to 3.5 minutes end to end** (median 3 min 12 s over the last 5 runs, range 2 min 48 s to 3 min 18 s). Of that, the MP4 render itself is about **2.5 minutes** (2 min 10 s to 2 min 32 s), the 720p web copy ~25 s, `npm run check` ~12 s, frames and site pages under 1 s. Early drafts with lighter scenes took 1 to 2 minutes. Budget about 5 minutes per draft including the look at the frames; plan the background wait instead of polling. The live numbers are on the Renders page (`renders.html#render-time`), refreshed from `spec/performance.json` on every render.
+- A render only happens if `npm run check` passes with 0 errors: `render-draft.mjs` stops at the check, leaves `draft/vN/video.mp4` missing, and the review page falls back to the previous MP4. `npm test` fails when the latest draft has no MP4. Animate transforms (x, y, xPercent, yPercent, scale, opacity) in GSAP: tweening `top`, `left` or `right` fails the check (`gsap_non_transform_motion`). To change layout, use an instant `tl.set` while the element is hidden.
 
 ## Reuse
 

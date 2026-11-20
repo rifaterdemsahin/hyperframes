@@ -28,27 +28,27 @@
 pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,monospace;overflow-x:auto;position:relative}
 .copy-btn{position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
 </style></head><body>
-<script src="nav.js?v=1.34.1"></script>
+<script src="nav.js?v=1.35.0"></script>
 <main style="max-width:1100px">
   <div class="crumbs">🎬 2 Build &nbsp;·&nbsp; Production Pipeline</div>
   <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px">
     <h1 style="margin:0">🎬 Video Renders &amp; Render State</h1>
     <div style="display:flex;gap:6px;align-items:center">
       <span class="pill pri">Composition: Draft v10</span>
-      <span class="pill ok">Active Streaming: Draft v9</span>
+      <span class="pill ok">Active Streaming: Draft v10</span>
     </div>
   </div>
   <p class="lead">Complete audit of all Hyperframes MP4 video cuts, render times, file sizes, live composition templates, and active server streaming state.</p>
 
   <!-- Live Render State Banner -->
-  <div class="render-banner" style="border-color:rgba(255,209,102,.45);background:rgba(255,209,102,.07)">
+  <div class="render-banner" style="border-color:rgba(47,133,90,.3);background:rgba(47,133,90,.05)">
     <div>
       <div style="display:flex;align-items:center;gap:8px">
-        <span class="pill warn">⏳ Composition Live · Render Pending</span>
-        <b style="font-size:15px;color:var(--ink)">Draft v10 composition updated · Serving Draft v9 video render</b>
+        <span class="pill ok">✅ Current Draft Fully Rendered</span>
+        <b style="font-size:15px;color:var(--ink)">Draft v10 1080p Master Rendered</b>
       </div>
       <div style="font-size:12.5px;color:var(--mute);margin-top:4px">
-        Active MP4 Asset: <code>draft/v9/video.mp4</code> (14.5 MB) · Serving with HTTP 206 Partial Content range seeking
+        Active MP4 Asset: <code>draft/v10/video.mp4</code> (14.6 MB) · Serving with HTTP 206 Partial Content range seeking
       </div>
     </div>
     <div style="display:flex;gap:8px;align-items:center">
@@ -66,8 +66,8 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
     </div>
     <div class="kpi-card">
       <span class="label">Streaming Master Video</span>
-      <span class="val" style="color:var(--ok)">Draft v9</span>
-      <span class="sub">14.5 MB · 1080p @ 30 FPS</span>
+      <span class="val" style="color:var(--ok)">Draft v10</span>
+      <span class="sub">14.6 MB · 1080p @ 30 FPS</span>
     </div>
     <div class="kpi-card">
       <span class="label">Runtime &amp; Audio Pacing</span>
@@ -76,8 +76,13 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
     </div>
     <div class="kpi-card">
       <span class="label">Hyperframes QA Check</span>
-      <span class="val" style="color:var(--ok)">137 / 137</span>
-      <span class="sub">0 errors · 0 warnings · WCAG AA pass</span>
+      <span class="val" style="color:var(--ok)">0 errors</span>
+      <span class="sub">0 errors, 9 warnings · Draft v10</span>
+    </div>
+    <div class="kpi-card">
+      <span class="label">Time to Render a Draft</span>
+      <span class="val">2 min 48 s</span>
+      <span class="sub">Last run end to end · 2 min 10 s of it is the MP4 render · <a href="#render-time">breakdown</a></span>
     </div>
   </div>
 
@@ -86,15 +91,15 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
   <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Switch between any rendered draft cut to compare audio cadence, overlay adjustments, and motion polish.</p>
   
   <div class="ver-switcher" id="switcher">
-    <button class="ver-btn active" data-src="draft/v9/video.mp4" data-n="9" data-label="Ninth draft" data-size="14.5 MB" data-poster="draft/v9/frames/s01-hook.jpg">Draft v9 (Ninth draft · 14.5 MB)</button><button class="ver-btn" data-src="draft/v8/video.mp4" data-n="8" data-label="Eighth draft" data-size="14.3 MB" data-poster="draft/v8/frames/s01-hook.jpg">Draft v8 (Eighth draft · 14.3 MB)</button><button class="ver-btn" data-src="draft/v7/video.mp4" data-n="7" data-label="Seventh draft" data-size="14.4 MB" data-poster="draft/v7/frames/s01-hook.jpg">Draft v7 (Seventh draft · 14.4 MB)</button><button class="ver-btn" data-src="draft/v6/video.mp4" data-n="6" data-label="Sixth draft" data-size="14.1 MB" data-poster="draft/v6/frames/s01-hook.jpg">Draft v6 (Sixth draft · 14.1 MB)</button><button class="ver-btn" data-src="draft/v5/video.mp4" data-n="5" data-label="Fifth draft" data-size="5.4 MB" data-poster="draft/v5/frames/s01-hook.jpg">Draft v5 (Fifth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v4/video.mp4" data-n="4" data-label="Fourth draft" data-size="5.4 MB" data-poster="draft/v4/frames/s01-hook.jpg">Draft v4 (Fourth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v3/video.mp4" data-n="3" data-label="Third draft" data-size="5.1 MB" data-poster="draft/v3/frames/s01-hook.jpg">Draft v3 (Third draft · 5.1 MB)</button><button class="ver-btn" data-src="draft/v2/video.mp4" data-n="2" data-label="Second draft" data-size="4.9 MB" data-poster="draft/v2/frames/s01-hook.jpg">Draft v2 (Second draft · 4.9 MB)</button><button class="ver-btn" data-src="draft/v1/video.mp4" data-n="1" data-label="First draft" data-size="4.6 MB" data-poster="draft/v1/frames/s01-hook.jpg">Draft v1 (First draft · 4.6 MB)</button>
+    <button class="ver-btn active" data-src="draft/v10/video.mp4" data-n="10" data-label="Tenth draft" data-size="14.6 MB" data-poster="draft/v10/frames/s01-hook.jpg">Draft v10 (Tenth draft · 14.6 MB)</button><button class="ver-btn" data-src="draft/v9/video.mp4" data-n="9" data-label="Ninth draft" data-size="14.5 MB" data-poster="draft/v9/frames/s01-hook.jpg">Draft v9 (Ninth draft · 14.5 MB)</button><button class="ver-btn" data-src="draft/v8/video.mp4" data-n="8" data-label="Eighth draft" data-size="14.3 MB" data-poster="draft/v8/frames/s01-hook.jpg">Draft v8 (Eighth draft · 14.3 MB)</button><button class="ver-btn" data-src="draft/v7/video.mp4" data-n="7" data-label="Seventh draft" data-size="14.4 MB" data-poster="draft/v7/frames/s01-hook.jpg">Draft v7 (Seventh draft · 14.4 MB)</button><button class="ver-btn" data-src="draft/v6/video.mp4" data-n="6" data-label="Sixth draft" data-size="14.1 MB" data-poster="draft/v6/frames/s01-hook.jpg">Draft v6 (Sixth draft · 14.1 MB)</button><button class="ver-btn" data-src="draft/v5/video.mp4" data-n="5" data-label="Fifth draft" data-size="5.4 MB" data-poster="draft/v5/frames/s01-hook.jpg">Draft v5 (Fifth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v4/video.mp4" data-n="4" data-label="Fourth draft" data-size="5.4 MB" data-poster="draft/v4/frames/s01-hook.jpg">Draft v4 (Fourth draft · 5.4 MB)</button><button class="ver-btn" data-src="draft/v3/video.mp4" data-n="3" data-label="Third draft" data-size="5.1 MB" data-poster="draft/v3/frames/s01-hook.jpg">Draft v3 (Third draft · 5.1 MB)</button><button class="ver-btn" data-src="draft/v2/video.mp4" data-n="2" data-label="Second draft" data-size="4.9 MB" data-poster="draft/v2/frames/s01-hook.jpg">Draft v2 (Second draft · 4.9 MB)</button><button class="ver-btn" data-src="draft/v1/video.mp4" data-n="1" data-label="First draft" data-size="4.6 MB" data-poster="draft/v1/frames/s01-hook.jpg">Draft v1 (First draft · 4.6 MB)</button>
   </div>
 
   <div class="stage">
-    <video id="player" controls preload="metadata" poster="draft/v9/frames/s01-hook.jpg" src="draft/v9/video.mp4"></video>
+    <video id="player" controls preload="metadata" poster="draft/v10/frames/s01-hook.jpg" src="draft/v10/video.mp4"></video>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:13px;color:var(--mute);margin-top:4px">
-    <span id="playerMeta">Now playing: <b>Draft v9 (Ninth draft)</b> · 14.5 MB</span>
-    <a id="playerDl" href="draft/v9/video.mp4" download="UK-Director-Liquidation-Part-1-Draft-v9-Render.mp4" class="pill pri" style="text-decoration:none">⬇ Download this MP4</a>
+    <span id="playerMeta">Now playing: <b>Draft v10 (Tenth draft)</b> · 14.6 MB</span>
+    <a id="playerDl" href="draft/v10/video.mp4" download="UK-Director-Liquidation-Part-1-Draft-v10-Render.mp4" class="pill pri" style="text-decoration:none">⬇ Download this MP4</a>
   </div>
 
   <!-- Complete Renders Catalog Table -->
@@ -108,6 +113,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
           <th>Render Status</th>
           <th>File Size</th>
           <th>Duration</th>
+          <th>Render Time</th>
           <th>What Changed</th>
           <th>Actions</th>
         </tr>
@@ -119,25 +125,30 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             <b style="font-size:14px;color:var(--accent)">Draft v10</b><br>
             <small style="color:var(--mute)">Tenth draft</small>
             <br><span class="pill pri" style="font-size:10px;padding:1px 6px;margin-top:4px">Latest Code</span>
-            
+            <br><span class="pill ok" style="font-size:10px;padding:1px 6px;margin-top:4px">Streaming MP4</span>
           </td>
           <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
           <td>
-            <span class="pill warn">⏳ Render Pending</span>
+            <span class="pill ok">✅ Rendered MP4</span>
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">
-            <span style="color:var(--mute)">In composition</span>
+            14.6 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 10 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
-              <li>Scene 08: Removed top n8n logo badge; enlarged and centered Hero's Journey quote card on screen with blurred background.</li><li>Scene 10: Centered Delivery Pilot Skool community panel in frame with 1.35x zoom and radiant blue glow; blurred and dimmed background and overlay text for maximum contrast.</li><li>Review Tooling: Made Post copy collapsible, added live verification completion percentage badge and animated progress bar with dynamic red-to-green gradient.</li>
-              
+              <li>Scene 08 (fb-5826-c463): Removed the top n8n logo badge; the Hero's Journey quote card now sits centred and wide with the background blurred.</li><li>Scene 10 (fb-7231-718f): Delivery Pilot Skool panel glides to the centre (1.35x, blue glow) while the background and overlay text blur and dim.</li><li>Scene 04: Fixed the ChatGPT card, which had jumped to the left edge on top of the 'Five things' list; it is back on the right with the Trustpilot card popping over it.</li>
+              <li><small style="color:var(--mute)">+1 more changes</small></li>
             </ul>
           </td>
           <td style="white-space:nowrap">
             
-              <a href="video/compositions/s08-tracking.html" target="_blank" style="font-size:11.5px;color:var(--accent);font-weight:700;text-decoration:underline">🎬 Live Compositions ↗</a>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <button class="pill ver-btn" data-src="draft/v10/video.mp4" data-n="10" data-label="Tenth draft" data-size="14.6 MB" data-poster="draft/v10/frames/s01-hook.jpg" style="font-size:11px;padding:2px 8px;cursor:pointer">▶ Play Cut</button>
+                <a href="draft/v10/video.mp4" download="UK-Director-Liquidation-Draft-v10.mp4" style="font-size:11px;color:var(--accent);text-decoration:underline">⬇ Download</a>
+                <a href="review.html" style="font-size:11px;color:var(--mute);text-decoration:underline">🔍 Review</a>
+              </div>
             
           </td>
         </tr>
@@ -147,7 +158,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             <b style="font-size:14px;color:var(--accent)">Draft v9</b><br>
             <small style="color:var(--mute)">Ninth draft</small>
             
-            <br><span class="pill ok" style="font-size:10px;padding:1px 6px;margin-top:4px">Streaming MP4</span>
+            
           </td>
           <td style="white-space:nowrap;font-size:12.5px">2026-11-20</td>
           <td>
@@ -157,6 +168,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             14.5 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 30 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Scene 03: Removed BAM sound effect from the soundtrack for a clean, professional flow.</li><li>Scene 07: Corrected core rule in script and subtitle: 'The process starts once the entire balance for the liquidation company is paid off' (chased 6 times); modularly regenerated audio via fal.ai Kokoro.</li><li>Scene 08: Modulated friend's question tone ('Become like MrBeast, why show your real work?') with a distinct British voice (bm_lewis) for character clarity; enlarged and centered the Hero's Journey card across the canvas.</li>
@@ -189,6 +201,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             14.3 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 26 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Overlay Tag Removal: Removed the top-right 'DRAFT V*' watermark tag across the entire video for a clean, distraction-free viewing experience.</li>
@@ -221,6 +234,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             14.4 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 27 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Video Metadata: Removed all internal scene label tags (INTRO, HOOK, CHAPTER, etc.) for clean presentation.</li><li>Visuals &amp; Typography: Added expressive contextual emojis across all overlays, headings, and callout cards.</li><li>Scene 08: Added cinematic Hero's Journey background (heros-journey.jpg) with focused transition to Friend &amp; Honour card during 'A friend told me...' voiceover.</li>
@@ -253,6 +267,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             14.1 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 32 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Scene 01: Added dynamic 'In the Age of AI' core strategy reactor animation.</li><li>Scene 04: Added interactive ChatGPT co-pilot simulation with live learning from AI card.</li><li>Scene 08: Added visual workflow diagram comparing n8n deterministic scheduled email cron vs AI bot handling unknown inbound replies; dedicated golden honour card backdrop for friend quote.</li>
@@ -285,6 +300,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             5.4 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:03</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">1 min 52 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Voiceover reader accelerated to 1.1x speed with warm, charismatic British tone (bm_george) across all scenes.</li><li>Scene 02: Included IT contractor context, UK tax changes, and involuntary push inside IR35 during market downturn.</li><li>Scene 03: Generated BAM audio sound effect via fal.ai stable audio and mixed into soundtrack; removed BAM UI box in favor of sleek Legal Separation Rule &amp; 3-step liquidation pipeline graphic.</li>
@@ -317,6 +333,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             5.4 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">1 min 30 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Animated serious style subtitles: kinetic phrase containers with progressive word illumination and cadence tracker line.</li><li>Integrated official Skool brand logo image into Scene 10 outro panel.</li><li>Passed full WCAG AA contrast check (137/137 checks passed).</li>
@@ -349,6 +366,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             5.1 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">4:04</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">1 min 22 s<br><small style="color:var(--mute)">5 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Scene 03: Added industrial &amp; information revolution red tape mention with BAM impact animation and AI background.</li><li>Audio: Regenerated all 10 audio clips via fal.ai Kokoro with serious British tone voice (bm_lewis).</li><li>Scene 04: Removed footage placeholder boxes, verified British English spelling, added learning with AI disclaimer.</li>
@@ -381,6 +399,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             4.9 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">3:54</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">2 min 20 s<br><small style="color:var(--mute)">3 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>Hook: &quot;here's how a liquidation works in the age of AI&quot;.</li><li>Five things: connect all of the parts to AI so you can iterate; be ready to learn the details; AI doesn't mean you won't learn, it means you're ready to learn and act on the fly.</li><li>Costs: these are average UK figures, yours could be higher or lower; new lever animation for &quot;AI gives you leverage&quot;.</li>
@@ -413,6 +432,7 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
             4.6 MB
           </td>
           <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">3:38</td>
+          <td style="white-space:nowrap;font-family:ui-monospace,monospace;font-size:12.5px">46 s<br><small style="color:var(--mute)">3 workers</small></td>
           <td style="font-size:12.5px;max-width:380px">
             <ul style="margin:2px 0;padding-left:16px">
               <li>First cut: the whole film from the script, AI draft voice, captions, placeholders for your footage.</li>
@@ -433,6 +453,16 @@ pre.cli{background:var(--card);border:1px solid var(--line);border-radius:10px;p
       </tbody>
     </table>
   </div>
+
+  <!-- Render time -->
+  <h2 id="render-time" style="margin-top:36px">⏱️ How Long a Render Takes</h2>
+  <p style="font-size:13.5px;color:var(--mute);margin-top:-6px">Measured by <code>node scripts/render-draft.mjs</code> on every draft (11 runs recorded, Apple M1 Max, 10 cores, 64 GB). Rendered locally; the clock covers build, check, render, web copy, frames and site pages.</p>
+  <div class="kpi-grid">
+    <div class="kpi-card"><span class="label">Typical end to end (last 5 runs)</span><span class="val">3 min 12 s</span><span class="sub">median · range 2 min 48 s to 3 min 18 s</span></div>
+    <div class="kpi-card"><span class="label">Of which: MP4 render (last 5)</span><span class="val">2 min 27 s</span><span class="sub">1080p, 30 fps, with sound, high quality</span></div>
+    <div class="kpi-card"><span class="label">All runs, end to end</span><span class="val">1 min 05 s to 3 min 18 s</span><span class="sub">grew as scenes gained animation and HD visuals</span></div>
+  </div>
+  <div class="table-wrap"><table><thead><tr><th>Step (last run, 2026-11-20 19:50 UTC)</th><th>Time</th><th>Note</th></tr></thead><tbody><tr><td>Generate the Hyperframes project</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">0 s</td><td style="font-size:12.5px;color:var(--mute)">10 scene files + root from scenes.json</td></tr><tr><td>Hyperframes check</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">11 s</td><td style="font-size:12.5px;color:var(--mute)">lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 9 warnings</td></tr><tr><td>Render draft v10 (1080p, 30 fps, with sound, high quality)</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">2 min 10 s</td><td style="font-size:12.5px;color:var(--mute)">local, drawelement capture · 5 workers</td></tr><tr><td>Make the light web copy of draft v10 (1280x720 HD sharp)</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">26 s</td><td style="font-size:12.5px;color:var(--mute)">H.264 CRF 23, AAC 128k</td></tr><tr><td>Extract one frame per scene</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">1 s</td><td style="font-size:12.5px;color:var(--mute)">10 JPG frames</td></tr><tr><td>Build the site pages</td><td style="font-family:ui-monospace,monospace;white-space:nowrap">0 s</td><td style="font-size:12.5px;color:var(--mute)">storyboard, script, spec, agents, publish, architecture, draft + performance pages</td></tr><tr><td><b>Total</b></td><td style="font-family:ui-monospace,monospace"><b>2 min 48 s</b></td><td></td></tr></tbody></table></div>
 
   <!-- Live Hyperframes Scene Compositions -->
   <h2 style="margin-top:36px">🎬 Live Hyperframes Compositions (10 Scenes)</h2>
