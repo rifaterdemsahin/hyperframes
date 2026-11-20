@@ -21,8 +21,22 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .pill{font-size:13px;padding:2px 10px;border-radius:999px;border:1px solid var(--line)}.pill.p{border-color:var(--accent);color:var(--accent)}.pill.d{border-color:var(--ok);color:var(--ok)}
 .box{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--card)}pre.post{white-space:pre-wrap;font:13px/1.5 system-ui;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0}
 #msg{min-height:20px;font-size:14px}.ok{color:var(--ok)}.err{color:#ff6b6b}
+.carousel-box{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);outline:none;transition:border-color .2s}
+.carousel-box:focus-within{border-color:var(--accent)}
+.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.carousel-head h3{margin:0;font-size:13px;color:var(--accent);display:flex;align-items:center;gap:6px}
+.carousel-counter{font-size:12px;color:var(--mute);font-weight:700}
+.carousel-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:165px}
+.carousel-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(47,133,90,0.18);color:var(--ok);align-self:flex-start}
+.carousel-title{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.35}
+.carousel-desc{font-size:12px;color:var(--mute);line-height:1.4}
+.carousel-nav{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.carousel-nav button{padding:5px 12px;font-size:12px;font-weight:700}
+.carousel-dots{display:flex;gap:5px;align-items:center}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s}
+.carousel-dot.active{background:var(--accent);width:16px;border-radius:4px}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.20.1"></script>
+<script src="nav.js?v=1.21.0"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v9</span> <span class="badge" id="total">0</span></h1>
@@ -55,6 +69,19 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
         </div>
         <small class="hint" style="display:block;margin-top:4px">Drawings auto-upload to Azure and output direct image links in the copied feedback.</small>
       </details>
+    </div>
+    <div class="carousel-box" id="completedCarousel" tabindex="0">
+      <div class="carousel-head">
+        <h3>✅ Completed Tasks Verification</h3>
+        <span class="carousel-counter" id="cDoneIdx">1 / 8</span>
+      </div>
+      <div id="cCard" class="carousel-card"></div>
+      <div class="carousel-nav">
+        <button id="cPrev" title="Previous completed task (Left Arrow / [)">◀ Left</button>
+        <div class="carousel-dots" id="cDots"></div>
+        <button id="cNext" title="Next completed task (Right Arrow / ])">Right ▶</button>
+      </div>
+      <small class="hint" style="display:block;text-align:center;margin-top:6px;font-size:11px">Hit <b>Left / Right (← / →)</b> to cycle tasks · click <b>▶ Verify in Video</b> to seek.</small>
     </div>
   </aside>
   </div>
@@ -178,6 +205,7 @@ function render() {
   $("states").innerHTML = '<span class="pill">📋 ' + cnt("backlog") + ' backlog</span><span class="pill p">🛠️ ' + cnt("in-progress") + ' in progress</span><span class="pill d">✅ ' + cnt("done") + " done</span>";
   $("count").textContent = list.length; $("count2").textContent = all.filter(open).length; $("total").textContent = all.filter(open).length;
   document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review · Draft v" + R.draftN;
+  if (typeof renderCarousel === "function") renderCarousel();
 }
 function goto(m) { v.pause(); v.currentTime = m.t; shapes = JSON.parse(JSON.stringify(m.shapes || [])); redraw(); if (shapes.length) setDraw(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
@@ -333,10 +361,176 @@ $("copy").onclick = async () => {
 $("clear").onclick = () => { if (window.confirm("Delete ALL review feedback in this browser?")) { items = []; persist(); render(); renderPosts(); } };
 $("sfilter").onchange = render;
 
+// ---- completed tasks carousel under add feedback
+const VERIFIED_KEY = "review-verified-v1";
+let verifiedMap = {}; try { verifiedMap = JSON.parse(localStorage.getItem(VERIFIED_KEY) || "{}"); } catch (_) {}
+const saveVerified = () => { try { localStorage.setItem(VERIFIED_KEY, JSON.stringify(verifiedMap)); } catch (_) {} };
+
+const COMPLETED_TASKS = [
+  {
+    id: "task-01-watermark",
+    scene: "Scene 01 · Hook",
+    t: 0.9,
+    title: "Remove 'DRAFT V*' Watermark Across Entire Video",
+    draft: "Draft v8 & v9",
+    desc: "Deleted top-right draft badge across all scenes for clean, distraction-free 1080p master presentation.",
+    imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-00-00-27-8cd79423.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
+  },
+  {
+    id: "task-03-bam",
+    scene: "Scene 03 · The goal",
+    t: 42.1,
+    title: "Remove BAM Sound Effect from Audio Soundtrack",
+    draft: "Draft v9",
+    desc: "Removed impact sound effect from audio mix in Scene 03 for a professional, calm narration flow."
+  },
+  {
+    id: "task-07-balance",
+    scene: "Scene 07 · What my emails taught me",
+    t: 158.3,
+    title: "Correct Rule: Process Starts Once Balance Paid in Full",
+    draft: "Draft v9",
+    desc: "Updated script, subtitle & voiceover: 'One: the process starts once the entire balance for the liquidation company is paid off—my provider chased me six times.'"
+  },
+  {
+    id: "task-08-friend",
+    scene: "Scene 08 · How I keep track of it",
+    t: 193.0,
+    title: "Friend Question Voice Tone & Centered Hero Quote",
+    draft: "Draft v9",
+    desc: "Voiceover modulated with distinct British tone (bm_lewis) for friend's question; enlarged & centered Hero's Journey quote card.",
+    imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-03-13-00-502dd4bb.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
+  },
+  {
+    id: "task-10-skool",
+    scene: "Scene 10 · Disclaimer + outro",
+    t: 236.0,
+    title: "End Focus Transition onto Delivery Pilot Skool Panel",
+    draft: "Draft v9",
+    desc: "Dimmed background and zoomed into Delivery Pilot Skool community panel (scaled 1.28x with radiant cyan glow).",
+    imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-04-03-00-2f670875.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
+  },
+  {
+    id: "task-10-handover",
+    scene: "Scene 10 · Disclaimer + outro",
+    t: 228.0,
+    title: "Bot-to-Human Handover Flow & Guardrail",
+    draft: "Draft v6",
+    desc: "Visualized AI preparing and organizing data streaming into licensed practitioner decision block."
+  },
+  {
+    id: "task-04-chatgpt",
+    scene: "Scene 04 · Five things to do first",
+    t: 70.2,
+    title: "ChatGPT Co-Pilot Animation & AI Learning Card",
+    draft: "Draft v6",
+    desc: "Added interactive ChatGPT co-pilot simulation with live learning from AI disclaimer card."
+  },
+  {
+    id: "task-costs-sub",
+    scene: "Project Costs",
+    t: null,
+    title: "Flat $20/mo Subscriptions ($3.08/video, $0 Marginal)",
+    draft: "Site v1.20.1",
+    desc: "Recalculated costs on costs.html for Claude Pro + Gemini Antigravity plans @ 3 videos/week ($0.00 marginal cost).",
+    link: "costs.html"
+  }
+];
+
+let cIdx = 0;
+function getCarouselTasks() {
+  const localDone = (items || []).filter((i) => i.state === "done").map((i, idx) => ({
+    id: "local-" + (i.cid || idx),
+    scene: i.kind === "text" ? i.section : (sceneAt(i.t) ? "Scene " + sceneAt(i.t).n + " · " + sceneAt(i.t).title : fmt(i.t)),
+    t: i.t,
+    title: i.note ? i.note.slice(0, 50) + (i.note.length > 50 ? "…" : "") : "Feedback item at " + fmt(i.t),
+    draft: "User Feedback",
+    desc: i.note || "Marked as done in review",
+    imgUrl: i.imgUrl || null,
+    shapes: i.shapes || []
+  }));
+  return COMPLETED_TASKS.concat(localDone);
+}
+
+function renderCarousel() {
+  const tasks = getCarouselTasks();
+  if (!tasks.length) return;
+  if (cIdx >= tasks.length) cIdx = tasks.length - 1;
+  if (cIdx < 0) cIdx = 0;
+  const t = tasks[cIdx];
+  const isV = !!verifiedMap[t.id];
+
+  $("cDoneIdx").textContent = (cIdx + 1) + " / " + tasks.length;
+  const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
+  const verifyBtn = t.t !== null ? '<button id="cVerifyBtn" class="pri" style="font-size:12px;padding:6px 12px;font-weight:700">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
+
+  $("cCard").innerHTML =
+    '<div style="display:flex;justify-content:space-between;align-items:center">' +
+      '<span class="carousel-tag">' + esc(t.draft) + ' · ' + esc(t.scene) + '</span>' +
+      '<label style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;color:' + (isV ? "var(--ok)" : "var(--mute)") + '"><input type="checkbox" id="cVerifyChk"' + (isV ? " checked" : "") + '> Verified</label>' +
+    '</div>' +
+    '<div class="carousel-title">' + esc(t.title) + '</div>' +
+    '<div class="carousel-desc">' + esc(t.desc) + '</div>' +
+    (imgHtml ? '<div>' + imgHtml + '</div>' : '') +
+    '<div class="carousel-actions" style="margin-top:auto;display:flex;justify-content:space-between;align-items:center">' +
+      verifyBtn +
+      '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + tasks.length + '</span>' +
+    '</div>';
+
+  const vBtn = $("cVerifyBtn");
+  if (vBtn && t.t !== null) {
+    vBtn.onclick = () => {
+      v.pause();
+      v.currentTime = t.t;
+      if (t.shapes && t.shapes.length) {
+        shapes = JSON.parse(JSON.stringify(t.shapes));
+        redraw();
+        setDraw(true);
+      } else {
+        shapes = [];
+        redraw();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      $("msg").className = "ok";
+      $("msg").textContent = "Jumped to " + fmt(t.t) + " to verify: " + t.title;
+    };
+  }
+
+  const chk = $("cVerifyChk");
+  if (chk) {
+    chk.onchange = () => {
+      verifiedMap[t.id] = chk.checked;
+      saveVerified();
+      renderCarousel();
+    };
+  }
+
+  const dots = $("cDots");
+  dots.innerHTML = "";
+  tasks.forEach((_, i) => {
+    const d = document.createElement("div");
+    d.className = "carousel-dot" + (i === cIdx ? " active" : "");
+    d.title = "Go to task " + (i + 1);
+    d.onclick = () => { cIdx = i; renderCarousel(); };
+    dots.appendChild(d);
+  });
+}
+
+const prevTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx - 1 + tasks.length) % tasks.length; renderCarousel(); };
+const nextTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx + 1) % tasks.length; renderCarousel(); };
+$("cPrev").onclick = prevTask;
+$("cNext").onclick = nextTask;
+
 // ---- keyboard
 document.addEventListener("keydown", (e) => {
   const tg = e.target.tagName; if (tg === "TEXTAREA" || tg === "INPUT" || tg === "SELECT") { if (e.target.id === "note" && e.key === "Enter" && !e.shiftKey) { e.preventDefault(); add(); } return; }
   const k = e.key.toLowerCase();
+  if (k === "[" || (document.activeElement && document.activeElement.closest("#completedCarousel") && k === "arrowleft")) {
+    e.preventDefault(); prevTask(); return;
+  }
+  if (k === "]" || (document.activeElement && document.activeElement.closest("#completedCarousel") && k === "arrowright")) {
+    e.preventDefault(); nextTask(); return;
+  }
   if ((e.metaKey || e.ctrlKey) && k === "z") { shapes.pop(); redraw(); e.preventDefault(); }
   else if (k === " " || k === "k") { e.preventDefault(); toggle(); }
   else if (k === "m") { e.preventDefault(); $("note").focus(); }
@@ -347,6 +541,6 @@ document.addEventListener("keydown", (e) => {
   else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);
 });
 
-updateAzStatus(); renderPosts(); render(); tick(); syncPlay();
+updateAzStatus(); renderPosts(); render(); renderCarousel(); tick(); syncPlay();
 </script>
 </body></html>
