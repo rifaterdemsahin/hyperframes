@@ -53,7 +53,7 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s;flex-shrink:0}
 .carousel-dot.active{background:var(--accent);width:14px;border-radius:3px}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.31.1"></script>
+<script src="nav.js?v=1.31.2"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v9</span> <span class="badge" id="total">0</span></h1>
@@ -744,14 +744,17 @@ const COMPLETED_TASKS = [
     duration: "10m 36s"
   },
   {
-    id: "fb-s03-bam",
+    id: "fb-1270-38a4",
+    alias: "fb-s03-bam",
     category: "latest",
     scene: "Scene 03 · The goal",
-    t: 42.1,
+    t: 42.0,
+    preRollT: 40.0,
+    footageTc: "+00:05.00",
     commit: "fbd5e1a",
     title: "Remove BAM Sound Effect from Audio Mix",
     draft: "Draft v9",
-    desc: "Removed impact sound effect from audio mix in Scene 03 for a professional, calm narration flow.",
+    desc: "Removed impact sound effect from audio mix in Scene 03 at 00:42.00 (footage: +00:05.00). Pre-roll auditions from 00:40.00 so you hear the narration sentence transition with clean audio.",
     createdAt: "2026-11-20T16:45:00Z",
     resolvedAt: "2026-11-20T17:10:41Z",
     duration: "25m 41s"
@@ -1089,10 +1092,11 @@ function getCarouselTasks() {
 function verifyTaskInVideo(targetTime, task) {
   if (targetTime === null || targetTime === undefined || isNaN(targetTime)) return;
   const target = Number(targetTime);
+  const jumpTime = (task && typeof task.preRollT === "number") ? task.preRollT : target;
 
   const performJump = () => {
     try {
-      v.currentTime = target;
+      v.currentTime = jumpTime;
     } catch (_) {}
     tick();
 
@@ -1105,6 +1109,7 @@ function verifyTaskInVideo(targetTime, task) {
       shapes = [];
       redraw();
       setDraw(false);
+      v.muted = false;
       v.play().catch(() => {});
     }
 
@@ -1123,7 +1128,11 @@ function verifyTaskInVideo(targetTime, task) {
 
     if ($("msg")) {
       $("msg").className = "ok";
-      $("msg").textContent = "▶ Jumped to " + fmt(target) + (task ? (": " + task.title) : "");
+      if (jumpTime !== target) {
+        $("msg").textContent = "▶ Auditioning from " + fmt(jumpTime) + " (pre-roll) → " + fmt(target) + (task ? (": " + task.title) : "");
+      } else {
+        $("msg").textContent = "▶ Jumped to " + fmt(target) + (task ? (": " + task.title) : "");
+      }
     }
   };
 
@@ -1199,16 +1208,22 @@ function renderCarousel() {
   const resolvedStr = fmtTiming(t.resolvedAt);
   const durStr = t.duration || "N/A";
 
+  const footageHtml = t.footageTc ? '<span title="Original scene footage location">🎬 <b>Footage:</b> ' + esc(t.footageTc) + '</span>' : '';
+
   const timingHtml =
     '<div class="carousel-timing" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0;padding:6px 10px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;font-size:11px">' +
       '<span title="When created">📅 <b>Created:</b> ' + esc(createdStr) + '</span>' +
       '<span style="color:var(--mute)">→</span>' +
       '<span title="When resolved">🏁 <b>Resolved:</b> ' + esc(resolvedStr) + '</span>' +
+      (footageHtml ? ('<span style="color:var(--mute)">·</span>' + footageHtml) : '') +
       '<span class="pill" style="margin-left:auto;background:rgba(80,200,120,.12);color:var(--ok);border-color:rgba(80,200,120,.3);font-weight:700">⏱️ Resolved in ' + esc(durStr) + '</span>' +
     '</div>';
 
   const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
-  const verifyBtn = (t.t !== null && t.t !== undefined) ? '<button id="cVerifyBtn" class="pri c-verify-btn" data-t="' + t.t + '" style="font-size:12px;padding:6px 12px;font-weight:700;cursor:pointer">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
+  const btnLabel = (t.preRollT !== undefined && typeof t.preRollT === "number")
+    ? ('▶ Verify in Video (' + fmt(t.t) + ' · audition ' + fmt(t.preRollT) + ')')
+    : ('▶ Verify in Video (' + fmt(t.t) + ')');
+  const verifyBtn = (t.t !== null && t.t !== undefined) ? '<button id="cVerifyBtn" class="pri c-verify-btn" data-t="' + t.t + '" data-preroll="' + (t.preRollT !== undefined ? t.preRollT : '') + '" style="font-size:12px;padding:6px 12px;font-weight:700;cursor:pointer">' + btnLabel + '</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
   const commitHtml = t.commit ? '<span style="font-size:11px;color:var(--mute)">Commit: <a href="https://github.com/rifaterdemsahin/hyperframes/commit/' + t.commit + '" target="_blank" style="color:var(--accent);font-family:ui-monospace,monospace;font-weight:700;text-decoration:underline">' + t.commit + '</a></span>' : '';
   const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:10px;padding:1px 5px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(t.id) + '</span>' +
     '<button id="cCopyIdBtn" data-id="' + esc(t.id) + '" title="Copy unique feedback ID (' + esc(t.id) + ')" style="font-size:10px;padding:1px 5px;cursor:pointer">📋 Copy ID</button>';

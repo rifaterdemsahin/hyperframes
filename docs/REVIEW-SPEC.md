@@ -234,11 +234,22 @@ Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks
 1. **Category & Verification Filtering**: Chips filter tasks across `All (24)`, `✅ Verified (0)`, `⏳ Not verified (24)`, `Latest (5)`, `Scenes (16)`, and `Platform (3)`. Dynamic badge counts update in real time as reviewers verify tasks.
 2. **Quick Jump Selector**: A dropdown lists all tasks with their `[fb-...]` IDs for instant selection.
 3. **Turnaround & Resolution Timing**: Each completed task card highlights creation time (`📅 Created: 2026-11-20 16:46 UTC`), resolution timestamp (`🏁 Resolved: 2026-11-20 17:10 UTC`), and the exact turnaround duration pill (`⏱️ Resolved in 24m 41s`). Live feedback items marked `✅ Done` automatically record `resolvedAt` and calculate real-time turnaround.
-4. **One-Click Video Scrubbing**: Clicking `▶ Verify in Video (03:13.00)` pauses playback, seeks the HTML5 video directly to the timecode, redraws vector annotations on the canvas, and smoothly scrolls to the player.
-5. **Copy Task ID**: Every task card features a `📋 Copy ID` button for instant clipboard access.
-6. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
-7. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
-8. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
+4. **One-Click Video Scrubbing with Pre-Roll Auditioning**:
+   - Clicking `▶ Verify in Video (00:42.00)` seeks the HTML5 video directly to the exact target location and triggers live playback.
+   - For **audio mix, SFX removals, or pacing edits** (such as `[fb-1270-38a4]` / `fb-s03-bam` removing the BAM sound effect), the scrubber automatically initiates a 1.5s–2.0s pre-roll audition window (e.g. from `00:40.00` → `00:42.00`). This ensures the reviewer hears the spoken sentence leading up to the edit and can verify the transition without audio clipping.
+   - For **visual annotations with drawings**, playback pauses and redraws vector shapes on the overlay canvas.
+   - The video stage smoothly centers into the viewport (`scrollIntoView({ behavior: 'smooth', block: 'center' })`) and highlights with a cyan accent glow.
+5. **Original Footage Timecode & Scene Preservation**:
+   - Every completed task preserves both its master composition timestamp (`t`) and scene-relative footage timecode (`footageTc: +00:05.00` / scene frame 150) alongside scene bounds (`Scene 03 · 00:37.00 - 00:57.00`).
+   - This guarantees that editors can cross-reference the edit in both the finished render and raw composition source files.
+6. **HTTP 206 Partial Content Streaming Requirement**:
+   - All servers serving the review video (local development and production Fly.io backend) must implement HTTP 206 Partial Content range requests (`Accept-Ranges: bytes`, `Content-Range: bytes START-END/TOTAL`). Without 206 byte streaming, HTML5 `<video>` elements in Google Chrome and Safari cannot seek to arbitrary timecodes and will reset to `0:00`.
+7. **Copy Task ID**: Every task card features a `📋 Copy ID` button for instant clipboard access.
+8. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
+9. **Persistent Verification Checkboxes with Azure Key Vault Sync**:
+   - Checkboxes save verification state to `localStorage` under `review-verified-v1`.
+   - When Azure Storage is connected via Azure Key Vault (`dp-kv-deliverypilot`), verification states automatically sync to Azure Blob Storage under `liquidation-notes/hyperframes/UK-Director-Liquidation-Draft-v*-Verification.json`, with animated sync state pills (`☁️⚡ Syncing to Azure…` → `☁️✅ Saved to Azure!`).
+10. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
 
 ---
 

@@ -1,5 +1,5 @@
 {
-  "site": "1.31.1",
+  "site": "1.31.2",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.31.1",
+      "version": "1.31.2",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.28.1",
+      "version": "1.28.2",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.31.2",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html"
+      ],
+      "changes": [
+        "Enable HTTP 206 range streaming for video seeking and pre-roll auditioning for audio verification"
+      ]
+    },
     {
       "version": "1.31.1",
       "date": "2026-11-20",

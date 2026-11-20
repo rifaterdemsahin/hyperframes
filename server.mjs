@@ -228,38 +228,62 @@ const server = http.createServer(async (req, res) => {
     return res.end("Forbidden");
   }
 
-  // If path is directory, look for index.html inside
+  // Resolve directory or .html extensions
+  let stat;
   try {
-    const stat = fs.statSync(filePath);
+    stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
       filePath = path.join(filePath, "index.html");
+      stat = fs.statSync(filePath);
     }
   } catch (e) {
-    // File not found directly, try appending .html
     if (fs.existsSync(filePath + ".html")) {
       filePath = filePath + ".html";
+      try { stat = fs.statSync(filePath); } catch (_) {}
     }
   }
 
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      if (err.code === "ENOENT") {
-        res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-        return res.end(`<h1>404 Not Found</h1><p>Path: ${pathname}</p>`);
-      }
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      return res.end(`Server Error: ${err.message}`);
+  if (!stat) {
+    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+    return res.end(`<h1>404 Not Found</h1><p>Path: ${pathname}</p>`);
+  }
+
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[ext] || "application/octet-stream";
+  const totalSize = stat.size;
+  const range = req.headers.range;
+
+  // HTTP 206 Partial Content streaming for sample-accurate video/audio seeking
+  if (range) {
+    const parts = range.replace(/bytes=/, "").split("-");
+    const start = parseInt(parts[0], 10);
+    const end = parts[1] ? parseInt(parts[1], 10) : totalSize - 1;
+
+    if (isNaN(start) || start >= totalSize || (parts[1] && isNaN(end)) || end >= totalSize || start > end) {
+      res.writeHead(416, {
+        "Content-Range": `bytes */${totalSize}`,
+        "Accept-Ranges": "bytes"
+      });
+      return res.end();
     }
 
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || "application/octet-stream";
-
+    const chunkSize = end - start + 1;
+    res.writeHead(206, {
+      "Content-Range": `bytes ${start}-${end}/${totalSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": chunkSize,
+      "Content-Type": contentType
+    });
+    fs.createReadStream(filePath, { start, end }).pipe(res);
+  } else {
     res.writeHead(200, {
+      "Content-Length": totalSize,
+      "Accept-Ranges": "bytes",
       "Content-Type": contentType,
       "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=3600"
     });
-    res.end(content);
-  });
+    fs.createReadStream(filePath).pipe(res);
+  }
 });
 
 server.listen(PORT, HOST, () => {
