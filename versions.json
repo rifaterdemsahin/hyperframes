@@ -1,5 +1,5 @@
 {
-  "site": "1.40.0",
+  "site": "1.41.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -39,7 +39,7 @@
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.10.0",
+      "version": "1.11.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -111,7 +111,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.40.0",
+      "version": "1.41.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -120,7 +120,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.15.0",
+      "version": "1.16.0",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -191,8 +191,8 @@
     },
     "publish.html": {
       "title": "Title, description, thumbnail",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.10.0",
+      "date": "2026-11-20",
       "deps": [
         "spec/publish.json",
         "script/scenes.json",
@@ -297,6 +297,18 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.41.0",
+      "date": "2026-11-20",
+      "pages": [
+        "publish.html",
+        "recommendations.html",
+        "master-spec.html"
+      ],
+      "changes": [
+        "Publish page for the Draft v13 angle: 5 title options, 4 new keynote-style thumbnails (Inter, OFL), new description with the Skool link, tags and pinned comment; old red-tape options retired"
+      ]
+    },
     {
       "version": "1.40.0",
       "date": "2026-11-20",

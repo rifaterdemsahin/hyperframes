@@ -1,79 +1,100 @@
 {
   "titles": [
     {
-      "text": "Closing My UK Company With AI: What I Learned (Part 1/3)",
-      "why": "Says exactly what the video is, names the series, promises no outcome. Pairs with Thumbnail A: the title gives the subject, the thumbnail gives the hook.",
+      "text": "Closing My Company Taught Me How to Learn with AI",
+      "why": "A real story with a twist: an ending that became a lesson. Concrete enough to be believable, broad enough for anyone facing change. No outcome promised.",
       "recommended": true,
+      "pair": "C"
+    },
+    {
+      "text": "AI Was My Tutor When My Company Closed",
+      "why": "Short and personal (38 characters, never cut off). The phrase 'AI was my tutor' is the film's idea in four words. Pairs with Thumbnail A.",
+      "recommended": false,
       "pair": "A"
     },
     {
-      "text": "UK Director? How I Used AI to Get Through the Red Tape",
-      "why": "Calls out the audience in the first words. Pairs with Thumbnail B, which says what the video is about.",
+      "text": "How I Taught Myself a Whole New Process with AI",
+      "why": "A clear how-to promise for people who search for learning with AI. Less emotional than the story titles.",
       "recommended": false,
       "pair": "B"
     },
     {
-      "text": "Every Time I Open the HMRC Site I Have More Questions. So I Used AI",
-      "why": "Personal and specific, from your own script. Longer, so it may be cut off on phones.",
+      "text": "Facing a Big Change? Learn It with AI",
+      "why": "Opens with the viewer's own question, so it speaks to the widest audience. Vaguer about what the video shows. Pairs with Thumbnail D.",
       "recommended": false,
-      "pair": "A"
+      "pair": "D"
     },
     {
-      "text": "Stuck in Red Tape? How I Use AI When a Process Gets Confusing",
-      "why": "Broadest, speaks to anyone with red tape, not only directors.",
+      "text": "Learn Anything with AI: My Real Test (Part 1)",
+      "why": "Bold promise, then grounds it in a real test. 'Anything' is a stretch: the film shows one process, so this one leans most on hype.",
       "recommended": false,
-      "pair": "A",
-      "selected": true
+      "pair": "B"
     }
   ],
-  "descriptionTemplate": "Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolvency practitioner.\n\nThis is Part 1 of 3: how I use AI to get through real-world red tape, using closing my own company as the example.\n\nIn this video:\n• Why you need support, and why AI is only support\n• Five things to do first\n• What it costs, and how to use AI as leverage\n• The exceptions, and why the practitioner decides\n• Gmail and Drive as data sources over MCP\n• Divide and conquer, and learning from every problem\n\nCHAPTERS\n{{chapters}}\n\nNEXT\nPart 2, how I build the stages and the app: [PART 2 LINK: add when it is published]\nBuilding bots and automation? Join our Skool community: [SKOOL LINK: needed from you]\n\n{{disclaimer}}\n\n#UKDirector #AI #RedTape",
+  "descriptionTemplate": "Every big change starts with something you don't know yet. Mine was closing my own UK company, and I used AI as my tutor to learn the whole process.\n\nThis is Part 1 of 3: how to teach yourself something completely new with AI, using a real company liquidation as the example.\n\nIn this video:\n• Five steps to learn anything new, with AI as a tutor (not a lawyer)\n• Plain-English explanations: IR35, HMRC, insolvency practitioners, MCP, n8n and AI agents\n• What it cost and how long it took\n• The honest part: what AI can't do, and why the professional decides\n• Three lessons from my inbox\n• Workflows plus AI agents, and why I share the real journey\n\nCHAPTERS\n{{chapters}}\n\nNEXT\nPart 2, how I built the workflows and AI agents: [PART 2 LINK: add when it is published]\nLearning to build with AI? Join the Delivery Pilot community on Skool: https://www.skool.com/delivery-pilot-8938/\n\n{{disclaimer}}\n\n#AI #LearnWithAI #PersonalGrowth",
   "tags": [
-    "UK director",
+    "learn with AI",
+    "AI tutor",
+    "self learning",
+    "personal transformation",
+    "career change",
+    "learn anything",
+    "UK contractor",
+    "IR35",
     "closing a UK company",
     "company liquidation",
     "insolvency practitioner",
     "HMRC",
-    "red tape",
-    "AI for business",
     "AI agents",
-    "AI automation",
-    "n8n",
+    "n8n workflows",
     "MCP",
-    "Gmail",
-    "Google Drive",
     "Skool"
   ],
-  "pinnedComment": "Suggestion: \"What is the most confusing bit of red tape you have faced? Tell me below and I will look at it for Part 2.\" Keep it a question, and do not promise advice on individual cases.",
+  "pinnedComment": "Suggestion: \"What's the one thing you'd learn if AI were your tutor? Tell me below, and I'll pick some for Part 2.\" Keep it a question, and do not promise advice on individual cases.",
   "thumbnails": [
+    {
+      "file": "thumbnails/thumb-c.jpg",
+      "html": "thumbnails/thumb-c.html",
+      "name": "C: My company ended. I levelled up.",
+      "idea": "A turn in six words: the grey line is the loss, the blue line is the growth, and the steps drawing from the film. The right half is kept clear for a photo of your face, which would make it the strongest option.",
+      "recommended": true
+    },
     {
       "file": "thumbnails/thumb-a.jpg",
       "html": "thumbnails/thumb-a.html",
-      "name": "A: Stuck in red tape? Use AI",
-      "idea": "A knot of red tape (made by fal.ai, no text) on a dark desk. Big yellow hook, a red 'USE AI' bar. Reads at small size, and the tape is a literal picture of the problem.",
-      "recommended": true,
-      "selected": true
+      "name": "A: AI was my tutor.",
+      "idea": "The film's core idea in four words with the lightbulb drawing. Matches the keynote look of the video, so the click delivers what it shows.",
+      "recommended": false
     },
     {
       "file": "thumbnails/thumb-b.jpg",
       "html": "thumbnails/thumb-b.html",
-      "name": "B: Closing my company with AI",
-      "idea": "The empty chair from the hook scene. Calmer and more personal. The right half is left clear for a photo of your face.",
+      "name": "B: Learn anything with AI",
+      "idea": "The broadest hook with the growth sprout. Biggest words, best at small size; 'anything' overpromises a little.",
+      "recommended": false
+    },
+    {
+      "file": "thumbnails/thumb-d.jpg",
+      "html": "thumbnails/thumb-d.html",
+      "name": "D: What's your next chapter?",
+      "idea": "A question to the viewer over the mountain image from Scene 8 (a fal.ai mood plate, no text in it). The most emotional, the least specific about AI.",
       "recommended": false
     }
   ],
   "thumbnailRules": [
     "1280 x 720, 16:9, JPG, under 2 MB (YouTube's guidance).",
-    "Six words or fewer of text, large enough to read at 168 x 94 pixels.",
-    "All text is HTML, never AI-drawn, so it can be edited and is spelled right.",
-    "No figures, no UTR, no names, no personal data, no fake documents.",
-    "Do not promise an outcome (no 'fixed', 'solved' or 'saved').",
-    "When you have a clear photo of your face, add it on the clear side: expression matters more than polish."
+    "Six words or fewer, large enough to read at 168 x 94 pixels.",
+    "All text is HTML in Inter (the film's font, SIL OFL, files in thumbnails/fonts/), never AI-drawn.",
+    "The film's look: black, white, one blue accent, the same drawings as the video.",
+    "No figures, no names, no personal data, no fake documents.",
+    "Do not promise an outcome (no 'fixed', 'solved' or 'guaranteed').",
+    "With a clear photo of your face on the clear side, a thumbnail usually does better: expression matters more than polish."
   ],
   "openItems": [
-    "Send the Skool community link and replace [SKOOL LINK].",
-    "Replace [PART 2 LINK] once Part 2 is published, and update the description.",
-    "Decide whether to add your face to the thumbnail.",
+    "Pick a title and a thumbnail (the options below are for the Draft v13 angle; the red-tape options are in the git history).",
+    "Replace [PART 2 LINK] once Part 2 is published.",
+    "Add a clear photo of your face to Thumbnail C (right side), or say no.",
     "Have the practitioner read the description as well as the script: it makes the same claims."
   ],
-  "selectionNote": "Your title and thumbnail both open with 'Stuck in red tape'. The words repeat, so neither adds anything new to the other. Keep it if you want the message to be unmistakable. If you want them to complement each other, change the thumbnail to a different hook (for example 'USE AI' over the red tape knot) and keep this title. The title is 61 characters, so phones may cut off the end ('Confusing') in some views."
+  "selectionNote": ""
 }

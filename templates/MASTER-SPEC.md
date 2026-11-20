@@ -63,6 +63,7 @@ Every change: commit, push, deploy, bump version.
 ## 7. Open decisions
 - Final voice: your recording or AI: Open (recording recommended) (You)
 - Repo stays public until release?: Open (You)
+- Title and thumbnail: Open again (Draft v13 angle): 5 titles and 4 thumbnails on the Publish page; recommended title 1 with Thumbnail C (You)
 - Gmail and Drive over MCP: show a real demo or a diagram?: Open (diagram planned) (You)
 
 ## 8. Acceptance criteria
