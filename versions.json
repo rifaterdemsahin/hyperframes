@@ -1,5 +1,5 @@
 {
-  "site": "1.11.0",
+  "site": "1.11.1",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -12,7 +12,7 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -21,7 +21,7 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.7.0",
+      "version": "1.7.1",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.11.0",
+      "version": "1.11.1",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -191,7 +191,7 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.10.0",
+      "version": "1.10.1",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -204,7 +204,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.10.0",
+      "version": "1.10.1",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -250,6 +250,19 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.11.1",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "first-draft.html",
+        "script.html",
+        "storyboard/"
+      ],
+      "changes": [
+        "Update voiceover to fal.ai Kokoro serious British tone (bm_lewis) and re-render draft v3"
+      ]
+    },
     {
       "version": "1.11.0",
       "date": "2026-11-20",

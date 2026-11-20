@@ -98,7 +98,7 @@
   </style>
 </head>
 <body>
-  <div data-composition-id="s05-cost-timeline" data-duration="31" data-width="1920" data-height="1080">
+  <div data-composition-id="s05-cost-timeline" data-duration="30" data-width="1920" data-height="1080">
     <div id="scene" class="scene">
       <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/calm.jpg)"></div>
       <div class="shade" data-layout-ignore></div>
@@ -131,8 +131,8 @@
           </div>
         </div>
       </div>
-      <div id="c0" class="cap">Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business. This is the place that I found.</div>
-      <div id="c1" class="cap">There could be cheaper or more expensive options, but you need to plan for it.</div>
+      <div id="c0" class="cap">Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business.</div>
+      <div id="c1" class="cap">This is the place that I found. There could be cheaper or more expensive options, but you need to plan for it.</div>
       <div id="c2" class="cap">The process before took me two months, and after the payment I expect two more months to complete. You plus AI gives you leverage.</div>
       <div id="c3" class="cap">Learn and act on the fly, build your skills, and carry them over to your next project.</div>
     </div>
@@ -140,26 +140,26 @@
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#scene", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
-tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 30.6);
-    tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.15, x: -40, duration: 31, ease: "none" }, 0);
-    tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 31, ease: "none" }, 0);
+tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 29.6);
+    tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.15, x: -40, duration: 30, ease: "none" }, 0);
+    tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 30, ease: "none" }, 0);
     tl.fromTo("#tag", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
     tl.fromTo("#head", { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
-    tl.fromTo("#l0", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 6.72);
-    tl.fromTo("#l1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.95);
-    tl.fromTo("#l2", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 15.18);
-    tl.fromTo("#l3", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 19.41);
+    tl.fromTo("#l0", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 6.54);
+    tl.fromTo("#l1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.65);
+    tl.fromTo("#l2", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 14.76);
+    tl.fromTo("#l3", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 18.87);
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
     tl.fromTo("#tl-fill", { width: "0%" }, { width: "100%", duration: 6, ease: "power1.inOut" }, 3.5);
     tl.fromTo("#leverage-pill", { scale: 0.95 }, { scale: 1.05, repeat: 6, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 2.0);
     tl.fromTo("#c0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.25);
-    tl.to("#c0", { opacity: 0, duration: 0.2, ease: "power1.in" }, 8.93);
-    tl.fromTo("#c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 9.13);
-    tl.to("#c1", { opacity: 0, duration: 0.2, ease: "power1.in" }, 14.05);
-    tl.fromTo("#c2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 14.25);
-    tl.to("#c2", { opacity: 0, duration: 0.2, ease: "power1.in" }, 22.25);
-    tl.fromTo("#c3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 22.45);
-    tl.to("#c3", { opacity: 0, duration: 0.2, ease: "power1.in" }, 30.35);
+    tl.to("#c0", { opacity: 0, duration: 0.2, ease: "power1.in" }, 6.35);
+    tl.fromTo("#c1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 6.55);
+    tl.to("#c1", { opacity: 0, duration: 0.2, ease: "power1.in" }, 13.65);
+    tl.fromTo("#c2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 13.85);
+    tl.to("#c2", { opacity: 0, duration: 0.2, ease: "power1.in" }, 21.61);
+    tl.fromTo("#c3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 21.81);
+    tl.to("#c3", { opacity: 0, duration: 0.2, ease: "power1.in" }, 29.35);
     window.__timelines["s05-cost-timeline"] = tl;
     tl.seek(0);
     </script>

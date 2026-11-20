@@ -4,338 +4,338 @@
   "words": [
     {
       "text": "Three",
-      "start": 0.08,
-      "end": 0.26,
+      "start": 0.42,
+      "end": 0.58,
       "speaker": "speaker_0"
     },
     {
       "text": "lessons",
-      "start": 0.36,
-      "end": 0.76,
+      "start": 0.68,
+      "end": 1.1,
       "speaker": "speaker_0"
     },
     {
       "text": "from",
-      "start": 0.8,
-      "end": 0.94,
+      "start": 1.14,
+      "end": 1.24,
       "speaker": "speaker_0"
     },
     {
       "text": "my",
-      "start": 1,
-      "end": 1.14,
+      "start": 1.28,
+      "end": 1.46,
       "speaker": "speaker_0"
     },
     {
       "text": "emails",
-      "start": 1.2,
-      "end": 1.56,
+      "start": 1.52,
+      "end": 1.86,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 1.58,
-      "end": 1.68,
+      "start": 1.9,
+      "end": 2.02,
       "speaker": "speaker_0"
     },
     {
       "text": "records.",
-      "start": 1.74,
-      "end": 2.38,
+      "start": 2.06,
+      "end": 2.54,
       "speaker": "speaker_0"
     },
     {
       "text": "One,",
-      "start": 2.74,
-      "end": 3.04,
+      "start": 3.12,
+      "end": 3.36,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 3.32,
-      "end": 3.4,
+      "start": 3.74,
+      "end": 3.8,
       "speaker": "speaker_0"
     },
     {
       "text": "process",
-      "start": 3.44,
-      "end": 3.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "stops",
-      "start": 3.94,
+      "start": 3.84,
       "end": 4.22,
       "speaker": "speaker_0"
     },
     {
+      "text": "stops",
+      "start": 4.3,
+      "end": 4.52,
+      "speaker": "speaker_0"
+    },
+    {
       "text": "until",
-      "start": 4.26,
-      "end": 4.58,
+      "start": 4.56,
+      "end": 4.78,
       "speaker": "speaker_0"
     },
     {
       "text": "the",
-      "start": 4.62,
-      "end": 4.72,
+      "start": 4.8,
+      "end": 4.9,
       "speaker": "speaker_0"
     },
     {
       "text": "balance",
-      "start": 4.74,
-      "end": 5.1,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 5.16,
+      "start": 4.94,
       "end": 5.3,
       "speaker": "speaker_0"
     },
     {
-      "text": "paid.",
-      "start": 5.34,
-      "end": 5.54,
+      "text": "is",
+      "start": 5.36,
+      "end": 5.52,
       "speaker": "speaker_0"
     },
     {
-      "text": "My",
-      "start": 5.6,
-      "end": 5.76,
+      "text": "paid",
+      "start": 5.58,
+      "end": 5.82,
       "speaker": "speaker_0"
     },
     {
-      "text": "provider",
-      "start": 5.78,
-      "end": 6.2,
+      "text": "me.",
+      "start": 5.86,
+      "end": 5.94,
+      "speaker": "speaker_0"
+    },
+    {
+      "text": "Provider",
+      "start": 6,
+      "end": 6.38,
       "speaker": "speaker_0"
     },
     {
       "text": "chased",
-      "start": 6.3,
-      "end": 6.56,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "me",
-      "start": 6.62,
+      "start": 6.5,
       "end": 6.78,
       "speaker": "speaker_0"
     },
     {
+      "text": "me",
+      "start": 6.8,
+      "end": 6.94,
+      "speaker": "speaker_0"
+    },
+    {
       "text": "six",
-      "start": 6.82,
-      "end": 7.02,
+      "start": 7,
+      "end": 7.24,
       "speaker": "speaker_0"
     },
     {
       "text": "times.",
-      "start": 7.16,
-      "end": 7.74,
+      "start": 7.28,
+      "end": 7.66,
       "speaker": "speaker_0"
     },
     {
       "text": "Two,",
-      "start": 8.1,
-      "end": 8.44,
+      "start": 8.22,
+      "end": 8.5,
       "speaker": "speaker_0"
     },
     {
       "text": "use",
-      "start": 8.78,
-      "end": 8.92,
+      "start": 9.04,
+      "end": 9.22,
       "speaker": "speaker_0"
     },
     {
       "text": "online",
-      "start": 8.98,
-      "end": 9.36,
+      "start": 9.28,
+      "end": 9.68,
       "speaker": "speaker_0"
     },
     {
       "text": "methods",
-      "start": 9.44,
-      "end": 9.8,
+      "start": 9.72,
+      "end": 10.1,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 9.82,
-      "end": 9.94,
+      "start": 10.12,
+      "end": 10.2,
       "speaker": "speaker_0"
     },
     {
       "text": "keep",
-      "start": 10.04,
-      "end": 10.24,
+      "start": 10.28,
+      "end": 10.46,
       "speaker": "speaker_0"
     },
     {
       "text": "everything",
-      "start": 10.3,
-      "end": 10.74,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "in",
-      "start": 10.78,
+      "start": 10.52,
       "end": 10.86,
       "speaker": "speaker_0"
     },
     {
+      "text": "in",
+      "start": 10.9,
+      "end": 11,
+      "speaker": "speaker_0"
+    },
+    {
       "text": "writing",
-      "start": 10.92,
+      "start": 11.04,
       "end": 11.42,
       "speaker": "speaker_0"
     },
     {
       "text": "because",
-      "start": 11.68,
-      "end": 12.02,
+      "start": 11.72,
+      "end": 11.98,
       "speaker": "speaker_0"
     },
     {
       "text": "online",
-      "start": 12.08,
-      "end": 12.5,
+      "start": 12.04,
+      "end": 12.48,
       "speaker": "speaker_0"
     },
     {
       "text": "records",
       "start": 12.54,
-      "end": 13,
+      "end": 13.12,
       "speaker": "speaker_0"
     },
     {
       "text": "act",
-      "start": 13.08,
-      "end": 13.24,
+      "start": 13.2,
+      "end": 13.34,
       "speaker": "speaker_0"
     },
     {
       "text": "as",
-      "start": 13.3,
-      "end": 13.44,
+      "start": 13.38,
+      "end": 13.52,
       "speaker": "speaker_0"
     },
     {
       "text": "databases.",
-      "start": 13.48,
-      "end": 14.36,
+      "start": 13.56,
+      "end": 14.26,
       "speaker": "speaker_0"
     },
     {
       "text": "Three,",
-      "start": 14.7,
-      "end": 15.1,
+      "start": 14.84,
+      "end": 15.14,
       "speaker": "speaker_0"
     },
     {
       "text": "connect",
-      "start": 15.44,
-      "end": 15.8,
+      "start": 15.62,
+      "end": 15.98,
       "speaker": "speaker_0"
     },
     {
       "text": "your",
-      "start": 15.84,
-      "end": 15.94,
+      "start": 16.02,
+      "end": 16.12,
       "speaker": "speaker_0"
     },
     {
       "text": "drive",
-      "start": 16,
-      "end": 16.28,
+      "start": 16.219,
+      "end": 16.62,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 16.32,
-      "end": 16.42,
+      "start": 16.66,
+      "end": 16.74,
       "speaker": "speaker_0"
     },
     {
       "text": "emails",
-      "start": 16.48,
-      "end": 16.9,
+      "start": 16.84,
+      "end": 17.22,
       "speaker": "speaker_0"
     },
     {
       "text": "to",
-      "start": 16.94,
-      "end": 17,
+      "start": 17.26,
+      "end": 17.38,
       "speaker": "speaker_0"
     },
     {
       "text": "AI",
-      "start": 17.06,
-      "end": 17.3,
+      "start": 17.46,
+      "end": 17.88,
       "speaker": "speaker_0"
     },
     {
       "text": "over",
-      "start": 17.36,
-      "end": 17.56,
+      "start": 17.98,
+      "end": 18.16,
       "speaker": "speaker_0"
     },
     {
       "text": "MCP.",
-      "start": 17.68,
-      "end": 18.34,
+      "start": 18.32,
+      "end": 19.06,
       "speaker": "speaker_0"
     },
     {
       "text": "When",
-      "start": 18.66,
-      "end": 18.8,
+      "start": 19.64,
+      "end": 19.8,
       "speaker": "speaker_0"
     },
     {
       "text": "things",
-      "start": 18.92,
-      "end": 19.18,
+      "start": 19.84,
+      "end": 20.1,
       "speaker": "speaker_0"
     },
     {
       "text": "go",
-      "start": 19.28,
-      "end": 19.4,
+      "start": 20.16,
+      "end": 20.26,
       "speaker": "speaker_0"
     },
     {
       "text": "wrong,",
-      "start": 19.46,
-      "end": 19.84,
+      "start": 20.32,
+      "end": 20.62,
       "speaker": "speaker_0"
     },
     {
       "text": "learn",
-      "start": 20.18,
-      "end": 20.42,
+      "start": 21.02,
+      "end": 21.34,
       "speaker": "speaker_0"
     },
     {
       "text": "from",
-      "start": 20.46,
-      "end": 20.6,
+      "start": 21.38,
+      "end": 21.52,
       "speaker": "speaker_0"
     },
     {
       "text": "them",
-      "start": 20.64,
-      "end": 20.72,
+      "start": 21.56,
+      "end": 21.76,
       "speaker": "speaker_0"
     },
     {
       "text": "and",
-      "start": 20.76,
-      "end": 20.84,
+      "start": 21.82,
+      "end": 21.92,
       "speaker": "speaker_0"
     },
     {
-      "text": "iterate",
-      "start": 20.9,
-      "end": 21.36,
+      "text": "iterate.",
+      "start": 22.06,
+      "end": 22.44,
       "speaker": "speaker_0"
     }
   ]

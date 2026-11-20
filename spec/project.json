@@ -7,7 +7,7 @@
   "goal": "Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.",
   "singleCallToAction": "Subscribe for Part 2",
   "tone": "Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.",
-  "targetLengthSeconds": 237,
+  "targetLengthSeconds": 244,
   "language": "en-GB",
   "disclaimer": "AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.",
   "format": {
@@ -18,7 +18,7 @@
     "render": "Local, npx hyperframes render, project pinned to hyperframes@0.9.67"
   },
   "voice": {
-    "now": "AI draft: British English (Daniel), serious tone, used for timing and review",
+    "now": "AI draft: fal.ai Kokoro British male (bm_lewis, serious tone), used for timing and review",
     "final": "Your own recording (recommended). Re-time the scene slots after recording",
     "captions": "Burned in, timed from the final transcript"
   },

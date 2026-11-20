@@ -122,9 +122,55 @@
         }
       ],
       "total": 115.9
+    },
+    {
+      "at": "2026-11-20T10:35:56.019Z",
+      "machine": "Apple M1 Max, 10 cores, 64 GB",
+      "hyperframes": "0.9.67",
+      "node": "v26.10.0",
+      "videoSeconds": 244,
+      "scenes": 10,
+      "steps": [
+        {
+          "name": "Generate the Hyperframes project",
+          "seconds": 0,
+          "note": "10 scene files + root from scenes.json"
+        },
+        {
+          "name": "Hyperframes check",
+          "seconds": 9.3,
+          "note": "lint, runtime, layout, motion, contrast, craft (no cache) · 0 errors, 2 warnings"
+        },
+        {
+          "name": "Render draft v3 (1080p, 30 fps, with sound)",
+          "seconds": 82.3,
+          "note": "local, drawelement capture · 5 workers"
+        },
+        {
+          "name": "Make the light web copy of draft v3 (960x540)",
+          "seconds": 9.2,
+          "note": "H.264 CRF 29, AAC 64k"
+        },
+        {
+          "name": "Extract one frame per scene",
+          "seconds": 1,
+          "note": "10 JPG frames"
+        },
+        {
+          "name": "Build the site pages",
+          "seconds": 0.4,
+          "note": "storyboard, script, spec, agents, publish, architecture, draft + performance pages"
+        }
+      ],
+      "total": 102.2
     }
   ],
   "deploys": [
+    {
+      "at": "2026-11-20T10:19:35Z",
+      "commit": "f4f202e",
+      "seconds": 41.469
+    },
     {
       "at": "2026-11-18T23:26:58Z",
       "commit": "ffedf06",
@@ -219,11 +265,6 @@
       "at": "2026-11-18T21:42:32Z",
       "commit": "5d52c24",
       "seconds": 41.163
-    },
-    {
-      "at": "2026-11-18T21:41:30Z",
-      "commit": "f0cfe4b",
-      "seconds": 38.586
     }
   ]
 }
