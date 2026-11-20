@@ -3,7 +3,7 @@
 <title>AGENTS.md</title>
 <link rel="stylesheet" href="site.css">
 </head><body>
-<script src="nav.js?v=1.31.3"></script>
+<script src="nav.js?v=1.31.4"></script>
 <main>
   <p class="note">This page is generated from <a href="https://github.com/rifaterdemsahin/hyperframes/blob/main/AGENTS.md"><code>AGENTS.md</code></a> in the repo root, the instructions any AI coding agent reads first. It is part of the reusable template: see <a href="reuse.html">Reuse as template</a>. To change it, edit <code>AGENTS.md</code> and run <code>node scripts/build-agents-page.mjs</code>.</p>
 <h1>AGENTS.md</h1>
@@ -14,7 +14,10 @@
 <h2>Layout</h2>
 <div class="tw"><table><tr><th>Path</th><th>What it is</th><th>Edit by hand?</th></tr><tr><td><code>script/scenes.json</code></td><td>Scenes: voiceover, B-roll, overlays, timings</td><td>Yes (then regenerate)</td></tr><tr><td><code>spec/project.json</code></td><td>Brief, rules, acceptance, risks, decisions</td><td>Yes (then regenerate)</td></tr><tr><td><code>spec/publish.json</code>, <code>thumbnails/*.html</code></td><td>YouTube title options, description template, tags, thumbnail designs (text is HTML, never AI-drawn)</td><td>Yes (then regenerate)</td></tr><tr><td><code>versions.json</code></td><td>Site and page versions, changelog, note-clearing times</td><td>Only through <code>scripts/version.mjs</code></td></tr><tr><td><code>nav.js</code>, <code>feedback.js</code>, <code>site.css</code></td><td>Shared menu, version footer, copy-feedback bar, styles</td><td>Yes</td></tr><tr><td><code>scripts/</code></td><td>Generators and fal.ai helpers</td><td>Yes</td></tr><tr><td><code>video/</code></td><td>The Hyperframes project. <code>index.html</code> and <code>compositions/*.html</code> are generated from <code>scenes.json</code> by <code>scripts/build-video.mjs</code></td><td>Edit the script, not these files</td></tr><tr><td><code>templates/</code></td><td>Blank spec, scenes and a reuse guide for the next video</td><td>Yes</td></tr><tr><td><code>script.html</code>, <code>storyboard/</code>, <code>master-spec.html</code>, <code>release-checklist.html</code>, <code>agents.html</code>, <code>publish.html</code>, <code>gaps.html</code>, <code>first-draft.html</code>, <code>review.html</code>, <code>performance.html</code>, <code>changes.html</code>, <code>changelog.html</code>, <code>templates/MASTER-SPEC.md</code></td><td>Generated</td><td>No. Regenerate</td></tr><tr><td><code>index.html</code> (the architecture block between the ARCH markers is generated), <code>kanban.html</code>, <code>recommendations.html</code>, <code>compare.html</code>, <code>why-pay.html</code>, <code>reuse.html</code>, <code>hyperframes-guide/</code></td><td>Hand-written pages</td><td>Yes</td></tr></table></div>
 <h2>Commands</h2>
-<pre>node scripts/build-storyboard.mjs     # storyboard/ from scenes.json
+<pre>npm test                              # run test suites: spec, server HTTP 206/CORS, syntax, review query state
+npm run eval                          # run evaluations: vo pacing (WPM), hook retention, spec compliance
+npm run check                         # run both test and evaluation suites
+node scripts/build-storyboard.mjs     # storyboard/ from scenes.json
 node scripts/build-script-page.mjs    # script.html
 node scripts/build-master-spec.mjs    # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
 node scripts/build-agents-page.mjs    # agents.html from this file

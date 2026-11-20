@@ -1,11 +1,11 @@
 {
-  "site": "1.31.3",
+  "site": "1.31.4",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.8.0",
-      "date": "2026-11-18",
+      "version": "1.8.1",
+      "date": "2026-11-20",
       "deps": [
         "scripts/build-architecture.mjs"
       ]
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.31.3",
+      "version": "1.31.4",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -117,7 +117,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.12.0",
+      "version": "1.12.1",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -138,8 +138,8 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.9.1",
+      "date": "2026-11-20",
       "deps": [
         "AGENTS.md",
         "scripts/build-agents-page.mjs"
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.28.3",
+      "version": "1.28.4",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,19 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.31.4",
+      "date": "2026-11-20",
+      "pages": [
+        "index.html",
+        "review.html",
+        "master-spec.html",
+        "agents.html"
+      ],
+      "changes": [
+        "Add automated test suite and production quality evaluation engine (evals)"
+      ]
+    },
     {
       "version": "1.31.3",
       "date": "2026-11-20",

@@ -83,7 +83,7 @@ async function readBody(req) {
   });
 }
 
-const server = http.createServer(async (req, res) => {
+export async function requestHandler(req, res) {
   setCorsHeaders(res);
 
   if (req.method === "OPTIONS") {
@@ -299,9 +299,14 @@ const server = http.createServer(async (req, res) => {
     });
     fs.createReadStream(filePath).pipe(res);
   }
-});
+}
 
-server.listen(PORT, HOST, () => {
-  console.log(`🚀 Hyperframes Backend Server running on http://${HOST}:${PORT}`);
-  console.log(`☁️ Azure Storage SAS: ${AZURE_SAS ? "Configured (from Key Vault)" : "Not configured"}`);
-});
+export const server = http.createServer(requestHandler);
+
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1]);
+if (isMain) {
+  server.listen(PORT, HOST, () => {
+    console.log(`🚀 Hyperframes Backend Server running on http://${HOST}:${PORT}`);
+    console.log(`☁️ Azure Storage SAS: ${AZURE_SAS ? "Configured (from Key Vault)" : "Not configured"}`);
+  });
+}

@@ -1,0 +1,19 @@
+{
+  "name": "hyperframes-production",
+  "version": "1.31.3",
+  "private": true,
+  "type": "module",
+  "description": "Video production workspace, review pipeline, and Hyperframes render engine",
+  "scripts": {
+    "test": "node scripts/run-tests.mjs",
+    "test:spec": "node --test tests/spec.test.mjs",
+    "test:server": "node --test tests/server.test.mjs",
+    "test:syntax": "node --test tests/syntax.test.mjs",
+    "test:review": "node --test tests/review-state.test.mjs",
+    "eval": "node scripts/run-evals.mjs",
+    "eval:pacing": "node evals/eval-pacing.mjs",
+    "eval:hook": "node evals/eval-hook.mjs",
+    "eval:compliance": "node evals/eval-compliance.mjs",
+    "check": "npm test && npm run eval"
+  }
+}

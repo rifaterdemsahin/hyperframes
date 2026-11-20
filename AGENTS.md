@@ -26,6 +26,9 @@ The single source of truth for the current video is `script/scenes.json` (scenes
 ## Commands
 
 ```bash
+npm test                              # run test suites: spec, server HTTP 206/CORS, syntax, review query state
+npm run eval                          # run evaluations: vo pacing (WPM), hook retention, spec compliance
+npm run check                         # run both test and evaluation suites
 node scripts/build-storyboard.mjs     # storyboard/ from scenes.json
 node scripts/build-script-page.mjs    # script.html
 node scripts/build-master-spec.mjs    # master-spec.html, release-checklist.html, templates/MASTER-SPEC.md
