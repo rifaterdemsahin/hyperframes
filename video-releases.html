@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video Releases & Storage Limits</title>
+<link rel="stylesheet" href="site.css">
+<style>
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:16px 0}
+.kpis div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.kpis b{display:block;font-size:26px;color:var(--accent);line-height:1.2;margin-bottom:4px}
+.kpis small{color:var(--mute);font-size:13.5px}
+.tw{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--accent);font-size:12px;text-transform:uppercase;letter-spacing:.04em;background:rgba(10,124,145,0.04)}
+tr:last-child td{border-bottom:0}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600}
+.badge-ok{background:rgba(47,133,90,0.15);color:var(--ok)}
+.badge-warn{background:rgba(183,121,31,0.15);color:var(--warn)}
+.badge-accent{background:rgba(10,124,145,0.15);color:var(--accent)}
+.grid-two{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));margin:16px 0}
+.card-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.card-box h3{margin:0 0 8px;font-size:17px}
+.card-box ul{margin:0;padding-left:20px}
+.card-box li{margin:5px 0;font-size:14.5px}
+pre.code-box{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font:13.5px/1.5 ui-monospace,monospace;overflow-x:auto;margin:10px 0}
+.tldr-box{background:var(--card);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+</style>
+</head>
+<body>
+<script src="nav.js?v=1.17.0"></script>
+<main>
+  <div class="crumbs">⚙️ 5 Project</div>
+  <h1>📦 Video Releases & Storage Limits</h1>
+  <p class="lead">Can you push video outputs to GitHub Releases? <b>Yes, absolutely.</b> Here is a breakdown of GitHub's official file limits, bandwidth quotas, architectural trade-offs, and step-by-step CLI commands for publishing master MP4 renders.</p>
+
+  <div class="tldr-box">
+    <h3 style="margin:0 0 6px;color:var(--accent)">TL;DR Summary</h3>
+    <p style="margin:0;font-size:15px">GitHub Releases allows binary attachments up to <b>2 GB per file</b> with no total limit on the sum of all releases. It is the official, CDN-backed location for compiled binaries and master video renders. In contrast, regular Git commits fail at <b>100 MB</b> and bloat repository history.</p>
+  </div>
+
+  <div class="kpis">
+    <div><b>2 GB</b><small>Max file size per asset on GitHub Releases</small></div>
+    <div><b>100 MB</b><small>Hard limit on standard Git repository commits</small></div>
+    <div><b>1 GB / mo</b><small>Strict free quota limit on Git LFS bandwidth</small></div>
+    <div><b>Unlimited</b><small>Total releases allowed on GitHub</small></div>
+  </div>
+
+  <h2>1. Storage tier comparison for video projects</h2>
+  <p>Video files are large binary blobs. How you store them determines whether your repository stays fast and maintainable or becomes unusable.</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Storage Method</th>
+          <th>Max Single File</th>
+          <th>Total Quota</th>
+          <th>Bandwidth Cost</th>
+          <th>Git Clone Speed</th>
+          <th>Verdict for Video Renders</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>GitHub Releases</b></td>
+          <td><span class="badge badge-ok">2 GB per file</span></td>
+          <td>Unlimited releases</td>
+          <td><span class="badge badge-ok">Free &amp; CDN-cached</span></td>
+          <td><span class="badge badge-ok">No clone impact</span></td>
+          <td><b>⭐ Best for master MP4s, 4K cuts &amp; archives</b></td>
+        </tr>
+        <tr>
+          <td><b>Git Repository (Tree)</b></td>
+          <td><span class="badge badge-warn">100 MB hard limit</span></td>
+          <td>Recommended &lt; 1 GB</td>
+          <td>Included with Git</td>
+          <td><span class="badge badge-warn">Bloats forever</span></td>
+          <td>❌ Never store full-res video in Git history</td>
+        </tr>
+        <tr>
+          <td><b>Git LFS (Large Files)</b></td>
+          <td>2 GB (Free tier)</td>
+          <td>1 GB total storage</td>
+          <td><span class="badge badge-warn">1 GB / month cap</span></td>
+          <td>Downloads on checkout</td>
+          <td>⚠️ Risky: exceeding 1 GB bandwidth disables repo</td>
+        </tr>
+        <tr>
+          <td><b>GitHub Pages (Site)</b></td>
+          <td>100 MB</td>
+          <td>1 GB total site size</td>
+          <td>100 GB / month (soft)</td>
+          <td>Pushed to branch</td>
+          <td><b>Good for lightweight web review copies (&lt; 20 MB)</b></td>
+        </tr>
+        <tr>
+          <td><b>Cloudflare R2 / AWS S3</b></td>
+          <td>5 TB per object</td>
+          <td>Virtually unlimited</td>
+          <td>Pay-as-you-go ($0.015/GB)</td>
+          <td>No clone impact</td>
+          <td>Alternative for high-traffic enterprise distribution</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2. Why GitHub Releases is the right tool</h2>
+  <div class="grid-two">
+    <div class="card-box">
+      <h3>🚀 Performance &amp; Scalability</h3>
+      <ul>
+        <li><b>Global CDN Distribution:</b> Release assets are automatically mirrored on Amazon S3 and Fastly CDN edges worldwide for maximum download speed.</li>
+        <li><b>Zero Repository Bloat:</b> Release binaries live outside the Git commit tree. Cloning or pulling the repository remains lightning fast.</li>
+        <li><b>Generous 2 GB Headroom:</b> Our 4-minute 1080p master render is <b>63 MB</b>—which consumes only <b>3.1%</b> of the single-file limit.</li>
+      </ul>
+    </div>
+    <div class="card-box">
+      <h3>🔒 Stability &amp; Link Predictability</h3>
+      <ul>
+        <li><b>Immutable Permalinks:</b> Direct download URLs follow a deterministic pattern:
+          <code>https://github.com/&lt;user&gt;/&lt;repo&gt;/releases/download/&lt;tag&gt;/&lt;file&gt;.mp4</code></li>
+        <li><b>Zero Quota Surprises:</b> Unlike Git LFS which suspends your repository if strangers download more than 1 GB in a month, public GitHub Releases do not charge bandwidth fees.</li>
+        <li><b>Release Notes &amp; Provenance:</b> Every video file is tied to an exact Git commit, tag, changelog, and draft version.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>3. How to push video outputs to GitHub Releases</h2>
+
+  <h3>A. Using the Project Automation Script</h3>
+  <p>This repository provides a dedicated script to package and publish the master 1080p render with one command:</p>
+  <pre class="code-box">node scripts/publish-release.mjs</pre>
+  <p>To publish a specific draft or custom tag:</p>
+  <pre class="code-box">node scripts/publish-release.mjs --draft=7 --tag=v1.16.0</pre>
+
+  <h3>B. Using the GitHub CLI (`gh`) Directly</h3>
+  <pre class="code-box"># 1. Create a release and attach the 1080p master render (63 MB)
+gh release create v1.16.0 video/renders/first-draft.mp4#liquidation-draft-v7-1080p.mp4 \
+  --title "Draft v7: Master 1080p Video" \
+  --notes "Full-fidelity 1080p 30fps master render. Generated locally via Hyperframes."
+
+# 2. Upload additional assets (thumbnails, captions) to an existing release
+gh release upload v1.16.0 video/assets/bg/heros-journey.jpg#heros-journey-backdrop.jpg</pre>
+
+  <h2>4. Three-tier video production architecture</h2>
+  <p>Here is how this workspace partitions assets across storage layers:</p>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>What Goes Here</th>
+          <th>Destination</th>
+          <th>Typical Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1. Source Code &amp; Compositions</b></td>
+          <td>HTML, CSS, GSAP timelines, `scenes.json`, generators</td>
+          <td>Git repo (`main` branch)</td>
+          <td>&lt; 5 MB</td>
+        </tr>
+        <tr>
+          <td><b>2. Streaming Review Copies</b></td>
+          <td>720p HD web copy for browser playback (`draft/v7/video.mp4`)</td>
+          <td>GitHub Pages</td>
+          <td>~14 MB</td>
+        </tr>
+        <tr>
+          <td><b>3. Full Master Outputs &amp; Renders</b></td>
+          <td>1080p CRF 16 master MP4 (`video/renders/first-draft.mp4`)</td>
+          <td><b>GitHub Releases</b></td>
+          <td><b>63 MB – 1.8 GB</b></td>
+        </tr>
+        <tr>
+          <td><b>4. Ephemeral Review Drawings</b></td>
+          <td>Drawn frame annotations captured during reviewer pause</td>
+          <td>Azure Blob Storage (SAS)</td>
+          <td>~300 KB each</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

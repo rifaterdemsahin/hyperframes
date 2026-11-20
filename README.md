@@ -22,6 +22,10 @@ Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red 
 | Performance (Postprod) | https://rifaterdemsahin.github.io/hyperframes/performance.html |
 | Changes (Postprod) | https://rifaterdemsahin.github.io/hyperframes/changes.html |
 | AGENTS.md page | https://rifaterdemsahin.github.io/hyperframes/agents.html |
+| Video releases & storage limits | https://rifaterdemsahin.github.io/hyperframes/video-releases.html |
+| GitHub Releases (1080p MP4 downloads) | https://github.com/rifaterdemsahin/hyperframes/releases |
+| Costs & estimates | https://rifaterdemsahin.github.io/hyperframes/costs.html |
+| Portable Review spec | [docs/REVIEW-SPEC.md](docs/REVIEW-SPEC.md) |
 | Reuse as template | https://rifaterdemsahin.github.io/hyperframes/reuse.html |
 | Gaps (Preprod, what is waiting on you) | https://rifaterdemsahin.github.io/hyperframes/gaps.html |
 | Kanban (tasks + your instructions) | https://rifaterdemsahin.github.io/hyperframes/kanban.html |
@@ -32,6 +36,18 @@ Video project: **UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red 
 | Design doc | [docs/superpowers/specs/2026-11-18-liquidation-video-design.md](docs/superpowers/specs/2026-11-18-liquidation-video-design.md) |
 | Scene data | [script/scenes.json](script/scenes.json) |
 | Hyperframes project | [video/](video/) |
+
+## Video Releases & Storage Limits
+
+Can video outputs be pushed to GitHub Releases? **Yes, up to 2 GB per file.**
+
+- **Master 1080p Renders**: Full-fidelity MP4 master outputs (e.g. Draft v7 at 63 MB) are published directly to [GitHub Releases](https://github.com/rifaterdemsahin/hyperframes/releases) via `node scripts/publish-release.mjs` or `gh release create`.
+- **Why Releases instead of Git commits?**: Standard Git commits block files above 100 MB and permanently bloat clone history. Git LFS caps free monthly bandwidth at only 1 GB. GitHub Releases provides **2 GB per file**, unlimited total releases, and fast CDN distribution with zero repo bloat.
+- **Three-tier storage model**:
+  1. **Git Repository (`main`)**: Composition code, HTML, CSS, GSAP timelines, `scenes.json` (< 5 MB).
+  2. **GitHub Pages**: Lightweight 720p HD streaming copies for in-browser review (`draft/v7/video.mp4`, ~14 MB).
+  3. **GitHub Releases**: Full-quality 1080p/4K master archival files (up to 2 GB per file).
+- **Comprehensive Guide**: Read the [Video Releases & Storage Limits Page](https://rifaterdemsahin.github.io/hyperframes/video-releases.html) for exact CLI recipes and full quota comparisons across GitHub, Git LFS, Pages, and S3/R2.
 
 ## Regenerate
 
@@ -47,6 +63,7 @@ node scripts/render-draft.mjs # build, check, render and time the draft; refresh
 node scripts/build-architecture.mjs # architecture diagram on the hub
 node scripts/build-publish-page.mjs # publish.html; scripts/build-thumbnails.sh for the JPGs
 node scripts/build-changes-page.mjs # changes.html from git (run after the bump, before the commit)
+node scripts/publish-release.mjs # publish master 1080p MP4 to GitHub Releases (up to 2 GB per file)
 node scripts/version.mjs bump minor "what changed" [page ...] [--clear-notes] # version every page + changelog; --clear-notes deletes implemented feedback notes
 ```
 

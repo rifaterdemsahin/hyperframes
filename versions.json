@@ -1,5 +1,5 @@
 {
-  "site": "1.16.0",
+  "site": "1.17.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.16.0",
+      "version": "1.17.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -153,6 +153,16 @@
         "draft/versions.json",
         "spec/performance.json",
         "script/scenes.json"
+      ]
+    },
+    "video-releases.html": {
+      "title": "Video releases & limits",
+      "version": "1.1.0",
+      "date": "2026-11-20",
+      "deps": [
+        "draft/versions.json",
+        "video/renders/",
+        "scripts/publish-release.mjs"
       ]
     },
     "reuse.html": {
@@ -260,6 +270,16 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.17.0",
+      "date": "2026-11-20",
+      "pages": [
+        "video-releases.html"
+      ],
+      "changes": [
+        "Add Video Releases & Storage Limits page and documentation in README.md"
+      ]
+    },
     {
       "version": "1.16.0",
       "date": "2026-11-20",
