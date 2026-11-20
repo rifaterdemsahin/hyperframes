@@ -6,6 +6,21 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Load .env locally if present
+if (fs.existsSync(path.join(__dirname, ".env"))) {
+  try {
+    const envLines = fs.readFileSync(path.join(__dirname, ".env"), "utf8").split("\n");
+    for (const line of envLines) {
+      const m = line.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/);
+      if (m) {
+        let v = (m[2] || "").trim();
+        if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) v = v.slice(1, -1);
+        if (!process.env[m[1]]) process.env[m[1]] = v;
+      }
+    }
+  } catch (_) {}
+}
+
 const PORT = parseInt(process.env.PORT || "8080", 10);
 const HOST = "0.0.0.0";
 

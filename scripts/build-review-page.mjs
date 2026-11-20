@@ -1132,10 +1132,21 @@ function getCarouselTasks() {
   return all;
 }
 
-function verifyTaskInVideo(targetTime, task) {
+function updateQueryState(task, t) {
+  try {
+    const u = new URL(location.href);
+    if (t !== undefined && t !== null && !isNaN(t)) u.searchParams.set("t", Number(t).toFixed(2));
+    if (task && task.id) u.searchParams.set("task", task.id);
+    history.replaceState(null, "", u.pathname + u.search + u.hash);
+  } catch (_) {}
+}
+
+function verifyTaskInVideo(targetTime, task, autoPlay = true) {
   if (targetTime === null || targetTime === undefined || isNaN(targetTime)) return;
   const target = Number(targetTime);
   const jumpTime = (task && typeof task.preRollT === "number") ? task.preRollT : target;
+
+  updateQueryState(task, target);
 
   const performJump = () => {
     try {
@@ -1153,7 +1164,11 @@ function verifyTaskInVideo(targetTime, task) {
       redraw();
       setDraw(false);
       v.muted = false;
-      v.play().catch(() => {});
+      if (autoPlay) {
+        v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
     }
 
     if (v.scrollIntoView) {
@@ -1185,6 +1200,34 @@ function verifyTaskInVideo(targetTime, task) {
   } else {
     performJump();
   }
+}
+
+function restoreStateFromQuery() {
+  try {
+    const p = new URLSearchParams(location.search);
+    const qTask = p.get("task");
+    const qT = p.get("t");
+    let targetTask = null;
+    if (qTask) {
+      const all = getCarouselTasks();
+      const fIdx = all.findIndex((x) => x.id === qTask || x.alias === qTask);
+      if (fIdx >= 0) {
+        cIdx = fIdx;
+        renderCarousel();
+        targetTask = all[fIdx];
+      }
+    }
+    if (qT !== null && qT !== "") {
+      const sec = parseFloat(qT);
+      if (!isNaN(sec)) {
+        if (!targetTask) {
+          const all = getCarouselTasks();
+          targetTask = all[cIdx];
+        }
+        verifyTaskInVideo(sec, targetTask, false);
+      }
+    }
+  } catch (_) {}
 }
 
 document.addEventListener("click", (e) => {
@@ -1244,7 +1287,12 @@ function renderCarousel() {
       const vMark = verifiedMap[item.id] ? "✓ " : "";
       return '<option value="' + idx + '"' + (idx === cIdx ? " selected" : "") + '>' + vMark + (idx + 1) + ". [" + esc(item.id) + "] " + esc(item.title) + '</option>';
     }).join("");
-    sel.onchange = () => { cIdx = +sel.value; renderCarousel(); };
+    sel.onchange = () => {
+      cIdx = +sel.value;
+      const task = allTasks[cIdx];
+      if (task) updateQueryState(task, task.t);
+      renderCarousel();
+    };
   }
 
   const createdStr = fmtTiming(t.createdAt);
@@ -1375,13 +1423,30 @@ function renderCarousel() {
     d.className = "carousel-dot" + (i === cIdx ? " active" : "");
     if (verifiedMap[item.id]) d.style.background = "var(--ok)";
     d.title = (i + 1) + ". [" + item.id + "] " + item.title + (verifiedMap[item.id] ? " (Verified)" : "");
-    d.onclick = () => { cIdx = i; renderCarousel(); };
+    d.onclick = () => {
+      cIdx = i;
+      const task = allTasks[cIdx];
+      if (task) updateQueryState(task, task.t);
+      renderCarousel();
+    };
     dots.appendChild(d);
   });
 }
 
-const prevTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx - 1 + tasks.length) % tasks.length; renderCarousel(); };
-const nextTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx + 1) % tasks.length; renderCarousel(); };
+const prevTask = () => {
+  const tasks = getCarouselTasks();
+  cIdx = (cIdx - 1 + tasks.length) % tasks.length;
+  const task = tasks[cIdx];
+  if (task) updateQueryState(task, task.t);
+  renderCarousel();
+};
+const nextTask = () => {
+  const tasks = getCarouselTasks();
+  cIdx = (cIdx + 1) % tasks.length;
+  const task = tasks[cIdx];
+  if (task) updateQueryState(task, task.t);
+  renderCarousel();
+};
 $("cPrev").onclick = prevTask;
 $("cNext").onclick = nextTask;
 
@@ -1450,7 +1515,7 @@ if (dlNotes) {
   };
 }
 
-updateAzStatus(); renderPosts(); render(); renderCarousel(); tick(); syncPlay();
+updateAzStatus(); renderPosts(); render(); renderCarousel(); restoreStateFromQuery(); tick(); syncPlay();
 if (typeof loadVerifiedFromAzure === "function") loadVerifiedFromAzure();
 </script>
 </body></html>
