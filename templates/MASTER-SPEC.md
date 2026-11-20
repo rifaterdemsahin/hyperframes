@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.1 · site v1.19.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.1 · site v1.20.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -9,7 +9,7 @@ Spec v1.1 · site v1.19.0. Generated from spec/project.json and script/scenes.js
 - **Goal:** Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.
 - **One call to action:** Subscribe for Part 2
 - **Tone:** Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.
-- **Length:** 4:04 target, plan 4:03
+- **Length:** 4:04 target, plan 4:04
 - **Language:** en-GB
 - **Disclaimer:** AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.
 
@@ -35,10 +35,10 @@ Every change: commit, push, deploy, bump version.
 4. 0:57 **Five things to do first, with AI** (111 words, slot 40 s). B-roll: Numbered list 1 to 5 with live ChatGPT co-pilot interaction & learning animation
 5. 1:37 **What it costs and how long it takes** (82 words, slot 27 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after
 6. 2:04 **The exceptions** (80 words, slot 29 s). B-roll: Exceptions cards, security guardrail badge, hands-on AI loop
-7. 2:33 **What my emails taught me** (55 words, slot 23 s). B-roll: Online methods as database animation, MCP connection pipeline
-8. 2:56 **How I keep track of it** (63 words, slot 24 s). B-roll: n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card
-9. 3:20 **Subscribe for Part 2** (71 words, slot 24 s). B-roll: Motivational dawn background, shame to grace card, Part 2 question prompt for comments
-10. 3:44 **Disclaimer + outro** (42 words, slot 19 s). B-roll: Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo
+7. 2:33 **What my emails taught me** (61 words, slot 24 s). B-roll: Online methods as database animation, MCP connection pipeline
+8. 2:57 **How I keep track of it** (63 words, slot 25 s). B-roll: n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card
+9. 3:22 **Subscribe for Part 2** (71 words, slot 23 s). B-roll: Motivational dawn background, shame to grace card, Part 2 question prompt for comments
+10. 3:45 **Disclaimer + outro** (42 words, slot 19 s). B-roll: Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo
 
 ## 5. Asset manifest
 - Part 1 of 3: AI and real-world red tape: Face cam clip (Your footage / capture), Needed
@@ -94,9 +94,9 @@ Every change: commit, push, deploy, bump version.
 1:37 What it costs and how long it takes
 2:04 The exceptions
 2:33 What my emails taught me
-2:56 How I keep track of it
-3:20 Subscribe for Part 2
-3:44 Disclaimer + outro
+2:57 How I keep track of it
+3:22 Subscribe for Part 2
+3:45 Disclaimer + outro
 ```
 
 ## 11. Learnings and system insights

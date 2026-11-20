@@ -31,7 +31,7 @@ th.num{text-align:right}
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.19.0"></script>
+<script src="nav.js?v=1.20.0"></script>
 <main>
   <div class="crumbs">⚙️ 5 Project</div>
   <h1>💰 Costs & Estimates</h1>
@@ -40,7 +40,7 @@ th.num{text-align:right}
   <p class="note"><b>Telemetry & Scope:</b> Production figures are calculated from exact API call counts (fal.ai voiceover and mood plate generations), agent LLM token consumption, and local machine benchmarks. Local rendering compute in Hyperframes is <b>$0.00</b>. Real-world company liquidation fees (£3,600) reflect actual statutory practitioner and filing costs from Scene 05.</p>
 
   <div class="kpis">
-    <div><b>$5.74</b><small>Total AI & video production cost across 6 drafts</small></div>
+    <div><b>$8.30</b><small>Total AI & video production cost across 9 drafts</small></div>
     <div><b>$0.00</b><small>Cloud render fees (100% rendered locally on Apple Silicon)</small></div>
     <div><b>£3,600</b><small>Real-world liquidation fee (Scene 05 subject matter)</small></div>
     <div><b>~£4,500</b><small>Agency cost saved vs traditional motion studio</small></div>
@@ -124,18 +124,58 @@ th.num{text-align:right}
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
           <td class="num"><b>$1.37</b></td>
         </tr>
+        <tr>
+          <td><b>Draft v7</b></td>
+          <td>20 Nov</td>
+          <td>Removed scene tags, emojis across project, Hero's Journey background</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.04</td>
+          <td class="num">$0.95</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.99</b></td>
+        </tr>
+        <tr>
+          <td><b>Draft v8</b></td>
+          <td>20 Nov</td>
+          <td>Removed 'DRAFT V*' watermark across entire video, master spec learnings</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.70</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.70</b></td>
+        </tr>
+        <tr style="background: rgba(10,124,145,0.08);">
+          <td><b>Draft v9</b></td>
+          <td>20 Nov</td>
+          <td>Removed BAM sfx; regenerated Scene 07 ("process starts once balance paid") & Scene 08 friend voice tone; enlarged/centered friend quote; Skool outro focus</td>
+          <td class="num" style="color:var(--accent);font-weight:700;">$0.02</td>
+          <td class="num">$0.00</td>
+          <td class="num">$0.85</td>
+          <td class="num"><span class="badge badge-ok">$0.00</span></td>
+          <td class="num"><b>$0.87</b></td>
+        </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="3"><b>Total Project Spend (Drafts v1 – v6)</b></td>
-          <td class="num"><b>$0.36</b></td>
-          <td class="num"><b>$0.31</b></td>
-          <td class="num"><b>$5.07</b></td>
+          <td colspan="3"><b>Total Project Spend (Drafts v1 – v9)</b></td>
+          <td class="num"><b>$0.38</b></td>
+          <td class="num"><b>$0.35</b></td>
+          <td class="num"><b>$7.57</b></td>
           <td class="num"><span class="badge badge-ok">$0.00</span></td>
-          <td class="num"><b>$5.74</b></td>
+          <td class="num"><b>$8.30</b></td>
         </tr>
       </tfoot>
     </table>
+  </div>
+
+  <div class="card-box" style="margin: 16px 0; border-left: 4px solid var(--accent);">
+    <h3 style="color:var(--accent);margin-top:0;">💡 Modular Audio Regeneration Economics</h3>
+    <p style="margin:0 0 8px;font-size:14.5px;">When updating Scene 07's script ("process starts once the balance is paid in full") and Scene 08's friend question tone in Draft v9, only the affected audio clips were regenerated via fal.ai Kokoro TTS:</p>
+    <ul style="margin:0;padding-left:20px;font-size:14px;">
+      <li><b>Scene 07 (Emails) audio regen:</b> ~50 words @ $0.0002 / word = <b>$0.010</b></li>
+      <li><b>Scene 08 (Friend question tone switch) audio regen:</b> ~30 words @ $0.0002 / word = <b>$0.010</b></li>
+      <li><b>Total audio generation cost for this iteration:</b> <b style="color:var(--ok);">$0.020</b> (vs $0.14+ to re-render the full voiceover track, or £150+ for human voiceover studio pickup sessions).</li>
+    </ul>
   </div>
 
   <h2>2. Tool & platform unit economics</h2>

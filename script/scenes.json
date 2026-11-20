@@ -58,10 +58,7 @@
         "🛡️ Understand the red tape first"
       ],
       "ph": null,
-      "fx": {
-        "type": "bam",
-        "cue": "Company debt stays"
-      },
+      "fx": null,
       "voSeconds": 17.6,
       "voice": "bm_george"
     },
@@ -143,14 +140,14 @@
       "label": "CHAPTER 5",
       "title": "What my emails taught me",
       "start": 153,
-      "duration": 23,
+      "duration": 24,
       "broll": "Online methods as database animation, MCP connection pipeline",
-      "vo": "Three lessons from my emails and records. One: the process stops until the balance is paid—my provider chased me six times. Two: use online methods and keep everything in writing, because online records act as databases. Three: connect your drive and emails to AI over MCP. When things go wrong, learn from them and iterate.",
+      "vo": "Three lessons from my emails and records. One: the process starts once the entire balance for the liquidation company is paid off—my provider chased me six times. Two: use online methods and keep everything in writing, because online records act as databases. Three: connect your drive and emails to AI over MCP. When things go wrong, learn from them and iterate.",
       "realAsset": null,
       "bg": "storage",
       "overlay": [
         "📧 Lessons from Emails & Records",
-        "1️⃣ Process stops until paid (chased 6 times ⏳)",
+        "1️⃣ Process starts once balance is paid in full (chased 6 times ⏳)",
         "2️⃣ Use online methods: they act as structured databases 🗄️",
         "3️⃣ Connect Gmail & Drive to AI over MCP ⚡",
         "🔄 Learn from every issue and iterate"
@@ -160,15 +157,15 @@
         "type": "database-pipeline",
         "cue": "databases"
       },
-      "voSeconds": 21.1,
+      "voSeconds": 23.2,
       "voice": "bm_george"
     },
     {
       "id": "s08-tracking",
       "label": "CHAPTER 6",
       "title": "How I keep track of it",
-      "start": 176,
-      "duration": 24,
+      "start": 177,
+      "duration": 25,
       "broll": "n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card",
       "vo": "I keep track of it all with n8n and AI agents. Remember: n8n is deterministic and known, while AI is probabilistic and unknown. Build your process around both. A friend told me: become like MrBeast, why show your real work? Have the honour to do what's right and share what you're genuinely working on. Build your system and mindset for the next journey.",
       "realAsset": null,
@@ -185,15 +182,15 @@
         "type": "deterministic-vs-probabilistic",
         "cue": "deterministic"
       },
-      "voSeconds": 21.6,
+      "voSeconds": 24.6,
       "voice": "bm_george"
     },
     {
       "id": "s09-cta",
       "label": "CTA",
       "title": "Subscribe for Part 2",
-      "start": 200,
-      "duration": 24,
+      "start": 202,
+      "duration": 23,
       "broll": "Motivational dawn background, shame to grace card, Part 2 question prompt for comments",
       "vo": "Closing a company often carries personal shame, but moving from shame to grace is the real breakthrough. Don't attach your personality to a company: it's just a vehicle, and you can always restart. In Part 2, I'll show how I build the app and AI agents. If there is interest, I will shoot Part 2. Tell me in the comments if you want to see it, and subscribe to follow along!",
       "realAsset": null,
@@ -212,7 +209,7 @@
       "id": "s10-outro",
       "label": "OUTRO",
       "title": "Disclaimer + outro",
-      "start": 224,
+      "start": 225,
       "duration": 19,
       "broll": "Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo",
       "vo": "Important disclaimer: AI organises and explains, but the licensed practitioner decides. This is information, not legal or financial advice. If you're building bots and automation, join our Delivery Pilot community on Skool at the link below. See you in the next one!",

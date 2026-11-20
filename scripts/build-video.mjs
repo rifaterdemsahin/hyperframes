@@ -277,9 +277,11 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
     tl.to(".wf-box", { opacity: 0, y: -20, duration: 0.5, ease: "power2.in" }, 9.5);
+    tl.to(".stack", { opacity: 0, duration: 0.5, ease: "power2.in" }, 9.5);
     tl.fromTo("#bg-hero", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.12, duration: 13.5, ease: "power1.out" }, 9.5);
-    tl.fromTo("#friend-card", { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" }, 9.7);
-    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 10.5);`;
+    tl.to("#gfx-panel", { x: -470, width: 1160, duration: 0.8, ease: "power3.out" }, 9.6);
+    tl.fromTo("#friend-card", { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1.15, y: 0, duration: 0.8, ease: "back.out(1.5)" }, 9.8);
+    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 10.8);`;
   } else if (s.id === "s09-cta") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.8);
@@ -290,7 +292,10 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     tl.fromTo("#ho-bot", { scale: 0.95 }, { scale: 1.05, repeat: 4, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 1.5);
     tl.fromTo("#ho-pulse", { x: -10, opacity: 0.6 }, { x: 10, opacity: 1, repeat: 5, yoyo: true, duration: 0.6, ease: "power1.inOut" }, 2.0);
     tl.fromTo("#ho-human", { borderColor: "var(--accent)" }, { borderColor: "var(--success)", repeat: 3, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 3.5);
-    tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 4, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 5.5);`;
+    tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 3, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 5.5);
+    tl.to(".handover-card", { opacity: 0, y: -25, duration: 0.6, ease: "power2.in" }, 10.2);
+    tl.fromTo("#skool-panel", { scale: 1 }, { scale: 1.28, x: -280, y: -80, boxShadow: "0 0 70px rgba(0,112,243,0.9), 0 25px 60px rgba(0,0,0,0.85)", borderColor: "#4cc3d9", duration: 0.9, ease: "power3.out" }, 10.5);
+    tl.fromTo("#skool-badge", { scale: 1 }, { scale: 1.12, repeat: 5, yoyo: true, duration: 0.7, immediateRender: false, ease: "sine.inOut" }, 11.5);`;
   }
 
   // Animated serious style subtitles in GSAP:
@@ -441,7 +446,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
             </div>
           </div>
         </div>
-        <div id="friend-card" class="friend-card">
+        <div id="friend-card" class="friend-card" data-layout-allow-overlap>
           <div class="friend-header">
             <span style="font-size: 30px; font-weight: 900; color: #ffd166;">🏔️ THE HERO'S JOURNEY</span>
             <span class="honour-badge" style="background:#ffd166; color:#04222a; font-weight:900;">TRUTH OVER HYPE</span>
@@ -496,7 +501,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
           </div>
           <div class="ho-guardrail">🛡️ Human In The Loop: Practitioner Decides, Bot Prepares</div>
         </div>
-        <div class="skool-panel">
+        <div id="skool-panel" class="skool-panel">
           <img class="skool-logo-img" src="../assets/logos/skool.png" alt="Skool logo">
           <div id="skool-badge" class="skool-badge">🚀 Delivery Pilot Community</div>
           <div class="skool-url">https://www.skool.com/delivery-pilot-8938/</div>
@@ -544,10 +549,6 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     <div id="scene-${esc(s.id)}" class="clip" data-composition-id="${esc(s.id)}" data-composition-src="compositions/${esc(s.id)}.html" data-start="${s.start}" data-duration="${s.duration}" data-track-index="0"></div>`;
   rootAudio += `
     <audio id="vo-${esc(s.id)}" src="assets/vo/${esc(s.id)}.mp3" data-start="${r2(s.start + VO_LEAD)}" data-duration="${r2(voDur)}" data-track-index="1"></audio>`;
-  if (s.id === "s03-goal" && existsSync(`${root}/video/assets/sfx/bam.mp3`)) {
-    rootAudio += `
-    <audio id="sfx-bam" src="assets/sfx/bam.mp3" data-start="${r2(s.start + 5.0)}" data-duration="2.0" data-track-index="2"></audio>`;
-  }
 });
 
 const index = `<!doctype html>

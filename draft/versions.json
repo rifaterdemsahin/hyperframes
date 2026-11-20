@@ -1,5 +1,5 @@
 {
-  "latest": 8,
+  "latest": 9,
   "versions": [
     {
       "n": 1,
@@ -89,6 +89,18 @@
       "label": "Eighth draft",
       "changes": [
         "Overlay Tag Removal: Removed the top-right 'DRAFT V*' watermark tag across the entire video for a clean, distraction-free viewing experience."
+      ]
+    },
+    {
+      "n": 9,
+      "date": "2026-11-20",
+      "label": "Ninth draft",
+      "changes": [
+        "Scene 03: Removed BAM sound effect from the soundtrack for a clean, professional flow.",
+        "Scene 07: Corrected core rule in script and subtitle: 'The process starts once the entire balance for the liquidation company is paid off' (chased 6 times); modularly regenerated audio via fal.ai Kokoro.",
+        "Scene 08: Modulated friend's question tone ('Become like MrBeast, why show your real work?') with a distinct British voice (bm_lewis) for character clarity; enlarged and centered the Hero's Journey card across the canvas.",
+        "Scene 10: Focused onto the Delivery Pilot Skool community panel at the end of the scene (dimmed background elements, scaled up 1.28x with radiant cyan glow).",
+        "Costs: Cataloged modular audio regeneration costs ($0.02) on costs.html highlighting iteration savings."
       ]
     }
   ]
