@@ -1,5 +1,5 @@
 {
-  "site": "1.37.0",
+  "site": "1.38.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -39,12 +39,15 @@
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.7.0",
-      "date": "2026-11-18",
+      "version": "1.8.0",
+      "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
         "first-draft.html",
-        "publish.html"
+        "publish.html",
+        "draft/versions.json",
+        "spec/gaps.json",
+        "spec/project.json"
       ]
     },
     "hyperframes-guide/": {
@@ -108,7 +111,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.37.0",
+      "version": "1.38.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -138,7 +141,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.11.0",
+      "version": "1.12.0",
       "date": "2026-11-20",
       "deps": [
         "AGENTS.md",
@@ -293,6 +296,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.38.0",
+      "date": "2026-11-20",
+      "pages": [
+        "recommendations.html",
+        "agents.html"
+      ],
+      "changes": [
+        "Recommendations rescanned against Draft v11: public Azure write tokens (urgent), captions vs keynote, practitioner read, footage decision, stale gaps/publish/kanban, Fly auto-deploy, repo size; why the page stalled at Draft v2 and a test that stops it happening again"
+      ]
+    },
     {
       "version": "1.37.0",
       "date": "2026-11-20",

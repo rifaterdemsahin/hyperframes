@@ -16,75 +16,117 @@ main{max-width:860px;margin:auto;padding:32px 16px 64px}h1{margin:0 0 6px;font-s
 .tw{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14.5px}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}th{color:var(--accent);font-size:13px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}
 .over{color:var(--hi);font-weight:600}pre{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto;font-size:13px}a{color:var(--accent)}small{color:var(--mute)}
+details.card summary{cursor:pointer;font-weight:700}details.card[open] summary{margin-bottom:6px}
+.stamp{display:inline-block;font-size:13px;color:var(--mute);border:1px solid var(--line);border-radius:8px;padding:4px 10px;margin-top:6px}
+.why{border-left:4px solid var(--mid)}.urgent{border-left:4px solid var(--hi)}
+.done{color:var(--lo);font-weight:700}
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.37.0"></script>
-<main>
+<script src="nav.js?v=1.38.0"></script>
+<main data-reviewed-draft="11" data-reviewed-date="2026-11-20">
   <h1>✅ Recommendations</h1>
-  <p class="lead">What I would do next, in priority order. These are my suggestions from working on the storyboard, not requirements. Anything about law or tax is a prompt to check with your practitioner, not advice.</p>
+  <p class="lead">What I would do next, in priority order, from a scan of the whole project: script, spec, pages, server, repo and the rendered drafts. These are suggestions, not requirements. Anything about law or tax is a prompt to check with your practitioner, not advice.</p>
+  <span class="stamp">Reviewed against <b>Draft v11</b> (keynote cut) · 20 Nov 2026 · the tests fail if this page falls more than 2 drafts behind</span>
 
-  <h2>Do first</h2>
-  <div class="card"><h3><span class="tag hi">HIGH</span>Rotate the fal.ai key</h3>
-    <p>The key was pasted into chat, so treat it as exposed. Create a new one in the fal.ai dashboard, put it in your local <code>.env</code> as <code>FAL_KEY=...</code>, and delete the old one. It is not in the repo, which I checked on every commit.</p></div>
-  <div class="card"><h3><span class="tag hi">HIGH</span>Decide whether the repo stays public before release</h3>
-    <p>The repo and the Pages site are public, and the script holds your fees and real dates. The debt figure is out of the current script, but it is still in the git history of earlier commits. That is fine once the video is out, but until then it publishes the story early. If you would rather not, make the repo private (Pages then needs a paid GitHub plan), or ask me to rewrite the history to remove the figure.</p></div>
-  <div class="card"><h3><span class="tag hi">HIGH</span>Get the script checked for accuracy before publishing</h3>
-    <p>The video makes factual claims about liability and process ("generally, the director isn't personally liable", the five steps, "or the money goes to the Crown"). Ask your insolvency practitioner to read the script once. You already say they decide; a quick read protects you and viewers. Keep the disclaimer.</p></div>
-  <div class="card"><h3><span class="tag hi">HIGH</span>Blur before you upload anything</h3>
-    <p>UTR, login, names, addresses and the practitioner's details. Blur in the source image, not as a soft overlay, and check the exported frame, not the preview. Decide whether to name the practitioner or the "4.8 stars" provider; if you do, say it is your experience, not a recommendation.</p></div>
+  <div class="card why">
+    <h3>Why this page stopped updating</h3>
+    <p><b>When:</b> the last real change was on <b>18 Nov 2026 at 23:01</b> (site v1.8.0, Draft v2). After that came 9 more drafts (v3 to v11) and about 30 releases, and none of them changed a word here. It still said the film was 3:54, asked for the Skool link and the n8n logo, and flagged a costs line that had already been rewritten.</p>
+    <p><b>Why:</b></p>
+    <ul>
+      <li><b>It is hand-written, and nothing makes it update.</b> The draft, review, renders and changes pages are generated on every render. This page is not, so it only changes when someone remembers to edit it.</li>
+      <li><b>The feedback moved elsewhere.</b> From Draft v3 on, your notes came through the Review page as feedback IDs, and they were tracked in the Kanban and the verification list. Releases were scoped to the pages each note touched, and this page was never one of them.</li>
+      <li><b>It looked fresh when it was not.</b> Every release rewrites the <code>?v=</code> cache-busters in every page, so this file appeared in almost every commit. Its own page version stayed at 1.7.0 (18 Nov), but the footer shows the site version, which hid that.</li>
+      <li><b>Its dependencies were wrong.</b> They listed the script and the publish page, but not <code>draft/versions.json</code>, so a new draft never pointed back here.</li>
+    </ul>
+    <p><b>Fixed now:</b> this page records the draft it was reviewed against (<code>data-reviewed-draft</code>), and <code>npm test</code> fails when the latest draft is more than 2 drafts ahead. It now also depends on <code>draft/versions.json</code>. The same thing happened to other hand-written pages; see <a href="#stale">Stale pages</a>.</p>
+  </div>
 
-  <div class="card"><h3><span class="tag hi">HIGH</span>Check the "AI emails the right parties" idea with the practitioner</h3>
-    <p>The script now says AI agents email the parties to move things forward. Creditor communication in a liquidation is the practitioner's territory, and bulk or automated messages could cause problems. I wrote "the right parties" and kept it as your own approach. Ask the practitioner what you may send yourself before Part 2 shows it.</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Get the Skool link ready</h3>
-    <p>The outro mentions your Skool community. I did not invent a link. Send the name and URL so I can put it on the end screen and in the description checklist. Keep it to that one soft mention so the single call to action stays "subscribe".</p></div>
+  <h2>Do now: security</h2>
+  <div class="card urgent"><h3><span class="tag hi">URGENT</span>Revoke the Azure storage tokens that are public</h3>
+    <p><code>review.html</code> holds container-level SAS URLs for two storage accounts, and they are published on the public repo and the live site. They allow <b>read, add, create, write and list</b> (plus <b>delete</b> on one), and they are valid until <b>November 2027</b>. The Fly server also hands the write token to anyone who calls <code>/api/azure-config</code>. Anyone can list, overwrite or (on one container) delete your review drawings and verification state, or store files in your account.</p>
+    <ul>
+      <li>Revoke them: rotate the storage account keys that signed them, or, if they use a stored access policy, delete that policy. Removing them from the page is not enough, because they are in the git history from v1.21.0.</li>
+      <li>Then I change the design: the browser uploads through the Fly server (which holds the token), images are read through short-lived read-only links, and <code>/api/azure-config</code> stops returning the token.</li>
+      <li>Say "fix the Azure tokens" once the old ones are revoked, and I will do the code side and add a test that blocks any <code>sig=</code> in tracked files.</li>
+    </ul></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Confirm the fal.ai and DeepInfra keys were rotated</h3>
+    <p>Both were pasted into chat earlier (gap t09). Nothing in the repo shows whether they were replaced. If not: make new keys, put them in <code>.env</code>, revoke the old ones.</p></div>
 
-  <div class="card"><h3><span class="tag hi">HIGH</span>Check "average UK figures" before you publish</h3>
-    <p>The costs scene now says £1,500 + £2,100 are average figures in the UK. I put in your wording but could not verify it as an average. Check it, or say "what I paid" instead, since that is a fact you know.</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Get the official n8n logo</h3>
-    <p>Scene 8 has a logo slot that fills in as soon as the official file is in <code>video/assets/logos/</code>. The only n8n images on your machine are AI-generated, and AI draws brand logos wrongly, so I did not use them.</p></div>
+  <h2>Before you publish</h2>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Captions: the keynote cut has none, and the spec requires them</h3>
+    <p>Draft v11 removed the burned-in captions to keep one idea per screen. The acceptance criteria still say "Captions are present", and the spec still says "Burned in". Recommended: upload a caption file (SRT) to YouTube, which keeps the keynote look and is better for accessibility and search, and change the spec to say so. I can generate the SRT from the voiceover with word timings.</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Get the script and the description checked by the practitioner</h3>
+    <p>The claims are the same as before, now in shorter form: "Company debt stays the company's", "No creditor goes first", "Or it goes to the Crown", "Personal liability remains". The description makes them too. Keep the disclaimer (it is on screen in the outro).</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Watch Draft v11 once with sound</h3>
+    <p>Each keynote screen is timed from where its word falls in the voiceover, estimated from word position, not from a transcript. Some screens may land slightly early or late. If you see that, I can time them from a word-level transcript instead; the same transcript gives the SRT.</p></div>
+  <div class="card"><h3><span class="tag hi">HIGH</span>Decide: a pure keynote, or keynote plus real footage</h3>
+    <p>The project rules say "real footage for real things" (the HMRC screen, emails, the n8n canvas). The keynote cut has no footage, and gaps t02, t03, t05 and t06 still wait for those captures. Either drop them (simpler, nothing to blur) or add them as full-bleed beats with one caption, blurred at source.</p></div>
+  <div class="card"><h3><span class="tag mid">MED</span>Final voice and music</h3>
+    <p>Both are open decisions. The film still uses the AI draft voice (Kokoro). A keynote with no on-screen detail leans hard on the voice, so your own recording would help most here. A quiet music bed would help the long text-free stretches.</p></div>
+  <div class="card"><h3><span class="tag mid">MED</span>Decide whether the repo stays public before release</h3>
+    <p>Still open (gap t35). The repo and site show the script, fees and dates. If you make it private, that also takes the old Azure tokens out of public view, but revoking them comes first.</p></div>
 
-  <h2>Timing</h2>
-  <p>Every scene's draft voice fits its slot: <b>234 s of slots (3:54), 220 s of voice</b>. The film grew from 3:38 to 3:54 after your review notes, mostly the five-things scene (45 s of voice, the longest scene). If you want it tighter, that is the first place to cut. Your own recording will differ, so settle the slots after you record.</p>
+  <h2>Out of date: fix the records</h2>
+  <div class="card"><h3><span class="tag mid">MED</span>Gaps and Kanban still show finished or moot items</h3>
+    <ul>
+      <li>Gaps last changed on 18 Nov. These are no longer needed: t22 (Skool link, decided), t32 (n8n logo, no logos in the keynote cut), t33 ("average UK figures", the line now says "the place that I found"), t23 (Scene 9 "AI emailing the parties", no longer in the script). t08 (palette and font) is answered by the keynote cut unless you want something else.</li>
+      <li>The Kanban last changed at 17:32 on 20 Nov, before Drafts v10 and v11.</li>
+    </ul></div>
+  <div class="card"><h3><span class="tag mid">MED</span>The publish description is behind the film</h3>
+    <p>It still has <code>[SKOOL LINK: needed from you]</code> although the link is decided, and a bullet for "Divide and conquer", which is no longer in the film. Update it when you settle the voice and footage.</p></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>The spec and the Renders page have hard-coded leftovers</h3>
+    <p>The spec still lists "Palette and font" as open and captions as "Burned in". The Renders page hard-codes "172 WPM", a Draft v10 badge on S08 and S10, and <code>--version=10</code> in its commands.</p></div>
+
+  <h2>Engineering</h2>
+  <div class="card"><h3><span class="tag mid">MED</span>Deploy Fly automatically on every push</h3>
+    <p>Pages updates on push, but Fly only updates when someone runs <code>fly deploy</code>. That is why Fly served v9 after v10 was released. A GitHub Action would fix it; it needs a <code>FLY_API_TOKEN</code> repo secret, which you add yourself.</p></div>
+  <div class="card"><h3><span class="tag mid">MED</span>Draft videos are filling the repo</h3>
+    <p>11 drafts take 109 MB of MP4 in git (the <code>.git</code> folder is 154 MB), and each draft adds 10 to 15 MB to every clone, forever. Keep the last two or three drafts on the site and move older ones to GitHub Releases (see the Video releases page).</p></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>Make the secret scan catch tokens like these</h3>
+    <p>The pre-commit scan looks for key prefixes, so it never matched an Azure SAS (<code>sv=…&amp;sig=…</code>). Add <code>sig=</code> and <code>sp=</code> to the patterns and run it in <code>npm test</code>.</p></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>Fly machine allowance</h3>
+    <p>The last deploy warned that the account uses 133 of its 160 machines. This app uses 2; check for old apps to remove.</p></div>
+
+  <h2 id="stale">Stale pages</h2>
+  <p>The same check, on every hand-written page: the last change to its content, ignoring version stamps.</p>
   <div class="tw"><table>
-    <tr><th>Scene</th><th>Slot</th><th>Voice</th><th></th></tr>
-    <tr><td>Hook</td><td>14 s</td><td>12.6 s</td><td>ok</td></tr><tr><td>Part 1 of 3: AI and real-world red tape</td><td>16 s</td><td>14.7 s</td><td>ok</td></tr><tr><td>The goal</td><td>15 s</td><td>13.6 s</td><td>ok</td></tr><tr><td>Five things to do first, with AI</td><td>46 s</td><td>45.4 s</td><td>ok</td></tr><tr><td>What it costs and how long it takes</td><td>31 s</td><td>30.3 s</td><td>ok</td></tr><tr><td>The exceptions</td><td>32 s</td><td>30.9 s</td><td>ok</td></tr><tr><td>What my emails taught me</td><td>27 s</td><td>25.8 s</td><td>ok</td></tr><tr><td>How I keep track of it</td><td>22 s</td><td>17.3 s</td><td>ok</td></tr><tr><td>Subscribe for Part 2</td><td>13 s</td><td>12.4 s</td><td>ok</td></tr><tr><td>Disclaimer + outro</td><td>18 s</td><td>17.1 s</td><td>ok</td></tr>
+    <tr><th>Page</th><th>Last real change</th><th>Status</th></tr>
+    <tr><td>Recommendations</td><td>18 Nov 23:01</td><td class="done">Updated now</td></tr>
+    <tr><td>spec/gaps.json (Gaps page)</td><td>18 Nov 23:11</td><td class="over">Behind (see above)</td></tr>
+    <tr><td>spec/publish.json (Publish page)</td><td>18 Nov 22:18</td><td class="over">Behind (see above)</td></tr>
+    <tr><td>Hyperframes vs Remotion, Why pay?</td><td>18 Nov 21:49 / 21:42</td><td>Reference pages, fine unless prices or versions change</td></tr>
+    <tr><td>Reuse, templates/README, Hyperframes guide</td><td>18 Nov 23:26</td><td>Missing the keynote style and the audit tool, both in AGENTS.md</td></tr>
+    <tr><td>README</td><td>20 Nov 12:26</td><td>Missing everything from Draft v8 on (review system, Fly, keynote)</td></tr>
+    <tr><td>Kanban</td><td>20 Nov 17:32</td><td class="over">Behind Drafts v10 and v11</td></tr>
+    <tr><td>Costs, Video releases</td><td>20 Nov 17:15 / 17:10</td><td>Check the per-draft numbers after v11</td></tr>
   </table></div>
 
-  <h2>Voice and footage</h2>
-  <div class="card"><h3><span class="tag mid">MED</span>Record your own voice for the final cut</h3>
-    <p>A personal story about your own company works better in your voice, and it costs nothing. Keep the AI voice only as a timing guide. If you do want AI audio, try the free Kokoro voices before paying for HeyGen (see <a href="why-pay.html">Why pay?</a>).</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Use real footage where the claim is about real things</h3>
-    <p>Show the real HMRC balance, the real emails and the real n8n canvas. The generated backgrounds are only mood plates and should never stand in for a document or screen. I did not make fake versions of those, and I would keep it that way.</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Burn in captions</h3>
-    <p>Many viewers watch muted. With the final audio, I can generate timed captions in Hyperframes from the transcript.</p></div>
+  <h2>Timing (Draft v11)</h2>
+  <p>4:04 of slots and 3:46 of voice. Every scene's voice fits its slot. The keynote cut has 84 screens, between 5 and 16 per scene. The fastest delivery is the costs scene at 200 words a minute; if you record your own voice, that is the scene to slow down.</p>
+  <div class="tw"><table>
+    <tr><th>Scene</th><th>Slot</th><th>Voice</th><th>Words/min</th><th>Screens</th></tr>
+    <tr><td>Hook</td><td>14 s</td><td>11.9 s</td><td>192</td><td>5</td></tr>
+    <tr><td>Part 1 of 3: AI and real-world red tape</td><td>23 s</td><td>20.8 s</td><td>162</td><td>7</td></tr>
+    <tr><td>The goal</td><td>20 s</td><td>17.6 s</td><td>153</td><td>8</td></tr>
+    <tr><td>Five things to do first, with AI</td><td>40 s</td><td>37.6 s</td><td>177</td><td>16</td></tr>
+    <tr><td>What it costs and how long it takes</td><td>27 s</td><td>24.6 s</td><td class="over">200</td><td>9</td></tr>
+    <tr><td>The exceptions</td><td>29 s</td><td>27.0 s</td><td>178</td><td>10</td></tr>
+    <tr><td>What my emails taught me</td><td>24 s</td><td>23.2 s</td><td>158</td><td>7</td></tr>
+    <tr><td>How I keep track of it</td><td>25 s</td><td>24.6 s</td><td>154</td><td>7</td></tr>
+    <tr><td>Subscribe for Part 2</td><td>23 s</td><td>21.9 s</td><td>195</td><td>8</td></tr>
+    <tr><td>Disclaimer + outro</td><td>19 s</td><td>17.2 s</td><td>147</td><td>7</td></tr>
+  </table></div>
 
-  <h2>YouTube packaging</h2>
-  <div class="card"><h3><span class="tag lo">LOW</span>Chapters</h3>
-    <p>YouTube needs the first chapter at 0:00 and each chapter at least 10 seconds, so merge the 6 s call to action into the outro. Starting point from the current timings; retime after the final edit:</p>
-<pre>0:00 The debt and the plan
-0:15 Who I am, and the three parts
-0:30 The goal of a liquidation
-0:42 Five things to do first
-1:24 What it costs and how long it takes
-1:55 The exceptions
-2:14 What my emails taught me
-2:44 How I keep track of it
-3:06 Part 2 and disclaimer</pre></div>
-  <div class="card"><h3><span class="tag lo">LOW</span>One call to action, put it in the description too</h3>
-    <p>You already have a single ask (subscribe for Part 2). Repeat it with a link to Part 2 once it exists, and put the disclaimer line in the description as well as the end.</p></div>
-  <div class="card"><h3><span class="tag lo">LOW</span>Thumbnail and title: chosen</h3>
-    <p>You chose the title "Stuck in Red Tape? How I Use AI When a Process Gets Confusing" and thumbnail A (see the <a href="publish.html">Publish page</a>). Both open with "stuck in red tape", so they repeat each other; consider a different thumbnail hook such as "USE AI" if you want them to complement. The title is 61 characters, so phones may cut off the end.</p></div>
-
-  <h2>Process</h2>
-  <div class="card"><h3><span class="tag lo">LOW</span>Keep the loop short</h3>
+  <details class="card"><summary>Done since the last update (4)</summary>
     <ul>
-      <li>Edit text and leave notes on the <a href="storyboard/">storyboard</a>, then paste the copied feedback into the chat.</li>
-      <li>Track what is waiting on you in the <a href="kanban.html">kanban</a>.</li>
-      <li>After you approve the storyboard I build the scenes with placeholders, check them, then swap in your real footage and render. Each step is committed, pushed and deployed.</li>
-    </ul></div>
-  <div class="card"><h3><span class="tag lo">LOW</span>Stay on the free stack</h3>
-    <p>Hyperframes, Claude Code and local rendering cost no licence fee. See <a href="compare.html">Hyperframes vs Remotion</a> and <a href="why-pay.html">Why pay?</a> for the reasoning.</p></div>
+      <li><span class="done">Done</span> Skool link: Delivery Pilot Community, decided and in the outro.</li>
+      <li><span class="done">Done</span> "Average UK figures": the costs line now says it is the provider you found and that prices vary.</li>
+      <li><span class="done">Done</span> Official n8n logo: used from Draft v3, then removed in the keynote cut.</li>
+      <li><span class="done">Done</span> "AI emails the right parties": no longer in the script. Emails are now only a data source over MCP.</li>
+    </ul>
+    <p>Still open from the old list, and moved up above: rotate keys, repo public or private, practitioner read. "Blur before upload" applies again only if you add footage.</p>
+  </details>
 </main>
 </body>
 </html>

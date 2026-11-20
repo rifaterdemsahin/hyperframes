@@ -83,3 +83,12 @@ test("the latest draft in draft/versions.json has actually been rendered", () =>
     `draft/versions.json says latest is v${vers.latest} but draft/v${vers.latest}/video.mp4 is missing: run node scripts/render-draft.mjs --version=${vers.latest}. The review page would silently play an older draft.`
   );
 });
+
+test("recommendations.html has been reviewed against a recent draft", () => {
+  // The page is hand-written; it stalled at Draft v2 for 9 drafts. Fail when it falls more than 2 drafts behind.
+  const html = fs.readFileSync(path.join(root, "recommendations.html"), "utf8");
+  const m = html.match(/data-reviewed-draft="(\d+)"/);
+  assert.ok(m, "recommendations.html needs data-reviewed-draft on <main>");
+  const latest = JSON.parse(fs.readFileSync(path.join(root, "draft/versions.json"), "utf8")).latest;
+  assert.ok(latest - Number(m[1]) <= 2, `recommendations.html was last reviewed against Draft v${m[1]} but the latest is v${latest}: rescan the project, update the page and data-reviewed-draft`);
+});
