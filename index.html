@@ -22,10 +22,10 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.35.0"></script>
+<script src="nav.js?v=1.36.0"></script>
 <main>
   <h1>Using AI to Beat the Red Tape: Part 1 of 3</h1>
-  <p class="sub">How I used AI to get through the red tape of closing a UK company: 4:04 film, 10 scenes, built in Hyperframes. Draft v10 is the latest cut.</p>
+  <p class="sub">How I used AI to get through the red tape of closing a UK company: 4:04 film, 10 scenes, built in Hyperframes. Draft v11 is the latest cut.</p>
   <!--PIPELINE-START-->
 <style>
 #pipeline{margin:22px 0 8px}#pipeline h2{margin:0 0 4px;font-size:20px}#pipeline .sub2{color:var(--mute);margin:0 0 14px;font-size:14px}
@@ -50,7 +50,7 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
   </li><li class="stg" id="stage-build">
     <div class="sh"><span class="n">2</span><span class="ic">🎬</span><b>Build</b><small>Prod</small></div>
     <p class="purpose">Make the film in Hyperframes and see how long it takes.</p>
-    <p class="status">📊 Draft v10 · 4:04 · check: 0 errors, 9 warnings</p>
+    <p class="status">📊 Draft v11 · 4:04 · check: 0 errors, 10 warnings</p>
     <ul><li><a href="renders.html">🎬 Renders &amp; State</a> <span>all draft renders, MP4 assets and current render state</span></li><li><a href="first-draft.html">🎞️ Draft video</a> <span>the latest cut and what changed</span></li><li><a href="performance.html">⏱️ Performance</a> <span>how long the pipeline takes</span></li><li><a href="hyperframes-guide/">🧩 Overview</a> <span>what it is and how it renders</span></li></ul>
     <p class="more">+ 8 more in the menu</p>
   </li><li class="stg" id="stage-review">
@@ -68,7 +68,7 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
   </li><li class="stg" id="stage-project">
     <div class="sh"><span class="n">5</span><span class="ic">⚙️</span><b>Project</b><small>How this works</small></div>
     <p class="purpose">How the system works, and how to reuse it for the next video.</p>
-    <p class="status">📊 site v1.33.0 · 27 pages</p>
+    <p class="status">📊 site v1.35.0 · 27 pages</p>
     <ul><li><a href="costs.html">💰 Costs &amp; estimates</a> <span>tooling, API &amp; iteration expenses</span></li><li><a href="video-releases.html">📦 Video releases &amp; limits</a> <span>GitHub Releases limits, video hosting &amp; assets</span></li><li><a href="reuse.html">♻️ Reuse as template</a> <span>keep the engine, replace the content</span></li><li><a href="agents.html">🤖 AGENTS.md</a> <span>the rules any AI agent follows here</span></li><li><a href="changelog.html">🕘 Changelog</a> <span>every release</span></li></ul>
     <p class="more">+ 3 more in the menu</p>
   </li></ol>
@@ -118,6 +118,8 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
 <g class="ed"><line x1="418" y1="448" x2="728" y2="448" marker-end="url(#ah)"/><text class="el" x="573" y="443" text-anchor="middle">media</text></g>
 <g class="ed"><line x1="898" y1="448" x2="968" y2="441.6" marker-end="url(#ah)"/><text class="el" x="933" y="439.8" text-anchor="middle">render</text></g>
 <g class="ed"><line x1="968" y1="470.4" x2="898" y2="525.2" marker-end="url(#ah)"/><text class="el" x="933" y="492.8" text-anchor="middle">MP4</text></g>
+<g class="ed"><line x1="658" y1="525.2" x2="728" y2="467.2" marker-end="url(#ah)"/><text class="el" x="693" y="491.20000000000005" text-anchor="middle">audits</text></g>
+<g class="ed"><line x1="728" y1="550.8" x2="658" y2="550.8" marker-end="url(#ah)"/><text class="el" x="693" y="545.8" text-anchor="middle">thumbs</text></g>
 <g class="ed loop"><path d="M1053,56 L1053,22 L93,22 L93,55" fill="none" marker-end="url(#ah)"/>
   <text class="el" x="573" y="16" text-anchor="middle">👀 you review the live site in Chrome, copy feedback, paste it to Claude</text></g>
 <g class="nd person" transform="translate(8,56)"><title>You: feedback + footage</title>
@@ -170,6 +172,11 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
   <text class="ic" x="12" y="40">🎨</text>
   <text class="tt" x="44" y="28">gen-*.sh</text>
   <text class="st" x="44" y="46">image + voice drafts</text></g>
+<g class="nd gen" transform="translate(488,506)"><title>audit-keynote.mjs: text rules per frame</title>
+  <rect width="170" height="64" rx="10"/>
+  <text class="ic" x="12" y="40">🔍</text>
+  <text class="tt" x="44" y="28">audit-keynote.mjs</text>
+  <text class="st" x="44" y="46">text rules per frame</text></g>
 <g class="nd out" transform="translate(728,56)"><title>Site pages: Preprod to Postprod</title>
   <rect width="170" height="64" rx="10"/>
   <text class="ic" x="12" y="40">🌐</text>
@@ -214,7 +221,7 @@ h2{margin:36px 0 8px;font-size:18px}ol{padding-left:20px;color:var(--mute)}li{ma
 <span><i style="border-color:var(--mute);border-style:dashed"></i>External service</span>
 <span><i style="border-color:#d08a1e;border-style:dotted"></i>Secret</span>
 <span>Arrow = depends on / feeds into</span></div>
-  <details open><summary>Dependencies, part by part</summary><div class="tw"><table><tr><th></th><th>Part</th><th>Depends on</th></tr><tr><td>📜</td><td><b>script/scenes.json</b></td><td>Edited by you and Claude. Read by every generator and by the video project.</td></tr><tr><td>📘</td><td><b>spec/project.json</b></td><td>Edited by you and Claude. Read by build-master-spec.</td></tr><tr><td>🕘</td><td><b>versions.json</b></td><td>Written only by version.mjs. Read by nav.js (footer, menu), changelog and the changes page.</td></tr><tr><td>🎨</td><td><b>gen-backgrounds.sh, gen-voiceover.sh</b></td><td>scenes.json, FAL_KEY in .env, the fal.ai API, plus curl, jq and ffmpeg.</td></tr><tr><td>🏗️</td><td><b>build-*.mjs</b></td><td>Node.js, scenes.json, project.json, versions.json, AGENTS.md, and git history (changes page).</td></tr><tr><td>🔖</td><td><b>version.mjs</b></td><td>versions.json. Rewrites nav.js data, changelog.html and the ?v= cache-busters in every page.</td></tr><tr><td>🌐</td><td><b>Site pages</b></td><td>The build scripts, plus nav.js, feedback.js and site.css loaded by every page.</td></tr><tr><td>🧩</td><td><b>nav.js, feedback.js</b></td><td>versions data stamped into nav.js, and your browser's localStorage for notes and ticks.</td></tr><tr><td>🐙</td><td><b>GitHub Pages</b></td><td>A push to main. Pages caches for about 10 minutes, so assets carry a ?v= version.</td></tr><tr><td>🎬</td><td><b>video/ project</b></td><td>Generated by build-video.mjs from scenes.json (timings, text), plus assets/bg, assets/vo, the npm package hyperframes@0.9.67 and GSAP from a CDN.</td></tr><tr><td>⏱️</td><td><b>render-draft.mjs</b></td><td>build-video, the Hyperframes CLI (check, render), ffmpeg and gh (deploy history). Feeds the First draft, Review and Performance pages.</td></tr><tr><td>🧪</td><td><b>run-tests.mjs, run-evals.mjs</b></td><td>Automated test suite (spec, server HTTP 206/CORS, syntax, review query state) and production evals (voiceover WPM pacing, hook retention, editorial compliance).</td></tr><tr><td>📼</td><td><b>Final MP4</b></td><td>The video project rendered by the Hyperframes CLI using headless Chrome and FFmpeg.</td></tr><tr><td>📣</td><td><b>Publish page, thumbnails</b></td><td>publish.json, scenes.json (chapters), project.json (disclaimer); thumbnails need headless Chrome, ffmpeg and the fal.ai red-tape plate.</td></tr><tr><td>🤖</td><td><b>Claude Code</b></td><td>AGENTS.md for the rules, your pasted feedback as input, git, and gh to check the deploy.</td></tr></table></div></details>
+  <details open><summary>Dependencies, part by part</summary><div class="tw"><table><tr><th></th><th>Part</th><th>Depends on</th></tr><tr><td>📜</td><td><b>script/scenes.json</b></td><td>Edited by you and Claude. Read by every generator and by the video project.</td></tr><tr><td>📘</td><td><b>spec/project.json</b></td><td>Edited by you and Claude. Read by build-master-spec.</td></tr><tr><td>🕘</td><td><b>versions.json</b></td><td>Written only by version.mjs. Read by nav.js (footer, menu), changelog and the changes page.</td></tr><tr><td>🎨</td><td><b>gen-backgrounds.sh, gen-voiceover.sh</b></td><td>scenes.json, FAL_KEY in .env, the fal.ai API, plus curl, jq and ffmpeg.</td></tr><tr><td>🏗️</td><td><b>build-*.mjs</b></td><td>Node.js, scenes.json, project.json, versions.json, AGENTS.md, and git history (changes page).</td></tr><tr><td>🔖</td><td><b>version.mjs</b></td><td>versions.json. Rewrites nav.js data, changelog.html and the ?v= cache-busters in every page.</td></tr><tr><td>🌐</td><td><b>Site pages</b></td><td>The build scripts, plus nav.js, feedback.js and site.css loaded by every page.</td></tr><tr><td>🧩</td><td><b>nav.js, feedback.js</b></td><td>versions data stamped into nav.js, and your browser's localStorage for notes and ticks.</td></tr><tr><td>🐙</td><td><b>GitHub Pages</b></td><td>A push to main. Pages caches for about 10 minutes, so assets carry a ?v= version.</td></tr><tr><td>🎬</td><td><b>video/ project</b></td><td>Generated by build-video.mjs from scenes.json (timings, text), plus assets/bg, assets/vo, the npm package hyperframes@0.9.67 and GSAP from a CDN.</td></tr><tr><td>⏱️</td><td><b>render-draft.mjs</b></td><td>build-video, the Hyperframes CLI (check, render), ffmpeg and gh (deploy history). Feeds the First draft, Review and Performance pages.</td></tr><tr><td>🔍</td><td><b>audit-keynote.mjs</b></td><td>Google Chrome (DevTools protocol over Node's built-in WebSocket, no npm packages), the scene files in video/compositions, ffmpeg and a rendered MP4 for thumbnails. Writes docs/keynote-audit/.</td></tr><tr><td>🧪</td><td><b>run-tests.mjs, run-evals.mjs</b></td><td>Automated test suite (spec, server HTTP 206/CORS, syntax, review query state) and production evals (voiceover WPM pacing, hook retention, editorial compliance).</td></tr><tr><td>📼</td><td><b>Final MP4</b></td><td>The video project rendered by the Hyperframes CLI using headless Chrome and FFmpeg.</td></tr><tr><td>📣</td><td><b>Publish page, thumbnails</b></td><td>publish.json, scenes.json (chapters), project.json (disclaimer); thumbnails need headless Chrome, ffmpeg and the fal.ai red-tape plate.</td></tr><tr><td>🤖</td><td><b>Claude Code</b></td><td>AGENTS.md for the rules, your pasted feedback as input, git, and gh to check the deploy.</td></tr></table></div></details>
 </section>
 <!--ARCH-END-->
   <p class="note">AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.</p>

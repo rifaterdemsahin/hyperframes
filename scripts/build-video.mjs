@@ -195,6 +195,146 @@ const CSS = `
 
 const GSAP = `<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>`;
 
+// ---------------------------------------------------------------------------------------------
+// KEYNOTE STYLE ("style": "keynote" in scenes.json): one idea per screen, almost no text.
+// Each scene plays its `keynote` beats in order. A beat is one short phrase (max 6 words), one
+// accent word, centred on black. A beat starts on the word in the voiceover named by `at`
+// (estimated from the word position, like the old captions) and lasts until the next beat, so
+// the beats fill the scene. Beats are chained with relative data-start="<previous beat id>".
+// Text that the old layout showed and this one drops is kept in an HTML comment per scene and
+// in video/notes.md, so nothing is lost.
+// ---------------------------------------------------------------------------------------------
+const KEYNOTE = S.style === "keynote";
+const KN = { accent: "#2997ff", ink: "#f5f5f7", font: "Inter", lead: 0.15, minBeat: 0.9 };
+const KN_CSS = `
+    :root { --kn-ink: ${KN.ink}; --kn-accent: ${KN.accent}; --kn-font: ${KN.font}, sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    .scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--kn-font); color: var(--kn-ink); opacity: 0; }
+    .kn-ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 72%); }
+    .beat { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .kt { max-width: 1600px; text-align: center; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
+    .key { font-weight: 600; color: var(--kn-accent); }
+    .kimg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; }
+    .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
+    .beat-img { align-items: flex-end; }
+    .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }`;
+
+const knNorm = (w) => w.replace(/[^\p{L}\p{N}£$%'’-]/gu, "").toLowerCase();
+const knSize = (text) => Math.max(140, Math.min(200, Math.floor(1560 / (text.length * 0.5))));
+const knMarkup = (text, key) => {
+  const i = text.indexOf(key);
+  return i < 0 ? esc(text) : `${esc(text.slice(0, i))}<span class="key">${esc(key)}</span>${esc(text.slice(i + key.length))}`;
+};
+const knStripTags = (html) => String(html || "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim();
+const knNotes = [];
+
+function keynoteFile(s, i, gfxHtml, voDur) {
+  const sid = s.id.split("-")[0];
+  const words = s.vo.split(/\s+/).filter(Boolean).map(knNorm);
+  let pos = -1;
+  const beats = s.keynote.map((b, k) => {
+    let t = 0;
+    if (k > 0) {
+      const aw = b.at.split(/\s+/).map(knNorm);
+      const idx = words.findIndex((_, j) => j > pos && aw.every((w, q) => words[j + q] === w));
+      if (idx < 0) throw new Error(`${s.id}: keynote anchor "${b.at}" not found in the voiceover after word ${pos}`);
+      pos = idx;
+      t = Math.max(0.4, VO_LEAD + (voDur * idx) / words.length - KN.lead);
+    }
+    return { ...b, id: `${sid}-k${k}`, t: r2(t) };
+  });
+  beats.forEach((b, k) => {
+    const end = k + 1 < beats.length ? beats[k + 1].t : s.duration;
+    b.d = r2(end - b.t);
+    const need = r2(0.68 + 0.225 * b.text.split(/\s+/).filter((w) => /[\p{L}\p{N}£$%]/u.test(w)).length);
+    if (b.d < need) console.warn(`  ! ${s.id} beat "${b.text}" is ${b.d}s, under its ${need}s reading floor (Hyperframes line_unread): merge or drop it`);
+  });
+
+  const moved = [...s.overlay, ...(knStripTags(gfxHtml) ? [knStripTags(gfxHtml)] : [])];
+  knNotes.push({ s, beats, moved });
+
+  const html = beats.map((b, k) => {
+    const start = k === 0 ? "0" : beats[k - 1].id;
+    if (b.image) {
+      return `
+      <div id="${b.id}" class="clip beat beat-img" data-start="${start}" data-duration="${b.d}" data-track-index="2">
+        <div id="${b.id}-img" class="kimg" data-layout-ignore style="background-image:url(../assets/bg/${esc(b.image)}.jpg)"></div>
+        <div class="kimg-shade" data-layout-ignore></div>
+        <p id="${b.id}-t" class="kt kcap">${knMarkup(b.text, b.key)}</p>
+      </div>`;
+    }
+    return `
+      <div id="${b.id}" class="clip beat" data-start="${start}" data-duration="${b.d}" data-track-index="2">
+        <h1 id="${b.id}-t" class="kt" style="font-size:${knSize(b.text)}px">${knMarkup(b.text, b.key)}</h1>
+      </div>`;
+  }).join("");
+
+  let js = `
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    ${i === 0 ? `tl.set("#scene", { opacity: 1 }, 0);` : `tl.fromTo("#scene", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);`}
+${i === scenes.length - 1 ? "" : `    tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, ${r2(s.duration - 0.4)});`}`;
+  beats.forEach((b, k) => {
+    const last = k === beats.length - 1;
+    js += i === 0 && k === 0 ? `
+    tl.set("#${b.id}-t", { opacity: 1, y: 0 }, 0);` : `
+    tl.fromTo("#${b.id}-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, ${b.t});`;
+    js += `
+    tl.fromTo("#${b.id}-t", { scale: 1 }, { scale: 1.03, duration: ${b.d}, ease: "none" }, ${b.t});`;
+    if (b.image) js += `
+    tl.fromTo("#${b.id}-img", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.08, duration: ${b.d}, ease: "none" }, ${b.t});`;
+    if (!last) js += `
+    tl.to("#${b.id}-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, ${r2(b.t + b.d - 0.3)});`;
+  });
+  js += `
+    window.__timelines["${s.id}"] = tl;
+    tl.seek(0);`;
+
+  const comment = moved.length ? `\n      <!-- moved to VO: ${moved.map((m) => m.replace(/--/g, "–")).join(" | ")} -->` : "";
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- GENERATED by scripts/build-video.mjs (keynote style) from script/scenes.json. Edit the script, not this file. -->
+  ${GSAP}
+  <style>${KN_CSS}
+  </style>
+</head>
+<body>
+  <div data-composition-id="${s.id}" data-duration="${s.duration}" data-width="1920" data-height="1080">
+    <div id="scene" class="scene">
+      <div class="kn-ground" data-layout-ignore></div>${comment}${html}
+    </div>
+    <script>${js}
+    </script>
+  </div>
+</body>
+</html>
+`;
+}
+
+function keynoteNotes() {
+  const tc = (x) => `${Math.floor(x / 60)}:${(x % 60).toFixed(1).padStart(4, "0")}`;
+  const out = [
+    "# Keynote cut: notes",
+    "",
+    "GENERATED by `scripts/build-video.mjs` from `script/scenes.json` (`\"style\": \"keynote\"`). Edit the script, not this file.",
+    "",
+    "Every frame follows the keynote rules: one idea per screen, at most 6 words, no lists, one accent colour, 140 to 200 px type on black.",
+    "Everything the earlier layout showed on screen and this cut drops is kept below, scene by scene. The voiceover still says all of it.",
+    "Burned-in captions are removed; the full voiceover text is in `script/scenes.json` for YouTube captions.",
+    "",
+  ];
+  for (const { s, beats, moved } of knNotes) {
+    out.push(`## ${s.id} (${tc(s.start)} to ${tc(s.start + s.duration)})`, "", "| On screen at | Beat | Seconds |", "|---|---|---|");
+    for (const b of beats) out.push(`| ${tc(s.start + b.t)} | ${b.image ? `[image: ${b.image}] ` : ""}${b.text} | ${b.d} |`);
+    out.push("", "Moved to VO (no longer on screen):", "", ...moved.map((m) => `- ${m}`), "");
+  }
+  return out.join("\n");
+}
+
+
 mkdirSync(`${root}/video/compositions`, { recursive: true });
 const keep = new Set(scenes.map((s) => `${s.id}.html`));
 for (const f of readdirSync(`${root}/video/compositions`)) if (f.endsWith(".html") && !keep.has(f)) unlinkSync(`${root}/video/compositions/${f}`);
@@ -556,7 +696,7 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
       </div>`;
   }
 
-  const file = `<!doctype html>
+  const file = KEYNOTE ? keynoteFile(s, i, gfxHtml, voDur) : `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -624,4 +764,5 @@ const index = `<!doctype html>
 </html>
 `;
 writeFileSync(`${root}/video/index.html`, index);
-console.log(`wrote video/index.html + ${scenes.length} scene files in video/compositions: ${total} s (${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}), ${FINAL ? "final" : "draft v" + DRAFT_N}`);
+if (KEYNOTE) writeFileSync(`${root}/video/notes.md`, keynoteNotes());
+console.log(`wrote video/index.html + ${scenes.length} scene files${KEYNOTE ? " (keynote style)" : ""} in video/compositions: ${total} s (${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}), ${FINAL ? "final" : "draft v" + DRAFT_N}`);

@@ -19,7 +19,33 @@
       ],
       "ph": null,
       "voSeconds": 11.9,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "The end.",
+          "key": "end"
+        },
+        {
+          "at": "and I'm closing",
+          "text": "Closed properly.",
+          "key": "properly"
+        },
+        {
+          "at": "If you're a UK",
+          "text": "For UK directors.",
+          "key": "UK"
+        },
+        {
+          "at": "here's how a liquidation",
+          "text": "Liquidation × AI",
+          "key": "AI"
+        },
+        {
+          "at": "and the five things",
+          "text": "5 things first.",
+          "key": "5"
+        }
+      ]
     },
     {
       "id": "s02-intro",
@@ -39,7 +65,43 @@
       ],
       "ph": "Face cam placeholder · lower-third: Rifat · Cambridge, UK",
       "voSeconds": 20.8,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "Rifat, IT contractor.",
+          "key": "IT contractor"
+        },
+        {
+          "at": "The tax rules",
+          "text": "The rules changed.",
+          "key": "changed"
+        },
+        {
+          "at": "creating an involuntary",
+          "text": "Pushed inside IR35.",
+          "key": "IR35"
+        },
+        {
+          "at": "as the market",
+          "text": "The market fell.",
+          "key": "fell"
+        },
+        {
+          "at": "Doing the numbers",
+          "text": "The numbers? A hassle.",
+          "key": "hassle"
+        },
+        {
+          "at": "but with AI",
+          "text": "AI cuts the red tape.",
+          "key": "AI"
+        },
+        {
+          "at": "It's time to close",
+          "text": "Time to close.",
+          "key": "close"
+        }
+      ]
     },
     {
       "id": "s03-goal",
@@ -60,7 +122,49 @@
       "ph": null,
       "fx": null,
       "voSeconds": 17.6,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "The goal.",
+          "key": "goal"
+        },
+        {
+          "at": "The industrial and",
+          "text": "Two revolutions.",
+          "key": "Two"
+        },
+        {
+          "at": "introduced so much",
+          "image": "redtape",
+          "text": "So much red tape.",
+          "key": "red tape"
+        },
+        {
+          "at": "Company debt stays",
+          "text": "Company debt stays the company's.",
+          "key": "company's"
+        },
+        {
+          "at": "A licensed practitioner",
+          "text": "The practitioner takes over.",
+          "key": "practitioner"
+        },
+        {
+          "at": "and pays creditors",
+          "text": "Pays creditors, in order.",
+          "key": "in order"
+        },
+        {
+          "at": "There is a lot",
+          "text": "Red tape is everywhere.",
+          "key": "everywhere"
+        },
+        {
+          "at": "so understand it",
+          "text": "Understand it first.",
+          "key": "first"
+        }
+      ]
     },
     {
       "id": "s04-five-things",
@@ -83,7 +187,88 @@
       ],
       "ph": null,
       "voSeconds": 37.6,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "5 things first.",
+          "key": "5"
+        },
+        {
+          "at": "with AI as",
+          "text": "AI as support.",
+          "key": "support"
+        },
+        {
+          "at": "Remember, this is",
+          "text": "From AI. Not financial advice.",
+          "key": "Not"
+        },
+        {
+          "at": "Your job is",
+          "text": "Your job: learn.",
+          "key": "learn"
+        },
+        {
+          "at": "One: check your",
+          "text": "HMRC balance.",
+          "key": "HMRC"
+        },
+        {
+          "at": "Two: gather the",
+          "text": "Books and records.",
+          "key": "records"
+        },
+        {
+          "at": "Three: get a",
+          "text": "A licensed practitioner.",
+          "key": "licensed"
+        },
+        {
+          "at": "I chose one",
+          "text": "4.8 stars.",
+          "key": "4.8"
+        },
+        {
+          "at": "Four: stop trading,",
+          "text": "Stop trading.",
+          "key": "Stop"
+        },
+        {
+          "at": "and don't pay",
+          "text": "No creditor goes first.",
+          "key": "No"
+        },
+        {
+          "at": "Your practitioner will",
+          "text": "Your practitioner confirms.",
+          "key": "confirms"
+        },
+        {
+          "at": "Five: close your",
+          "text": "Close every invoice.",
+          "key": "Close"
+        },
+        {
+          "at": "and bring every",
+          "text": "Every account to zero.",
+          "key": "zero"
+        },
+        {
+          "at": "or the money",
+          "text": "Or it goes to the Crown.",
+          "key": "Crown"
+        },
+        {
+          "at": "Connect all of",
+          "text": "Connect it all to AI.",
+          "key": "AI"
+        },
+        {
+          "at": "Be ready to",
+          "text": "Learn, then act.",
+          "key": "act"
+        }
+      ]
     },
     {
       "id": "s05-cost-timeline",
@@ -108,7 +293,53 @@
         "cue": "costs"
       },
       "voSeconds": 24.6,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "What it costs.",
+          "key": "costs"
+        },
+        {
+          "at": "a £1,500 deposit,",
+          "text": "£1,500 + £2,100",
+          "key": "£2,100"
+        },
+        {
+          "at": "This is the",
+          "text": "One provider I found.",
+          "key": "found"
+        },
+        {
+          "at": "There could be",
+          "text": "Prices vary. Plan for it.",
+          "key": "Plan"
+        },
+        {
+          "at": "The process before",
+          "text": "2 months before.",
+          "key": "2"
+        },
+        {
+          "at": "and after the",
+          "text": "2 months after.",
+          "key": "2"
+        },
+        {
+          "at": "You plus AI",
+          "text": "You + AI = leverage.",
+          "key": "leverage"
+        },
+        {
+          "at": "Learn and act",
+          "text": "Learn, act, build skills.",
+          "key": "skills"
+        },
+        {
+          "at": "and carry them",
+          "text": "Carry them forward.",
+          "key": "forward"
+        }
+      ]
     },
     {
       "id": "s06-exceptions",
@@ -133,7 +364,58 @@
         "cue": "hands-off"
       },
       "voSeconds": 27,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "The exceptions.",
+          "key": "exceptions"
+        },
+        {
+          "at": "The protection isn't",
+          "text": "Protection isn't absolute.",
+          "key": "isn't"
+        },
+        {
+          "at": "When I stopped",
+          "text": "No more accountant.",
+          "key": "No"
+        },
+        {
+          "at": "I felt isolated,",
+          "text": "Isolated.",
+          "key": "Isolated"
+        },
+        {
+          "at": "and AI was",
+          "text": "AI was there.",
+          "key": "AI"
+        },
+        {
+          "at": "But AI systems",
+          "text": "AI isn't hands-off.",
+          "key": "hands-off"
+        },
+        {
+          "at": "you are hands-on",
+          "text": "You are hands-on.",
+          "key": "hands-on"
+        },
+        {
+          "at": "The insolvency practitioner",
+          "text": "The practitioner: your guardrail.",
+          "key": "guardrail"
+        },
+        {
+          "at": "so be sure",
+          "text": "Check your own inputs.",
+          "key": "your own"
+        },
+        {
+          "at": "Personal liability remains",
+          "text": "Personal liability remains.",
+          "key": "remains"
+        }
+      ]
     },
     {
       "id": "s07-emails",
@@ -158,7 +440,43 @@
         "cue": "databases"
       },
       "voSeconds": 23.2,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "3 lessons.",
+          "key": "3"
+        },
+        {
+          "at": "One: the process",
+          "text": "Pay in full first.",
+          "key": "full"
+        },
+        {
+          "at": "provider chased me",
+          "text": "Chased 6 times.",
+          "key": "6"
+        },
+        {
+          "at": "Two: use online",
+          "text": "Keep it in writing.",
+          "key": "writing"
+        },
+        {
+          "at": "because online records",
+          "text": "Records are a database.",
+          "key": "database"
+        },
+        {
+          "at": "Three: connect your",
+          "text": "Connect it all over MCP.",
+          "key": "MCP"
+        },
+        {
+          "at": "When things go",
+          "text": "Learn. Iterate.",
+          "key": "Iterate"
+        }
+      ]
     },
     {
       "id": "s08-tracking",
@@ -183,7 +501,44 @@
         "cue": "deterministic"
       },
       "voSeconds": 24.6,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "n8n + AI agents.",
+          "key": "agents"
+        },
+        {
+          "at": "Remember: n8n is",
+          "text": "n8n: known.",
+          "key": "known"
+        },
+        {
+          "at": "while AI is",
+          "text": "AI: unknown.",
+          "key": "unknown"
+        },
+        {
+          "at": "Build your process",
+          "text": "Build around both.",
+          "key": "both"
+        },
+        {
+          "at": "A friend told",
+          "text": "“Why show your real work?”",
+          "key": "real"
+        },
+        {
+          "at": "Have the honour",
+          "text": "Share what's real.",
+          "key": "real"
+        },
+        {
+          "at": "Build your system",
+          "image": "heros-journey",
+          "text": "The next journey.",
+          "key": "next"
+        }
+      ]
     },
     {
       "id": "s09-cta",
@@ -203,7 +558,48 @@
       ],
       "ph": null,
       "voSeconds": 21.9,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "Shame.",
+          "key": "Shame"
+        },
+        {
+          "at": "but moving from",
+          "text": "From shame to grace.",
+          "key": "grace"
+        },
+        {
+          "at": "Don't attach your",
+          "text": "A company is just a vehicle.",
+          "key": "vehicle"
+        },
+        {
+          "at": "and you can",
+          "text": "You can restart.",
+          "key": "restart"
+        },
+        {
+          "at": "In Part 2,",
+          "text": "Part 2: the app and agents.",
+          "key": "Part 2"
+        },
+        {
+          "at": "If there is",
+          "text": "Want Part 2?",
+          "key": "Part 2"
+        },
+        {
+          "at": "Tell me in",
+          "text": "Tell me in the comments.",
+          "key": "comments"
+        },
+        {
+          "at": "and subscribe to",
+          "text": "Subscribe.",
+          "key": "Subscribe"
+        }
+      ]
     },
     {
       "id": "s10-outro",
@@ -225,7 +621,44 @@
       "logo": "skool",
       "link": "https://www.skool.com/delivery-pilot-8938/",
       "voSeconds": 17.2,
-      "voice": "bm_george"
+      "voice": "bm_george",
+      "keynote": [
+        {
+          "text": "AI organises and explains.",
+          "key": "AI"
+        },
+        {
+          "at": "but the licensed",
+          "text": "The practitioner decides.",
+          "key": "decides"
+        },
+        {
+          "at": "This is information,",
+          "text": "Not legal or financial advice.",
+          "key": "Not"
+        },
+        {
+          "at": "If you're building",
+          "text": "Building bots?",
+          "key": "bots"
+        },
+        {
+          "at": "join our Delivery",
+          "text": "Delivery Pilot, on Skool.",
+          "key": "Delivery Pilot"
+        },
+        {
+          "at": "at the link",
+          "text": "Link below.",
+          "key": "below"
+        },
+        {
+          "at": "See you in",
+          "text": "See you next time.",
+          "key": "next"
+        }
+      ]
     }
-  ]
+  ],
+  "style": "keynote"
 }

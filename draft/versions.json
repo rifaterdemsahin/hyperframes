@@ -1,5 +1,5 @@
 {
-  "latest": 10,
+  "latest": 11,
   "versions": [
     {
       "n": 1,
@@ -112,6 +112,18 @@
         "Scene 10 (fb-7231-718f): Delivery Pilot Skool panel glides to the centre (1.35x, blue glow) while the background and overlay text blur and dim.",
         "Scene 04: Fixed the ChatGPT card, which had jumped to the left edge on top of the 'Five things' list; it is back on the right with the Trustpilot card popping over it.",
         "Render fix: S08/S10 moves now use transforms only, so the Hyperframes check passes; that check failure is why v10 had not rendered before."
+      ]
+    },
+    {
+      "n": 11,
+      "date": "2026-11-20",
+      "label": "Eleventh draft: keynote cut",
+      "changes": [
+        "Whole film restyled as a keynote: one idea per screen, at most 6 words, no lists, Inter 140 to 200 px on a black radial background, one blue accent word per screen.",
+        "84 single-idea beats replace the heading, bullet stacks, card panels and burned-in captions; each beat starts on the word where the voiceover says it, chained with relative data-start.",
+        "Two full-bleed image beats with a short caption: red tape (S03) and the next journey (S08).",
+        "Everything dropped from the screen is kept in an HTML comment per scene and in video/notes.md; the voiceover is unchanged.",
+        "Keynote audit (scripts/audit-keynote.mjs): v10 had 163 of 163 text moments over the limits; v11 has 0."
       ]
     }
   ]

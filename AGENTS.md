@@ -36,7 +36,8 @@ node scripts/build-agents-page.mjs    # agents.html from this file
 node scripts/build-publish-page.mjs   # publish.html from spec/publish.json (titles, description, tags, thumbnails)
 scripts/build-thumbnails.sh           # thumbnails/thumb-*.html to 1280x720 JPG with headless Chrome + ffmpeg
 node scripts/build-architecture.mjs   # architecture diagram + dependency table inside index.html (edit NODES/EDGES/DEPS in the script)
-node scripts/build-video.mjs          # regenerate video/index.html + video/compositions from scenes.json
+node scripts/build-video.mjs          # regenerate video/index.html + video/compositions from scenes.json ("style": "keynote" uses each scene's `keynote` beats; also writes video/notes.md)
+node scripts/audit-keynote.mjs --label=vN --mp4=draft/vN/video.mp4  # keynote text audit of every on-screen moment -> docs/keynote-audit/vN.md (exit 2 if any moment breaks the rules)
 node scripts/render-draft.mjs [--version=N]  # build, check, render and TIME draft vN (default: latest in draft/versions.json); refreshes the draft, review and performance pages
 #   new draft version: add an entry (n, date, label, changes) to draft/versions.json, set "latest", then run render-draft. Older versions stay in draft/vN and are hidden on the page (?all=1)
 node scripts/build-menu.mjs           # the top menu (nav.js) and the pipeline on the intro, from spec/menu.json
@@ -84,6 +85,10 @@ Pages with their own feedback UI set `<body data-feedback="custom">`.
 - Render locally; see the speed page for why cloud rendering rarely pays off at this length.
 - **How long a render takes** (measured by `render-draft.mjs`, Apple M1 Max, 10 cores, 5 workers, for a ~4:04 film): about **3 to 3.5 minutes end to end** (median 3 min 12 s over the last 5 runs, range 2 min 48 s to 3 min 18 s). Of that, the MP4 render itself is about **2.5 minutes** (2 min 10 s to 2 min 32 s), the 720p web copy ~25 s, `npm run check` ~12 s, frames and site pages under 1 s. Early drafts with lighter scenes took 1 to 2 minutes. Budget about 5 minutes per draft including the look at the frames; plan the background wait instead of polling. The live numbers are on the Renders page (`renders.html#render-time`), refreshed from `spec/performance.json` on every render.
 - A render only happens if `npm run check` passes with 0 errors: `render-draft.mjs` stops at the check, leaves `draft/vN/video.mp4` missing, and the review page falls back to the previous MP4. `npm test` fails when the latest draft has no MP4. Animate transforms (x, y, xPercent, yPercent, scale, opacity) in GSAP: tweening `top`, `left` or `right` fails the check (`gsap_non_transform_motion`). To change layout, use an instant `tl.set` while the element is hidden.
+
+## Keynote style (from Draft v11)
+
+`script/scenes.json` has `"style": "keynote"`. Each scene's `keynote` array is the screen: one beat per idea, `{ "at": "<words in the voiceover>", "text": "...", "key": "<accent word>" }`, or `{ "at", "image": "<assets/bg name>", "text", "key" }` for a full-bleed image with one short caption. The first beat has no `at`. Rules: at most 6 words, no lists, one accent word, no boxes, borders, shadows or icons. Text you take off the screen goes to the voiceover, the per-scene HTML comment and `video/notes.md` (both generated). `build-video.mjs` warns when a beat is under its reading floor (0.68 s + 0.225 s a word): merge or drop it. Run `audit-keynote.mjs` before a release; it must report 0 flagged moments.
 
 ## Reuse
 
