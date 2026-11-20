@@ -1,5 +1,5 @@
 {
-  "site": "1.28.0",
+  "site": "1.29.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.28.0",
+      "version": "1.29.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -177,7 +177,7 @@
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.17.0",
+      "version": "1.18.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.25.0",
+      "version": "1.26.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,17 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.29.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "changes.html"
+      ],
+      "changes": [
+        "Sync task verification to Azure Blob Storage and display Trustpilot logo in Scene 04"
+      ]
+    },
     {
       "version": "1.28.0",
       "date": "2026-11-20",

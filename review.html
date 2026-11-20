@@ -42,7 +42,7 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s;flex-shrink:0}
 .carousel-dot.active{background:var(--accent);width:14px;border-radius:3px}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.28.0"></script>
+<script src="nav.js?v=1.29.0"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
   <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v9</span> <span class="badge" id="total">0</span></h1>
@@ -115,7 +115,10 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;color:var(--mute)">
         <span>Hit <b>Left / Right (← / →)</b> or <b>[ / ]</b></span>
-        <span id="cVerifiedSummary">0/24 verified</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span id="cAzSyncStatus" style="font-size:10.5px;color:var(--mute)">☁️ Azure: Local</span>
+          <span id="cVerifiedSummary">0/24 verified</span>
+        </div>
       </div>
     </div>
   </aside>
@@ -158,6 +161,7 @@ if ($("saveSas")) {
     const val = ($("azSas").value || "").trim();
     if (val) localStorage.setItem(KEY_SAS, val); else localStorage.removeItem(KEY_SAS);
     updateAzStatus();
+    if (val && typeof loadVerifiedFromAzure === "function") loadVerifiedFromAzure();
     $("msg").className = "ok";
     $("msg").textContent = val ? "Azure SAS URL saved." : "Azure SAS cleared.";
   };
@@ -490,7 +494,85 @@ $("sfilter").onchange = render;
 // ---- completed tasks carousel under add feedback
 const VERIFIED_KEY = "review-verified-v1";
 let verifiedMap = {}; try { verifiedMap = JSON.parse(localStorage.getItem(VERIFIED_KEY) || "{}"); } catch (_) {}
-const saveVerified = () => { try { localStorage.setItem(VERIFIED_KEY, JSON.stringify(verifiedMap)); } catch (_) {} };
+const saveVerified = () => {
+  try { localStorage.setItem(VERIFIED_KEY, JSON.stringify(verifiedMap)); } catch (_) {}
+  saveVerifiedToAzure();
+};
+
+async function saveVerifiedToAzure() {
+  const sas = getSas();
+  const azInd = $("cAzSyncStatus");
+  if (!sas) {
+    if (azInd) azInd.textContent = "☁️ Azure: Local";
+    return;
+  }
+  if (azInd) azInd.textContent = "☁️ Azure: Saving…";
+  try {
+    const u = new URL(sas);
+    const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
+    const putUrl = u.origin + u.pathname.replace(//$/, "") + "/hyperframes/" + filename + u.search;
+    const verifiedKeys = Object.keys(verifiedMap).filter((k) => verifiedMap[k]);
+    const payload = JSON.stringify({
+      draft: "Draft v" + R.draftN,
+      videoTitle: R.videoTitle,
+      updatedAt: new Date().toISOString(),
+      verifiedMap: verifiedMap,
+      verifiedCount: verifiedKeys.length,
+      verifiedIds: verifiedKeys
+    }, null, 2);
+
+    const res = await fetch(putUrl, {
+      method: "PUT",
+      headers: {
+        "x-ms-blob-type": "BlockBlob",
+        "Content-Type": "application/json"
+      },
+      body: payload
+    });
+    if (res.ok) {
+      if (azInd) azInd.textContent = "☁️ Azure: Synced (" + verifiedKeys.length + " ✓)";
+    } else {
+      if (azInd) azInd.textContent = "☁️ Azure sync HTTP " + res.status;
+    }
+  } catch (err) {
+    if (azInd) azInd.textContent = "☁️ Azure sync error";
+  }
+}
+
+async function loadVerifiedFromAzure() {
+  const sas = getSas();
+  const azInd = $("cAzSyncStatus");
+  if (!sas) {
+    if (azInd) azInd.textContent = "☁️ Azure: Local";
+    return;
+  }
+  try {
+    const u = new URL(sas);
+    const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Verification.json";
+    const getUrl = u.origin + u.pathname.replace(//$/, "") + "/hyperframes/" + filename + u.search;
+    const res = await fetch(getUrl);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.verifiedMap) {
+        let changed = false;
+        Object.entries(data.verifiedMap).forEach(([k, v]) => {
+          if (v && !verifiedMap[k]) {
+            verifiedMap[k] = true;
+            changed = true;
+          }
+        });
+        if (changed) {
+          try { localStorage.setItem(VERIFIED_KEY, JSON.stringify(verifiedMap)); } catch (_) {}
+          renderCarousel();
+        }
+        const vCount = Object.values(verifiedMap).filter(Boolean).length;
+        if (azInd) azInd.textContent = "☁️ Azure: Synced (" + vCount + " ✓)";
+      }
+    }
+  } catch (err) {
+    console.warn("Could not load verified state from Azure", err);
+  }
+}
 
 function fmtDuration(ms) {
   if (!ms || isNaN(ms) || ms < 0) return "N/A";
@@ -1086,5 +1168,6 @@ if (dlNotes) {
 }
 
 updateAzStatus(); renderPosts(); render(); renderCarousel(); tick(); syncPlay();
+if (typeof loadVerifiedFromAzure === "function") loadVerifiedFromAzure();
 </script>
 </body></html>
