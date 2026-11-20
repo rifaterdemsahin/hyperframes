@@ -24,6 +24,8 @@ const drafts = VERS.versions
     };
   })
   .sort((a, b) => a.n - b.n);
+const SC = existsSync(`${root}/draft/scores.json`) ? J("draft/scores.json") : null;
+drafts.forEach((d) => { d.score = SC?.drafts?.[String(d.n)] || null; });
 const scenes = S.scenes.map((s, i) => ({ id: s.id, n: i + 1, title: s.title, start: s.start }));
 if (drafts.length < 2) throw new Error("need at least two rendered drafts to compare");
 
@@ -60,6 +62,14 @@ const html = `<!doctype html>
 .frames td{width:50%}.frames img{width:100%;border-radius:6px;display:block;background:#000}
 .frames .none{font-size:12px;color:var(--mute)}
 .drift{font-size:12px;color:var(--mute)}
+.score{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:13px}
+.score .big{font-size:26px;font-weight:900;line-height:1}.score .big small{font-size:13px;font-weight:600}
+.score .why{color:var(--mute);margin:6px 0}
+.crit{display:grid;grid-template-columns:96px 1fr 34px;gap:6px;align-items:center;font-size:12px;margin:3px 0}
+.bar{display:block;height:7px;border-radius:99px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.delta{font-weight:800}.delta.up{color:var(--ok)}.delta.down{color:#e53e3e}
+.rank td{vertical-align:middle}.rank tr.selA td{background:rgba(255,209,102,.12)}.rank tr.selB td{background:rgba(76,195,217,.12)}
+.rank .tot{font-weight:900;font-size:16px;white-space:nowrap}.rank .wide{min-width:140px}
 </style></head><body>
 <script src="nav.js?v=${V.site}"></script>
 <main style="max-width:1280px">
@@ -77,8 +87,8 @@ const html = `<!doctype html>
   </div>
 
   <div class="pair">
-    <div class="side"><h3><span class="tagA">A</span><span id="titleA"></span></h3><video id="vA" preload="auto" playsinline></video><p class="stat" id="statA"></p></div>
-    <div class="side"><h3><span class="tagB">B</span><span id="titleB"></span></h3><video id="vB" preload="auto" playsinline></video><p class="stat" id="statB"></p></div>
+    <div class="side"><h3><span class="tagA">A</span><span id="titleA"></span></h3><video id="vA" preload="auto" playsinline></video><p class="stat" id="statA"></p><div class="score" id="scoreA"></div></div>
+    <div class="side"><h3><span class="tagB">B</span><span id="titleB"></span></h3><video id="vB" preload="auto" playsinline></video><p class="stat" id="statB"></p><div class="score" id="scoreB"></div></div>
   </div>
 
   <div class="controls" id="controls">
@@ -97,6 +107,10 @@ const html = `<!doctype html>
   <div class="chips" id="chips">${scenes.map((s) => `<button data-t="${s.start}" title="${esc(s.title)}">S${String(s.n).padStart(2, "0")} · ${Math.floor(s.start / 60)}:${String(s.start % 60).padStart(2, "0")}</button>`).join("")}</div>
   <p style="font-size:12.5px;color:var(--mute);margin:2px 0 0">Scene jumps use the current script's timings; older drafts can be timed a little differently. Keys: Space play/pause · ← → one frame · J L five seconds.</p>
 
+  <h2 style="margin-top:28px">Estimated value score</h2>
+  <p style="font-size:13px;color:var(--mute);margin-top:-6px">${esc(SC ? SC._about : "No scores yet: add draft/scores.json.")} ${SC ? esc(SC.method) : ""} Click a row to put that draft on side B.</p>
+  ${SC ? `<div class="tw"><table class="rank"><thead><tr><th>Draft</th><th>Score</th><th class="wide">Value</th>${SC.criteria.map((c) => `<th title="${esc(c.desc)}">${esc(c.label)} <small>×${c.weight}</small></th>`).join("")}<th>Why</th></tr></thead><tbody id="rank"></tbody></table></div>` : ""}
+
   <h2 style="margin-top:28px">What changed</h2>
   <div class="pair">
     <div class="card"><b><span class="tagA">A</span> <span id="chTitleA"></span></b><ul class="changes" id="chA"></ul></div>
@@ -114,6 +128,7 @@ const html = `<!doctype html>
 <script>
 (function () {
   var DRAFTS = ${JSON.stringify(drafts)};
+  var CRIT = ${JSON.stringify(SC ? SC.criteria : [])};
   var SCENES = ${JSON.stringify(scenes)};
   var FPS = 30;
   var byN = {}; DRAFTS.forEach(function (d) { byN[d.n] = d; });
@@ -143,13 +158,27 @@ const html = `<!doctype html>
     $("chTitle" + which).textContent = "Draft v" + d.n + " · " + d.label;
     $("ch" + which).innerHTML = d.changes.map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("") || "<li>No notes.</li>";
     $("fh" + which).textContent = "Draft v" + d.n;
+    var sc = d.score, el = $("score" + which);
+    if (!sc) { el.innerHTML = '<span class="why">No score for this draft yet.</span>'; return; }
+    var other = byN[which === "A" ? b : a].score, delta = other ? Math.round((sc.total - other.total) * 10) / 10 : null;
+    el.innerHTML = '<div class="big">' + sc.total + ' <small>/ 100 · estimated value</small>' + (delta !== null && delta !== 0 ? ' <span class="delta ' + (delta > 0 ? "up" : "down") + '">' + (delta > 0 ? "+" : "") + delta + " vs " + (which === "A" ? "B" : "A") + "</span>" : "") + '</div>' +
+      '<p class="why">' + esc(sc.why) + "</p>" +
+      CRIT.map(function (c) { var v = sc.scores[c.id]; return '<div class="crit" title="' + esc(c.desc) + '"><span>' + esc(c.label) + '</span><span class="bar"><i style="width:' + v * 10 + '%"></i></span><b>' + v + "</b></div>"; }).join("");
+  }
+  function rank() {
+    var body = $("rank"); if (!body) return;
+    var rows = DRAFTS.filter(function (d) { return d.score; }).sort(function (x, y) { return y.score.total - x.score.total; });
+    body.innerHTML = rows.map(function (d) {
+      return '<tr data-n="' + d.n + '" class="' + (d.n === a ? "selA" : d.n === b ? "selB" : "") + '" style="cursor:pointer"><td><b>v' + d.n + "</b>" + (d.n === a ? ' <span class="tagA">A</span>' : "") + (d.n === b ? ' <span class="tagB">B</span>' : "") + '</td><td class="tot">' + d.score.total + '</td><td class="wide"><span class="bar"><i style="width:' + d.score.total + '%"></i></span></td>' +
+        CRIT.map(function (c) { return "<td>" + d.score.scores[c.id] + "</td>"; }).join("") + '<td style="font-size:12.5px;min-width:260px">' + esc(d.score.why) + "</td></tr>";
+    }).join("");
   }
   function load() {
     var t = vB.currentTime || vA.currentTime || 0, playing = !vB.paused || !vA.paused;
     var dA = byN[a], dB = byN[b];
     selA.value = a; selB.value = b;
     vA.src = dA.src; vB.src = dB.src;
-    side("A", dA); side("B", dB);
+    side("A", dA); side("B", dB); rank();
     $("frames").innerHTML = SCENES.map(function (s) {
       var cell = function (d) { var f = d.frames[s.id]; return f ? '<img loading="lazy" src="' + f + '" alt="Draft v' + d.n + ', scene ' + s.n + '">' : '<span class="none">No frame for this scene in v' + d.n + "</span>"; };
       return '<tr data-t="' + s.start + '" style="cursor:pointer"><td colspan="2" style="padding:8px 12px 2px;font-weight:700;font-size:13px">S' + (s.n < 10 ? "0" : "") + s.n + " · " + esc(s.title) + '</td></tr><tr data-t="' + s.start + '" style="cursor:pointer"><td>' + cell(dA) + "</td><td>" + cell(dB) + "</td></tr>";
@@ -190,6 +219,7 @@ const html = `<!doctype html>
   document.querySelectorAll("#audio button").forEach(function (x) { x.onclick = function () { audio = x.dataset.a; applyAudio(); }; });
   $("chips").onclick = function (e) { var t = e.target.closest("button"); if (t) setT(+t.dataset.t + 0.5); };
   $("frames").onclick = function (e) { var r = e.target.closest("tr[data-t]"); if (r) { setT(+r.dataset.t + 0.5); window.scrollTo({ top: $("vA").getBoundingClientRect().top + scrollY - 80, behavior: "smooth" }); } };
+  if ($("rank")) $("rank").onclick = function (e) { var r = e.target.closest("tr[data-n]"); if (r && +r.dataset.n !== a) { b = +r.dataset.n; load(); window.scrollTo({ top: 0, behavior: "smooth" }); } };
   selA.onchange = function () { a = +selA.value; load(); };
   selB.onchange = function () { b = +selB.value; load(); };
   $("swap").onclick = function () { var x = a; a = b; b = x; load(); };

@@ -1,396 +1,327 @@
 {
-  "audio": "assets/vo/s08-tracking.mp3",
-  "language": "en",
-  "words": [
-    {
-      "text": "I",
-      "start": 0.32,
-      "end": 0.36,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "keep",
-      "start": 0.4,
-      "end": 0.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "track",
-      "start": 0.6,
-      "end": 0.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "of",
-      "start": 0.84,
-      "end": 0.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "it",
-      "start": 0.94,
-      "end": 1.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "all",
-      "start": 1.1,
-      "end": 1.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
-      "start": 1.24,
-      "end": 1.4,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "N8N",
-      "start": 1.48,
-      "end": 2.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 2.12,
-      "end": 2.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 2.36,
-      "end": 2.64,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "agents.",
-      "start": 2.8,
-      "end": 3.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Remember,",
-      "start": 3.64,
-      "end": 4.019,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "N8N",
-      "start": 4.46,
-      "end": 4.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 5.02,
-      "end": 5.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "deterministic",
-      "start": 5.18,
-      "end": 5.94,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 5.98,
-      "end": 6.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "known,",
-      "start": 6.16,
-      "end": 6.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "while",
-      "start": 6.76,
-      "end": 6.94,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 7.04,
-      "end": 7.4,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 7.44,
-      "end": 7.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "probabilistic",
-      "start": 7.64,
-      "end": 8.34,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 8.46,
-      "end": 8.54,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "unknown.",
-      "start": 8.6,
-      "end": 9.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Build",
-      "start": 9.48,
-      "end": 9.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 9.72,
-      "end": 9.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "process",
-      "start": 9.9,
-      "end": 10.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "around",
-      "start": 10.4,
-      "end": 10.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "both,",
-      "start": 10.74,
-      "end": 11.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 11.42,
-      "end": 11.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "friend",
-      "start": 11.54,
-      "end": 11.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "told",
-      "start": 11.86,
-      "end": 12.12,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "me.",
-      "start": 12.16,
-      "end": 12.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Become",
-      "start": 13.18,
-      "end": 13.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "like",
-      "start": 13.52,
-      "end": 13.7,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "MrBeast.",
-      "start": 13.74,
-      "end": 14.34,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Why",
-      "start": 14.72,
-      "end": 14.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "show",
-      "start": 14.98,
-      "end": 15.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 15.3,
-      "end": 15.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "real",
-      "start": 15.52,
-      "end": 15.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "work?",
-      "start": 15.82,
-      "end": 16.079,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Have",
-      "start": 16.94,
-      "end": 17.04,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 17.1,
-      "end": 17.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "honor",
-      "start": 17.28,
-      "end": 17.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 17.52,
-      "end": 17.62,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "do",
-      "start": 17.66,
-      "end": 17.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "what",
-      "start": 17.86,
-      "end": 17.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 18.02,
-      "end": 18.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "right",
-      "start": 18.22,
-      "end": 18.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 18.76,
-      "end": 18.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "share",
-      "start": 18.96,
-      "end": 19.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "what",
-      "start": 19.28,
-      "end": 19.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "you",
-      "start": 19.46,
-      "end": 19.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "are",
-      "start": 19.54,
-      "end": 19.64,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "genuinely",
-      "start": 19.68,
-      "end": 20.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "working",
-      "start": 20.18,
-      "end": 20.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "on.",
-      "start": 20.6,
-      "end": 20.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Build",
-      "start": 21.26,
-      "end": 21.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 21.52,
-      "end": 21.62,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "system",
-      "start": 21.74,
-      "end": 22.12,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 22.36,
-      "end": 22.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "mindset",
-      "start": 22.54,
-      "end": 23.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "for",
-      "start": 23.28,
-      "end": 23.34,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 23.38,
-      "end": 23.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "next",
-      "start": 23.48,
-      "end": 23.68,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "journey.",
-      "start": 23.8,
-      "end": 24.16,
-      "speaker": "speaker_0"
-    }
-  ]
+ "audio": "assets/vo/s08-tracking.mp3",
+ "language": "en",
+ "source": "openai-whisper base.en, word timestamps",
+ "words": [
+  {
+   "text": "To",
+   "start": 0.0,
+   "end": 0.32
+  },
+  {
+   "text": "keep",
+   "start": 0.32,
+   "end": 0.48
+  },
+  {
+   "text": "track,",
+   "start": 0.48,
+   "end": 0.7
+  },
+  {
+   "text": "I",
+   "start": 0.98,
+   "end": 1.04
+  },
+  {
+   "text": "use",
+   "start": 1.04,
+   "end": 1.24
+  },
+  {
+   "text": "N8N,",
+   "start": 1.24,
+   "end": 1.74
+  },
+  {
+   "text": "a",
+   "start": 2.1,
+   "end": 2.16
+  },
+  {
+   "text": "tool",
+   "start": 2.16,
+   "end": 2.38
+  },
+  {
+   "text": "for",
+   "start": 2.38,
+   "end": 2.58
+  },
+  {
+   "text": "building",
+   "start": 2.58,
+   "end": 2.82
+  },
+  {
+   "text": "automatic",
+   "start": 2.82,
+   "end": 3.24
+  },
+  {
+   "text": "workflows",
+   "start": 3.24,
+   "end": 3.92
+  },
+  {
+   "text": "plus",
+   "start": 3.92,
+   "end": 4.42
+  },
+  {
+   "text": "AI",
+   "start": 4.42,
+   "end": 4.74
+  },
+  {
+   "text": "agents,",
+   "start": 4.74,
+   "end": 5.26
+  },
+  {
+   "text": "small",
+   "start": 5.6,
+   "end": 5.76
+  },
+  {
+   "text": "programs",
+   "start": 5.76,
+   "end": 6.16
+  },
+  {
+   "text": "that",
+   "start": 6.16,
+   "end": 6.46
+  },
+  {
+   "text": "act",
+   "start": 6.46,
+   "end": 6.6
+  },
+  {
+   "text": "for",
+   "start": 6.6,
+   "end": 6.82
+  },
+  {
+   "text": "you.",
+   "start": 6.82,
+   "end": 6.98
+  },
+  {
+   "text": "A",
+   "start": 7.5,
+   "end": 7.5
+  },
+  {
+   "text": "workflow",
+   "start": 7.5,
+   "end": 7.82
+  },
+  {
+   "text": "does",
+   "start": 7.82,
+   "end": 8.12
+  },
+  {
+   "text": "the",
+   "start": 8.12,
+   "end": 8.24
+  },
+  {
+   "text": "same",
+   "start": 8.24,
+   "end": 8.44
+  },
+  {
+   "text": "thing",
+   "start": 8.44,
+   "end": 8.68
+  },
+  {
+   "text": "every",
+   "start": 8.68,
+   "end": 8.94
+  },
+  {
+   "text": "time",
+   "start": 8.94,
+   "end": 9.26
+  },
+  {
+   "text": "so",
+   "start": 9.26,
+   "end": 9.54
+  },
+  {
+   "text": "it's",
+   "start": 9.54,
+   "end": 9.68
+  },
+  {
+   "text": "predictable.",
+   "start": 9.68,
+   "end": 9.88
+  },
+  {
+   "text": "AI",
+   "start": 10.78,
+   "end": 10.84
+  },
+  {
+   "text": "can",
+   "start": 10.84,
+   "end": 11.18
+  },
+  {
+   "text": "surprise",
+   "start": 11.18,
+   "end": 11.44
+  },
+  {
+   "text": "you",
+   "start": 11.44,
+   "end": 11.78
+  },
+  {
+   "text": "so",
+   "start": 11.78,
+   "end": 11.98
+  },
+  {
+   "text": "it",
+   "start": 11.98,
+   "end": 12.1
+  },
+  {
+   "text": "needs",
+   "start": 12.1,
+   "end": 12.24
+  },
+  {
+   "text": "checking,",
+   "start": 12.24,
+   "end": 12.58
+  },
+  {
+   "text": "build",
+   "start": 13.0,
+   "end": 13.18
+  },
+  {
+   "text": "around",
+   "start": 13.18,
+   "end": 13.44
+  },
+  {
+   "text": "both.",
+   "start": 13.44,
+   "end": 13.8
+  },
+  {
+   "text": "A",
+   "start": 14.38,
+   "end": 14.4
+  },
+  {
+   "text": "friend",
+   "start": 14.4,
+   "end": 14.56
+  },
+  {
+   "text": "asked,",
+   "start": 14.56,
+   "end": 14.86
+  },
+  {
+   "text": "why",
+   "start": 15.22,
+   "end": 15.32
+  },
+  {
+   "text": "show",
+   "start": 15.32,
+   "end": 15.56
+  },
+  {
+   "text": "your",
+   "start": 15.56,
+   "end": 15.74
+  },
+  {
+   "text": "real",
+   "start": 15.74,
+   "end": 15.96
+  },
+  {
+   "text": "work?",
+   "start": 15.96,
+   "end": 16.26
+  },
+  {
+   "text": "Because",
+   "start": 16.82,
+   "end": 16.84
+  },
+  {
+   "text": "sharing",
+   "start": 16.84,
+   "end": 17.12
+  },
+  {
+   "text": "the",
+   "start": 17.12,
+   "end": 17.42
+  },
+  {
+   "text": "real",
+   "start": 17.42,
+   "end": 17.6
+  },
+  {
+   "text": "journey",
+   "start": 17.6,
+   "end": 17.86
+  },
+  {
+   "text": "is",
+   "start": 17.86,
+   "end": 18.24
+  },
+  {
+   "text": "how",
+   "start": 18.24,
+   "end": 18.4
+  },
+  {
+   "text": "we",
+   "start": 18.4,
+   "end": 18.54
+  },
+  {
+   "text": "all",
+   "start": 18.54,
+   "end": 18.68
+  },
+  {
+   "text": "learn.",
+   "start": 18.68,
+   "end": 19.0
+  },
+  {
+   "text": "That's",
+   "start": 19.46,
+   "end": 19.68
+  },
+  {
+   "text": "the",
+   "start": 19.68,
+   "end": 19.8
+  },
+  {
+   "text": "transformation.",
+   "start": 19.8,
+   "end": 20.04
+  }
+ ]
 }

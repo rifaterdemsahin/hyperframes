@@ -1,0 +1,219 @@
+{
+  "_about": "Estimated value scores for each rendered draft. These are Claude's estimates from a weighted rubric applied to what each draft contained (its change notes, the keynote audit, the audio measurements), not audience data. Replace them with YouTube analytics (retention, click-through, comments) once the film is published.",
+  "method": "Each criterion is scored 0 to 10; the total is the weighted sum, out of 100.",
+  "criteria": [
+    {
+      "id": "hook",
+      "label": "Hook",
+      "weight": 15,
+      "desc": "The first 15 s grab attention and promise value"
+    },
+    {
+      "id": "message",
+      "label": "Clear value",
+      "weight": 20,
+      "desc": "A clear, useful takeaway the viewer can act on"
+    },
+    {
+      "id": "plain",
+      "label": "Plain words",
+      "weight": 15,
+      "desc": "A mass audience can follow it: jargon explained, text readable"
+    },
+    {
+      "id": "visual",
+      "label": "Visuals",
+      "weight": 15,
+      "desc": "Visual engagement and clarity"
+    },
+    {
+      "id": "audio",
+      "label": "Audio",
+      "weight": 15,
+      "desc": "Voice, music and sound working together"
+    },
+    {
+      "id": "pace",
+      "label": "Pacing",
+      "weight": 10,
+      "desc": "One idea at a time, enough time to read"
+    },
+    {
+      "id": "trust",
+      "label": "Trust",
+      "weight": 10,
+      "desc": "Honest framing, disclaimer, the professional decides"
+    }
+  ],
+  "drafts": {
+    "1": {
+      "scores": {
+        "hook": 5,
+        "message": 5,
+        "plain": 4,
+        "visual": 3,
+        "audio": 4,
+        "pace": 5,
+        "trust": 7
+      },
+      "total": 46.0,
+      "why": "First cut from the script: placeholders for footage, draft AI voice, captions, crowded screens."
+    },
+    "2": {
+      "scores": {
+        "hook": 6,
+        "message": 5,
+        "plain": 4,
+        "visual": 4,
+        "audio": 4,
+        "pace": 5,
+        "trust": 7
+      },
+      "total": 49.0,
+      "why": "Stronger hook (\"how a liquidation works in the age of AI\"), lever animation; still placeholders and dense text."
+    },
+    "3": {
+      "scores": {
+        "hook": 6,
+        "message": 6,
+        "plain": 4,
+        "visual": 5,
+        "audio": 5,
+        "pace": 5,
+        "trust": 8
+      },
+      "total": 55.0,
+      "why": "Serious British voice, placeholders removed, disclaimer clearer; jargon (IR35, MCP) unexplained."
+    },
+    "4": {
+      "scores": {
+        "hook": 6,
+        "message": 6,
+        "plain": 5,
+        "visual": 6,
+        "audio": 5,
+        "pace": 5,
+        "trust": 8
+      },
+      "total": 58.0,
+      "why": "Animated captions help non-native viewers; official Skool logo."
+    },
+    "5": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6,
+        "plain": 5,
+        "visual": 6,
+        "audio": 6,
+        "pace": 6,
+        "trust": 8
+      },
+      "total": 61.2,
+      "why": "Faster, livelier voice; IR35 context; shame-to-grace card; BAM effect adds energy."
+    },
+    "6": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6.5,
+        "plain": 5,
+        "visual": 7,
+        "audio": 6,
+        "pace": 5.5,
+        "trust": 8
+      },
+      "total": 63.2,
+      "why": "Sharp HD visuals, AI core animation, ChatGPT co-pilot and handover graphics; screens getting busier."
+    },
+    "7": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6.5,
+        "plain": 5,
+        "visual": 7,
+        "audio": 6,
+        "pace": 5,
+        "trust": 8
+      },
+      "total": 62.8,
+      "why": "Emojis and the Hero's Journey card add warmth but more text per screen."
+    },
+    "8": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6.5,
+        "plain": 5,
+        "visual": 7.5,
+        "audio": 6,
+        "pace": 5,
+        "trust": 8
+      },
+      "total": 63.5,
+      "why": "Watermark removed: cleaner frame."
+    },
+    "9": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6.5,
+        "plain": 5,
+        "visual": 7.5,
+        "audio": 6.5,
+        "pace": 5,
+        "trust": 8.5
+      },
+      "total": 64.8,
+      "why": "Corrected Scene 7 rule, distinct friend voice, BAM removed: more accurate and calmer."
+    },
+    "10": {
+      "scores": {
+        "hook": 6.5,
+        "message": 6.5,
+        "plain": 5,
+        "visual": 7.7,
+        "audio": 6.5,
+        "pace": 5,
+        "trust": 8.5
+      },
+      "total": 65.0,
+      "why": "Review fixes (centred cards); the audit found all 163 text moments over the keynote limits."
+    },
+    "11": {
+      "scores": {
+        "hook": 6.5,
+        "message": 7,
+        "plain": 5,
+        "visual": 7,
+        "audio": 4.5,
+        "pace": 8.5,
+        "trust": 8.5
+      },
+      "total": 65.5,
+      "why": "Keynote cut: one idea per screen and easy to read, but silent gaps (no music), no captions and jargon still unexplained."
+    },
+    "12": {
+      "scores": {
+        "hook": 7,
+        "message": 7,
+        "plain": 5,
+        "visual": 8.5,
+        "audio": 7,
+        "pace": 8.5,
+        "trust": 8.5
+      },
+      "total": 72.2,
+      "why": "Adds a cinematic music bed and 24 drawn visuals; still a liquidation how-to with unexplained jargon."
+    },
+    "13": {
+      "scores": {
+        "hook": 8,
+        "message": 8.5,
+        "plain": 8,
+        "visual": 8.5,
+        "audio": 7.5,
+        "pace": 8,
+        "trust": 8.5
+      },
+      "total": 81.5,
+      "why": "Reframed as transformation and teaching yourself with AI, so it speaks to anyone facing change; every specialist term explained; inspiring piano bed; screens timed to the spoken word. Still an AI voice and no caption file yet."
+    }
+  }
+}

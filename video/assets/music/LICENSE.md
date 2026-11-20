@@ -14,7 +14,8 @@
 ## What this means for publishing
 
 - The track is original, machine-generated audio made for this film. It is not from a stock library, so there is no stock licence and no attribution requirement.
-- It is instrumental: a speech check (Whisper) found no words in it.
+- It is instrumental by request (`lyrics: "[inst]"`). A speech check (Whisper) heard only its usual artefacts on music ("You" every 30 s with a high no-speech probability, and "Salute!" at 0 s); nobody has listened to it yet.
+- Draft v13 uses an inspiring, piano-led bed (seed 20261121). Draft v12 used a darker orchestral bed (seed 20261120), still in the git history.
 - Caveat: generated music is not checked against existing recordings. If YouTube Content ID ever flags it, dispute with this file and `source.json` as the record, or regenerate with a new seed.
 
 ## How the mix works

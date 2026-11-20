@@ -1,234 +1,232 @@
 {
-  "audio": "assets/vo/s01-hook.mp3",
-  "language": "en",
-  "words": [
-    {
-      "text": "My",
-      "start": 0.28,
-      "end": 0.4,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "company",
-      "start": 0.44,
-      "end": 0.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 0.9,
-      "end": 1.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "coming",
-      "start": 1.08,
-      "end": 1.36,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 1.38,
-      "end": 1.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "an",
-      "start": 1.48,
-      "end": 1.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "end,",
-      "start": 1.68,
-      "end": 1.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 2.3,
-      "end": 2.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "I'm",
-      "start": 2.44,
-      "end": 2.56,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "closing",
-      "start": 2.6,
-      "end": 2.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "it",
-      "start": 3,
-      "end": 3.16,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "properly.",
-      "start": 3.2,
-      "end": 3.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "If",
-      "start": 4.16,
-      "end": 4.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "you're",
-      "start": 4.32,
-      "end": 4.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 4.54,
-      "end": 4.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "UK",
-      "start": 4.68,
-      "end": 5.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "director",
-      "start": 5.06,
-      "end": 5.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "in",
-      "start": 5.52,
-      "end": 5.56,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 5.6,
-      "end": 5.68,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "same",
-      "start": 5.74,
-      "end": 5.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "spot,",
-      "start": 6.14,
-      "end": 6.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "here's",
-      "start": 6.8,
-      "end": 7.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "how",
-      "start": 7.12,
-      "end": 7.22,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 7.26,
-      "end": 7.28,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "liquidation",
-      "start": 7.32,
-      "end": 7.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "works",
-      "start": 8.02,
-      "end": 8.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "in",
-      "start": 8.3,
-      "end": 8.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 8.42,
-      "end": 8.54,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "age",
-      "start": 8.62,
-      "end": 8.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "of",
-      "start": 8.84,
-      "end": 8.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 9.04,
-      "end": 9.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 9.76,
-      "end": 9.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 9.88,
-      "end": 9.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "five",
-      "start": 10.02,
-      "end": 10.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "things",
-      "start": 10.32,
-      "end": 10.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 10.64,
-      "end": 10.74,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "do",
-      "start": 10.78,
-      "end": 10.88,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "first.",
-      "start": 11.02,
-      "end": 11.42,
-      "speaker": "speaker_0"
-    }
-  ]
+ "audio": "assets/vo/s01-hook.mp3",
+ "language": "en",
+ "source": "openai-whisper base.en, word timestamps",
+ "words": [
+  {
+   "text": "Every",
+   "start": 0.0,
+   "end": 0.4
+  },
+  {
+   "text": "big",
+   "start": 0.4,
+   "end": 0.62
+  },
+  {
+   "text": "change",
+   "start": 0.62,
+   "end": 0.9
+  },
+  {
+   "text": "starts",
+   "start": 0.9,
+   "end": 1.34
+  },
+  {
+   "text": "with",
+   "start": 1.34,
+   "end": 1.66
+  },
+  {
+   "text": "something",
+   "start": 1.66,
+   "end": 1.92
+  },
+  {
+   "text": "you",
+   "start": 1.92,
+   "end": 2.18
+  },
+  {
+   "text": "don't",
+   "start": 2.18,
+   "end": 2.42
+  },
+  {
+   "text": "know",
+   "start": 2.42,
+   "end": 2.58
+  },
+  {
+   "text": "yet.",
+   "start": 2.58,
+   "end": 2.78
+  },
+  {
+   "text": "What's",
+   "start": 3.32,
+   "end": 3.52
+  },
+  {
+   "text": "yours?",
+   "start": 3.52,
+   "end": 3.68
+  },
+  {
+   "text": "Mine",
+   "start": 4.38,
+   "end": 4.5
+  },
+  {
+   "text": "was",
+   "start": 4.5,
+   "end": 4.72
+  },
+  {
+   "text": "closing",
+   "start": 4.72,
+   "end": 4.94
+  },
+  {
+   "text": "my",
+   "start": 4.94,
+   "end": 5.3
+  },
+  {
+   "text": "own",
+   "start": 5.3,
+   "end": 5.52
+  },
+  {
+   "text": "company.",
+   "start": 5.52,
+   "end": 5.86
+  },
+  {
+   "text": "In",
+   "start": 6.52,
+   "end": 6.58
+  },
+  {
+   "text": "this",
+   "start": 6.58,
+   "end": 6.7
+  },
+  {
+   "text": "video,",
+   "start": 6.7,
+   "end": 7.02
+  },
+  {
+   "text": "I'll",
+   "start": 7.4,
+   "end": 7.62
+  },
+  {
+   "text": "show",
+   "start": 7.62,
+   "end": 7.86
+  },
+  {
+   "text": "you",
+   "start": 7.86,
+   "end": 8.02
+  },
+  {
+   "text": "how",
+   "start": 8.02,
+   "end": 8.18
+  },
+  {
+   "text": "I",
+   "start": 8.18,
+   "end": 8.32
+  },
+  {
+   "text": "used",
+   "start": 8.32,
+   "end": 8.52
+  },
+  {
+   "text": "AI",
+   "start": 8.52,
+   "end": 8.78
+  },
+  {
+   "text": "to",
+   "start": 8.78,
+   "end": 9.12
+  },
+  {
+   "text": "teach",
+   "start": 9.12,
+   "end": 9.32
+  },
+  {
+   "text": "myself",
+   "start": 9.32,
+   "end": 9.64
+  },
+  {
+   "text": "a",
+   "start": 9.64,
+   "end": 10.1
+  },
+  {
+   "text": "whole",
+   "start": 10.1,
+   "end": 10.3
+  },
+  {
+   "text": "new",
+   "start": 10.3,
+   "end": 10.5
+  },
+  {
+   "text": "process,",
+   "start": 10.5,
+   "end": 10.9
+  },
+  {
+   "text": "fast,",
+   "start": 11.28,
+   "end": 11.5
+  },
+  {
+   "text": "and",
+   "start": 11.94,
+   "end": 12.2
+  },
+  {
+   "text": "how",
+   "start": 12.2,
+   "end": 12.36
+  },
+  {
+   "text": "you",
+   "start": 12.36,
+   "end": 12.52
+  },
+  {
+   "text": "can",
+   "start": 12.52,
+   "end": 12.64
+  },
+  {
+   "text": "do",
+   "start": 12.64,
+   "end": 12.82
+  },
+  {
+   "text": "the",
+   "start": 12.82,
+   "end": 12.92
+  },
+  {
+   "text": "same",
+   "start": 12.92,
+   "end": 13.18
+  },
+  {
+   "text": "with",
+   "start": 13.18,
+   "end": 13.38
+  },
+  {
+   "text": "anything.",
+   "start": 13.38,
+   "end": 13.66
+  }
+ ]
 }

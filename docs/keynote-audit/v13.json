@@ -1,0 +1,1886 @@
+{
+ "summary": {
+  "label": "v13",
+  "mp4": "draft/v13/video.mp4",
+  "step": 0.25,
+  "textMoments": 76,
+  "flagged": 0,
+  "pass": true
+ },
+ "scenes": [
+  {
+   "id": "s01-hook",
+   "start": 0,
+   "duration": 17,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 0
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s01-k0-t",
+       "text": "Every change starts unknown",
+       "words": 4,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 2,
+     "area": 14,
+     "flags": [],
+     "end": 3.5,
+     "global": 0.25
+    },
+    {
+     "t": 3.5,
+     "items": [
+      {
+       "id": "#s01-k1-t",
+       "text": "What's yours",
+       "words": 2,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 12.8,
+     "flags": [],
+     "end": 4.5,
+     "global": 3.5
+    },
+    {
+     "t": 4.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 4.75,
+     "global": 4.5
+    },
+    {
+     "t": 4.75,
+     "items": [
+      {
+       "id": "#s01-k2-t",
+       "text": "Mine: closing my company.",
+       "words": 4,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 2,
+     "area": 12.8,
+     "flags": [],
+     "end": 7.5,
+     "global": 4.75
+    },
+    {
+     "t": 7.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 7.75,
+     "global": 7.5
+    },
+    {
+     "t": 7.75,
+     "items": [
+      {
+       "id": "#s01-k3-t",
+       "text": "I taught myself, with AI",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.5,
+     "flags": [],
+     "end": 12,
+     "global": 7.75
+    },
+    {
+     "t": 12,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 12.25,
+     "global": 12
+    },
+    {
+     "t": 12.25,
+     "items": [
+      {
+       "id": "#s01-k4-t",
+       "text": "So can you",
+       "words": 3,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.1,
+     "flags": [],
+     "end": 17,
+     "global": 12.25
+    }
+   ]
+  },
+  {
+   "id": "s02-intro",
+   "start": 17,
+   "duration": 22,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 17
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s02-k0-t",
+       "text": "Rifat, IT contractor",
+       "words": 3,
+       "lines": 1,
+       "font": 148,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10,
+     "flags": [],
+     "end": 4,
+     "global": 17.25
+    },
+    {
+     "t": 4,
+     "items": [
+      {
+       "id": "#s02-k1-t",
+       "text": "IR35 : a UK tax rule.",
+       "words": 5,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.4,
+     "flags": [],
+     "end": 6.25,
+     "global": 21
+    },
+    {
+     "t": 6.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 6.5,
+     "global": 23.25
+    },
+    {
+     "t": 6.5,
+     "items": [
+      {
+       "id": "#s02-k2-t",
+       "text": "Contractor, or employee",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.5,
+     "flags": [],
+     "end": 9.25,
+     "global": 23.5
+    },
+    {
+     "t": 9.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 9.5,
+     "global": 26.25
+    },
+    {
+     "t": 9.5,
+     "items": [
+      {
+       "id": "#s02-k3-t",
+       "text": "The rule changed. Market slowed",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 15.6,
+     "flags": [],
+     "end": 13.75,
+     "global": 26.5
+    },
+    {
+     "t": 13.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 14,
+     "global": 30.75
+    },
+    {
+     "t": 14,
+     "items": [
+      {
+       "id": "#s02-k4-t",
+       "text": "Never done this before.",
+       "words": 4,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 11.1,
+     "flags": [],
+     "end": 15.75,
+     "global": 31
+    },
+    {
+     "t": 15.75,
+     "items": [
+      {
+       "id": "#s02-k5-t",
+       "text": "A new skill to learn",
+       "words": 5,
+       "lines": 1,
+       "font": 148,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 9.8,
+     "flags": [],
+     "end": 22,
+     "global": 32.75
+    }
+   ]
+  },
+  {
+   "id": "s03-goal",
+   "start": 39,
+   "duration": 24,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 39
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s03-k0-t",
+       "text": "The goal: transformation",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 12,
+     "flags": [],
+     "end": 4.5,
+     "global": 39.25
+    },
+    {
+     "t": 4.5,
+     "items": [
+      {
+       "id": "#s03-k1-t",
+       "text": "Learn anything , quickly.",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.4,
+     "flags": [],
+     "end": 7.5,
+     "global": 43.5
+    },
+    {
+     "t": 7.5,
+     "items": [
+      {
+       "id": "#s03-k2-t",
+       "text": "Liquidation: my example",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.6,
+     "flags": [],
+     "end": 9,
+     "global": 46.5
+    },
+    {
+     "t": 9,
+     "items": [
+      {
+       "id": "#s03-k3-t",
+       "text": "Closing a company that can't pay",
+       "words": 6,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 6,
+     "lines": 2,
+     "area": 15.5,
+     "flags": [],
+     "end": 12.25,
+     "global": 48
+    },
+    {
+     "t": 12.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 12.5,
+     "global": 51.25
+    },
+    {
+     "t": 12.5,
+     "items": [
+      {
+       "id": "#s03-k4-t",
+       "text": "Debt stays with the company",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 13.5,
+     "flags": [],
+     "end": 14.25,
+     "global": 51.5
+    },
+    {
+     "t": 14.25,
+     "items": [
+      {
+       "id": "#s03-k5-t",
+       "text": "Practitioner: the licensed pro.",
+       "words": 4,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 2,
+     "area": 13.5,
+     "flags": [],
+     "end": 18.25,
+     "global": 53.25
+    },
+    {
+     "t": 18.25,
+     "items": [
+      {
+       "id": "#s03-k6-t",
+       "text": "Assets sold, creditors paid in order",
+       "words": 6,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 6,
+     "lines": 2,
+     "area": 16.2,
+     "flags": [],
+     "end": 24,
+     "global": 57.25
+    }
+   ]
+  },
+  {
+   "id": "s04-five-things",
+   "start": 63,
+   "duration": 41,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 63
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s04-k0-t",
+       "text": "5 steps to learn it.",
+       "words": 5,
+       "lines": 1,
+       "font": 156,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.2,
+     "flags": [],
+     "end": 2,
+     "global": 63.25
+    },
+    {
+     "t": 2,
+     "items": [
+      {
+       "id": "#s04-k1-t",
+       "text": "AI: a tutor , not a lawyer.",
+       "words": 6,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 6,
+     "lines": 1,
+     "area": 11.1,
+     "flags": [],
+     "end": 4.75,
+     "global": 65
+    },
+    {
+     "t": 4.75,
+     "items": [
+      {
+       "id": "#s04-k2-t",
+       "text": "Not financial advice.",
+       "words": 3,
+       "lines": 1,
+       "font": 148,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10.7,
+     "flags": [],
+     "end": 7,
+     "global": 67.75
+    },
+    {
+     "t": 7,
+     "items": [
+      {
+       "id": "#s04-k3-t",
+       "text": "Ask AI to explain",
+       "words": 4,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 9.3,
+     "flags": [],
+     "end": 10.25,
+     "global": 70
+    },
+    {
+     "t": 10.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 10.5,
+     "global": 73.25
+    },
+    {
+     "t": 10.5,
+     "items": [
+      {
+       "id": "#s04-k4-t",
+       "text": "Then simpler",
+       "words": 2,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 13,
+     "flags": [],
+     "end": 11.75,
+     "global": 73.5
+    },
+    {
+     "t": 11.75,
+     "items": [
+      {
+       "id": "#s04-k5-t",
+       "text": "Check official sources.",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10.9,
+     "flags": [],
+     "end": 14,
+     "global": 74.75
+    },
+    {
+     "t": 14,
+     "items": [
+      {
+       "id": "#s04-k6-t",
+       "text": "HMRC : the UK tax office.",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 11.7,
+     "flags": [],
+     "end": 16.75,
+     "global": 77
+    },
+    {
+     "t": 16.75,
+     "items": [
+      {
+       "id": "#s04-k7-t",
+       "text": "Get a real expert",
+       "words": 4,
+       "lines": 1,
+       "font": 173,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 12.2,
+     "flags": [],
+     "end": 19,
+     "global": 79.75
+    },
+    {
+     "t": 19,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 19.25,
+     "global": 82
+    },
+    {
+     "t": 19.25,
+     "items": [
+      {
+       "id": "#s04-k8-t",
+       "text": "4.8 stars.",
+       "words": 2,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 4.9,
+     "flags": [],
+     "end": 23.5,
+     "global": 82.25
+    },
+    {
+     "t": 23.5,
+     "items": [
+      {
+       "id": "#s04-k9-t",
+       "text": "Checklist: stop trading",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10.9,
+     "flags": [],
+     "end": 26.5,
+     "global": 86.5
+    },
+    {
+     "t": 26.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 26.75,
+     "global": 89.5
+    },
+    {
+     "t": 26.75,
+     "items": [
+      {
+       "id": "#s04-k10-t",
+       "text": "Every creditor, equal",
+       "words": 3,
+       "lines": 1,
+       "font": 141,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 9.8,
+     "flags": [],
+     "end": 29,
+     "global": 89.75
+    },
+    {
+     "t": 29,
+     "items": [
+      {
+       "id": "#s04-k11-t",
+       "text": "Every account to zero",
+       "words": 4,
+       "lines": 1,
+       "font": 141,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 10.5,
+     "flags": [],
+     "end": 30.75,
+     "global": 92
+    },
+    {
+     "t": 30.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 31,
+     "global": 93.75
+    },
+    {
+     "t": 31,
+     "items": [
+      {
+       "id": "#s04-k12-t",
+       "text": "Or it goes to the government",
+       "words": 6,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 6,
+     "lines": 2,
+     "area": 13.5,
+     "flags": [],
+     "end": 34,
+     "global": 94
+    },
+    {
+     "t": 34,
+     "items": [
+      {
+       "id": "#s04-k13-t",
+       "text": "Ask better questions daily.",
+       "words": 4,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 12.4,
+     "flags": [],
+     "end": 36.5,
+     "global": 97
+    },
+    {
+     "t": 36.5,
+     "items": [
+      {
+       "id": "#s04-k14-t",
+       "text": "Then act",
+       "words": 2,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 8.4,
+     "flags": [],
+     "end": 41,
+     "global": 99.5
+    }
+   ]
+  },
+  {
+   "id": "s05-cost-timeline",
+   "start": 104,
+   "duration": 24,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 104
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s05-k0-t",
+       "text": "What it cost",
+       "words": 3,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.5,
+     "flags": [],
+     "end": 1.75,
+     "global": 104.25
+    },
+    {
+     "t": 1.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 2,
+     "global": 105.75
+    },
+    {
+     "t": 2,
+     "items": [
+      {
+       "id": "#s05-k1-t",
+       "text": "£1,500 + £2,100",
+       "words": 2,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 8.8,
+     "flags": [],
+     "end": 7,
+     "global": 106
+    },
+    {
+     "t": 7,
+     "items": [
+      {
+       "id": "#s05-k2-t",
+       "text": "Prices vary. Plan for it.",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.3,
+     "flags": [],
+     "end": 11.5,
+     "global": 111
+    },
+    {
+     "t": 11.5,
+     "items": [
+      {
+       "id": "#s05-k3-t",
+       "text": "2 months, then 2 more",
+       "words": 5,
+       "lines": 1,
+       "font": 141,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.8,
+     "flags": [],
+     "end": 15,
+     "global": 115.5
+    },
+    {
+     "t": 15,
+     "items": [
+      {
+       "id": "#s05-k4-t",
+       "text": "The skill matters more.",
+       "words": 4,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 10.7,
+     "flags": [],
+     "end": 17,
+     "global": 119
+    },
+    {
+     "t": 17,
+     "items": [
+      {
+       "id": "#s05-k5-t",
+       "text": "You + AI = leverage",
+       "words": 3,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11,
+     "flags": [],
+     "end": 19,
+     "global": 121
+    },
+    {
+     "t": 19,
+     "items": [
+      {
+       "id": "#s05-k6-t",
+       "text": "It carries forward",
+       "words": 3,
+       "lines": 1,
+       "font": 164,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.2,
+     "flags": [],
+     "end": 24,
+     "global": 123
+    }
+   ]
+  },
+  {
+   "id": "s06-exceptions",
+   "start": 128,
+   "duration": 24,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 128
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s06-k0-t",
+       "text": "Honest part: AI didn't do it.",
+       "words": 6,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 6,
+     "lines": 2,
+     "area": 12.4,
+     "flags": [],
+     "end": 3,
+     "global": 128.25
+    },
+    {
+     "t": 3,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 3.25,
+     "global": 131
+    },
+    {
+     "t": 3.25,
+     "items": [
+      {
+       "id": "#s06-k1-t",
+       "text": "No accountant. Alone",
+       "words": 3,
+       "lines": 1,
+       "font": 148,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.6,
+     "flags": [],
+     "end": 5.75,
+     "global": 131.25
+    },
+    {
+     "t": 5.75,
+     "items": [
+      {
+       "id": "#s06-k2-t",
+       "text": "AI was there.",
+       "words": 3,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 12.5,
+     "flags": [],
+     "end": 7.5,
+     "global": 133.75
+    },
+    {
+     "t": 7.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 7.75,
+     "global": 135.5
+    },
+    {
+     "t": 7.75,
+     "items": [
+      {
+       "id": "#s06-k3-t",
+       "text": "AI isn't hands-off",
+       "words": 3,
+       "lines": 1,
+       "font": 164,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.3,
+     "flags": [],
+     "end": 9,
+     "global": 135.75
+    },
+    {
+     "t": 9,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 9.25,
+     "global": 137
+    },
+    {
+     "t": 9.25,
+     "items": [
+      {
+       "id": "#s06-k4-t",
+       "text": "Check. Correct. Teach",
+       "words": 3,
+       "lines": 1,
+       "font": 141,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10.7,
+     "flags": [],
+     "end": 12,
+     "global": 137.25
+    },
+    {
+     "t": 12,
+     "items": [
+      {
+       "id": "#s06-k5-t",
+       "text": "The practitioner: your safety net",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 14.7,
+     "flags": [],
+     "end": 15.5,
+     "global": 140
+    },
+    {
+     "t": 15.5,
+     "items": [
+      {
+       "id": "#s06-k6-t",
+       "text": "Some liability stays personal",
+       "words": 4,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 2,
+     "area": 13.1,
+     "flags": [],
+     "end": 24,
+     "global": 143.5
+    }
+   ]
+  },
+  {
+   "id": "s07-emails",
+   "start": 152,
+   "duration": 24,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 152
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s07-k0-t",
+       "text": "3 lessons from my inbox.",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 11.6,
+     "flags": [],
+     "end": 2.25,
+     "global": 152.25
+    },
+    {
+     "t": 2.25,
+     "items": [
+      {
+       "id": "#s07-k1-t",
+       "text": "Pay in full first.",
+       "words": 4,
+       "lines": 1,
+       "font": 173,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 10.5,
+     "flags": [],
+     "end": 5,
+     "global": 154.25
+    },
+    {
+     "t": 5,
+     "items": [
+      {
+       "id": "#s07-k2-t",
+       "text": "Chased 6 times.",
+       "words": 3,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 8.7,
+     "flags": [],
+     "end": 7,
+     "global": 157
+    },
+    {
+     "t": 7,
+     "items": [
+      {
+       "id": "#s07-k3-t",
+       "text": "Keep it in writing",
+       "words": 4,
+       "lines": 1,
+       "font": 164,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 11.1,
+     "flags": [],
+     "end": 8.75,
+     "global": 159
+    },
+    {
+     "t": 8.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 9,
+     "global": 160.75
+    },
+    {
+     "t": 9,
+     "items": [
+      {
+       "id": "#s07-k4-t",
+       "text": "A searchable record.",
+       "words": 3,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.6,
+     "flags": [],
+     "end": 12,
+     "global": 161
+    },
+    {
+     "t": 12,
+     "items": [
+      {
+       "id": "#s07-k5-t",
+       "text": "Connect AI with MCP",
+       "words": 4,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 11.5,
+     "flags": [],
+     "end": 15.75,
+     "global": 164
+    },
+    {
+     "t": 15.75,
+     "items": [
+      {
+       "id": "#s07-k6-t",
+       "text": "MCP: plugs AI into apps.",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 11.8,
+     "flags": [],
+     "end": 18.5,
+     "global": 167.75
+    },
+    {
+     "t": 18.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 18.75,
+     "global": 170.5
+    },
+    {
+     "t": 18.75,
+     "items": [
+      {
+       "id": "#s07-k7-t",
+       "text": "Learn. Go again",
+       "words": 3,
+       "lines": 1,
+       "font": 195,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 14.9,
+     "flags": [],
+     "end": 24,
+     "global": 170.75
+    }
+   ]
+  },
+  {
+   "id": "s08-tracking",
+   "start": 176,
+   "duration": 23,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 176
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s08-k0-t",
+       "text": "n8n: automatic workflows",
+       "words": 3,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 2,
+     "area": 12,
+     "flags": [],
+     "end": 4,
+     "global": 176.25
+    },
+    {
+     "t": 4,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 4.25,
+     "global": 180
+    },
+    {
+     "t": 4.25,
+     "items": [
+      {
+       "id": "#s08-k1-t",
+       "text": "AI agents: programs that act",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 13.1,
+     "flags": [],
+     "end": 7.75,
+     "global": 180.25
+    },
+    {
+     "t": 7.75,
+     "items": [
+      {
+       "id": "#s08-k2-t",
+       "text": "Workflows: predictable",
+       "words": 2,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 10.9,
+     "flags": [],
+     "end": 11,
+     "global": 183.75
+    },
+    {
+     "t": 11,
+     "items": [
+      {
+       "id": "#s08-k3-t",
+       "text": "AI: needs checking",
+       "words": 3,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 10.7,
+     "flags": [],
+     "end": 13.25,
+     "global": 187
+    },
+    {
+     "t": 13.25,
+     "items": [
+      {
+       "id": "#s08-k4-t",
+       "text": "Build around both",
+       "words": 3,
+       "lines": 1,
+       "font": 173,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 13,
+     "flags": [],
+     "end": 14.5,
+     "global": 189.25
+    },
+    {
+     "t": 14.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 14.75,
+     "global": 190.5
+    },
+    {
+     "t": 14.75,
+     "items": [
+      {
+       "id": "#s08-k5-t",
+       "text": "“Why show your real work?”",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 12.8,
+     "flags": [],
+     "end": 17,
+     "global": 190.75
+    },
+    {
+     "t": 17,
+     "items": [
+      {
+       "id": "#s08-k6-t",
+       "text": "Share the real journey",
+       "words": 4,
+       "lines": 1,
+       "font": 96,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 4.9,
+     "flags": [],
+     "end": 19.5,
+     "global": 193
+    },
+    {
+     "t": 19.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 19.75,
+     "global": 195.5
+    },
+    {
+     "t": 19.75,
+     "items": [
+      {
+       "id": "#s08-k7-t",
+       "text": "That's the transformation",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 12.2,
+     "flags": [],
+     "end": 23,
+     "global": 195.75
+    }
+   ]
+  },
+  {
+   "id": "s09-cta",
+   "start": 199,
+   "duration": 21,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 199
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s09-k0-t",
+       "text": "Feels like failure. It isn't",
+       "words": 5,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 1,
+     "area": 10.9,
+     "flags": [],
+     "end": 3.75,
+     "global": 199.25
+    },
+    {
+     "t": 3.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 4,
+     "global": 202.75
+    },
+    {
+     "t": 4,
+     "items": [
+      {
+       "id": "#s09-k1-t",
+       "text": "From shame to grace",
+       "words": 4,
+       "lines": 1,
+       "font": 156,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 12.5,
+     "flags": [],
+     "end": 6.5,
+     "global": 203
+    },
+    {
+     "t": 6.5,
+     "items": [
+      {
+       "id": "#s09-k2-t",
+       "text": "Company: a vehicle. Skills stay",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 14.6,
+     "flags": [],
+     "end": 10.5,
+     "global": 205.5
+    },
+    {
+     "t": 10.5,
+     "items": [
+      {
+       "id": "#s09-k3-t",
+       "text": "Part 2 : workflows and agents.",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 13.6,
+     "flags": [],
+     "end": 14.75,
+     "global": 209.5
+    },
+    {
+     "t": 14.75,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 15,
+     "global": 213.75
+    },
+    {
+     "t": 15,
+     "items": [
+      {
+       "id": "#s09-k4-t",
+       "text": "Comment below.",
+       "words": 2,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 9.5,
+     "flags": [],
+     "end": 16.25,
+     "global": 214
+    },
+    {
+     "t": 16.25,
+     "items": [
+      {
+       "id": "#s09-k5-t",
+       "text": "Subscribe",
+       "words": 1,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 1,
+     "lines": 1,
+     "area": 5.8,
+     "flags": [],
+     "end": 21,
+     "global": 215.25
+    }
+   ]
+  },
+  {
+   "id": "s10-outro",
+   "start": 220,
+   "duration": 20,
+   "moments": [
+    {
+     "t": 0,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 0.25,
+     "global": 220
+    },
+    {
+     "t": 0.25,
+     "items": [
+      {
+       "id": "#s10-k0-t",
+       "text": "AI organises and explains.",
+       "words": 4,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 12.4,
+     "flags": [],
+     "end": 4,
+     "global": 220.25
+    },
+    {
+     "t": 4,
+     "items": [
+      {
+       "id": "#s10-k1-t",
+       "text": "The practitioner decides",
+       "words": 3,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 11.4,
+     "flags": [],
+     "end": 6.25,
+     "global": 224
+    },
+    {
+     "t": 6.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 6.5,
+     "global": 226.25
+    },
+    {
+     "t": 6.5,
+     "items": [
+      {
+       "id": "#s10-k2-t",
+       "text": "Not legal or financial advice.",
+       "words": 5,
+       "lines": 2,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 5,
+     "lines": 2,
+     "area": 13,
+     "flags": [],
+     "end": 10,
+     "global": 226.5
+    },
+    {
+     "t": 10,
+     "items": [
+      {
+       "id": "#s10-k3-t",
+       "text": "Building with AI?",
+       "words": 3,
+       "lines": 1,
+       "font": 183,
+       "list": false
+      }
+     ],
+     "words": 3,
+     "lines": 1,
+     "area": 13.8,
+     "flags": [],
+     "end": 11.5,
+     "global": 230
+    },
+    {
+     "t": 11.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 11.75,
+     "global": 231.5
+    },
+    {
+     "t": 11.75,
+     "items": [
+      {
+       "id": "#s10-k4-t",
+       "text": "Delivery Pilot , on Skool.",
+       "words": 4,
+       "lines": 1,
+       "font": 140,
+       "list": false
+      }
+     ],
+     "words": 4,
+     "lines": 1,
+     "area": 11.5,
+     "flags": [],
+     "end": 14.25,
+     "global": 231.75
+    },
+    {
+     "t": 14.25,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 14.5,
+     "global": 234.25
+    },
+    {
+     "t": 14.5,
+     "items": [
+      {
+       "id": "#s10-k5-t",
+       "text": "Link below",
+       "words": 2,
+       "lines": 1,
+       "font": 150,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 6,
+     "flags": [],
+     "end": 15.5,
+     "global": 234.5
+    },
+    {
+     "t": 15.5,
+     "items": [],
+     "words": 0,
+     "lines": 0,
+     "area": 0,
+     "flags": [],
+     "end": 15.75,
+     "global": 235.5
+    },
+    {
+     "t": 15.75,
+     "items": [
+      {
+       "id": "#s10-k6-t",
+       "text": "Keep learning",
+       "words": 2,
+       "lines": 1,
+       "font": 200,
+       "list": false
+      }
+     ],
+     "words": 2,
+     "lines": 1,
+     "area": 14,
+     "flags": [],
+     "end": 20,
+     "global": 235.75
+    }
+   ]
+  }
+ ]
+}

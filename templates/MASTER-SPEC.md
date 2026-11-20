@@ -1,15 +1,15 @@
-# Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
+# Master spec: Part 1 of 3: How I Taught Myself Anything with AI (Closing My Company Was the Test)
 
-Spec v1.2 · site v1.38.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.2 · site v1.40.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
 - **Owner:** Rifat
-- **Audience:** UK company directors facing insolvency, and anyone stuck in real-world red tape who wants to use AI to get moving
-- **Goal:** Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.
+- **Audience:** A mass audience facing a big change or an unfamiliar process (UK directors closing a company are one example) who want to learn it quickly with AI. Every specialist term is explained in plain words.
+- **Goal:** Inspire viewers to transform by teaching themselves anything with AI, using closing a UK company as the worked example: AI as a tutor and support, check facts with official sources, still use a professional, turn learning into a checklist, and grow skills that carry into the next project.
 - **One call to action:** Subscribe for Part 2
-- **Tone:** Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.
-- **Length:** 4:04 target, plan 4:04
+- **Tone:** Inspiring but honest, calm, first person. AI is a tutor and support, not magic. No hype, no promises about outcomes.
+- **Length:** 4:00 target, plan 4:00
 - **Language:** en-GB
 - **Disclaimer:** AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.
 
@@ -29,19 +29,19 @@ Every change: commit, push, deploy, bump version.
 - Captions: Burned in, timed from the final transcript
 
 ## 4. Scenes
-1. 0:00 **Hook** (38 words, slot 14 s). B-roll: Goal image, animated AI core engine, slow push-in
-2. 0:14 **Part 1 of 3: AI and real-world red tape** (56 words, slot 23 s). B-roll: Face cam, lower-third: Part 1 of 3, UK IT contractor IR35 shift
-3. 0:37 **The goal** (45 words, slot 20 s). B-roll: Goal infographic, three-step liquidation pipeline, legal debt separation
-4. 0:57 **Five things to do first, with AI** (111 words, slot 40 s). B-roll: Numbered list 1 to 5 with live ChatGPT co-pilot interaction & learning animation
-5. 1:37 **What it costs and how long it takes** (82 words, slot 27 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after
-6. 2:04 **The exceptions** (80 words, slot 29 s). B-roll: Exceptions cards, security guardrail badge, hands-on AI loop
-7. 2:33 **What my emails taught me** (61 words, slot 24 s). B-roll: Online methods as database animation, MCP connection pipeline
-8. 2:57 **How I keep track of it** (63 words, slot 25 s). B-roll: n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card
-9. 3:22 **Subscribe for Part 2** (71 words, slot 23 s). B-roll: Motivational dawn background, shame to grace card, Part 2 question prompt for comments
-10. 3:45 **Disclaimer + outro** (42 words, slot 19 s). B-roll: Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo
+1. 0:00 **Every big change starts with something new** (45 words, slot 17 s). B-roll: Goal image, animated AI core engine, slow push-in
+2. 0:17 **Part 1 of 3: learning anything with AI** (53 words, slot 22 s). B-roll: Face cam, lower-third: Part 1 of 3, UK IT contractor IR35 shift
+3. 0:39 **The goal: transformation** (59 words, slot 24 s). B-roll: Goal infographic, three-step liquidation pipeline, legal debt separation
+4. 1:03 **How I learned it: five steps with AI** (109 words, slot 41 s). B-roll: Numbered list 1 to 5 with live ChatGPT co-pilot interaction & learning animation
+5. 1:44 **What it cost and how long it took** (65 words, slot 24 s). B-roll: Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after
+6. 2:08 **The honest part** (68 words, slot 24 s). B-roll: Exceptions cards, security guardrail badge, hands-on AI loop
+7. 2:32 **Three lessons from my inbox** (62 words, slot 24 s). B-roll: Online methods as database animation, MCP connection pipeline
+8. 2:56 **Workflows plus AI** (64 words, slot 23 s). B-roll: n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card
+9. 3:19 **From shame to grace, and Part 2** (60 words, slot 21 s). B-roll: Motivational dawn background, shame to grace card, Part 2 question prompt for comments
+10. 3:40 **Disclaimer + outro** (45 words, slot 20 s). B-roll: Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo
 
 ## 5. Asset manifest
-- Part 1 of 3: AI and real-world red tape: Face cam clip (Your footage / capture), Needed
+- Part 1 of 3: learning anything with AI: Face cam clip (Your footage / capture), Needed
 - Disclaimer + outro: Skool community link (Your footage / capture), Needed
 - All: Background plates (6 images) (fal.ai, text-free), Done
 - All: Draft voiceover (per scene) (fal.ai Kokoro), Done, to be replaced by your recording
@@ -58,6 +58,7 @@ Every change: commit, push, deploy, bump version.
 - One main call to action: subscribe for Part 2. The Skool community gets one soft mention in the outro, not a second ask.
 - Frame AI as support with low expectations: it gives courage and an assist, and it does not replace the insolvency practitioner.
 - Anything about AI agents emailing the parties is shown as your own approach. Messages to creditors and other parties go through or with the practitioner.
+- Explain every specialist term in plain words the first time it appears (IR35, HMRC, insolvency practitioner, the Crown, MCP, n8n, AI agents), on screen and in the voiceover.
 
 ## 7. Open decisions
 - Final voice: your recording or AI: Open (recording recommended) (You)
@@ -84,16 +85,16 @@ Every change: commit, push, deploy, bump version.
 
 ## 10. Chapters (starting point)
 ```
-0:00 Hook
-0:14 Part 1 of 3: AI and real-world red tape
-0:37 The goal
-0:57 Five things to do first, with AI
-1:37 What it costs and how long it takes
-2:04 The exceptions
-2:33 What my emails taught me
-2:57 How I keep track of it
-3:22 Subscribe for Part 2
-3:45 Disclaimer + outro
+0:00 Every big change starts with something new
+0:17 Part 1 of 3: learning anything with AI
+0:39 The goal: transformation
+1:03 How I learned it: five steps with AI
+1:44 What it cost and how long it took
+2:08 The honest part
+2:32 Three lessons from my inbox
+2:56 Workflows plus AI
+3:19 From shame to grace, and Part 2
+3:40 Disclaimer + outro
 ```
 
 ## 11. Learnings and system insights

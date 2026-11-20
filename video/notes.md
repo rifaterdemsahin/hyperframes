@@ -6,220 +6,207 @@ Every frame follows the keynote rules: one idea per screen, at most 6 words, no 
 Everything the earlier layout showed on screen and this cut drops is kept below, scene by scene. The voiceover still says all of it.
 Burned-in captions are removed; the full voiceover text is in `script/scenes.json` for YouTube captions.
 
-## s01-hook (0:00.0 to 0:14.0)
+## s01-hook (0:00.0 to 0:17.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 0:00.0 | The end. | 2.29 |
-| 0:02.3 | Closed properly. | 1.57 |
-| 0:03.9 | For UK directors. | 2.82 |
-| 0:06.7 | Liquidation × AI | 3.13 |
-| 0:09.8 | 5 things first. | 4.19 |
+| 0:00.0 | Every change starts unknown. | 3.42 |
+| 0:03.4 | What's yours? | 1.06 |
+| 0:04.5 | Mine: closing my company. | 3.02 |
+| 0:07.5 | [visual: bulb] I taught myself, with AI. | 4.54 |
+| 0:12.0 | So can you. | 4.96 |
 
 Moved to VO (no longer on screen):
 
-- 🏁 The end of the company
-- ✅ Closing it properly with dignity
-- ⚡ The Core Strategy: Liquidating in the Age of AI 🤖
+- 🌱 Every change starts with the unknown
+- 🏁 Mine: closing my own company
+- 🤖 Teach yourself anything with AI
 - ⚡ CORE STRATEGY In the Age of AI AI is the director's core operational backbone: cut through red tape, organise records & protect your position.
 
-## s02-intro (0:14.0 to 0:37.0)
+## s02-intro (0:17.0 to 0:39.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 0:14.0 | Rifat, IT contractor. | 3.07 |
-| 0:17.1 | The rules changed. | 2.6 |
-| 0:19.7 | [visual: ir35] Pushed inside IR35. | 3.72 |
-| 0:23.4 | [visual: market-fall] The market fell. | 2.22 |
-| 0:25.6 | The numbers? A hassle. | 2.23 |
-| 0:27.8 | AI cuts the red tape. | 4.46 |
-| 0:32.3 | Time to close. | 4.7 |
+| 0:17.0 | Rifat, IT contractor. | 3.96 |
+| 0:21.0 | [visual: ir35] IR35: a UK tax rule. | 2.3 |
+| 0:23.3 | Contractor, or employee? | 3.02 |
+| 0:26.3 | [visual: market-fall] The rule changed. Market slowed. | 4.48 |
+| 0:30.8 | Never done this before. | 1.94 |
+| 0:32.7 | [visual: sprout] A new skill to learn. | 6.3 |
 
 Moved to VO (no longer on screen):
 
-- 💼 Part 1 of 3 · UK IT Contractor
-- 🏛️ UK tax rules changed: involuntary push inside IR35
-- 📉 Market downturn & contracting shift
-- 🤖 Navigating real-world red tape with AI
+- 💼 Part 1 of 3 · UK IT contractor
+- 🏛️ IR35: the UK tax rule for contractors
+- 📉 The rule changed, the market slowed
+- 🎓 Treat it like any new skill
 
-## s03-goal (0:37.0 to 0:57.0)
+## s03-goal (0:39.0 to 1:03.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 0:37.0 | The goal. | 1.27 |
-| 0:38.3 | Two revolutions. | 2.35 |
-| 0:40.6 | [image: redtape] So much red tape. | 1.96 |
-| 0:42.6 | Company debt stays the company's. | 1.95 |
-| 0:44.5 | The practitioner takes over. | 3.13 |
-| 0:47.7 | [visual: creditors-order] Pays creditors, in order. | 1.96 |
-| 0:49.6 | Red tape is everywhere. | 3.52 |
-| 0:53.1 | Understand it first. | 3.86 |
+| 0:39.0 | [visual: steps-up] The goal: transformation. | 4.32 |
+| 0:43.3 | Learn anything, quickly. | 3 |
+| 0:46.3 | Liquidation: my example. | 1.64 |
+| 0:48.0 | Closing a company that can't pay. | 3.3 |
+| 0:51.3 | Debt stays with the company. | 1.9 |
+| 0:53.2 | [visual: practitioner] Practitioner: the licensed pro. | 4 |
+| 0:57.2 | [visual: creditors-order] Assets sold, creditors paid in order. | 5.84 |
 
 Moved to VO (no longer on screen):
 
-- 📜 Industrial & Information revolutions brought massive red tape
-- ⚖️ Company debt stays the company's
-- 1️⃣ Hand over → 2️⃣ Sell assets → 3️⃣ Pay creditors in order
-- 🛡️ Understand the red tape first
+- 🦋 The goal: transformation
+- 📘 Liquidation: closing a company that can't pay
+- ⚖️ The debt stays with the company
+- 🧑‍⚖️ The practitioner sells assets, pays creditors in order
 - 🏛️ Legal Separation Rule Company Debt Stays With the Company Three-Step Liquidation Pipeline 1. Hand Over Licensed practitioner takes control 2. Sell Assets Realise value for creditors 3. Pay Creditors Paid strictly in statutory order
 
-## s04-five-things (0:57.0 to 1:37.0)
+## s04-five-things (1:03.0 to 1:44.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 0:57.0 | 5 things first. | 1.79 |
-| 0:58.8 | AI as support. | 1.7 |
-| 1:00.5 | From AI. Not financial advice. | 3.72 |
-| 1:04.2 | Your job: learn. | 2.37 |
-| 1:06.6 | [visual: balance] HMRC balance. | 1.7 |
-| 1:08.3 | [visual: books] Books and records. | 2.37 |
-| 1:10.7 | [visual: practitioner] A licensed practitioner. | 2.03 |
-| 1:12.7 | [visual: stars] 4.8 stars. | 2.71 |
-| 1:15.4 | [visual: stop] Stop trading. | 1.02 |
-| 1:16.4 | [visual: equal-creditors] No creditor goes first. | 3.05 |
-| 1:19.5 | Your practitioner confirms. | 1.69 |
-| 1:21.2 | Close every invoice. | 1.36 |
-| 1:22.5 | [visual: zero] Every account to zero. | 2.37 |
-| 1:24.9 | [visual: crown] Or it goes to the Crown. | 2.37 |
-| 1:27.3 | [visual: connect] Connect it all to AI. | 3.72 |
-| 1:31.0 | Learn, then act. | 6.03 |
+| 1:03.0 | 5 steps to learn it. | 1.92 |
+| 1:04.9 | [visual: bulb] AI: a tutor, not a lawyer. | 2.7 |
+| 1:07.6 | Not financial advice. | 2.21 |
+| 1:09.8 | [visual: comment] Ask AI to explain. | 3.43 |
+| 1:13.3 | Then simpler. | 1.34 |
+| 1:14.6 | [visual: magnify] Check official sources. | 2.32 |
+| 1:16.9 | [visual: balance] HMRC: the UK tax office. | 2.78 |
+| 1:19.7 | Get a real expert. | 2.32 |
+| 1:22.0 | [visual: stars] 4.8 stars. | 4.36 |
+| 1:26.4 | [visual: checklist] Checklist: stop trading. | 3.14 |
+| 1:29.5 | [visual: equal-creditors] Every creditor, equal. | 2.3 |
+| 1:31.8 | [visual: zero] Every account to zero. | 1.94 |
+| 1:33.8 | [visual: crown] Or it goes to the government. | 3.13 |
+| 1:36.9 | [visual: loop] Ask better questions daily. | 2.55 |
+| 1:39.4 | Then act. | 4.56 |
 
 Moved to VO (no longer on screen):
 
-- ⚡ Five things to do first (with AI 🤖)
-- ⚠️ What I learned from AI · Not financial advice
-- 🎯 Your job is to learn with AI
-- 1️⃣ Check HMRC balance · 2️⃣ Gather books & records
-- 3️⃣ Licensed practitioner · 4️⃣ Stop trading
-- 5️⃣ Close invoices & bank accounts to zero
-- 🤖 Interactive ChatGPT learning: iterate on the fly
+- 🎓 Five steps, AI as tutor
+- 1️⃣ Ask AI to explain, then simpler
+- 2️⃣ Check facts with HMRC, the UK tax office
+- 3️⃣ Get a real expert · 4️⃣ Make a checklist
+- 5️⃣ Ask better questions every day
 - 🟢 ChatGPT Co-Pilot GPT-4o Director: How do I handle HMRC balance & avoid creditor preference? ChatGPT: 1. Freeze trading. 2. Treat all creditors equally. 3. Reconcile books for your licensed practitioner. 🧠 LEARNING FROM AI: Synthesise rules & act on the fly ★★★★★ 4.8 / 5.0 Licensed Insolvency Practitioner Reviews
 
-## s05-cost-timeline (1:37.0 to 2:04.0)
+## s05-cost-timeline (1:44.0 to 2:08.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 1:37.0 | What it costs. | 1.3 |
-| 1:38.3 | [visual: cost-bars] £1,500 + £2,100 | 4.5 |
-| 1:42.8 | One provider I found. | 2.1 |
-| 1:44.9 | Prices vary. Plan for it. | 4.5 |
-| 1:49.4 | [visual: timeline-before] 2 months before. | 2.1 |
-| 1:51.5 | [visual: timeline-after] 2 months after. | 3.3 |
-| 1:54.8 | You + AI = leverage. | 1.8 |
-| 1:56.6 | Learn, act, build skills. | 2.7 |
-| 1:59.3 | Carry them forward. | 4.7 |
+| 1:44.0 | What it cost. | 1.78 |
+| 1:45.8 | [visual: cost-bars] £1,500 + £2,100 | 5.12 |
+| 1:50.9 | Prices vary. Plan for it. | 4.46 |
+| 1:55.4 | [visual: timeline-both] 2 months, then 2 more. | 3.56 |
+| 1:58.9 | The skill matters more. | 1.92 |
+| 2:00.8 | [visual: lever] You + AI = leverage. | 1.98 |
+| 2:02.8 | It carries forward. | 5.18 |
 
 Moved to VO (no longer on screen):
 
-- ⚡ YOU + AI = LEVERAGE 🚀
-- 💷 Fee to liquidation company: £1,500 deposit + £2,100 balance
-- 🔍 Found this provider: cheaper or more expensive options exist
-- ⏱️ Timeline: 2 months prep + 2 months completion expected
-- 💡 Learn & act on the fly: build skills for the next project
+- 💷 £1,500 deposit + £2,100 balance
+- 🔍 The provider I found: prices vary
+- ⏱️ 2 months to get ready, 2 more after
+- 🚀 You + AI = leverage that carries over
 - ⚡ YOU + AI = LEVERAGE Liquidation Fees (UK Provider) Deposit to start £1,500 Balance to complete £2,100 Total Investment £3,600 Timeline Roadmap 2 Mo Prep Fee Paid 2 Mo Close
 
-## s06-exceptions (2:04.0 to 2:33.0)
+## s06-exceptions (2:08.0 to 2:32.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 2:04.0 | The exceptions. | 2.46 |
-| 2:06.5 | Protection isn't absolute. | 1.35 |
-| 2:07.8 | No more accountant. | 2.03 |
-| 2:09.8 | Isolated. | 1.01 |
-| 2:10.8 | AI was there. | 5.06 |
-| 2:15.9 | AI isn't hands-off. | 1.69 |
-| 2:17.6 | You are hands-on. | 3.04 |
-| 2:20.6 | [visual: shield] The practitioner: your guardrail. | 2.7 |
-| 2:23.3 | Check your own inputs. | 3.71 |
-| 2:27.1 | Personal liability remains. | 5.95 |
+| 2:08.0 | Honest part: AI didn't do it. | 3.06 |
+| 2:11.1 | No accountant. Alone. | 2.58 |
+| 2:13.6 | AI was there. | 1.84 |
+| 2:15.5 | AI isn't hands-off. | 1.58 |
+| 2:17.1 | [visual: loop] Check. Correct. Teach. | 2.86 |
+| 2:19.9 | [visual: shield] The practitioner: your safety net. | 3.48 |
+| 2:23.4 | Some liability stays personal. | 8.6 |
 
 Moved to VO (no longer on screen):
 
-- ⚠️ The Exceptions & Personal Liability
-- 💡 Stopped accountant & felt isolated: AI was the place to turn to
-- 🛠️ Not hands-off: you are hands-on to secure, adapt & train AI
-- 🛡️ Licensed Practitioner = Essential Security Guardrail
-- 🚫 Wrongful trading · Personal guarantees · Overdrawn loan accounts
+- ⚠️ AI didn't do it for me
+- 🛠️ Stay hands-on: check, correct, teach
+- 🛡️ The practitioner is your safety net
+- 🚫 Some liability stays personal
 - 🛠️ Not Hands-Off: Active Feedback Loop 👤 YOU Inputs ⇄ ⚙️ SECURE & ADAPT Iteration ⇄ 🤖 AI SYSTEM Assistance 🛡️ LICENSED PRACTITIONER Your essential security guardrail. Verify every input on your end before submitting.
 
-## s07-emails (2:33.0 to 2:57.0)
+## s07-emails (2:32.0 to 2:56.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 2:33.0 | 3 lessons. | 2.76 |
-| 2:35.8 | Pay in full first. | 5.71 |
-| 2:41.5 | [visual: envelopes6] Chased 6 times. | 1.9 |
-| 2:43.4 | Keep it in writing. | 3.42 |
-| 2:46.8 | [visual: database] Records are a database. | 2.28 |
-| 2:49.1 | [visual: connect] Connect it all over MCP. | 3.81 |
-| 2:52.9 | Learn. Iterate. | 4.12 |
+| 2:32.0 | 3 lessons from my inbox. | 2.2 |
+| 2:34.2 | Pay in full first. | 2.76 |
+| 2:37.0 | [visual: envelopes6] Chased 6 times. | 2 |
+| 2:39.0 | Keep it in writing. | 1.78 |
+| 2:40.7 | [visual: database] A searchable record. | 3.16 |
+| 2:43.9 | [visual: connect] Connect AI with MCP. | 3.74 |
+| 2:47.6 | MCP: plugs AI into apps. | 2.86 |
+| 2:50.5 | Learn. Go again. | 5.5 |
 
 Moved to VO (no longer on screen):
 
-- 📧 Lessons from Emails & Records
-- 1️⃣ Process starts once balance is paid in full (chased 6 times ⏳)
-- 2️⃣ Use online methods: they act as structured databases 🗄️
-- 3️⃣ Connect Gmail & Drive to AI over MCP ⚡
-- 🔄 Learn from every issue and iterate
+- 📧 Three lessons from my inbox
+- 1️⃣ Nothing starts until it's paid (chased 6 times)
+- 2️⃣ Keep it in writing: a searchable record
+- 3️⃣ MCP: a standard way to plug AI into apps
 - 🗄️ Online Records = Structured Database Chaser Emails 6 Reminders (Action Required) Receipts & Slips Logged & Timestamped Outstanding Tasks Tracked in Writing ⚡ Connect Drive & Gmail over MCP to AI
 
-## s08-tracking (2:57.0 to 3:22.0)
+## s08-tracking (2:56.0 to 3:19.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 2:57.0 | n8n + AI agents. | 4.4 |
-| 3:01.4 | [visual: known-path] n8n: known. | 2.34 |
-| 3:03.7 | [visual: unknown-paths] AI: unknown. | 2.34 |
-| 3:06.1 | Build around both. | 1.95 |
-| 3:08.0 | “Why show your real work?” | 4.69 |
-| 3:12.7 | Share what's real. | 5.47 |
-| 3:18.2 | [image: heros-journey] The next journey. | 3.81 |
+| 2:56.0 | [visual: workflow] n8n: automatic workflows. | 4.02 |
+| 3:00.0 | [visual: agent] AI agents: programs that act. | 3.58 |
+| 3:03.6 | [visual: known-path] Workflows: predictable. | 3.28 |
+| 3:06.9 | [visual: unknown-paths] AI: needs checking. | 2.22 |
+| 3:09.1 | Build around both. | 1.38 |
+| 3:10.5 | “Why show your real work?” | 2.44 |
+| 3:12.9 | [image: heros-journey] Share the real journey. | 2.64 |
+| 3:15.6 | [visual: steps-up] That's the transformation. | 3.44 |
 
 Moved to VO (no longer on screen):
 
-- ⚙️ n8n (Scheduled Email) vs 🧠 AI Bot (Unknown Replies)
-- 🏗️ Build your workflow process around both
-- 🏔️ Hero's Journey: Have the honour to share real work
-- 🚀 Build your system & mindset for the next journey
+- ⚙️ n8n: a tool for automatic workflows
+- 🤖 AI agents: programs that act for you
+- 🔁 Workflows are predictable; AI needs checking
+- 🏔️ Share the real journey
 - ⚙️ n8n (Deterministic): Scheduled Email ⏰ Mon 09:00 Cron ➔ ✉️ Send Requests & Records 🧠 AI Bot (Probabilistic): Unknowns 📬 Inbound Unknown Reply ➔ 🤖 AI Classifies & Handles Data 🏔️ THE HERO'S JOURNEY TRUTH OVER HYPE “A friend told me: become like MrBeast, why show your real work? ✨ Have the honour to do what's right and share reality.” ⚔️ Face the trial · Transform shame into grace · Share reality
 
-## s09-cta (3:22.0 to 3:45.0)
+## s09-cta (3:19.0 to 3:40.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 3:22.0 | Shame. | 2.26 |
-| 3:24.3 | From shame to grace. | 3.08 |
-| 3:27.3 | A company is just a vehicle. | 3.4 |
-| 3:30.7 | You can restart. | 1.54 |
-| 3:32.3 | Part 2: the app and agents. | 4.01 |
-| 3:36.3 | Want Part 2? | 2.77 |
-| 3:39.1 | [visual: comment] Tell me in the comments. | 3.4 |
-| 3:42.5 | [visual: bell] Subscribe. | 2.54 |
+| 3:19.0 | Feels like failure. It isn't. | 3.74 |
+| 3:22.7 | From shame to grace. | 2.72 |
+| 3:25.5 | Company: a vehicle. Skills stay. | 3.94 |
+| 3:29.4 | Part 2: workflows and agents. | 4.34 |
+| 3:33.7 | [visual: comment] Comment below. | 1.38 |
+| 3:35.1 | [visual: bell] Subscribe. | 4.88 |
 
 Moved to VO (no longer on screen):
 
-- 🌟 From Shame to Grace: Don't attach your identity to a company
-- 🚗 A company is just a vehicle · You can always restart 🔄
-- 🔔 Subscribe for Part 2 · Tell me in comments if you want Part 2 💬
-- 🛠️ Building autonomous AI agents & stages 🤖
+- 🌅 From shame to grace
+- 🚗 A company is just a vehicle; skills stay
+- 🛠️ Part 2: the workflows and AI agents
+- 🔔 Subscribe to follow the journey
 - 🌅 From Shame to Grace A company is merely a legal vehicle. Do not attach your identity to it. ✨ You can always restart and rebuild Should I shoot Part 2? Tell me in the comments below! SUBSCRIBE
 
-## s10-outro (3:45.0 to 4:04.0)
+## s10-outro (3:40.0 to 4:00.0)
 
 | On screen at | Beat | Seconds |
 |---|---|---|
-| 3:45.0 | AI organises and explains. | 2.56 |
-| 3:47.6 | The practitioner decides. | 2.04 |
-| 3:49.6 | Not legal or financial advice. | 3.28 |
-| 3:52.9 | Building bots? | 2.46 |
-| 3:55.3 | Delivery Pilot, on Skool. | 2.86 |
-| 3:58.2 | [visual: arrow-down] Link below. | 1.64 |
-| 3:59.8 | See you next time. | 4.16 |
+| 3:40.0 | AI organises and explains. | 3.86 |
+| 3:43.9 | The practitioner decides. | 2.42 |
+| 3:46.3 | Not legal or financial advice. | 3.54 |
+| 3:49.8 | Building with AI? | 1.66 |
+| 3:51.5 | Delivery Pilot, on Skool. | 2.82 |
+| 3:54.3 | [visual: arrow-down] Link below. | 1.26 |
+| 3:55.6 | Keep learning. | 4.44 |
 
 Moved to VO (no longer on screen):
 
-- 🤖 AI Bot prepares → ⚖️ Human practitioner decides
-- ⚖️ DISCLAIMER: Informational only · Not legal/financial advice
-- 🚀 Join Delivery Pilot Community on Skool
-- 🔗 https://www.skool.com/delivery-pilot-8938/
+- ⚖️ AI explains; the practitioner decides
+- ⚖️ Information, not legal or financial advice
+- 🚀 Delivery Pilot community on Skool
+- 📚 Keep learning
 - 🤖 BOT TO HUMAN HANDOVER 🤖 AI BOT Organises Data STREAM ➔ ➔ ⚖️ PRACTITIONER Decides & Acts 🛡️ Human In The Loop: Practitioner Decides, Bot Prepares 🚀 Delivery Pilot Community https://www.skool.com/delivery-pilot-8938/

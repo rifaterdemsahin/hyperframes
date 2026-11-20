@@ -22,7 +22,7 @@ const run = (args) => { const r = spawnSync("ffmpeg", ["-hide_banner", "-y", ...
 const probe = (f) => Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }).stdout.trim());
 
 // ---- levels (dB, relative to the bed normalised to -20 LUFS)
-const LEVEL = { base: -7, hook: -6, swell: 2, subscribe: -4, ending: 4 };
+const LEVEL = { base: -7, hook: -2, swell: 2, subscribe: -4, ending: 4 };
 const RAMP = 0.6; // seconds to rise or fall into a window
 const TRIM = -15; // the voice clips sit around -28 dB mean: this keeps the bed ~17 dB under the voice and the swells near voice level
 
@@ -37,7 +37,7 @@ scenes.forEach((s, i) => {
 });
 const cta = scenes.find((s) => s.id === "s09-cta");
 // the build starts on "Tell me in the comments" and runs through "Subscribe" to the swell after the last word
-const sub = cta?.keynote?.find((b) => /comments/i.test(b.text)) || cta?.keynote?.find((b) => /subscribe/i.test(b.text));
+const sub = cta?.keynote?.find((b) => /comment/i.test(b.text)) || cta?.keynote?.find((b) => /subscribe/i.test(b.text));
 if (cta && sub) {
   const words = cta.vo.split(/\s+/);
   const idx = words.findIndex((w, j) => sub.at.split(/\s+/).every((a, q) => (words[j + q] || "").replace(/[^\w]/g, "").toLowerCase() === a.replace(/[^\w]/g, "").toLowerCase()));

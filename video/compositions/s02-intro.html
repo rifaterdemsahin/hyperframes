@@ -11,7 +11,7 @@
     .scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--kn-font); color: var(--kn-ink); opacity: 0; }
     .kn-ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 72%); }
     .beat { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .kt { max-width: 1600px; text-align: center; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
+    .kt { max-width: 1600px; text-align: center; text-wrap: balance; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
     .key { font-weight: 600; color: var(--kn-accent); }
     .kimg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; }
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
@@ -28,68 +28,67 @@
     .kvis .book.a { fill: var(--kn-accent); }
     .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
     .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
+    .kvis .bx, .kvis .wb { fill: none; stroke: var(--kn-ink); stroke-width: 6; }
+    .kvis .wb.a { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>
-  <div data-composition-id="s02-intro" data-duration="23" data-width="1920" data-height="1080">
+  <div data-composition-id="s02-intro" data-duration="22" data-width="1920" data-height="1080">
     <div id="scene" class="scene">
       <div class="kn-ground" data-layout-ignore></div>
-      <!-- moved to VO: 💼 Part 1 of 3 · UK IT Contractor | 🏛️ UK tax rules changed: involuntary push inside IR35 | 📉 Market downturn & contracting shift | 🤖 Navigating real-world red tape with AI -->
-      <div id="s02-k0" class="clip beat" data-start="0" data-duration="3.07" data-track-index="2">
+      <!-- moved to VO: 💼 Part 1 of 3 · UK IT contractor | 🏛️ IR35: the UK tax rule for contractors | 📉 The rule changed, the market slowed | 🎓 Treat it like any new skill -->
+      <div id="s02-k0" class="clip beat" data-start="0" data-duration="3.96" data-track-index="2">
         <h1 id="s02-k0-t" class="kt" style="font-size:148px">Rifat, <span class="key">IT contractor</span>.</h1>
       </div>
-      <div id="s02-k1" class="clip beat" data-start="s02-k0" data-duration="2.6" data-track-index="2">
-        <h1 id="s02-k1-t" class="kt" style="font-size:173px">The rules <span class="key">changed</span>.</h1>
+      <div id="s02-k1" class="clip beat beat-vis" data-start="s02-k0" data-duration="2.3" data-track-index="2">
+        <svg id="s02-k1-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="d" pathLength="1" cx="230" cy="150" r="95"/><path class="d a" pathLength="1" d="M20 150 H205"/><path class="d a" pathLength="1" d="M175 120 L210 150 L175 180"/></svg>
+        <h1 id="s02-k1-t" class="kt" style="font-size:150px"><span class="key">IR35</span>: a UK tax rule.</h1>
       </div>
-      <div id="s02-k2" class="clip beat beat-vis" data-start="s02-k1" data-duration="3.72" data-track-index="2">
-        <svg id="s02-k2-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="d" pathLength="1" cx="230" cy="150" r="95"/><path class="d a" pathLength="1" d="M20 150 H205"/><path class="d a" pathLength="1" d="M175 120 L210 150 L175 180"/></svg>
-        <h1 id="s02-k2-t" class="kt" style="font-size:150px">Pushed inside <span class="key">IR35</span>.</h1>
+      <div id="s02-k2" class="clip beat" data-start="s02-k1" data-duration="3.02" data-track-index="2">
+        <h1 id="s02-k2-t" class="kt" style="font-size:140px">Contractor, or <span class="key">employee</span>?</h1>
       </div>
-      <div id="s02-k3" class="clip beat beat-vis" data-start="s02-k2" data-duration="2.22" data-track-index="2">
+      <div id="s02-k3" class="clip beat beat-vis" data-start="s02-k2" data-duration="4.48" data-track-index="2">
         <svg id="s02-k3-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d dim" pathLength="1" d="M40 250 H360"/><path class="d a" pathLength="1" d="M40 110 L110 80 L170 120 L230 100 L290 180 L360 235"/></svg>
-        <h1 id="s02-k3-t" class="kt" style="font-size:150px">The market <span class="key">fell</span>.</h1>
+        <h1 id="s02-k3-t" class="kt" style="font-size:140px">The rule changed. Market <span class="key">slowed</span>.</h1>
       </div>
-      <div id="s02-k4" class="clip beat" data-start="s02-k3" data-duration="2.23" data-track-index="2">
-        <h1 id="s02-k4-t" class="kt" style="font-size:141px">The numbers? A <span class="key">hassle</span>.</h1>
+      <div id="s02-k4" class="clip beat" data-start="s02-k3" data-duration="1.94" data-track-index="2">
+        <h1 id="s02-k4-t" class="kt" style="font-size:140px"><span class="key">Never</span> done this before.</h1>
       </div>
-      <div id="s02-k5" class="clip beat" data-start="s02-k4" data-duration="4.46" data-track-index="2">
-        <h1 id="s02-k5-t" class="kt" style="font-size:148px"><span class="key">AI</span> cuts the red tape.</h1>
-      </div>
-      <div id="s02-k6" class="clip beat" data-start="s02-k5" data-duration="4.7" data-track-index="2">
-        <h1 id="s02-k6-t" class="kt" style="font-size:200px">Time to <span class="key">close</span>.</h1>
+      <div id="s02-k5" class="clip beat beat-vis" data-start="s02-k4" data-duration="6.3" data-track-index="2">
+        <svg id="s02-k5-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d a" pathLength="1" d="M200 260 V140"/><path class="d a" pathLength="1" d="M200 175 C200 120 150 95 110 105 C112 150 150 178 200 175"/><path class="d a" pathLength="1" d="M200 150 C200 100 250 70 295 80 C292 128 250 155 200 150"/><path class="d dim" pathLength="1" d="M120 262 H280"/></svg>
+        <h1 id="s02-k5-t" class="kt" style="font-size:148px">A new skill to <span class="key">learn</span>.</h1>
       </div>
     </div>
     <script>
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#scene", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
-    tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 22.6);
+    tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 21.6);
     tl.fromTo("#s02-k0-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0);
-    tl.fromTo("#s02-k0-t", { scale: 1 }, { scale: 1.03, duration: 3.07, ease: "none" }, 0);
-    tl.to("#s02-k0-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 2.77);
-    tl.fromTo("#s02-k1-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 3.07);
-    tl.fromTo("#s02-k1-t", { scale: 1 }, { scale: 1.03, duration: 2.6, ease: "none" }, 3.07);
-    tl.to("#s02-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.37);
-    tl.fromTo("#s02-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 5.67);
-    tl.fromTo("#s02-k2-t", { scale: 1 }, { scale: 1.03, duration: 3.72, ease: "none" }, 5.67);
-    tl.fromTo("#s02-k2-v .d:not(.a)", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 5.77);
-    tl.fromTo("#s02-k2-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 6.17);
-    tl.to("#s02-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 9.09);
-    tl.to("#s02-k2-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 9.09);
-    tl.fromTo("#s02-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.39);
-    tl.fromTo("#s02-k3-t", { scale: 1 }, { scale: 1.03, duration: 2.22, ease: "none" }, 9.39);
-    tl.fromTo("#s02-k3-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 9.44);
-    tl.fromTo("#s02-k3-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, 9.59);
-    tl.to("#s02-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 11.31);
-    tl.to("#s02-k3-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 11.31);
-    tl.fromTo("#s02-k4-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 11.61);
-    tl.fromTo("#s02-k4-t", { scale: 1 }, { scale: 1.03, duration: 2.23, ease: "none" }, 11.61);
-    tl.to("#s02-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 13.54);
-    tl.fromTo("#s02-k5-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 13.84);
-    tl.fromTo("#s02-k5-t", { scale: 1 }, { scale: 1.03, duration: 4.46, ease: "none" }, 13.84);
-    tl.to("#s02-k5-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 18);
-    tl.fromTo("#s02-k6-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 18.3);
-    tl.fromTo("#s02-k6-t", { scale: 1 }, { scale: 1.03, duration: 4.7, ease: "none" }, 18.3);
+    tl.fromTo("#s02-k0-t", { scale: 1 }, { scale: 1.03, duration: 3.96, ease: "none" }, 0);
+    tl.to("#s02-k0-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 3.66);
+    tl.fromTo("#s02-k1-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 3.96);
+    tl.fromTo("#s02-k1-t", { scale: 1 }, { scale: 1.03, duration: 2.3, ease: "none" }, 3.96);
+    tl.fromTo("#s02-k1-v .d:not(.a)", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 4.06);
+    tl.fromTo("#s02-k1-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 4.46);
+    tl.to("#s02-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.96);
+    tl.to("#s02-k1-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.96);
+    tl.fromTo("#s02-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 6.26);
+    tl.fromTo("#s02-k2-t", { scale: 1 }, { scale: 1.03, duration: 3.02, ease: "none" }, 6.26);
+    tl.to("#s02-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 8.98);
+    tl.fromTo("#s02-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.28);
+    tl.fromTo("#s02-k3-t", { scale: 1 }, { scale: 1.03, duration: 4.48, ease: "none" }, 9.28);
+    tl.fromTo("#s02-k3-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 9.33);
+    tl.fromTo("#s02-k3-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, 9.48);
+    tl.to("#s02-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 13.46);
+    tl.to("#s02-k3-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 13.46);
+    tl.fromTo("#s02-k4-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 13.76);
+    tl.fromTo("#s02-k4-t", { scale: 1 }, { scale: 1.03, duration: 1.94, ease: "none" }, 13.76);
+    tl.to("#s02-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 15.4);
+    tl.fromTo("#s02-k5-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 15.7);
+    tl.fromTo("#s02-k5-t", { scale: 1 }, { scale: 1.03, duration: 6.3, ease: "none" }, 15.7);
+    tl.fromTo("#s02-k5-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, 15.75);
+    tl.fromTo("#s02-k5-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out", stagger: 0.2 }, 15.85);
     window.__timelines["s02-intro"] = tl;
     tl.seek(0);
     </script>

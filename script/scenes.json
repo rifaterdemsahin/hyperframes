@@ -1,70 +1,71 @@
 {
-  "title": "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape",
-  "totalSecondsApprox": 244,
+  "title": "Part 1 of 3: How I Taught Myself Anything with AI (Closing My Company Was the Test)",
+  "totalSecondsApprox": 240,
   "scenes": [
     {
       "id": "s01-hook",
       "label": "HOOK",
-      "title": "Hook",
+      "title": "Every big change starts with something new",
       "start": 0,
-      "duration": 14,
+      "duration": 17,
       "broll": "Goal image, animated AI core engine, slow push-in",
-      "vo": "My company is coming to an end, and I'm closing it properly. If you're a UK director in the same spot, here's how a liquidation works in the age of AI, and the five things to do first.",
+      "vo": "Every big change starts with something you don't know yet. What's yours? Mine was closing my own company. In this video, I'll show you how I used AI to teach myself a whole new process, fast, and how you can do the same with anything.",
       "realAsset": null,
       "bg": "goal",
       "overlay": [
-        "🏁 The end of the company",
-        "✅ Closing it properly with dignity",
-        "⚡ The Core Strategy: Liquidating in the Age of AI 🤖"
+        "🌱 Every change starts with the unknown",
+        "🏁 Mine: closing my own company",
+        "🤖 Teach yourself anything with AI"
       ],
       "ph": null,
-      "voSeconds": 11.9,
+      "voSeconds": 14.4,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "The end.",
-          "key": "end"
+          "text": "Every change starts unknown.",
+          "key": "unknown"
         },
         {
-          "at": "and I'm closing",
-          "text": "Closed properly.",
-          "key": "properly"
+          "at": "What's yours?",
+          "text": "What's yours?",
+          "key": "yours"
         },
         {
-          "at": "If you're a UK",
-          "text": "For UK directors.",
-          "key": "UK"
+          "at": "Mine was closing",
+          "text": "Mine: closing my company.",
+          "key": "closing"
         },
         {
-          "at": "here's how a liquidation",
-          "text": "Liquidation × AI",
-          "key": "AI"
+          "at": "I'll show you how",
+          "text": "I taught myself, with AI.",
+          "key": "AI",
+          "visual": "bulb"
         },
         {
-          "at": "and the five things",
-          "text": "5 things first.",
-          "key": "5"
+          "at": "and how you",
+          "text": "So can you.",
+          "key": "you"
         }
       ]
     },
     {
       "id": "s02-intro",
       "label": "INTRO",
-      "title": "Part 1 of 3: AI and real-world red tape",
-      "start": 14,
-      "duration": 23,
+      "title": "Part 1 of 3: learning anything with AI",
+      "start": 17,
+      "duration": 22,
       "broll": "Face cam, lower-third: Part 1 of 3, UK IT contractor IR35 shift",
-      "vo": "I'm Rifat, an IT contractor based in Cambridge. The tax rules in the UK changed, creating an involuntary push from outside to inside IR35 roles as the market took a downturn. Doing the numbers is a hassle, but with AI we can navigate the red tape without costly mistakes. It's time to close the company properly.",
+      "vo": "I'm Rifat, an IT contractor in Cambridge. In the UK, a tax rule called IR35 decides whether contractors are taxed like employees. When it changed, and the market slowed, my company stopped making sense. I had never closed a company before. So I treated it like any new skill: learn it with AI.",
       "realAsset": "Face cam clip",
       "bg": "desk",
       "overlay": [
-        "💼 Part 1 of 3 · UK IT Contractor",
-        "🏛️ UK tax rules changed: involuntary push inside IR35",
-        "📉 Market downturn & contracting shift",
-        "🤖 Navigating real-world red tape with AI"
+        "💼 Part 1 of 3 · UK IT contractor",
+        "🏛️ IR35: the UK tax rule for contractors",
+        "📉 The rule changed, the market slowed",
+        "🎓 Treat it like any new skill"
       ],
       "ph": "Face cam placeholder · lower-third: Rifat · Cambridge, UK",
-      "voSeconds": 20.8,
+      "voSeconds": 19.3,
       "voice": "bm_george",
       "keynote": [
         {
@@ -72,212 +73,198 @@
           "key": "IT contractor"
         },
         {
-          "at": "The tax rules",
-          "text": "The rules changed.",
-          "key": "changed"
-        },
-        {
-          "at": "creating an involuntary",
-          "text": "Pushed inside IR35.",
+          "at": "a tax rule called",
+          "text": "IR35: a UK tax rule.",
           "key": "IR35",
           "visual": "ir35"
         },
         {
-          "at": "as the market",
-          "text": "The market fell.",
-          "key": "fell",
+          "at": "decides whether contractors",
+          "text": "Contractor, or employee?",
+          "key": "employee"
+        },
+        {
+          "at": "When it changed,",
+          "text": "The rule changed. Market slowed.",
+          "key": "slowed",
           "visual": "market-fall"
         },
         {
-          "at": "Doing the numbers",
-          "text": "The numbers? A hassle.",
-          "key": "hassle"
+          "at": "I had never",
+          "text": "Never done this before.",
+          "key": "Never"
         },
         {
-          "at": "but with AI",
-          "text": "AI cuts the red tape.",
-          "key": "AI"
-        },
-        {
-          "at": "It's time to close",
-          "text": "Time to close.",
-          "key": "close"
+          "at": "So I treated",
+          "text": "A new skill to learn.",
+          "key": "learn",
+          "visual": "sprout"
         }
       ]
     },
     {
       "id": "s03-goal",
       "label": "CHAPTER 1",
-      "title": "The goal",
-      "start": 37,
-      "duration": 20,
+      "title": "The goal: transformation",
+      "start": 39,
+      "duration": 24,
       "broll": "Goal infographic, three-step liquidation pipeline, legal debt separation",
-      "vo": "Here's the goal. The industrial and the information revolutions introduced so much red tape. Company debt stays the company's. A licensed practitioner takes over, sells the assets, and pays creditors in order. There is a lot of red tape in society, so understand it first.",
+      "vo": "Here's the real goal: transformation. Not just closing a company, but becoming someone who can learn anything quickly. Liquidation is my example: the legal way to close a company that can't pay its debts. The debt stays with the company, and a licensed insolvency practitioner, the professional who runs the process, sells the assets and pays creditors in order.",
       "realAsset": null,
       "bg": "redtape",
       "overlay": [
-        "📜 Industrial & Information revolutions brought massive red tape",
-        "⚖️ Company debt stays the company's",
-        "1️⃣ Hand over → 2️⃣ Sell assets → 3️⃣ Pay creditors in order",
-        "🛡️ Understand the red tape first"
+        "🦋 The goal: transformation",
+        "📘 Liquidation: closing a company that can't pay",
+        "⚖️ The debt stays with the company",
+        "🧑‍⚖️ The practitioner sells assets, pays creditors in order"
       ],
       "ph": null,
       "fx": null,
-      "voSeconds": 17.6,
+      "voSeconds": 21.9,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "The goal.",
-          "key": "goal"
+          "text": "The goal: transformation.",
+          "key": "transformation",
+          "visual": "steps-up"
         },
         {
-          "at": "The industrial and",
-          "text": "Two revolutions.",
-          "key": "Two"
+          "at": "becoming someone who",
+          "text": "Learn anything, quickly.",
+          "key": "anything"
         },
         {
-          "at": "introduced so much",
-          "image": "redtape",
-          "text": "So much red tape.",
-          "key": "red tape"
+          "at": "Liquidation is my",
+          "text": "Liquidation: my example.",
+          "key": "example"
         },
         {
-          "at": "Company debt stays",
-          "text": "Company debt stays the company's.",
-          "key": "company's"
+          "at": "the legal way",
+          "text": "Closing a company that can't pay.",
+          "key": "can't pay"
         },
         {
-          "at": "A licensed practitioner",
-          "text": "The practitioner takes over.",
-          "key": "practitioner"
+          "at": "The debt stays",
+          "text": "Debt stays with the company.",
+          "key": "company"
         },
         {
-          "at": "and pays creditors",
-          "text": "Pays creditors, in order.",
+          "at": "a licensed insolvency",
+          "text": "Practitioner: the licensed pro.",
+          "key": "licensed",
+          "visual": "practitioner"
+        },
+        {
+          "at": "sells the assets,",
+          "text": "Assets sold, creditors paid in order.",
           "key": "in order",
           "visual": "creditors-order"
-        },
-        {
-          "at": "There is a lot",
-          "text": "Red tape is everywhere.",
-          "key": "everywhere"
-        },
-        {
-          "at": "so understand it",
-          "text": "Understand it first.",
-          "key": "first"
         }
       ]
     },
     {
       "id": "s04-five-things",
       "label": "CHAPTER 2",
-      "title": "Five things to do first, with AI",
-      "start": 57,
-      "duration": 40,
+      "title": "How I learned it: five steps with AI",
+      "start": 63,
+      "duration": 41,
       "broll": "Numbered list 1 to 5 with live ChatGPT co-pilot interaction & learning animation",
-      "vo": "Five things to do first, with AI as your support. Remember, this is what I learned from AI, not financial advice. Your job is to learn with AI. One: check your HMRC balance. Two: gather the company's books and records. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. Connect all of these parts to AI so you can iterate. Be ready to learn the details and act on the fly.",
+      "vo": "Here's how I learned it, in five steps, with AI as my tutor, not my lawyer. This is what I learned, not financial advice. One: ask AI to explain the process in plain words, then ask it again, simpler. Two: check the facts against official sources, like HMRC, the UK tax office. Three: get a real expert. I chose an insolvency practitioner with 4.8 stars on Trustpilot. Four: turn what you learn into a checklist: stop trading, treat every creditor equally, bring every bank account to zero, or the money goes to the Crown, which means the government. Five: ask better questions every day, and act on the answers.",
       "realAsset": null,
       "bg": "desk",
       "overlay": [
-        "⚡ Five things to do first (with AI 🤖)",
-        "⚠️ What I learned from AI · Not financial advice",
-        "🎯 Your job is to learn with AI",
-        "1️⃣ Check HMRC balance · 2️⃣ Gather books & records",
-        "3️⃣ Licensed practitioner · 4️⃣ Stop trading",
-        "5️⃣ Close invoices & bank accounts to zero",
-        "🤖 Interactive ChatGPT learning: iterate on the fly"
+        "🎓 Five steps, AI as tutor",
+        "1️⃣ Ask AI to explain, then simpler",
+        "2️⃣ Check facts with HMRC, the UK tax office",
+        "3️⃣ Get a real expert · 4️⃣ Make a checklist",
+        "5️⃣ Ask better questions every day"
       ],
       "ph": null,
-      "voSeconds": 37.6,
+      "voSeconds": 38.3,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "5 things first.",
+          "text": "5 steps to learn it.",
           "key": "5"
         },
         {
           "at": "with AI as",
-          "text": "AI as support.",
-          "key": "support"
+          "text": "AI: a tutor, not a lawyer.",
+          "key": "tutor",
+          "visual": "bulb"
         },
         {
-          "at": "Remember, this is",
-          "text": "From AI. Not financial advice.",
+          "at": "This is what",
+          "text": "Not financial advice.",
           "key": "Not"
         },
         {
-          "at": "Your job is",
-          "text": "Your job: learn.",
-          "key": "learn"
+          "at": "One: ask AI",
+          "text": "Ask AI to explain.",
+          "key": "explain",
+          "visual": "comment"
         },
         {
-          "at": "One: check your",
-          "text": "HMRC balance.",
+          "at": "then ask it",
+          "text": "Then simpler.",
+          "key": "simpler"
+        },
+        {
+          "at": "Two: check the",
+          "text": "Check official sources.",
+          "key": "official",
+          "visual": "magnify"
+        },
+        {
+          "at": "like HMRC, the",
+          "text": "HMRC: the UK tax office.",
           "key": "HMRC",
           "visual": "balance"
         },
         {
-          "at": "Two: gather the",
-          "text": "Books and records.",
-          "key": "records",
-          "visual": "books"
-        },
-        {
           "at": "Three: get a",
-          "text": "A licensed practitioner.",
-          "key": "licensed",
-          "visual": "practitioner"
+          "text": "Get a real expert.",
+          "key": "expert"
         },
         {
-          "at": "I chose one",
+          "at": "I chose an",
           "text": "4.8 stars.",
           "key": "4.8",
           "visual": "stars"
         },
         {
-          "at": "Four: stop trading,",
-          "text": "Stop trading.",
-          "key": "Stop",
-          "visual": "stop"
+          "at": "Four: turn what",
+          "text": "Checklist: stop trading.",
+          "key": "stop trading",
+          "visual": "checklist"
         },
         {
-          "at": "and don't pay",
-          "text": "No creditor goes first.",
-          "key": "No",
+          "at": "treat every creditor",
+          "text": "Every creditor, equal.",
+          "key": "equal",
           "visual": "equal-creditors"
         },
         {
-          "at": "Your practitioner will",
-          "text": "Your practitioner confirms.",
-          "key": "confirms"
-        },
-        {
-          "at": "Five: close your",
-          "text": "Close every invoice.",
-          "key": "Close"
-        },
-        {
-          "at": "and bring every",
+          "at": "bring every bank",
           "text": "Every account to zero.",
           "key": "zero",
           "visual": "zero"
         },
         {
           "at": "or the money",
-          "text": "Or it goes to the Crown.",
-          "key": "Crown",
+          "text": "Or it goes to the government.",
+          "key": "government",
           "visual": "crown"
         },
         {
-          "at": "Connect all of",
-          "text": "Connect it all to AI.",
-          "key": "AI",
-          "visual": "connect"
+          "at": "Five: ask better",
+          "text": "Ask better questions daily.",
+          "key": "better",
+          "visual": "loop"
         },
         {
-          "at": "Be ready to",
-          "text": "Learn, then act.",
+          "at": "and act on",
+          "text": "Then act.",
           "key": "act"
         }
       ]
@@ -285,31 +272,30 @@
     {
       "id": "s05-cost-timeline",
       "label": "CHAPTER 3",
-      "title": "What it costs and how long it takes",
-      "start": 97,
-      "duration": 27,
+      "title": "What it cost and how long it took",
+      "start": 104,
+      "duration": 24,
       "broll": "Cost and timeline graphic: £1,500 + £2,100, 2 months before + 2 months after",
-      "vo": "Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business. This is the place that I found. There could be cheaper or more expensive options, but you need to plan for it. The process before took me two months, and after the payment I expect two more months to complete. You plus AI gives you leverage. Learn and act on the fly, build your skills, and carry them over to your next project.",
+      "vo": "What did it cost? For me, a £1,500 deposit, then a £2,100 balance to the liquidation company. That's the provider I found; yours may be cheaper or dearer, so plan for it. Getting ready took two months, and I expect two more after paying. The money matters less than the skill: you plus AI gives you leverage, and that skill carries into your next project.",
       "realAsset": null,
       "bg": "calm",
       "overlay": [
-        "⚡ YOU + AI = LEVERAGE 🚀",
-        "💷 Fee to liquidation company: £1,500 deposit + £2,100 balance",
-        "🔍 Found this provider: cheaper or more expensive options exist",
-        "⏱️ Timeline: 2 months prep + 2 months completion expected",
-        "💡 Learn & act on the fly: build skills for the next project"
+        "💷 £1,500 deposit + £2,100 balance",
+        "🔍 The provider I found: prices vary",
+        "⏱️ 2 months to get ready, 2 more after",
+        "🚀 You + AI = leverage that carries over"
       ],
       "ph": null,
       "fx": {
         "type": "cost-timeline",
         "cue": "costs"
       },
-      "voSeconds": 24.6,
+      "voSeconds": 21.5,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "What it costs.",
-          "key": "costs"
+          "text": "What it cost.",
+          "key": "cost"
         },
         {
           "at": "a £1,500 deposit,",
@@ -318,40 +304,30 @@
           "visual": "cost-bars"
         },
         {
-          "at": "This is the",
-          "text": "One provider I found.",
-          "key": "found"
-        },
-        {
-          "at": "There could be",
+          "at": "That's the provider",
           "text": "Prices vary. Plan for it.",
           "key": "Plan"
         },
         {
-          "at": "The process before",
-          "text": "2 months before.",
-          "key": "2",
-          "visual": "timeline-before"
+          "at": "Getting ready took",
+          "text": "2 months, then 2 more.",
+          "key": "2 more",
+          "visual": "timeline-both"
         },
         {
-          "at": "and after the",
-          "text": "2 months after.",
-          "key": "2",
-          "visual": "timeline-after"
+          "at": "The money matters",
+          "text": "The skill matters more.",
+          "key": "skill"
         },
         {
-          "at": "You plus AI",
+          "at": "you plus AI",
           "text": "You + AI = leverage.",
-          "key": "leverage"
+          "key": "leverage",
+          "visual": "lever"
         },
         {
-          "at": "Learn and act",
-          "text": "Learn, act, build skills.",
-          "key": "skills"
-        },
-        {
-          "at": "and carry them",
-          "text": "Carry them forward.",
+          "at": "and that skill",
+          "text": "It carries forward.",
           "key": "forward"
         }
       ]
@@ -359,46 +335,35 @@
     {
       "id": "s06-exceptions",
       "label": "CHAPTER 4",
-      "title": "The exceptions",
-      "start": 124,
-      "duration": 29,
+      "title": "The honest part",
+      "start": 128,
+      "duration": 24,
       "broll": "Exceptions cards, security guardrail badge, hands-on AI loop",
-      "vo": "Now the exceptions, because this matters. ⚠️ The protection isn't absolute. When I stopped paying the accountant, I felt isolated, and AI was the place to turn to. This is what I learned from AI. But AI systems aren't hands-off: you are hands-on to secure, adapt and train them. The insolvency practitioner is your security guardrail 🛡️, so be sure on your end when inputting data to them. Personal liability remains for wrongful trading, personal guarantees, or director loan accounts.",
+      "vo": "Now the honest part. AI didn't do this for me. When I stopped paying my accountant, I felt alone, and AI was where I turned. But AI is not hands-off: you stay hands-on, you check, correct and teach it. The practitioner is your safety net, so check what you give them. And some things stay personal: wrongful trading, personal guarantees, and money you owe from a director's loan.",
       "realAsset": null,
       "bg": "warning",
       "overlay": [
-        "⚠️ The Exceptions & Personal Liability",
-        "💡 Stopped accountant & felt isolated: AI was the place to turn to",
-        "🛠️ Not hands-off: you are hands-on to secure, adapt & train AI",
-        "🛡️ Licensed Practitioner = Essential Security Guardrail",
-        "🚫 Wrongful trading · Personal guarantees · Overdrawn loan accounts"
+        "⚠️ AI didn't do it for me",
+        "🛠️ Stay hands-on: check, correct, teach",
+        "🛡️ The practitioner is your safety net",
+        "🚫 Some liability stays personal"
       ],
       "ph": null,
       "fx": {
         "type": "handson-guardrail",
         "cue": "hands-off"
       },
-      "voSeconds": 27,
+      "voSeconds": 21.9,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "The exceptions.",
-          "key": "exceptions"
-        },
-        {
-          "at": "The protection isn't",
-          "text": "Protection isn't absolute.",
-          "key": "isn't"
+          "text": "Honest part: AI didn't do it.",
+          "key": "didn't"
         },
         {
           "at": "When I stopped",
-          "text": "No more accountant.",
-          "key": "No"
-        },
-        {
-          "at": "I felt isolated,",
-          "text": "Isolated.",
-          "key": "Isolated"
+          "text": "No accountant. Alone.",
+          "key": "Alone"
         },
         {
           "at": "and AI was",
@@ -406,112 +371,112 @@
           "key": "AI"
         },
         {
-          "at": "But AI systems",
+          "at": "But AI is",
           "text": "AI isn't hands-off.",
           "key": "hands-off"
         },
         {
-          "at": "you are hands-on",
-          "text": "You are hands-on.",
-          "key": "hands-on"
+          "at": "you stay hands-on,",
+          "text": "Check. Correct. Teach.",
+          "key": "Teach",
+          "visual": "loop"
         },
         {
-          "at": "The insolvency practitioner",
-          "text": "The practitioner: your guardrail.",
-          "key": "guardrail",
+          "at": "The practitioner is",
+          "text": "The practitioner: your safety net.",
+          "key": "safety net",
           "visual": "shield"
         },
         {
-          "at": "so be sure",
-          "text": "Check your own inputs.",
-          "key": "your own"
-        },
-        {
-          "at": "Personal liability remains",
-          "text": "Personal liability remains.",
-          "key": "remains"
+          "at": "And some things",
+          "text": "Some liability stays personal.",
+          "key": "personal"
         }
       ]
     },
     {
       "id": "s07-emails",
       "label": "CHAPTER 5",
-      "title": "What my emails taught me",
-      "start": 153,
+      "title": "Three lessons from my inbox",
+      "start": 152,
       "duration": 24,
       "broll": "Online methods as database animation, MCP connection pipeline",
-      "vo": "Three lessons from my emails and records. One: the process starts once the entire balance for the liquidation company is paid off—my provider chased me six times. Two: use online methods and keep everything in writing, because online records act as databases. Three: connect your drive and emails to AI over MCP. When things go wrong, learn from them and iterate.",
+      "vo": "Three lessons from my inbox. One: nothing starts until the full fee is paid; my provider chased me six times. Two: keep everything in writing, online, because your emails become a searchable record. Three: connect your email and files to AI with MCP, a standard way to plug AI into your apps. When something goes wrong, learn from it and go again.",
       "realAsset": null,
       "bg": "storage",
       "overlay": [
-        "📧 Lessons from Emails & Records",
-        "1️⃣ Process starts once balance is paid in full (chased 6 times ⏳)",
-        "2️⃣ Use online methods: they act as structured databases 🗄️",
-        "3️⃣ Connect Gmail & Drive to AI over MCP ⚡",
-        "🔄 Learn from every issue and iterate"
+        "📧 Three lessons from my inbox",
+        "1️⃣ Nothing starts until it's paid (chased 6 times)",
+        "2️⃣ Keep it in writing: a searchable record",
+        "3️⃣ MCP: a standard way to plug AI into apps"
       ],
       "ph": null,
       "fx": {
         "type": "database-pipeline",
         "cue": "databases"
       },
-      "voSeconds": 23.2,
+      "voSeconds": 21.6,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "3 lessons.",
+          "text": "3 lessons from my inbox.",
           "key": "3"
         },
         {
-          "at": "One: the process",
+          "at": "One: nothing starts",
           "text": "Pay in full first.",
           "key": "full"
         },
         {
-          "at": "provider chased me",
+          "at": "my provider chased",
           "text": "Chased 6 times.",
           "key": "6",
           "visual": "envelopes6"
         },
         {
-          "at": "Two: use online",
+          "at": "Two: keep everything",
           "text": "Keep it in writing.",
           "key": "writing"
         },
         {
-          "at": "because online records",
-          "text": "Records are a database.",
-          "key": "database",
+          "at": "because your emails",
+          "text": "A searchable record.",
+          "key": "searchable",
           "visual": "database"
         },
         {
           "at": "Three: connect your",
-          "text": "Connect it all over MCP.",
+          "text": "Connect AI with MCP.",
           "key": "MCP",
           "visual": "connect"
         },
         {
-          "at": "When things go",
-          "text": "Learn. Iterate.",
-          "key": "Iterate"
+          "at": "a standard way",
+          "text": "MCP: plugs AI into apps.",
+          "key": "plugs"
+        },
+        {
+          "at": "When something goes",
+          "text": "Learn. Go again.",
+          "key": "again"
         }
       ]
     },
     {
       "id": "s08-tracking",
       "label": "CHAPTER 6",
-      "title": "How I keep track of it",
-      "start": 177,
-      "duration": 25,
+      "title": "Workflows plus AI",
+      "start": 176,
+      "duration": 23,
       "broll": "n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card",
-      "vo": "I keep track of it all with n8n and AI agents. Remember: n8n is deterministic and known, while AI is probabilistic and unknown. Build your process around both. A friend told me: become like MrBeast, why show your real work? Have the honour to do what's right and share what you're genuinely working on. Build your system and mindset for the next journey.",
+      "vo": "To keep track, I use n8n, a tool for building automatic workflows, plus AI agents, small programs that act for you. A workflow does the same thing every time, so it's predictable. AI can surprise you, so it needs checking. Build around both. A friend asked, why show your real work? Because sharing the real journey is how we all learn. That's the transformation.",
       "realAsset": null,
       "bg": "network",
       "overlay": [
-        "⚙️ n8n (Scheduled Email) vs 🧠 AI Bot (Unknown Replies)",
-        "🏗️ Build your workflow process around both",
-        "🏔️ Hero's Journey: Have the honour to share real work",
-        "🚀 Build your system & mindset for the next journey"
+        "⚙️ n8n: a tool for automatic workflows",
+        "🤖 AI agents: programs that act for you",
+        "🔁 Workflows are predictable; AI needs checking",
+        "🏔️ Share the real journey"
       ],
       "ph": null,
       "logo": null,
@@ -519,101 +484,99 @@
         "type": "deterministic-vs-probabilistic",
         "cue": "deterministic"
       },
-      "voSeconds": 24.6,
+      "voSeconds": 21.2,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "n8n + AI agents.",
-          "key": "agents"
+          "text": "n8n: automatic workflows.",
+          "key": "workflows",
+          "visual": "workflow"
         },
         {
-          "at": "Remember: n8n is",
-          "text": "n8n: known.",
-          "key": "known",
+          "at": "plus AI agents,",
+          "text": "AI agents: programs that act.",
+          "key": "act",
+          "visual": "agent"
+        },
+        {
+          "at": "A workflow does",
+          "text": "Workflows: predictable.",
+          "key": "predictable",
           "visual": "known-path"
         },
         {
-          "at": "while AI is",
-          "text": "AI: unknown.",
-          "key": "unknown",
+          "at": "AI can surprise",
+          "text": "AI: needs checking.",
+          "key": "checking",
           "visual": "unknown-paths"
         },
         {
-          "at": "Build your process",
+          "at": "Build around both.",
           "text": "Build around both.",
           "key": "both"
         },
         {
-          "at": "A friend told",
+          "at": "A friend asked,",
           "text": "“Why show your real work?”",
           "key": "real"
         },
         {
-          "at": "Have the honour",
-          "text": "Share what's real.",
-          "key": "real"
+          "at": "Because sharing the",
+          "text": "Share the real journey.",
+          "key": "journey",
+          "image": "heros-journey"
         },
         {
-          "at": "Build your system",
-          "image": "heros-journey",
-          "text": "The next journey.",
-          "key": "next"
+          "at": "That's the transformation.",
+          "text": "That's the transformation.",
+          "key": "transformation",
+          "visual": "steps-up"
         }
       ]
     },
     {
       "id": "s09-cta",
       "label": "CTA",
-      "title": "Subscribe for Part 2",
-      "start": 202,
-      "duration": 23,
+      "title": "From shame to grace, and Part 2",
+      "start": 199,
+      "duration": 21,
       "broll": "Motivational dawn background, shame to grace card, Part 2 question prompt for comments",
-      "vo": "Closing a company often carries personal shame, but moving from shame to grace is the real breakthrough. Don't attach your personality to a company: it's just a vehicle, and you can always restart. In Part 2, I'll show how I build the app and AI agents. If there is interest, I will shoot Part 2. Tell me in the comments if you want to see it, and subscribe to follow along!",
+      "vo": "Closing a company can feel like failure. It isn't. Moving from shame to grace is the real breakthrough: a company is just a vehicle, and the skills you build stay with you. In Part 2, I'll show how I built the workflows and AI agents. Tell me in the comments if you want it, and subscribe to follow the journey.",
       "realAsset": null,
       "bg": "motivational",
       "overlay": [
-        "🌟 From Shame to Grace: Don't attach your identity to a company",
-        "🚗 A company is just a vehicle · You can always restart 🔄",
-        "🔔 Subscribe for Part 2 · Tell me in comments if you want Part 2 💬",
-        "🛠️ Building autonomous AI agents & stages 🤖"
+        "🌅 From shame to grace",
+        "🚗 A company is just a vehicle; skills stay",
+        "🛠️ Part 2: the workflows and AI agents",
+        "🔔 Subscribe to follow the journey"
       ],
       "ph": null,
-      "voSeconds": 21.9,
+      "voSeconds": 18.6,
       "voice": "bm_george",
       "keynote": [
         {
-          "text": "Shame.",
-          "key": "Shame"
+          "text": "Feels like failure. It isn't.",
+          "key": "isn't"
         },
         {
-          "at": "but moving from",
+          "at": "Moving from shame",
           "text": "From shame to grace.",
           "key": "grace"
         },
         {
-          "at": "Don't attach your",
-          "text": "A company is just a vehicle.",
-          "key": "vehicle"
-        },
-        {
-          "at": "and you can",
-          "text": "You can restart.",
-          "key": "restart"
+          "at": "a company is",
+          "text": "Company: a vehicle. Skills stay.",
+          "key": "Skills stay"
         },
         {
           "at": "In Part 2,",
-          "text": "Part 2: the app and agents.",
-          "key": "Part 2"
-        },
-        {
-          "at": "If there is",
-          "text": "Want Part 2?",
+          "text": "Part 2: workflows and agents.",
           "key": "Part 2"
         },
         {
           "at": "Tell me in",
-          "text": "Tell me in the comments.",
-          "key": "comments",
+          "text": "Comment below.",
+          "key": "Comment",
           "visual": "comment"
         },
         {
@@ -628,22 +591,22 @@
       "id": "s10-outro",
       "label": "OUTRO",
       "title": "Disclaimer + outro",
-      "start": 225,
-      "duration": 19,
+      "start": 220,
+      "duration": 20,
       "broll": "Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo",
-      "vo": "Important disclaimer: AI organises and explains, but the licensed practitioner decides. This is information, not legal or financial advice. If you're building bots and automation, join our Delivery Pilot community on Skool at the link below. See you in the next one!",
+      "vo": "Important disclaimer: AI organises and explains, but the licensed practitioner decides. This is information, not legal or financial advice. If you're learning to build with AI, join our Delivery Pilot community on Skool. The link is below. Keep learning. See you in the next one.",
       "realAsset": "Skool community link",
       "bg": "goal",
       "overlay": [
-        "🤖 AI Bot prepares → ⚖️ Human practitioner decides",
-        "⚖️ DISCLAIMER: Informational only · Not legal/financial advice",
-        "🚀 Join Delivery Pilot Community on Skool",
-        "🔗 https://www.skool.com/delivery-pilot-8938/"
+        "⚖️ AI explains; the practitioner decides",
+        "⚖️ Information, not legal or financial advice",
+        "🚀 Delivery Pilot community on Skool",
+        "📚 Keep learning"
       ],
       "ph": null,
       "logo": "skool",
       "link": "https://www.skool.com/delivery-pilot-8938/",
-      "voSeconds": 17.2,
+      "voSeconds": 18.0,
       "voice": "bm_george",
       "keynote": [
         {
@@ -661,9 +624,9 @@
           "key": "Not"
         },
         {
-          "at": "If you're building",
-          "text": "Building bots?",
-          "key": "bots"
+          "at": "If you're learning",
+          "text": "Building with AI?",
+          "key": "Building"
         },
         {
           "at": "join our Delivery",
@@ -671,15 +634,15 @@
           "key": "Delivery Pilot"
         },
         {
-          "at": "at the link",
+          "at": "The link is",
           "text": "Link below.",
           "key": "below",
           "visual": "arrow-down"
         },
         {
-          "at": "See you in",
-          "text": "See you next time.",
-          "key": "next"
+          "at": "Keep learning.",
+          "text": "Keep learning.",
+          "key": "learning"
         }
       ]
     }

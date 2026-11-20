@@ -6,11 +6,11 @@
   "modelLicense": "Apache-2.0",
   "modelLicenseUrl": "https://huggingface.co/ACE-Step/ACE-Step-v1-3.5B",
   "falTerms": "https://fal.ai/terms",
-  "tags": "cinematic film score, dramatic, orchestral, instrumental, no vocals, slow build, emotional, strings, low brass, piano, deep pulse, epic swells, 70 bpm, minor key",
+  "tags": "inspiring, uplifting, cinematic, solo piano lead, felt piano, soft strings, warm pads, hopeful, emotional build, instrumental, no vocals, film score, 80 bpm, major key",
   "lyrics": "[inst]",
-  "seed": 20261120,
+  "seed": 20261121,
   "durationSeconds": 240,
-  "falRequestId": "01a1fae5-c5d4-77d2-a7f0-00161d8d3524",
-  "generatedAt": "2026-11-20T21:39:05Z",
+  "falRequestId": "01a1faff-be26-7311-adc2-93de06d36fe0",
+  "generatedAt": "2026-11-20T22:07:27Z",
   "note": "Converted from the 48 kHz WAV fal.ai returned to 192 kbps MP3 to keep the repo small."
 }

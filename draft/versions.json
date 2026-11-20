@@ -1,5 +1,5 @@
 {
-  "latest": 12,
+  "latest": 13,
   "versions": [
     {
       "n": 1,
@@ -134,6 +134,17 @@
         "Music: a dramatic cinematic bed under the whole film (fal.ai ACE-Step, Apache-2.0, instrumental), about 18 dB under the voice and ducked by a sidechain on the voiceover; it swells in the hook, every gap between scenes, the Subscribe ending and the final tail. Source and licence in video/assets/music/.",
         "Visuals: 24 screens that name a real thing now have a simple drawn, animated visual above the line: IR35, market, creditors in order, HMRC balance, books, practitioner, 4.8 stars, stop, no creditor first, account to zero, the Crown, AI connections, costs, the 2 + 2 month timeline, guardrail, 6 chasers, database, MCP, known vs unknown paths, comments, subscribe bell, link below.",
         "Pure keynote: no real footage. Gaps t02, t03, t05 and t06 dropped; the spec's real-footage rule no longer applies to this film."
+      ]
+    },
+    {
+      "n": 13,
+      "date": "2026-11-20",
+      "label": "Thirteenth draft: transformation with AI",
+      "changes": [
+        "New angle: transformation and teaching yourself anything with AI; closing the company is the worked example. New script and AI voice for all 10 scenes, re-timed to 4:00; the hook now asks \"What's yours?\".",
+        "Plain words for the mass audience: IR35, HMRC, insolvency practitioner, the Crown, MCP, n8n and AI agents are explained the first time they appear, in the voice and on screen.",
+        "Inspiring piano-led music bed (fal.ai ACE-Step, Apache-2.0, new seed), ducked about 18 dB under the voice, swelling in the hook, the gaps and the Subscribe ending.",
+        "Keynote screens now start on the spoken word, timed from Whisper word timestamps instead of an estimate; 76 screens, 33 with drawn visuals (10 new: tutor, growth, steps, sources, checklist, learning loop, timeline, leverage, workflow, agent)."
       ]
     }
   ]

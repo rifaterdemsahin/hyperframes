@@ -1,684 +1,557 @@
 {
-  "audio": "assets/vo/s04-five-things.mp3",
-  "language": "en",
-  "words": [
-    {
-      "text": "Five",
-      "start": 0.3,
-      "end": 0.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "things",
-      "start": 0.58,
-      "end": 0.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 0.9,
-      "end": 0.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "do",
-      "start": 1.02,
-      "end": 1.1,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "first",
-      "start": 1.24,
-      "end": 1.56,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
-      "start": 1.7,
-      "end": 1.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 1.94,
-      "end": 2.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "as",
-      "start": 2.3,
-      "end": 2.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 2.44,
-      "end": 2.54,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "support.",
-      "start": 2.58,
-      "end": 3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Remember,",
-      "start": 3.44,
-      "end": 3.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "this",
-      "start": 3.92,
-      "end": 4.04,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 4.08,
-      "end": 4.18,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "what",
-      "start": 4.22,
-      "end": 4.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "I",
-      "start": 4.38,
-      "end": 4.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "learned",
-      "start": 4.48,
-      "end": 4.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "from",
-      "start": 4.76,
-      "end": 4.92,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI,",
-      "start": 5,
-      "end": 5.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "not",
-      "start": 5.4,
-      "end": 5.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "financial",
-      "start": 5.62,
-      "end": 6.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "advice.",
-      "start": 6.06,
-      "end": 6.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Your",
-      "start": 6.94,
-      "end": 7.04,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "job",
-      "start": 7.1,
-      "end": 7.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "is",
-      "start": 7.38,
-      "end": 7.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 7.52,
-      "end": 7.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "learn",
-      "start": 7.66,
-      "end": 7.84,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
-      "start": 7.88,
-      "end": 8.039,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI.",
-      "start": 8.119,
-      "end": 8.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "One,",
-      "start": 8.86,
-      "end": 9.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "check",
-      "start": 9.12,
-      "end": 9.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 9.34,
-      "end": 9.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "HMRC",
-      "start": 9.58,
-      "end": 10.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "balance.",
-      "start": 10.12,
-      "end": 10.5,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Two,",
-      "start": 10.88,
-      "end": 11.1,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "gather",
-      "start": 11.24,
-      "end": 11.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 11.46,
-      "end": 11.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "company's",
-      "start": 11.56,
-      "end": 11.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "books",
-      "start": 11.98,
-      "end": 12.18,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 12.2,
-      "end": 12.3,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "records.",
-      "start": 12.36,
-      "end": 12.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Three,",
-      "start": 13.06,
-      "end": 13.28,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "get",
-      "start": 13.58,
-      "end": 13.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "a",
-      "start": 13.7,
-      "end": 13.74,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "licensed",
-      "start": 13.78,
-      "end": 14.2,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "insolvency",
-      "start": 14.24,
-      "end": 14.8,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "practitioner.",
-      "start": 14.88,
-      "end": 15.48,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "I",
-      "start": 16,
-      "end": 16,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "chose",
-      "start": 16.04,
-      "end": 16.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "one",
-      "start": 16.36,
-      "end": 16.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "with",
-      "start": 16.56,
-      "end": 16.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "four",
-      "start": 16.76,
-      "end": 16.88,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "point",
-      "start": 16.96,
-      "end": 17.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "eight",
-      "start": 17.18,
-      "end": 17.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "stars",
-      "start": 17.44,
-      "end": 17.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "on",
-      "start": 17.76,
-      "end": 17.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Trustpilot.",
-      "start": 17.94,
-      "end": 18.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Four,",
-      "start": 18.98,
-      "end": 19.2,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "stop",
-      "start": 19.52,
-      "end": 19.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "trading",
-      "start": 19.8,
-      "end": 20.16,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 20.36,
-      "end": 20.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "don't",
-      "start": 20.48,
-      "end": 20.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "pay",
-      "start": 20.7,
-      "end": 20.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "one",
-      "start": 20.94,
-      "end": 21.04,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "creditor",
-      "start": 21.14,
-      "end": 21.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "ahead",
-      "start": 21.5,
-      "end": 21.68,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "of",
-      "start": 21.72,
-      "end": 21.78,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 21.82,
-      "end": 21.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "others.",
-      "start": 21.98,
-      "end": 22.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Your",
-      "start": 22.64,
-      "end": 22.76,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "practitioner",
-      "start": 22.78,
-      "end": 23.4,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "will",
-      "start": 23.42,
-      "end": 23.56,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "confirm",
-      "start": 23.6,
-      "end": 24.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "this.",
-      "start": 24.14,
-      "end": 24.36,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Five,",
-      "start": 25.18,
-      "end": 25.46,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "close",
-      "start": 25.58,
-      "end": 25.82,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "your",
-      "start": 25.86,
-      "end": 25.98,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "invoices",
-      "start": 26.04,
-      "end": 26.58,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 26.82,
-      "end": 26.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "bring",
-      "start": 26.94,
-      "end": 27.18,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "every",
-      "start": 27.24,
-      "end": 27.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "bank",
-      "start": 27.52,
-      "end": 27.72,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "account",
-      "start": 27.76,
-      "end": 28.08,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 28.12,
-      "end": 28.18,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "zero,",
-      "start": 28.3,
-      "end": 28.64,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "or",
-      "start": 29.04,
-      "end": 29.12,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 29.14,
-      "end": 29.24,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "money",
-      "start": 29.28,
-      "end": 29.5,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "goes",
-      "start": 29.64,
-      "end": 29.9,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 29.94,
-      "end": 30.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 30.06,
-      "end": 30.14,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Crown.",
-      "start": 30.18,
-      "end": 30.6,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Connect",
-      "start": 31.1,
-      "end": 31.42,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "all",
-      "start": 31.56,
-      "end": 31.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "of",
-      "start": 31.7,
-      "end": 31.76,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "these",
-      "start": 31.82,
-      "end": 32.02,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "parts",
-      "start": 32.08,
-      "end": 32.38,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 32.42,
-      "end": 32.52,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "AI",
-      "start": 32.619,
-      "end": 32.96,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "so",
-      "start": 33.2,
-      "end": 33.32,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "you",
-      "start": 33.36,
-      "end": 33.44,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "can",
-      "start": 33.48,
-      "end": 33.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "iterate.",
-      "start": 33.7,
-      "end": 34.12,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "Be",
-      "start": 34.58,
-      "end": 34.66,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "ready",
-      "start": 34.7,
-      "end": 34.92,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "to",
-      "start": 34.98,
-      "end": 35.06,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "learn",
-      "start": 35.1,
-      "end": 35.28,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 35.32,
-      "end": 35.4,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "details",
-      "start": 35.44,
-      "end": 35.86,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "and",
-      "start": 36.12,
-      "end": 36.26,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "act",
-      "start": 36.34,
-      "end": 36.54,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "on",
-      "start": 36.58,
-      "end": 36.64,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "the",
-      "start": 36.68,
-      "end": 36.76,
-      "speaker": "speaker_0"
-    },
-    {
-      "text": "fly.",
-      "start": 36.8,
-      "end": 37.12,
-      "speaker": "speaker_0"
-    }
-  ]
+ "audio": "assets/vo/s04-five-things.mp3",
+ "language": "en",
+ "source": "openai-whisper base.en, word timestamps",
+ "words": [
+  {
+   "text": "Here's",
+   "start": 0.0,
+   "end": 0.44
+  },
+  {
+   "text": "how",
+   "start": 0.44,
+   "end": 0.56
+  },
+  {
+   "text": "I",
+   "start": 0.56,
+   "end": 0.68
+  },
+  {
+   "text": "learned",
+   "start": 0.68,
+   "end": 0.86
+  },
+  {
+   "text": "it",
+   "start": 0.86,
+   "end": 1.04
+  },
+  {
+   "text": "in",
+   "start": 1.04,
+   "end": 1.2
+  },
+  {
+   "text": "five",
+   "start": 1.2,
+   "end": 1.46
+  },
+  {
+   "text": "steps",
+   "start": 1.46,
+   "end": 1.82
+  },
+  {
+   "text": "with",
+   "start": 1.82,
+   "end": 2.18
+  },
+  {
+   "text": "AI",
+   "start": 2.18,
+   "end": 2.42
+  },
+  {
+   "text": "as",
+   "start": 2.42,
+   "end": 2.8
+  },
+  {
+   "text": "my",
+   "start": 2.8,
+   "end": 2.92
+  },
+  {
+   "text": "tutor,",
+   "start": 2.92,
+   "end": 3.18
+  },
+  {
+   "text": "not",
+   "start": 3.42,
+   "end": 3.48
+  },
+  {
+   "text": "my",
+   "start": 3.48,
+   "end": 3.64
+  },
+  {
+   "text": "lawyer.",
+   "start": 3.64,
+   "end": 3.88
+  },
+  {
+   "text": "This",
+   "start": 4.52,
+   "end": 4.64
+  },
+  {
+   "text": "is",
+   "start": 4.64,
+   "end": 4.76
+  },
+  {
+   "text": "what",
+   "start": 4.76,
+   "end": 4.92
+  },
+  {
+   "text": "I",
+   "start": 4.92,
+   "end": 5.04
+  },
+  {
+   "text": "learned,",
+   "start": 5.04,
+   "end": 5.26
+  },
+  {
+   "text": "not",
+   "start": 5.5,
+   "end": 5.64
+  },
+  {
+   "text": "financial",
+   "start": 5.64,
+   "end": 5.98
+  },
+  {
+   "text": "advice.",
+   "start": 5.98,
+   "end": 6.34
+  },
+  {
+   "text": "1.",
+   "start": 7.16,
+   "end": 7.2
+  },
+  {
+   "text": "Ask",
+   "start": 7.48,
+   "end": 7.68
+  },
+  {
+   "text": "AI",
+   "start": 7.68,
+   "end": 7.92
+  },
+  {
+   "text": "to",
+   "start": 7.92,
+   "end": 8.2
+  },
+  {
+   "text": "explain",
+   "start": 8.2,
+   "end": 8.46
+  },
+  {
+   "text": "the",
+   "start": 8.46,
+   "end": 8.68
+  },
+  {
+   "text": "process",
+   "start": 8.68,
+   "end": 8.94
+  },
+  {
+   "text": "in",
+   "start": 8.94,
+   "end": 9.18
+  },
+  {
+   "text": "plain",
+   "start": 9.18,
+   "end": 9.38
+  },
+  {
+   "text": "words,",
+   "start": 9.38,
+   "end": 9.76
+  },
+  {
+   "text": "then",
+   "start": 10.16,
+   "end": 10.3
+  },
+  {
+   "text": "ask",
+   "start": 10.3,
+   "end": 10.46
+  },
+  {
+   "text": "it",
+   "start": 10.46,
+   "end": 10.66
+  },
+  {
+   "text": "again",
+   "start": 10.66,
+   "end": 10.82
+  },
+  {
+   "text": "simpler.",
+   "start": 10.82,
+   "end": 11.14
+  },
+  {
+   "text": "Check",
+   "start": 12.18,
+   "end": 12.36
+  },
+  {
+   "text": "the",
+   "start": 12.36,
+   "end": 12.52
+  },
+  {
+   "text": "facts",
+   "start": 12.52,
+   "end": 12.72
+  },
+  {
+   "text": "against",
+   "start": 12.72,
+   "end": 13.02
+  },
+  {
+   "text": "official",
+   "start": 13.02,
+   "end": 13.34
+  },
+  {
+   "text": "sources",
+   "start": 13.34,
+   "end": 13.82
+  },
+  {
+   "text": "like",
+   "start": 13.82,
+   "end": 14.24
+  },
+  {
+   "text": "HMRC,",
+   "start": 14.24,
+   "end": 14.94
+  },
+  {
+   "text": "the",
+   "start": 15.32,
+   "end": 15.34
+  },
+  {
+   "text": "UK",
+   "start": 15.34,
+   "end": 15.46
+  },
+  {
+   "text": "Tax",
+   "start": 15.46,
+   "end": 15.86
+  },
+  {
+   "text": "Office.",
+   "start": 15.86,
+   "end": 16.14
+  },
+  {
+   "text": "3.",
+   "start": 16.9,
+   "end": 17.0
+  },
+  {
+   "text": "Get",
+   "start": 17.34,
+   "end": 17.52
+  },
+  {
+   "text": "a",
+   "start": 17.52,
+   "end": 17.6
+  },
+  {
+   "text": "real",
+   "start": 17.6,
+   "end": 17.74
+  },
+  {
+   "text": "expert.",
+   "start": 17.74,
+   "end": 18.06
+  },
+  {
+   "text": "I",
+   "start": 18.92,
+   "end": 18.92
+  },
+  {
+   "text": "chose",
+   "start": 18.92,
+   "end": 19.14
+  },
+  {
+   "text": "an",
+   "start": 19.14,
+   "end": 19.3
+  },
+  {
+   "text": "insolvency",
+   "start": 19.3,
+   "end": 19.94
+  },
+  {
+   "text": "practitioner",
+   "start": 19.94,
+   "end": 20.26
+  },
+  {
+   "text": "with",
+   "start": 20.26,
+   "end": 20.86
+  },
+  {
+   "text": "4",
+   "start": 20.86,
+   "end": 21.12
+  },
+  {
+   "text": ".8",
+   "start": 21.12,
+   "end": 21.56
+  },
+  {
+   "text": "stars",
+   "start": 21.56,
+   "end": 21.84
+  },
+  {
+   "text": "on",
+   "start": 21.84,
+   "end": 22.18
+  },
+  {
+   "text": "Trust",
+   "start": 22.18,
+   "end": 22.4
+  },
+  {
+   "text": "Palot.",
+   "start": 22.4,
+   "end": 22.76
+  },
+  {
+   "text": "4.",
+   "start": 23.32,
+   "end": 23.8
+  },
+  {
+   "text": "Turn",
+   "start": 24.0,
+   "end": 24.14
+  },
+  {
+   "text": "what",
+   "start": 24.14,
+   "end": 24.32
+  },
+  {
+   "text": "you",
+   "start": 24.32,
+   "end": 24.46
+  },
+  {
+   "text": "learn",
+   "start": 24.46,
+   "end": 24.64
+  },
+  {
+   "text": "into",
+   "start": 24.64,
+   "end": 24.9
+  },
+  {
+   "text": "a",
+   "start": 24.9,
+   "end": 25.02
+  },
+  {
+   "text": "checklist.",
+   "start": 25.02,
+   "end": 25.18
+  },
+  {
+   "text": "Stop",
+   "start": 26.16,
+   "end": 26.16
+  },
+  {
+   "text": "trading.",
+   "start": 26.16,
+   "end": 26.42
+  },
+  {
+   "text": "Treat",
+   "start": 26.42,
+   "end": 26.48
+  },
+  {
+   "text": "every",
+   "start": 26.48,
+   "end": 27.34
+  },
+  {
+   "text": "creditor",
+   "start": 27.34,
+   "end": 27.66
+  },
+  {
+   "text": "equally,",
+   "start": 27.66,
+   "end": 28.06
+  },
+  {
+   "text": "bring",
+   "start": 28.72,
+   "end": 28.74
+  },
+  {
+   "text": "every",
+   "start": 28.74,
+   "end": 29.08
+  },
+  {
+   "text": "bank",
+   "start": 29.08,
+   "end": 29.36
+  },
+  {
+   "text": "account",
+   "start": 29.36,
+   "end": 29.68
+  },
+  {
+   "text": "to",
+   "start": 29.68,
+   "end": 29.9
+  },
+  {
+   "text": "zero,",
+   "start": 29.9,
+   "end": 30.2
+  },
+  {
+   "text": "or",
+   "start": 30.66,
+   "end": 30.76
+  },
+  {
+   "text": "the",
+   "start": 30.76,
+   "end": 30.86
+  },
+  {
+   "text": "money",
+   "start": 30.86,
+   "end": 31.04
+  },
+  {
+   "text": "goes",
+   "start": 31.04,
+   "end": 31.34
+  },
+  {
+   "text": "to",
+   "start": 31.34,
+   "end": 31.58
+  },
+  {
+   "text": "the",
+   "start": 31.58,
+   "end": 31.66
+  },
+  {
+   "text": "crown,",
+   "start": 31.66,
+   "end": 31.92
+  },
+  {
+   "text": "which",
+   "start": 32.4,
+   "end": 32.48
+  },
+  {
+   "text": "means",
+   "start": 32.48,
+   "end": 32.68
+  },
+  {
+   "text": "the",
+   "start": 32.68,
+   "end": 32.94
+  },
+  {
+   "text": "government.",
+   "start": 32.94,
+   "end": 33.16
+  },
+  {
+   "text": "5.",
+   "start": 33.84,
+   "end": 34.14
+  },
+  {
+   "text": "Ask",
+   "start": 34.64,
+   "end": 34.84
+  },
+  {
+   "text": "better",
+   "start": 34.84,
+   "end": 35.16
+  },
+  {
+   "text": "questions",
+   "start": 35.16,
+   "end": 35.52
+  },
+  {
+   "text": "every",
+   "start": 35.52,
+   "end": 35.96
+  },
+  {
+   "text": "day",
+   "start": 35.96,
+   "end": 36.34
+  },
+  {
+   "text": "and",
+   "start": 36.34,
+   "end": 36.7
+  },
+  {
+   "text": "act",
+   "start": 36.7,
+   "end": 36.9
+  },
+  {
+   "text": "on",
+   "start": 36.9,
+   "end": 37.1
+  },
+  {
+   "text": "the",
+   "start": 37.1,
+   "end": 37.18
+  },
+  {
+   "text": "answers.",
+   "start": 37.18,
+   "end": 37.54
+  }
+ ]
 }

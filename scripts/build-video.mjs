@@ -213,7 +213,7 @@ const KN_CSS = `
     .scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--kn-font); color: var(--kn-ink); opacity: 0; }
     .kn-ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 72%); }
     .beat { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .kt { max-width: 1600px; text-align: center; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
+    .kt { max-width: 1600px; text-align: center; text-wrap: balance; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
     .key { font-weight: 600; color: var(--kn-accent); }
     .kimg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; }
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
@@ -229,7 +229,9 @@ const KN_CSS = `
     .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
     .kvis .book.a { fill: var(--kn-accent); }
     .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
-    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }`;
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
+    .kvis .bx, .kvis .wb { fill: none; stroke: var(--kn-ink); stroke-width: 6; }
+    .kvis .wb.a { stroke: var(--kn-accent); }`;
 
 const knNorm = (w) => w.replace(/[^\p{L}\p{N}£$%'’-]/gu, "").toLowerCase();
 const knSize = (text) => Math.max(140, Math.min(200, Math.floor(1560 / (text.length * 0.5))));
@@ -273,6 +275,7 @@ function knVisual(name, id, t) {
     tl.fromTo("#${id}-v .cb", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out", stagger: 0.45 }, ${r2(t + 0.15)});`],
     "timeline-before": () => [`${P("M40 150 H360", "dim")}${P("M40 150 H200", "a")}${[40, 200, 360].map((x) => P(`M${x} 125 V175`, "tick")).join("")}<circle class="pay f" cx="200" cy="150" r="14"/>`, draw(".dim", 0.05, 0.4) + draw(".tick", 0.1, 0.3, 0.08) + draw(".a", 0.3, 0.8) + pop(".pay", 1.0, 0)],
     "timeline-after": () => [`${P("M40 150 H360", "dim")}${P("M200 150 H360", "a")}${[40, 200, 360].map((x) => P(`M${x} 125 V175`, "tick")).join("")}<circle class="pay f" cx="200" cy="150" r="14"/>`, draw(".dim", 0.05, 0.4) + draw(".tick", 0.1, 0.3, 0.08) + pop(".pay", 0.15, 0) + draw(".a", 0.35, 0.8)],
+    "timeline-both": () => [`${P("M40 150 H360", "dim")}${P("M40 150 H200", "a seg")}${P("M200 150 H360", "a seg")}${[40, 200, 360].map((x) => P(`M${x} 125 V175`, "tick")).join("")}<circle class="pay f" cx="200" cy="150" r="14"/>`, draw(".dim", 0.05, 0.3) + draw(".tick", 0.1, 0.3, 0.08) + draw(".seg", 0.3, 0.6, 0.7) + pop(".pay", 0.9, 0)],
     "shield": () => [`${P("M200 45 L300 80 V150 C300 205 260 240 200 260 C140 240 100 205 100 150 V80 Z", "a")}${P("M155 152 L190 186 L250 120")}`, draw(".a", 0.05, 0.8) + draw(".d:not(.a)", 0.6, 0.4)],
     "envelopes6": () => [`${[[60, 85], [160, 85], [260, 85], [60, 175], [160, 175], [260, 175]].map(([x, y], i) => `<g class="env${i === 5 ? " a" : ""}"><rect x="${x}" y="${y}" width="80" height="56" rx="6"/><path d="M${x} ${y} L${x + 40} ${y + 30} L${x + 80} ${y}"/></g>`).join("")}`, pop(".env", 0.05, 0.12)],
     "database": () => [`<ellipse class="d" pathLength="1" cx="200" cy="80" rx="100" ry="26"/>${P("M100 80 V220")}${P("M300 80 V220")}${P("M100 220 A100 26 0 0 0 300 220")}${P("M100 127 A100 26 0 0 0 300 127", "a")}${P("M100 174 A100 26 0 0 0 300 174", "a")}`, draw(".d:not(.a)", 0.05, 0.6) + draw(".a", 0.45, 0.4, 0.15)],
@@ -281,6 +284,16 @@ function knVisual(name, id, t) {
     "bell": () => [`<g class="bellg">${P("M200 55 C150 55 128 95 128 150 V195 L108 222 H292 L272 195 V150 C272 95 250 55 200 55 Z", "a")}<circle class="f clap" cx="200" cy="240" r="14"/></g>`, draw(".a", 0.05, 0.7) + pop(".clap", 0.6, 0) + `
     tl.fromTo("#${id}-v .bellg", { rotation: 0, svgOrigin: "200 55" }, { rotation: 12, svgOrigin: "200 55", duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 5 }, ${r2(t + 0.75)});`],
     "comment": () => [`${P("M95 70 H305 Q330 70 330 95 V185 Q330 210 305 210 H175 L125 250 V210 H95 Q70 210 70 185 V95 Q70 70 95 70 Z")}${[150, 200, 250].map((x) => `<circle class="f cd" cx="${x}" cy="140" r="13"/>`).join("")}`, draw(".d", 0.05, 0.7) + pop(".cd", 0.55, 0.12)],
+    "bulb": () => [`${P("M200 50 C145 50 115 92 115 135 C115 168 135 188 155 205 V228 H245 V205 C265 188 285 168 285 135 C285 92 255 50 200 50 Z")}${P("M165 252 H235", "a")}${P("M175 274 H225", "a")}${P("M185 160 L200 120 L215 160", "a")}`, draw(".d:not(.a)", 0.05, 0.7) + draw(".a", 0.5, 0.35, 0.1)],
+    "sprout": () => [`${P("M200 260 V140", "a")}${P("M200 175 C200 120 150 95 110 105 C112 150 150 178 200 175", "a")}${P("M200 150 C200 100 250 70 295 80 C292 128 250 155 200 150", "a")}${P("M120 262 H280", "dim")}`, draw(".dim", 0.05, 0.3) + draw(".a", 0.15, 0.6, 0.2)],
+    "steps-up": () => [`${P("M60 250 H130 V200 H200 V150 H270 V100 H340", "d")}${P("M285 80 L345 60 L330 120", "a")}${P("M250 140 L340 62", "a")}`, draw(".d:not(.a)", 0.05, 0.8) + draw(".a", 0.6, 0.4)],
+    "magnify": () => [`<circle class="d" pathLength="1" cx="175" cy="130" r="72"/>${P("M228 183 L300 255", "a")}${P("M140 130 H210", "dim")}${P("M140 105 H195", "dim")}${P("M140 155 H185", "dim")}`, draw(".d:not(.a):not(.dim)", 0.05, 0.6) + draw(".a", 0.45, 0.35) + draw(".dim", 0.6, 0.3, 0.08)],
+    "checklist": () => [`${[80, 150, 220].map((y) => `<rect class="bx" x="90" y="${y - 22}" width="44" height="44" rx="8"/>${P(`M160 ${y} H310`, "dim")}${P(`M100 ${y} L111 ${y + 12} L128 ${y - 12}`, "a ck")}`).join("")}`, pop(".bx", 0.05, 0.1) + draw(".dim", 0.2, 0.4, 0.1) + draw(".ck", 0.5, 0.3, 0.2)],
+    "loop": () => [`${P("M200 60 A90 90 0 1 1 112 170", "a")}${P("M101 195 L112 170 L132 188", "a")}<circle class="f lp" cx="200" cy="60" r="12"/>`, draw(".a", 0.05, 0.9, 0.1) + pop(".lp", 0.7, 0)],
+    "lever": () => [`${P("M170 250 L200 205 L230 250 Z")}<g class="beam">${P("M60 205 H340", "a")}<circle class="f box" cx="80" cy="185" r="18"/></g>`, draw(".d:not(.a)", 0.05, 0.5) + draw(".a", 0.25, 0.5) + pop(".box", 0.5, 0) + `
+    tl.fromTo("#${id}-v .beam", { rotation: 0, svgOrigin: "200 205" }, { rotation: 14, svgOrigin: "200 205", duration: 0.7, ease: "power2.inOut" }, ${r2(t + 0.8)});`],
+    "workflow": () => [`${[20, 160, 300].map((x, i) => `<rect class="wb${i === 2 ? " a" : ""}" x="${x}" y="110" width="80" height="80" rx="14"/>`).join("")}${P("M108 150 H150", "dim")}${P("M248 150 H290", "dim")}${P("M138 138 L150 150 L138 162", "dim")}${P("M278 138 L290 150 L278 162", "dim")}`, pop(".wb", 0.05, 0.2) + draw(".dim", 0.3, 0.3, 0.1)],
+    "agent": () => [`<rect class="d" pathLength="1" x="120" y="95" width="160" height="125" rx="28"/>${P("M200 95 V65")}<circle class="f eye" cx="165" cy="150" r="13"/><circle class="f eye" cx="235" cy="150" r="13"/>${P("M170 190 H230", "a")}<circle class="st" cx="200" cy="58" r="9"/>`, draw(".d:not(.a)", 0.05, 0.6) + pop(".eye", 0.5, 0.1) + draw(".a", 0.7, 0.3) + pop(".st", 0.4, 0)],
     "arrow-down": () => [`<g class="arr">${P("M200 45 V235", "a")}${P("M140 178 L200 238 L260 178", "a")}</g>`, draw(".a", 0.05, 0.6) + `
     tl.fromTo("#${id}-v .arr", { y: 0 }, { y: 16, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 5 }, ${r2(t + 0.7)});`],
   };
@@ -289,10 +302,35 @@ function knVisual(name, id, t) {
   return { svg: `<svg id="${id}-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore>${body}</svg>`, js };
 }
 
+// Start time (seconds into the voice clip) of every script word. With video/assets/vo/<id>.transcript.json
+// (word timestamps, e.g. from Whisper) the script is aligned to the transcript (longest common subsequence) and
+// words the transcript spells differently ("1 500" for "£1,500") are interpolated between their neighbours.
+// Without a transcript, times are estimated from the word position, as before.
+function knWordTimes(s, voDur) {
+  const words = s.vo.split(/\s+/).filter(Boolean).map(knNorm);
+  const est = words.map((_, j) => (voDur * j) / words.length);
+  const f = `${root}/video/assets/vo/${s.id}.transcript.json`;
+  if (!existsSync(f)) return { times: est, source: "estimate" };
+  const tw = JSON.parse(readFileSync(f, "utf8")).words.map((w) => ({ n: knNorm(w.text), t: w.start })).filter((w) => w.n);
+  const n = words.length, m = tw.length;
+  const L = Array.from({ length: n + 1 }, () => new Int16Array(m + 1));
+  for (let a = n - 1; a >= 0; a--) for (let b = m - 1; b >= 0; b--) L[a][b] = words[a] === tw[b].n ? L[a + 1][b + 1] + 1 : Math.max(L[a + 1][b], L[a][b + 1]);
+  const times = new Array(n).fill(null);
+  for (let a = 0, b = 0; a < n && b < m;) { if (words[a] === tw[b].n) { times[a] = tw[b].t; a++; b++; } else if (L[a + 1][b] >= L[a][b + 1]) a++; else b++; }
+  for (let a = 0; a < n; a++) if (times[a] == null) {
+    let p = a - 1; while (p >= 0 && times[p] == null) p--;
+    let q = a + 1; while (q < n && times[q] == null) q++;
+    const t0 = p >= 0 ? times[p] : 0, t1 = q < n ? times[q] : voDur;
+    times[a] = t0 + ((t1 - t0) * (a - p)) / (q - p);
+  }
+  return { times, source: "transcript" };
+}
+
 function keynoteFile(s, i, gfxHtml, voDur) {
   const sid = s.id.split("-")[0];
   const words = s.vo.split(/\s+/).filter(Boolean).map(knNorm);
   let pos = -1;
+  const wt = knWordTimes(s, voDur);
   const beats = s.keynote.map((b, k) => {
     let t = 0;
     if (k > 0) {
@@ -300,7 +338,7 @@ function keynoteFile(s, i, gfxHtml, voDur) {
       const idx = words.findIndex((_, j) => j > pos && aw.every((w, q) => words[j + q] === w));
       if (idx < 0) throw new Error(`${s.id}: keynote anchor "${b.at}" not found in the voiceover after word ${pos}`);
       pos = idx;
-      t = Math.max(0.4, VO_LEAD + (voDur * idx) / words.length - KN.lead);
+      t = Math.max(0.4, VO_LEAD + wt.times[idx] - KN.lead);
     }
     return { ...b, id: `${sid}-k${k}`, t: r2(t) };
   });

@@ -11,9 +11,10 @@ mkdir -p "$OUT"
 ls "$OUT"/bed-raw.* >/dev/null 2>&1 && { echo "skip: $(ls "$OUT"/bed-raw.*) exists"; exit 0; }
 
 MODEL="fal-ai/ace-step"
-SEED=20261120
+SEED=20261121
 DURATION=240
-TAGS="cinematic film score, dramatic, orchestral, instrumental, no vocals, slow build, emotional, strings, low brass, piano, deep pulse, epic swells, 70 bpm, minor key"
+# Draft v13: inspiring and piano-led (Draft v12 used a darker orchestral bed: seed 20261120, see git history)
+TAGS="inspiring, uplifting, cinematic, solo piano lead, felt piano, soft strings, warm pads, hopeful, emotional build, instrumental, no vocals, film score, 80 bpm, major key"
 BODY=$(jq -n --arg t "$TAGS" --argjson d "$DURATION" --argjson s "$SEED" '{tags:$t, lyrics:"[inst]", duration:$d, seed:$s}')
 
 SUBMIT=$(curl -sS "https://queue.fal.run/$MODEL" -H "Authorization: Key $FAL_KEY" -H "Content-Type: application/json" --data "$BODY")

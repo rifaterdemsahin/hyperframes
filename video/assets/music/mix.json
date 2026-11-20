@@ -1,12 +1,12 @@
 {
   "file": "bed-mix.mp3",
   "from": "bed-raw.mp3",
-  "rawSecondsUsed": 237.3,
-  "filmSeconds": 244,
-  "tempo": 0.97254,
+  "rawSecondsUsed": 239.91,
+  "filmSeconds": 240,
+  "tempo": 0.99962,
   "levelsDb": {
     "base": -7,
-    "hook": -6,
+    "hook": -2,
     "swell": 2,
     "subscribe": -4,
     "ending": 4
@@ -17,104 +17,104 @@
   "windows": [
     {
       "from": 0,
-      "to": 14,
-      "level": -6,
+      "to": 17,
+      "level": -2,
       "light": true,
       "why": "hook"
     },
     {
-      "from": 12.15,
-      "to": 14.25,
+      "from": 14.65,
+      "to": 17.25,
       "level": 2,
       "light": false,
       "why": "gap after s01-hook"
     },
     {
-      "from": 35.05,
-      "to": 37.25,
+      "from": 36.55,
+      "to": 39.25,
       "level": 2,
       "light": false,
       "why": "gap after s02-intro"
     },
     {
-      "from": 54.85,
-      "to": 57.25,
+      "from": 61.15,
+      "to": 63.25,
       "level": 2,
       "light": false,
       "why": "gap after s03-goal"
     },
     {
-      "from": 94.85,
-      "to": 97.25,
+      "from": 101.55,
+      "to": 104.25,
       "level": 2,
       "light": false,
       "why": "gap after s04-five-things"
     },
     {
-      "from": 121.85,
-      "to": 124.25,
+      "from": 125.75,
+      "to": 128.25,
       "level": 2,
       "light": false,
       "why": "gap after s05-cost-timeline"
     },
     {
-      "from": 151.25,
-      "to": 153.25,
+      "from": 150.15,
+      "to": 152.25,
       "level": 2,
       "light": false,
       "why": "gap after s06-exceptions"
     },
     {
-      "from": 176.45,
-      "to": 177.25,
+      "from": 173.85,
+      "to": 176.25,
       "level": 2,
       "light": false,
       "why": "gap after s07-emails"
     },
     {
-      "from": 201.85,
-      "to": 202.25,
+      "from": 197.45,
+      "to": 199.25,
       "level": 2,
       "light": false,
       "why": "gap after s08-tracking"
     },
     {
-      "from": 219.21,
-      "to": 224.15,
+      "from": 213.2,
+      "to": 217.85,
       "level": -4,
       "light": true,
       "why": "Subscribe for Part 2 (under the voice)"
     },
     {
-      "from": 224.15,
-      "to": 225.25,
+      "from": 217.85,
+      "to": 220.25,
       "level": 4,
       "light": false,
       "why": "Subscribe for Part 2 ending (swell)"
     },
     {
-      "from": 242.45,
-      "to": 244,
+      "from": 238.25,
+      "to": 240,
       "level": 4,
       "light": true,
       "why": "final tail"
     }
   ],
   "measured": {
-    "voiceMeanDb": -28.2,
-    "musicUnderVoiceMeanDb": -44.7,
-    "voiceAboveMusicDb": 16.5,
-    "musicInGapsMeanDb": -29.2,
+    "voiceMeanDb": -28.1,
+    "musicUnderVoiceMeanDb": -45.9,
+    "voiceAboveMusicDb": 17.8,
+    "musicInGapsMeanDb": -27.8,
     "swellsUnderVoice": [
       {
         "why": "hook",
-        "music": -35.3,
-        "voice": -27.5
+        "music": -37.6,
+        "voice": -28.1
       },
       {
         "why": "Subscribe for Part 2 (under the voice)",
-        "music": -35.5,
-        "voice": -28.2
+        "music": -41.1,
+        "voice": -27.8
       }
     ]
   }

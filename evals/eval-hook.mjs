@@ -30,7 +30,8 @@ if (!hasQuestion) {
 }
 
 // 3. Problem/Audience statement check
-const audienceKeywords = ["director", "company", "debt", "liquidat", "close", "bounce back", "red tape"];
+// Part 1 audience (spec/project.json, from Draft v13): anyone facing change who wants to learn with AI; directors closing a company are the example
+const audienceKeywords = ["director", "company", "debt", "liquidat", "clos", "bounce back", "red tape", "learn", "teach", " ai ", "change"];
 const voLower = hookScene.vo.toLowerCase();
 const matchedKeywords = audienceKeywords.filter((k) => voLower.includes(k));
 if (matchedKeywords.length < 2) {

@@ -11,7 +11,7 @@
     .scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--kn-font); color: var(--kn-ink); opacity: 0; }
     .kn-ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 72%); }
     .beat { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .kt { max-width: 1600px; text-align: center; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
+    .kt { max-width: 1600px; text-align: center; text-wrap: balance; font-weight: 300; letter-spacing: -0.02em; line-height: 1.04; color: var(--kn-ink); opacity: 0; }
     .key { font-weight: 600; color: var(--kn-accent); }
     .kimg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; }
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
@@ -28,88 +28,78 @@
     .kvis .book.a { fill: var(--kn-accent); }
     .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
     .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
+    .kvis .bx, .kvis .wb { fill: none; stroke: var(--kn-ink); stroke-width: 6; }
+    .kvis .wb.a { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>
-  <div data-composition-id="s05-cost-timeline" data-duration="27" data-width="1920" data-height="1080">
+  <div data-composition-id="s05-cost-timeline" data-duration="24" data-width="1920" data-height="1080">
     <div id="scene" class="scene">
       <div class="kn-ground" data-layout-ignore></div>
-      <!-- moved to VO: ⚡ YOU + AI = LEVERAGE 🚀 | 💷 Fee to liquidation company: £1,500 deposit + £2,100 balance | 🔍 Found this provider: cheaper or more expensive options exist | ⏱️ Timeline: 2 months prep + 2 months completion expected | 💡 Learn & act on the fly: build skills for the next project | ⚡ YOU + AI = LEVERAGE Liquidation Fees (UK Provider) Deposit to start £1,500 Balance to complete £2,100 Total Investment £3,600 Timeline Roadmap 2 Mo Prep Fee Paid 2 Mo Close -->
-      <div id="s05-k0" class="clip beat" data-start="0" data-duration="1.3" data-track-index="2">
-        <h1 id="s05-k0-t" class="kt" style="font-size:200px">What it <span class="key">costs</span>.</h1>
+      <!-- moved to VO: 💷 £1,500 deposit + £2,100 balance | 🔍 The provider I found: prices vary | ⏱️ 2 months to get ready, 2 more after | 🚀 You + AI = leverage that carries over | ⚡ YOU + AI = LEVERAGE Liquidation Fees (UK Provider) Deposit to start £1,500 Balance to complete £2,100 Total Investment £3,600 Timeline Roadmap 2 Mo Prep Fee Paid 2 Mo Close -->
+      <div id="s05-k0" class="clip beat" data-start="0" data-duration="1.78" data-track-index="2">
+        <h1 id="s05-k0-t" class="kt" style="font-size:200px">What it <span class="key">cost</span>.</h1>
       </div>
-      <div id="s05-k1" class="clip beat beat-vis" data-start="s05-k0" data-duration="4.5" data-track-index="2">
+      <div id="s05-k1" class="clip beat beat-vis" data-start="s05-k0" data-duration="5.12" data-track-index="2">
         <svg id="s05-k1-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><rect class="cb" x="40" y="125" width="133.33" height="50" rx="10"/><rect class="cb f" x="179.33" y="125" width="180.67" height="50" rx="10"/><path class="d dim" pathLength="1" d="M40 205 H360"/></svg>
         <h1 id="s05-k1-t" class="kt" style="font-size:150px">£1,500 + <span class="key">£2,100</span></h1>
       </div>
-      <div id="s05-k2" class="clip beat" data-start="s05-k1" data-duration="2.1" data-track-index="2">
-        <h1 id="s05-k2-t" class="kt" style="font-size:148px">One provider I <span class="key">found</span>.</h1>
+      <div id="s05-k2" class="clip beat" data-start="s05-k1" data-duration="4.46" data-track-index="2">
+        <h1 id="s05-k2-t" class="kt" style="font-size:140px">Prices vary. <span class="key">Plan</span> for it.</h1>
       </div>
-      <div id="s05-k3" class="clip beat" data-start="s05-k2" data-duration="4.5" data-track-index="2">
-        <h1 id="s05-k3-t" class="kt" style="font-size:140px">Prices vary. <span class="key">Plan</span> for it.</h1>
+      <div id="s05-k3" class="clip beat beat-vis" data-start="s05-k2" data-duration="3.56" data-track-index="2">
+        <svg id="s05-k3-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d dim" pathLength="1" d="M40 150 H360"/><path class="d a seg" pathLength="1" d="M40 150 H200"/><path class="d a seg" pathLength="1" d="M200 150 H360"/><path class="d tick" pathLength="1" d="M40 125 V175"/><path class="d tick" pathLength="1" d="M200 125 V175"/><path class="d tick" pathLength="1" d="M360 125 V175"/><circle class="pay f" cx="200" cy="150" r="14"/></svg>
+        <h1 id="s05-k3-t" class="kt" style="font-size:141px">2 months, then <span class="key">2 more</span>.</h1>
       </div>
-      <div id="s05-k4" class="clip beat beat-vis" data-start="s05-k3" data-duration="2.1" data-track-index="2">
-        <svg id="s05-k4-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d dim" pathLength="1" d="M40 150 H360"/><path class="d a" pathLength="1" d="M40 150 H200"/><path class="d tick" pathLength="1" d="M40 125 V175"/><path class="d tick" pathLength="1" d="M200 125 V175"/><path class="d tick" pathLength="1" d="M360 125 V175"/><circle class="pay f" cx="200" cy="150" r="14"/></svg>
-        <h1 id="s05-k4-t" class="kt" style="font-size:150px"><span class="key">2</span> months before.</h1>
+      <div id="s05-k4" class="clip beat" data-start="s05-k3" data-duration="1.92" data-track-index="2">
+        <h1 id="s05-k4-t" class="kt" style="font-size:140px">The <span class="key">skill</span> matters more.</h1>
       </div>
-      <div id="s05-k5" class="clip beat beat-vis" data-start="s05-k4" data-duration="3.3" data-track-index="2">
-        <svg id="s05-k5-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d dim" pathLength="1" d="M40 150 H360"/><path class="d a" pathLength="1" d="M200 150 H360"/><path class="d tick" pathLength="1" d="M40 125 V175"/><path class="d tick" pathLength="1" d="M200 125 V175"/><path class="d tick" pathLength="1" d="M360 125 V175"/><circle class="pay f" cx="200" cy="150" r="14"/></svg>
-        <h1 id="s05-k5-t" class="kt" style="font-size:150px"><span class="key">2</span> months after.</h1>
+      <div id="s05-k5" class="clip beat beat-vis" data-start="s05-k4" data-duration="1.98" data-track-index="2">
+        <svg id="s05-k5-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d " pathLength="1" d="M170 250 L200 205 L230 250 Z"/><g class="beam"><path class="d a" pathLength="1" d="M60 205 H340"/><circle class="f box" cx="80" cy="185" r="18"/></g></svg>
+        <h1 id="s05-k5-t" class="kt" style="font-size:150px">You + AI = <span class="key">leverage</span>.</h1>
       </div>
-      <div id="s05-k6" class="clip beat" data-start="s05-k5" data-duration="1.8" data-track-index="2">
-        <h1 id="s05-k6-t" class="kt" style="font-size:156px">You + AI = <span class="key">leverage</span>.</h1>
-      </div>
-      <div id="s05-k7" class="clip beat" data-start="s05-k6" data-duration="2.7" data-track-index="2">
-        <h1 id="s05-k7-t" class="kt" style="font-size:140px">Learn, act, build <span class="key">skills</span>.</h1>
-      </div>
-      <div id="s05-k8" class="clip beat" data-start="s05-k7" data-duration="4.7" data-track-index="2">
-        <h1 id="s05-k8-t" class="kt" style="font-size:164px">Carry them <span class="key">forward</span>.</h1>
+      <div id="s05-k6" class="clip beat" data-start="s05-k5" data-duration="5.18" data-track-index="2">
+        <h1 id="s05-k6-t" class="kt" style="font-size:164px">It carries <span class="key">forward</span>.</h1>
       </div>
     </div>
     <script>
     window.__timelines = window.__timelines || {};
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#scene", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
-    tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 26.6);
+    tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 23.6);
     tl.fromTo("#s05-k0-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0);
-    tl.fromTo("#s05-k0-t", { scale: 1 }, { scale: 1.03, duration: 1.3, ease: "none" }, 0);
-    tl.to("#s05-k0-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 1);
-    tl.fromTo("#s05-k1-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 1.3);
-    tl.fromTo("#s05-k1-t", { scale: 1 }, { scale: 1.03, duration: 4.5, ease: "none" }, 1.3);
-    tl.fromTo("#s05-k1-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 1.35);
-    tl.fromTo("#s05-k1-v .cb", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out", stagger: 0.45 }, 1.45);
-    tl.to("#s05-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.5);
-    tl.to("#s05-k1-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.5);
-    tl.fromTo("#s05-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 5.8);
-    tl.fromTo("#s05-k2-t", { scale: 1 }, { scale: 1.03, duration: 2.1, ease: "none" }, 5.8);
-    tl.to("#s05-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 7.6);
-    tl.fromTo("#s05-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 7.9);
-    tl.fromTo("#s05-k3-t", { scale: 1 }, { scale: 1.03, duration: 4.5, ease: "none" }, 7.9);
-    tl.to("#s05-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 12.1);
-    tl.fromTo("#s05-k4-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 12.4);
-    tl.fromTo("#s05-k4-t", { scale: 1 }, { scale: 1.03, duration: 2.1, ease: "none" }, 12.4);
-    tl.fromTo("#s05-k4-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 12.45);
-    tl.fromTo("#s05-k4-v .tick", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out", stagger: 0.08 }, 12.5);
-    tl.fromTo("#s05-k4-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, 12.7);
-    tl.fromTo("#s05-k4-v .pay", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 13.4);
-    tl.to("#s05-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 14.2);
-    tl.to("#s05-k4-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 14.2);
-    tl.fromTo("#s05-k5-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 14.5);
-    tl.fromTo("#s05-k5-t", { scale: 1 }, { scale: 1.03, duration: 3.3, ease: "none" }, 14.5);
-    tl.fromTo("#s05-k5-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 14.55);
-    tl.fromTo("#s05-k5-v .tick", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out", stagger: 0.08 }, 14.6);
-    tl.fromTo("#s05-k5-v .pay", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 14.65);
-    tl.fromTo("#s05-k5-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, 14.85);
-    tl.to("#s05-k5-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 17.5);
-    tl.to("#s05-k5-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 17.5);
-    tl.fromTo("#s05-k6-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 17.8);
-    tl.fromTo("#s05-k6-t", { scale: 1 }, { scale: 1.03, duration: 1.8, ease: "none" }, 17.8);
-    tl.to("#s05-k6-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 19.3);
-    tl.fromTo("#s05-k7-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 19.6);
-    tl.fromTo("#s05-k7-t", { scale: 1 }, { scale: 1.03, duration: 2.7, ease: "none" }, 19.6);
-    tl.to("#s05-k7-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 22);
-    tl.fromTo("#s05-k8-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 22.3);
-    tl.fromTo("#s05-k8-t", { scale: 1 }, { scale: 1.03, duration: 4.7, ease: "none" }, 22.3);
+    tl.fromTo("#s05-k0-t", { scale: 1 }, { scale: 1.03, duration: 1.78, ease: "none" }, 0);
+    tl.to("#s05-k0-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 1.48);
+    tl.fromTo("#s05-k1-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 1.78);
+    tl.fromTo("#s05-k1-t", { scale: 1 }, { scale: 1.03, duration: 5.12, ease: "none" }, 1.78);
+    tl.fromTo("#s05-k1-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 1.83);
+    tl.fromTo("#s05-k1-v .cb", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out", stagger: 0.45 }, 1.93);
+    tl.to("#s05-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 6.6);
+    tl.to("#s05-k1-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 6.6);
+    tl.fromTo("#s05-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 6.9);
+    tl.fromTo("#s05-k2-t", { scale: 1 }, { scale: 1.03, duration: 4.46, ease: "none" }, 6.9);
+    tl.to("#s05-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 11.06);
+    tl.fromTo("#s05-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 11.36);
+    tl.fromTo("#s05-k3-t", { scale: 1 }, { scale: 1.03, duration: 3.56, ease: "none" }, 11.36);
+    tl.fromTo("#s05-k3-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, 11.41);
+    tl.fromTo("#s05-k3-v .tick", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out", stagger: 0.08 }, 11.46);
+    tl.fromTo("#s05-k3-v .seg", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.6, ease: "power2.out", stagger: 0.7 }, 11.66);
+    tl.fromTo("#s05-k3-v .pay", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 12.26);
+    tl.to("#s05-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 14.62);
+    tl.to("#s05-k3-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 14.62);
+    tl.fromTo("#s05-k4-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 14.92);
+    tl.fromTo("#s05-k4-t", { scale: 1 }, { scale: 1.03, duration: 1.92, ease: "none" }, 14.92);
+    tl.to("#s05-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 16.54);
+    tl.fromTo("#s05-k5-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 16.84);
+    tl.fromTo("#s05-k5-t", { scale: 1 }, { scale: 1.03, duration: 1.98, ease: "none" }, 16.84);
+    tl.fromTo("#s05-k5-v .d:not(.a)", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 16.89);
+    tl.fromTo("#s05-k5-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 17.09);
+    tl.fromTo("#s05-k5-v .box", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 17.34);
+    tl.fromTo("#s05-k5-v .beam", { rotation: 0, svgOrigin: "200 205" }, { rotation: 14, svgOrigin: "200 205", duration: 0.7, ease: "power2.inOut" }, 17.64);
+    tl.to("#s05-k5-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 18.52);
+    tl.to("#s05-k5-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 18.52);
+    tl.fromTo("#s05-k6-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 18.82);
+    tl.fromTo("#s05-k6-t", { scale: 1 }, { scale: 1.03, duration: 5.18, ease: "none" }, 18.82);
     window.__timelines["s05-cost-timeline"] = tl;
     tl.seek(0);
     </script>

@@ -1,13 +1,13 @@
 {
   "specVersion": "1.2",
-  "title": "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape",
+  "title": "Part 1 of 3: How I Taught Myself Anything with AI (Closing My Company Was the Test)",
   "series": "Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)",
   "owner": "Rifat",
-  "audience": "UK company directors facing insolvency, and anyone stuck in real-world red tape who wants to use AI to get moving",
-  "goal": "Show how to use AI to get through real-world red tape, using closing a UK company as the example: AI as support and leverage, learn the process and delegate with AI, still use a professional, keep expectations low, divide and conquer, and learn from every problem.",
+  "audience": "A mass audience facing a big change or an unfamiliar process (UK directors closing a company are one example) who want to learn it quickly with AI. Every specialist term is explained in plain words.",
+  "goal": "Inspire viewers to transform by teaching themselves anything with AI, using closing a UK company as the worked example: AI as a tutor and support, check facts with official sources, still use a professional, turn learning into a checklist, and grow skills that carry into the next project.",
   "singleCallToAction": "Subscribe for Part 2",
-  "tone": "Honest, calm, first person. AI is support, not magic. No hype, no promises about outcomes.",
-  "targetLengthSeconds": 244,
+  "tone": "Inspiring but honest, calm, first person. AI is a tutor and support, not magic. No hype, no promises about outcomes.",
+  "targetLengthSeconds": 240,
   "language": "en-GB",
   "disclaimer": "AI organises and explains. The insolvency practitioner decides. This is information, not legal advice.",
   "format": {
@@ -31,7 +31,8 @@
     "Keep the disclaimer. Have the insolvency practitioner read the script before publishing.",
     "One main call to action: subscribe for Part 2. The Skool community gets one soft mention in the outro, not a second ask.",
     "Frame AI as support with low expectations: it gives courage and an assist, and it does not replace the insolvency practitioner.",
-    "Anything about AI agents emailing the parties is shown as your own approach. Messages to creditors and other parties go through or with the practitioner."
+    "Anything about AI agents emailing the parties is shown as your own approach. Messages to creditors and other parties go through or with the practitioner.",
+    "Explain every specialist term in plain words the first time it appears (IR35, HMRC, insolvency practitioner, the Crown, MCP, n8n, AI agents), on screen and in the voiceover."
   ],
   "acceptance": [
     "Final MP4 plays end to end at 1920x1080, 30 fps, with audio in sync with every scene.",
@@ -80,7 +81,7 @@
     },
     {
       "item": "Music",
-      "status": "Decided: dramatic cinematic music bed under the whole film, ducked under the voice, swells in the hook, the text-free stretches and the Subscribe ending; source and licence in video/assets/music/",
+      "status": "Decided (Draft v13): inspiring piano-led cinematic bed, ducked under the voice, swells in the hook, gaps and the Subscribe ending; source and licence in video/assets/music/",
       "owner": "You (decided)"
     },
     {
@@ -116,6 +117,11 @@
     {
       "item": "Real footage",
       "status": "Decided: none. Pure keynote cut; gaps t02, t03, t05, t06 dropped",
+      "owner": "You (decided)"
+    },
+    {
+      "item": "Angle",
+      "status": "Decided (Draft v13): transformation and self-learning with AI; liquidation is the use case",
       "owner": "You (decided)"
     }
   ],
