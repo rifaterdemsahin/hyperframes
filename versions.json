@@ -1,5 +1,5 @@
 {
-  "site": "1.21.0",
+  "site": "1.22.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -33,8 +33,8 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.8.0",
-      "date": "2026-11-18",
+      "version": "1.9.0",
+      "date": "2026-11-20",
       "deps": []
     },
     "recommendations.html": {
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.21.0",
+      "version": "1.22.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -177,7 +177,7 @@
     },
     "changes.html": {
       "title": "Changes",
-      "version": "1.10.0",
+      "version": "1.11.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -224,7 +224,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.18.0",
+      "version": "1.19.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -270,6 +270,18 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.22.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "kanban.html",
+        "changes.html"
+      ],
+      "changes": [
+        "Expand completed tasks verification carousel to 24 backlog items with structured filtering"
+      ]
+    },
     {
       "version": "1.21.0",
       "date": "2026-11-20",

@@ -64,18 +64,23 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 #msg{min-height:20px;font-size:14px}.ok{color:var(--ok)}.err{color:#ff6b6b}
 .carousel-box{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);outline:none;transition:border-color .2s}
 .carousel-box:focus-within{border-color:var(--accent)}
-.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.carousel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .carousel-head h3{margin:0;font-size:13px;color:var(--accent);display:flex;align-items:center;gap:6px}
 .carousel-counter{font-size:12px;color:var(--mute);font-weight:700}
-.carousel-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:165px}
+.carousel-filters{display:flex;gap:4px;flex-wrap:wrap;margin:6px 0 8px}
+.c-filter{padding:3px 8px;font-size:11px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--mute);cursor:pointer;transition:all .15s}
+.c-filter:hover{color:var(--ink);border-color:var(--accent)}
+.c-filter.on{background:var(--accent);color:#04222a;border-color:var(--accent);font-weight:700}
+.carousel-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:165px;transition:border-color .2s}
+.carousel-card.is-verified{border-color:rgba(47,133,90,0.6);box-shadow:0 0 0 1px rgba(47,133,90,0.2)}
 .carousel-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:rgba(47,133,90,0.18);color:var(--ok);align-self:flex-start}
 .carousel-title{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.35}
-.carousel-desc{font-size:12px;color:var(--mute);line-height:1.4}
-.carousel-nav{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.carousel-desc{font-size:12px;color:var(--mute);line-height:1.45}
+.carousel-nav{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}
 .carousel-nav button{padding:5px 12px;font-size:12px;font-weight:700}
-.carousel-dots{display:flex;gap:5px;align-items:center}
-.carousel-dot{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s}
-.carousel-dot.active{background:var(--accent);width:16px;border-radius:4px}
+.carousel-dots{display:flex;gap:4px;align-items:center;overflow-x:auto;max-width:180px;padding:2px 0}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .2s;flex-shrink:0}
+.carousel-dot.active{background:var(--accent);width:14px;border-radius:3px}
 </style></head><body data-feedback="custom">
 <script src="nav.js?v=${V.site}"></script>
 <div class="wrap">
@@ -114,7 +119,16 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
     <div class="carousel-box" id="completedCarousel" tabindex="0">
       <div class="carousel-head">
         <h3>✅ Completed Tasks Verification</h3>
-        <span class="carousel-counter" id="cDoneIdx">1 / 8</span>
+        <span class="carousel-counter" id="cDoneIdx">1 / 24</span>
+      </div>
+      <div class="carousel-filters" id="cFilters">
+        <button class="c-filter on" data-cat="all">All (24)</button>
+        <button class="c-filter" data-cat="latest">Latest (5)</button>
+        <button class="c-filter" data-cat="scenes">Scenes (16)</button>
+        <button class="c-filter" data-cat="platform">Platform (3)</button>
+      </div>
+      <div style="margin-bottom:8px">
+        <select id="cTaskSelect" style="width:100%;font-size:11.5px;padding:5px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer"></select>
       </div>
       <div id="cCard" class="carousel-card"></div>
       <div class="carousel-nav">
@@ -122,7 +136,10 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
         <div class="carousel-dots" id="cDots"></div>
         <button id="cNext" title="Next completed task (Right Arrow / ])">Right ▶</button>
       </div>
-      <small class="hint" style="display:block;text-align:center;margin-top:6px;font-size:11px">Hit <b>Left / Right (← / →)</b> to cycle tasks · click <b>▶ Verify in Video</b> to seek.</small>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;color:var(--mute)">
+        <span>Hit <b>Left / Right (← / →)</b> or <b>[ / ]</b></span>
+        <span id="cVerifiedSummary">0/24 verified</span>
+      </div>
     </div>
   </aside>
   </div>
@@ -408,8 +425,10 @@ let verifiedMap = {}; try { verifiedMap = JSON.parse(localStorage.getItem(VERIFI
 const saveVerified = () => { try { localStorage.setItem(VERIFIED_KEY, JSON.stringify(verifiedMap)); } catch (_) {} };
 
 const COMPLETED_TASKS = [
+  // --- Latest (Draft v8 & v9) ---
   {
     id: "task-01-watermark",
+    category: "latest",
     scene: "Scene 01 · Hook",
     t: 0.9,
     title: "Remove 'DRAFT V*' Watermark Across Entire Video",
@@ -419,14 +438,16 @@ const COMPLETED_TASKS = [
   },
   {
     id: "task-03-bam",
+    category: "latest",
     scene: "Scene 03 · The goal",
     t: 42.1,
-    title: "Remove BAM Sound Effect from Audio Soundtrack",
+    title: "Remove BAM Sound Effect from Audio Mix",
     draft: "Draft v9",
     desc: "Removed impact sound effect from audio mix in Scene 03 for a professional, calm narration flow."
   },
   {
     id: "task-07-balance",
+    category: "latest",
     scene: "Scene 07 · What my emails taught me",
     t: 158.3,
     title: "Correct Rule: Process Starts Once Balance Paid in Full",
@@ -435,32 +456,65 @@ const COMPLETED_TASKS = [
   },
   {
     id: "task-08-friend",
+    category: "latest",
     scene: "Scene 08 · How I keep track of it",
     t: 193.0,
-    title: "Friend Question Voice Tone & Centered Hero Quote",
+    title: "Friend Voice Tone & Centered Hero Quote Card",
     draft: "Draft v9",
     desc: "Voiceover modulated with distinct British tone (bm_lewis) for friend's question; enlarged & centered Hero's Journey quote card.",
     imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-03-13-00-502dd4bb.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
   },
   {
     id: "task-10-skool",
+    category: "latest",
     scene: "Scene 10 · Disclaimer + outro",
-    t: 236.0,
+    t: 238.0,
     title: "End Focus Transition onto Delivery Pilot Skool Panel",
     draft: "Draft v9",
     desc: "Dimmed background and zoomed into Delivery Pilot Skool community panel (scaled 1.28x with radiant cyan glow).",
     imgUrl: "https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/review-04-03-00-2f670875.jpg?se=2027-11-12T17%3A05Z&sp=racwdl&spr=https&sv=2026-04-06&sr=c&sig=CYxNecpxSzkKJJGLD11%2FplGa5BBnx4rVUU97NH%2BvzMw%3D"
   },
+
+  // --- Scenes (S01 to S10) ---
   {
-    id: "task-10-handover",
-    scene: "Scene 10 · Disclaimer + outro",
-    t: 228.0,
-    title: "Bot-to-Human Handover Flow & Guardrail",
+    id: "task-01-reactor",
+    category: "scenes",
+    scene: "Scene 01 · Hook",
+    t: 11.2,
+    title: "'In the Age of AI' Core Strategy Rotating Reactor",
     draft: "Draft v6",
-    desc: "Visualized AI preparing and organizing data streaming into licensed practitioner decision block."
+    desc: "Implemented glowing, rotating multi-ring AI core reactor graphic symbolizing AI strategy and automation."
+  },
+  {
+    id: "task-02-contractor",
+    category: "scenes",
+    scene: "Scene 02 · The wake-up call",
+    t: 18.1,
+    title: "IT Contractor Context & IR35 Tax Shift During Downturn",
+    draft: "Draft v5",
+    desc: "Added explicit IT contractor narrative context: UK market downturn + IR35 tax shift that led to company insolvency."
+  },
+  {
+    id: "task-02-cleanlabels",
+    category: "scenes",
+    scene: "Scene 02 · The wake-up call",
+    t: 17.2,
+    title: "Removed Internal Scene Label Tags (INTRO, CHAPTER, HOOK)",
+    draft: "Draft v7",
+    desc: "Stripped dev metadata tags from overlays, replacing them with professional topic badges and emojis."
+  },
+  {
+    id: "task-03-pipeline",
+    category: "scenes",
+    scene: "Scene 03 · The goal",
+    t: 38.1,
+    title: "Legal Separation Rule & 3-Step Liquidation Pipeline Graphic",
+    draft: "Draft v2",
+    desc: "Visualized the 3-phase MVL/CVL progression card and legal separation between director and corporate entity."
   },
   {
     id: "task-04-chatgpt",
+    category: "scenes",
     scene: "Scene 04 · Five things to do first",
     t: 70.2,
     title: "ChatGPT Co-Pilot Animation & AI Learning Card",
@@ -468,20 +522,145 @@ const COMPLETED_TASKS = [
     desc: "Added interactive ChatGPT co-pilot simulation with live learning from AI disclaimer card."
   },
   {
-    id: "task-costs-sub",
-    scene: "Project Costs",
+    id: "task-04-british",
+    category: "scenes",
+    scene: "Scene 04 · Five things to do first",
+    t: 58.0,
+    title: "Standardized British English & Cleaned Layout Boxes",
+    draft: "Draft v3",
+    desc: "Standardized UK spellings, removed raw placeholder boxes, and refined typography spacing."
+  },
+  {
+    id: "task-05-fees",
+    category: "scenes",
+    scene: "Scene 05 · The cost & the timeline",
+    t: 105.0,
+    title: "Average UK Fee Breakdown (£1,500 + £2,100) & 2-Month Timeline",
+    draft: "Draft v3",
+    desc: "Clarified £1,500 + £2,100 typical UK liquidation expenses and 2-month timeline graphics with caveat tags."
+  },
+  {
+    id: "task-05-leverage",
+    category: "scenes",
+    scene: "Scene 05 · The cost & the timeline",
+    t: 112.0,
+    title: "YOU + AI Mechanical Leverage Graphic",
+    draft: "Draft v3",
+    desc: "Designed dynamic fulcrum lever animation showing human director amplified by AI efficiency."
+  },
+  {
+    id: "task-06-guardrails",
+    category: "scenes",
+    scene: "Scene 06 · What AI can (and can’t) do",
+    t: 135.0,
+    title: "Hands-On (Secure, Adapt, Train) Guardrail Animation",
+    draft: "Draft v4",
+    desc: "Animated green/amber/red security shields for AI boundaries: legal advice vs data summarization."
+  },
+  {
+    id: "task-07-mcp",
+    category: "scenes",
+    scene: "Scene 07 · What my emails taught me",
+    t: 164.0,
+    title: "Online Records = Structured Database & MCP Pipeline",
+    draft: "Draft v3",
+    desc: "Created visual schematic of Gmail/Drive via MCP streaming into local SQLite evidence database."
+  },
+  {
+    id: "task-08-n8n",
+    category: "scenes",
+    scene: "Scene 08 · How I keep track of it",
+    t: 178.0,
+    title: "n8n Deterministic Cron vs AI Probabilistic Diagram",
+    draft: "Draft v2",
+    desc: "Contrasted deterministic workflow scheduling (n8n node flow) with probabilistic LLM synthesis."
+  },
+  {
+    id: "task-08-mountain",
+    category: "scenes",
+    scene: "Scene 08 · How I keep track of it",
+    t: 186.0,
+    title: "Cinematic Hero's Journey Mountain Backdrop",
+    draft: "Draft v7",
+    desc: "High-resolution fal.ai mountain peak backdrop visualizing the emotional summit of overcoming liquidation stress."
+  },
+  {
+    id: "task-09-grace",
+    category: "scenes",
+    scene: "Scene 09 · From shame to grace",
+    t: 208.0,
+    title: "From Shame to Grace Guidance (Vehicle vs Identity)",
+    draft: "Draft v5",
+    desc: "Card separating company vehicle from personal identity; psychological reframing for founders."
+  },
+  {
+    id: "task-09-sunrise",
+    category: "scenes",
+    scene: "Scene 09 · From shame to grace",
+    t: 216.0,
+    title: "Motivational Dawn Sunrise Background & Comment CTA",
+    draft: "Draft v2",
+    desc: "Luminous sunrise visual with prompt inviting viewers to share liquidation questions for Part 2."
+  },
+  {
+    id: "task-10-handover",
+    category: "scenes",
+    scene: "Scene 10 · Disclaimer + outro",
+    t: 230.2,
+    title: "Bot-to-Human Handover Flow & Legal Guardrail",
+    draft: "Draft v6",
+    desc: "Explicit visual transition from AI data preparation to licensed insolvency practitioner decision."
+  },
+  {
+    id: "task-global-subtitles",
+    category: "scenes",
+    scene: "All Scenes (01–10)",
+    t: 5.0,
+    title: "Kinetic Animated Subtitles & Charismatic 1.1x Voiceover",
+    draft: "Draft v4/v5",
+    desc: "Synchronized word-level kinetic subtitle highlighting with energetic 1.1x narration pacing."
+  },
+
+  // --- Platform & Tooling ---
+  {
+    id: "task-platform-costs",
+    category: "platform",
+    scene: "Platform · Costs",
     t: null,
+    link: "costs.html",
     title: "Flat $20/mo Subscriptions ($3.08/video, $0 Marginal)",
     draft: "Site v1.20.1",
-    desc: "Recalculated costs on costs.html for Claude Pro + Gemini Antigravity plans @ 3 videos/week ($0.00 marginal cost).",
-    link: "costs.html"
+    desc: "Audited token spend: Claude Pro ($20) + Gemini ($20) flat memberships amortized across 3 videos/week = $3.08/video, $0 marginal revision."
+  },
+  {
+    id: "task-platform-releases",
+    category: "platform",
+    scene: "Platform · Releases",
+    t: null,
+    link: "releases.html",
+    title: "Automated 2 GB Master Delivery via GitHub Releases",
+    draft: "Site v1.17.0",
+    desc: "Dedicated script (publish-release.mjs) uploading full 1080p MP4 master renders directly to GitHub Releases with zero git bloat."
+  },
+  {
+    id: "task-tooling-azure",
+    category: "platform",
+    scene: "Tooling · Review",
+    t: null,
+    link: "review.html",
+    title: "Azure Blob Drawing Backup & Claude-Consumable SAS Links",
+    draft: "Site v1.18.0",
+    desc: "Drawings automatically upload to Azure container with preserved SAS tokens so copied feedback includes public links consumable by Claude."
   }
 ];
 
+let curCat = "all";
 let cIdx = 0;
+
 function getCarouselTasks() {
   const localDone = (items || []).filter((i) => i.state === "done").map((i, idx) => ({
     id: "local-" + (i.cid || idx),
+    category: "scenes",
     scene: i.kind === "text" ? i.section : (sceneAt(i.t) ? "Scene " + sceneAt(i.t).n + " · " + sceneAt(i.t).title : fmt(i.t)),
     t: i.t,
     title: i.note ? i.note.slice(0, 50) + (i.note.length > 50 ? "…" : "") : "Feedback item at " + fmt(i.t),
@@ -490,32 +669,61 @@ function getCarouselTasks() {
     imgUrl: i.imgUrl || null,
     shapes: i.shapes || []
   }));
-  return COMPLETED_TASKS.concat(localDone);
+  const all = COMPLETED_TASKS.concat(localDone);
+  if (curCat === "all") return all;
+  if (curCat === "latest") return all.filter((t) => t.category === "latest");
+  if (curCat === "scenes") return all.filter((t) => t.category === "scenes" || t.category === "latest");
+  if (curCat === "platform") return all.filter((t) => t.category === "platform");
+  return all;
 }
 
 function renderCarousel() {
-  const tasks = getCarouselTasks();
-  if (!tasks.length) return;
-  if (cIdx >= tasks.length) cIdx = tasks.length - 1;
+  const allTasks = getCarouselTasks();
+  if (!allTasks.length) {
+    $("cCard").innerHTML = "<p class='hint' style='text-align:center;padding:20px'>No tasks in this category.</p>";
+    return;
+  }
+  if (cIdx >= allTasks.length) cIdx = allTasks.length - 1;
   if (cIdx < 0) cIdx = 0;
-  const t = tasks[cIdx];
+  const t = allTasks[cIdx];
   const isV = !!verifiedMap[t.id];
 
-  $("cDoneIdx").textContent = (cIdx + 1) + " / " + tasks.length;
-  const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
+  const totalAll = COMPLETED_TASKS.length;
+  const totalVerified = COMPLETED_TASKS.filter((x) => !!verifiedMap[x.id]).length;
+  if ($("cVerifiedSummary")) $("cVerifiedSummary").textContent = totalVerified + "/" + totalAll + " verified";
+
+  $("cDoneIdx").textContent = (cIdx + 1) + " / " + allTasks.length;
+
+  // update select options
+  const sel = $("cTaskSelect");
+  if (sel) {
+    sel.innerHTML = allTasks.map((item, idx) => {
+      const vMark = verifiedMap[item.id] ? "✓ " : "";
+      return '<option value="' + idx + '"' + (idx === cIdx ? " selected" : "") + '>' + vMark + (idx + 1) + ". " + esc(item.title) + '</option>';
+    }).join("");
+    sel.onchange = () => { cIdx = +sel.value; renderCarousel(); };
+  }
+
+  // update filter buttons
+  document.querySelectorAll(".c-filter").forEach((btn) => {
+    btn.classList.toggle("on", btn.dataset.cat === curCat);
+  });
+
+  const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
   const verifyBtn = t.t !== null ? '<button id="cVerifyBtn" class="pri" style="font-size:12px;padding:6px 12px;font-weight:700">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
 
+  $("cCard").className = "carousel-card" + (isV ? " is-verified" : "");
   $("cCard").innerHTML =
     '<div style="display:flex;justify-content:space-between;align-items:center">' +
       '<span class="carousel-tag">' + esc(t.draft) + ' · ' + esc(t.scene) + '</span>' +
-      '<label style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;color:' + (isV ? "var(--ok)" : "var(--mute)") + '"><input type="checkbox" id="cVerifyChk"' + (isV ? " checked" : "") + '> Verified</label>' +
+      '<label style="font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px;color:' + (isV ? "var(--ok)" : "var(--mute)") + '"><input type="checkbox" id="cVerifyChk"' + (isV ? " checked" : "") + '> ' + (isV ? "✅ Verified" : "Verify") + '</label>' +
     '</div>' +
     '<div class="carousel-title">' + esc(t.title) + '</div>' +
     '<div class="carousel-desc">' + esc(t.desc) + '</div>' +
     (imgHtml ? '<div>' + imgHtml + '</div>' : '') +
     '<div class="carousel-actions" style="margin-top:auto;display:flex;justify-content:space-between;align-items:center">' +
       verifyBtn +
-      '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + tasks.length + '</span>' +
+      '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + allTasks.length + '</span>' +
     '</div>';
 
   const vBtn = $("cVerifyBtn");
@@ -548,10 +756,11 @@ function renderCarousel() {
 
   const dots = $("cDots");
   dots.innerHTML = "";
-  tasks.forEach((_, i) => {
+  allTasks.forEach((item, i) => {
     const d = document.createElement("div");
     d.className = "carousel-dot" + (i === cIdx ? " active" : "");
-    d.title = "Go to task " + (i + 1);
+    if (verifiedMap[item.id]) d.style.background = "var(--ok)";
+    d.title = (i + 1) + ". " + item.title + (verifiedMap[item.id] ? " (Verified)" : "");
     d.onclick = () => { cIdx = i; renderCarousel(); };
     dots.appendChild(d);
   });
@@ -561,6 +770,14 @@ const prevTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx - 1 + ta
 const nextTask = () => { const tasks = getCarouselTasks(); cIdx = (cIdx + 1) % tasks.length; renderCarousel(); };
 $("cPrev").onclick = prevTask;
 $("cNext").onclick = nextTask;
+
+document.querySelectorAll(".c-filter").forEach((btn) => {
+  btn.onclick = () => {
+    curCat = btn.dataset.cat;
+    cIdx = 0;
+    renderCarousel();
+  };
+});
 
 // ---- keyboard
 document.addEventListener("keydown", (e) => {

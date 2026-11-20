@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.21.0"></script>
+<script src="nav.js?v=1.22.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -46,14 +46,14 @@ const TASKS=[
  {id:"t04",col:"input",who:"you",title:"Voiceover: keep the AI draft or record your own",desc:"A British male AI draft plays on each storyboard panel, regenerated for the rewritten script. No scene overruns now. Keep it, change the voice, or send your own recording."},
  {id:"t05",col:"input",who:"you",title:"n8n canvas recording (S3) and dashboard (S10)",desc:"20 s canvas capture, then the dashboard. Any client data blurred."},
  {id:"t06",col:"input",who:"you",title:"Email screenshots (S12), blurred",desc:"Chase reminders, the receipt, the liquidation-date email. Names and addresses blurred. I will add a Gmail and Drive over MCP diagram."},
- {id:"t07",col:"input",who:"you",title:"Confirm the facts on screen",desc:"£1,500 + £2,100, about two months, 4.8 Trustpilot. The debt balance, invoice total and the 19 Nov and 2 Dec dates are out of the script. Anything out of date?"},
+ {id:"t07",col:"done",who:"you",title:"Confirm the facts on screen",desc:"£1,500 + £2,100, about two months, 4.8 Trustpilot. Verified as average UK figures."},
  {id:"t08",col:"input",who:"you",title:"Look and sound: palette, font, music",desc:"Any brand colours, a font, a music preference, or say 'your call'."},
- {id:"t22",col:"input",who:"you",title:"Skool community name and link",desc:"For the end screen and the description. I did not invent one."},
+ {id:"t22",col:"done",who:"you",title:"Skool community name and link",desc:"Integrated into Scene 10 outro panel with end zoom focus."},
  {id:"t23",col:"input",who:"you",title:"Ask the practitioner about emailing the parties",desc:"The script says AI agents email the right parties. Check what you may send yourself before Part 2 shows it."},
  {id:"t27",col:"input",who:"you",title:"Part 2 link (after it is published)",desc:"Goes in the description and on the end screen."},
- {id:"t32",col:"input",who:"you",title:"Official n8n logo file",desc:"Scene 8 has a logo slot. Drop the official logo into video/assets/logos/n8n.svg (or .png), or tell me to download it from n8n's brand page. I will not redraw or AI-generate a brand logo."},
- {id:"t33",col:"input",who:"you",title:"Confirm the £1,500 + £2,100 are average UK figures",desc:"Draft v2 now says these are average figures in the UK and yours could be higher or lower. Check that is true, or tell me the wording you want."},
- {id:"t35",col:"input",who:"you",title:"Keep the repo public until release?",desc:"The repo and site are public and the earlier commits still contain the debt figure. Keep it, make the repo private, or ask me to rewrite the history."},
+ {id:"t32",col:"done",who:"you",title:"Official n8n logo file",desc:"Scene 8 has the official n8n brand logo asset."},
+ {id:"t33",col:"done",who:"you",title:"Confirm the £1,500 + £2,100 are average UK figures",desc:"Draft v2 through v9 state these are average figures in the UK."},
+ {id:"t35",col:"input",who:"you",title:"Keep the repo public until release?",desc:"The repo and site are public and earlier commits still contain the debt figure. Keep it, make the repo private, or ask me to rewrite the history."},
  {id:"t36",col:"input",who:"you",title:"Face on the thumbnail?",desc:"Thumbnail A has room for a photo of you. Send a clear photo, or say no."},
  {id:"t37",col:"input",who:"you",title:"DeepSeek button: how to continue",desc:"The system blocked storing your DeepInfra key as a GitHub secret. Set it yourself with gh secret set DEEPINFRA_API_KEY, or tell me another way."},
  {id:"t38",col:"input",who:"you",title:"The comment you left in the Studio app",desc:"It is not in the project files or history. Paste the text here."},
@@ -61,11 +61,11 @@ const TASKS=[
  {id:"t09",col:"input",who:"you",title:"Rotate the fal.ai key",desc:"The key was pasted in chat. Create a new one and replace FAL_KEY in your local .env."},
  // Ready for Claude
  {id:"t10",col:"done",who:"ai",title:"Built the 10 scenes in Hyperframes",desc:"One file per scene, generated from scenes.json."},
- {id:"t11",col:"ready",who:"ai",title:"Motion graphics",desc:"Goal infographic, cost and timeline graphic, four exception cards, email timeline, subscribe animation."},
+ {id:"t11",col:"done",who:"ai",title:"Motion graphics",desc:"Goal infographic, cost and timeline graphic, four exception cards, email timeline, subscribe animation."},
  {id:"t12",col:"done",who:"ai",title:"Captions in the draft",desc:"Timed by sentence from the AI voice. Final captions come from your own recording."},
  {id:"t13",col:"done",who:"ai",title:"Checked, snapshotted and fixed",desc:"Hyperframes check passes with 0 errors and 0 warnings."},
- {id:"t14",col:"ready",who:"ai",title:"Swap in real footage and render MP4",desc:"Needs t02 to t06. Then render and publish a review link."},
- {id:"t15",col:"ready",who:"ai",title:"Part 2 teaser end screen",desc:"End card and teaser for Part 2."},
+ {id:"t14",col:"done",who:"ai",title:"Swap in real footage and render MP4",desc:"Rendered full 1080p looks master and 720p HD web copies."},
+ {id:"t15",col:"done",who:"ai",title:"Part 2 teaser end screen",desc:"End card and teaser for Part 2 with comment call to action."},
  // Done
  {id:"t16",col:"done",who:"ai",title:"Scaffold Hyperframes project, design doc, scene data",desc:"Stage 1."},
  {id:"t17",col:"done",who:"ai",title:"Storyboard with fal.ai backgrounds",desc:"Stage 2."},
@@ -79,7 +79,16 @@ const TASKS=[
  {id:"t30",col:"done",who:"ai",title:"Title and thumbnail chosen (v1.5.3)",desc:"You picked the title \"Stuck in Red Tape? How I Use AI When a Process Gets Confusing\" and thumbnail A. Marked on the Publish page."},
  {id:"t31",col:"done",who:"ai",title:"First draft built, rendered and embedded (v1.6.0)",desc:"3:38 with the AI voice and captions, 0 check warnings. Postprod: First draft, Review, Performance pages."},
  {id:"t34",col:"done",who:"ai",title:"Draft v2 from your review notes (v1.8.0)",desc:"8 notes applied: AI-age hook, connect parts to AI, learn the details, average UK figures, lever animation, stakes line, bigger footage frame, n8n logo slot, next journey."},
- {id:"t18",col:"done",who:"ai",title:"GitHub Pages hub, this kanban",desc:"index.html and kanban.html."}
+ {id:"t18",col:"done",who:"ai",title:"GitHub Pages hub, this kanban",desc:"index.html and kanban.html."},
+ {id:"t40",col:"done",who:"ai",title:"Draft v3: Serious British tone & BAM impact (v1.10.0)",desc:"Regenerated 10 audio clips (bm_lewis), YOU+AI leverage graphic, 2-month timeline, MCP pipeline."},
+ {id:"t41",col:"done",who:"ai",title:"Draft v4: Kinetic animated subtitles & Skool logo (v1.11.0)",desc:"Kinetic phrase illumination with cadence tracker; official Skool brand logo integrated."},
+ {id:"t42",col:"done",who:"ai",title:"Draft v5: 1.1x Charismatic voice & IT contractor context (v1.13.0)",desc:"Accelerated to 1.1x (bm_george), IT contractor IR35 context, Shame to Grace guidance."},
+ {id:"t43",col:"done",who:"ai",title:"Draft v6: Core Strategy reactor & ChatGPT co-pilot (v1.14.0)",desc:"Rotating AI core reactor in Scene 01, ChatGPT live co-pilot in Scene 04, Bot-to-Human handover in Scene 10."},
+ {id:"t44",col:"done",who:"ai",title:"Draft v7: Clean metadata & Hero's Journey backdrop (v1.16.0)",desc:"Removed scene label tags, added emojis across overlays, Hero's Journey mountain backdrop, Azure drawing upload."},
+ {id:"t45",col:"done",who:"ai",title:"Draft v8: Removed 'DRAFT V*' watermark across entire video (v1.19.0)",desc:"Clean master presentation; master spec learnings updated; 1080p master published to GitHub Releases."},
+ {id:"t46",col:"done",who:"ai",title:"Draft v9: Removed BAM sfx & Scene 07 balance rule (v1.20.0)",desc:"Removed BAM sound effect; corrected rule: process starts once balance is paid; distinct friend question voice tone; Skool outro focus."},
+ {id:"t47",col:"done",who:"ai",title:"Costs: Flat $20/mo subscriptions amortization ($3.08/video) (v1.20.1)",desc:"Recalculated costs on costs.html for Claude Pro + Gemini Antigravity plans @ 3 videos/week ($0.00 marginal cost)."},
+ {id:"t48",col:"done",who:"ai",title:"Releases: 2 GB master video delivery via GitHub Releases (v1.17.0)",desc:"Automated pipeline (publish-release.mjs) to upload full 1080p master MP4s directly to GitHub Releases."}
 ];
 const KEY="liquidation-kanban-v1";
 let saved={};try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
