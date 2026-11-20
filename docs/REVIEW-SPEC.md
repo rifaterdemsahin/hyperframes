@@ -44,41 +44,47 @@ flowchart TD
 
 ## 2. Review Data Schema
 
-Each feedback annotation is stored in browser `localStorage` under `review-v2` as a serialized JSON object:
+Each feedback annotation is stored in browser `localStorage` under `review-v2` as a serialized JSON object, capturing both global composition coordinates and scene-relative original footage timecodes:
 
 ```typescript
 interface ReviewMarker {
-  cid: string;             // Unique identifier (e.g. 'fb-1270-38a4')
-  ts: number;              // Creation timestamp (epoch ms)
+  cid: string;                      // Unique identifier (e.g. 'fb-1270-38a4')
+  ts: number;                       // Creation timestamp (epoch ms)
   state: "backlog" | "in-progress" | "done";
-  kind: "marker" | "text"; // Video frame marker vs copy/post feedback
-  t: number;               // Exact timecode in seconds (e.g. 42.10)
-  frame: number;           // Absolute frame index (e.g. 1270 at 30 fps)
-  scene: string;           // Target scene ID (e.g. 's03-goal')
-  note: string;            // Reviewer instructions
-  shapes: Shape[];         // Vector annotations on the frame
-  imgUrl?: string;         // Direct Azure Blob Storage image URL (preserving SAS)
+  kind: "marker" | "text";          // Video frame marker vs copy/post feedback
+  t: number;                        // Exact timecode in seconds (e.g. 42.10)
+  frame: number;                    // Absolute frame index (e.g. 1270 at 30 fps)
+  scene: string;                    // Target scene ID (e.g. 's03-goal')
+  sceneNum: number;                 // Scene number (e.g. 3)
+  sceneTitle: string;               // Human-readable title (e.g. 'The goal')
+  sceneStart: number;               // Scene start time in composition (e.g. 37.0)
+  originalFootageTimecode: string;  // Footage-relative offset (e.g. '00:05.10')
+  originalFootageFrame: number;     // Footage-relative frame index (e.g. 153)
+  originalFootageLocation: string;  // Formatted location (e.g. 'Scene 03 +00:05.10 (scene fr 153)')
+  note: string;                     // Reviewer instructions
+  shapes: Shape[];                  // Vector annotations on the frame
+  imgUrl?: string;                  // Direct Azure Blob Storage image URL (preserving SAS)
 }
 
 interface Shape {
   k: "pen" | "arrow" | "rect" | "circle" | "text";
-  c: string;               // Stroke color (e.g. '#ff3b30')
-  w: number;               // Line width in px
-  p: [number, number][];   // Normalized [x, y] coordinates (0.0 to 1.0)
-  t?: string;              // Text payload if k === 'text'
+  c: string;                        // Stroke color (e.g. '#ff3b30')
+  w: number;                        // Line width in px
+  p: [number, number][];            // Normalized [x, y] coordinates (0.0 to 1.0)
+  t?: string;                       // Text payload if k === 'text'
 }
 
 interface CompletedTask {
-  id: string;              // Unique feedback/task ID (e.g. 'fb-s03-bam')
+  id: string;                       // Unique feedback/task ID (e.g. 'fb-s03-bam')
   category: "latest" | "scenes" | "platform";
-  scene: string;           // Scene title or subsystem
-  t: number | null;        // Seek timecode (or null for platform pages)
-  link?: string;           // Optional link for platform pages (e.g. 'costs.html')
-  commit?: string;         // Git commit hash implementing the change (e.g. 'fbd5e1a')
-  title: string;           // Summary of what was done
-  draft: string;           // Draft or site version
-  desc: string;            // Technical description of the change
-  imgUrl?: string;         // Optional reference image URL
+  scene: string;                    // Scene title or subsystem
+  t: number | null;                 // Seek timecode (or null for platform pages)
+  link?: string;                    // Optional link for platform pages (e.g. 'costs.html')
+  commit?: string;                  // Git commit hash implementing the change (e.g. 'fbd5e1a')
+  title: string;                    // Summary of what was done
+  draft: string;                    // Draft or site version
+  desc: string;                     // Technical description of the change
+  imgUrl?: string;                  // Optional reference image URL
 }
 ```
 
@@ -94,20 +100,25 @@ ${Project-Slug}-Draft-v${DraftNumber}-Review.mp4
 ```
 *Example:* `UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4`
 
-Provided as an explicit pill button in the player control bar:
+Provided as an explicit download button in the player control bar on `review.html`:
 ```html
-<a id="dlVideo" class="pill" download="UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4" href="draft/v9/video.mp4">
-  ⬇ Download Video (UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4)
-</a>
+<button id="dlVideoBtn" class="pri">⬇ Download Video (UK-Director-Liquidation-Part-1-Draft-v9-Review.mp4)</button>
+<button id="dlNotesBtn">⬇ Notes (.md)</button>
 ```
 
-### 2. Annotated Frame Capture Download (PNG)
+### 2. Review Notes Markdown Download
+```
+${Project-Slug}-Draft-v${DraftNumber}-Review-Feedback.md
+```
+*Example:* `UK-Director-Liquidation-Draft-v9-Review-Feedback.md`
+
+### 3. Annotated Frame Capture Download (PNG)
 ```
 ${Project-Slug}-Draft-v${DraftNumber}-Review-${Timecode}-${FeedbackId}.png
 ```
 *Example:* `UK-Director-Liquidation-Draft-v9-Review-00-42-10-fb-1270-38a4.png`
 
-### 3. Azure Blob Cloud Upload (JPEG)
+### 4. Azure Blob Cloud Upload (JPEG)
 ```
 ${Project-Slug}-Draft-v${DraftNumber}-Review-${Timecode}-${FeedbackId}.jpg
 ```
@@ -178,26 +189,29 @@ async function uploadToAzure(marker, sasUrl) {
 
 ---
 
-## 6. Markdown Feedback Export with Unique IDs
+## 6. Markdown Feedback Export with Unique IDs & Footage Timecodes
 
-Clicking **"📋 Copy feedback for Claude"** generates a standardized Markdown block where every item includes an explicit `[id: fb-...]` tag:
+Clicking **"📋 Copy feedback for Claude"** generates a standardized Markdown block where every item includes an explicit `[id: fb-...]` tag and footage-relative offset:
 
 ```markdown
-Review feedback on "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape (draft v9)" (page v1.22.0, site v1.22.0)
+Review feedback on "UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape (draft v9)" (page v1.23.0, site v1.23.0)
 https://rifaterdemsahin.github.io/hyperframes/review.html
 
 ## Scene 03 · The goal (00:37 to 00:57)
-- 00:42.10 (frame 1270) [id: fb-1270-38a4]: remove the sound effect bang from the background
+- 00:42.10 (comp frame 1270) [footage: +00:05.10 / scene fr 153] [id: fb-1270-38a4]: remove the sound effect bang from the background
 
 ## Scene 07 · What my emails taught me (02:33 to 02:56)
-- 02:38.26 (frame 4766) [id: fb-4766-9b12]: it is not process stops it is process starts when all balance in the liquidation company is paid off. Update subtitle and text.
+- 02:38.26 (comp frame 4766) [footage: +00:05.26 / scene fr 158] [id: fb-4766-9b12]: it is not process stops it is process starts when all balance in the liquidation company is paid off. Update subtitle and text.
 
 ## Scene 08 · How I keep track of it (02:56 to 03:20)
-- 03:13.00 (frame 5820) [id: fb-5820-502d] [drawing: 1 rect] [image: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...]: change the question sound tone when the friend asks; enlarge and center the quote card
+- 03:13.00 (comp frame 5820) [footage: +00:16.00 / scene fr 480] [id: fb-5820-502d] [drawing: 1 rect] [image: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...]: change the question sound tone when the friend asks; enlarge and center the quote card
 
 ## 🖼️ Visual Drawing References (Public & Consumable by Claude)
-- **03:13.00 (frame 5820 · Scene 08 · [id: fb-5820-502d])**: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...
+- **03:13.00 (comp frame 5820 · footage: +00:16.00 / scene fr 480 · Scene 08 · [id: fb-5820-502d])**: https://animationasistant.blob.core.windows.net/live-overlay-feedback/hyperframes/UK-Director-Liquidation-Draft-v9-Review-03-13-00-fb-5820-502d.jpg?...
 ```
+
+### Quick ID Copy Button
+Each feedback item card in the UI includes a `📋 Copy ID` button next to its pill badge, allowing reviewers and editors to instantly copy `fb-1270-38a4` to the clipboard for fast communication in PRs, issues, or chats.
 
 ### Git Commit Traceability Contract
 When coding agents implement feedback, the commit message must reference the feedback ID:
@@ -214,9 +228,10 @@ Directly beneath the **➕ Add feedback** form, an interactive **Completed Tasks
 1. **Category Filtering**: Chips filter tasks across `All (24)`, `Latest (5)`, `Scenes (16)`, and `Platform (3)`.
 2. **Quick Jump Selector**: A dropdown lists all tasks with their `[fb-...]` IDs for instant selection.
 3. **One-Click Video Scrubbing**: Clicking `▶ Verify in Video (03:13.00)` pauses playback, seeks the HTML5 video directly to the timecode, redraws vector annotations on the canvas, and smoothly scrolls to the player.
-4. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
-5. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
-6. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
+4. **Copy Task ID**: Every task card features a `📋 Copy ID` button for instant clipboard access.
+5. **Direct Git Commit Links**: Each card renders a clickable link to the git commit that implemented the task (e.g. `Commit: fbd5e1a`).
+6. **Persistent Verification Checkboxes**: Checkboxes save verification state to `localStorage` under `review-verified-v1`, updating the progress summary counter (e.g. `5/24 verified`).
+7. **Keyboard Navigation**: Reviewers can cycle through items using Left/Right Arrow keys (`←`/`→`) or square brackets (`[`/`]`).
 
 ---
 

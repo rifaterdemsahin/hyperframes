@@ -98,7 +98,8 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
       <button id="fm">◀ frame</button><button id="fp">frame ▶</button>
       <button id="b5">−5s</button><button id="f5">+5s</button>
       <select id="rate"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select>
-      <a id="dlVideo" class="pill" download="${videoDownloadName}" href="${DATA.src}" style="text-decoration:none;font-weight:700;margin-left:auto;display:inline-flex;align-items:center;gap:6px" title="Download review video MP4">⬇ Download Video (${videoDownloadName})</a>
+      <button id="dlVideoBtn" class="pri" style="margin-left:auto;font-weight:700;display:inline-flex;align-items:center;gap:6px" title="Download video with review name">⬇ Download Video (${videoDownloadName})</button>
+      <button id="dlNotesBtn" style="font-weight:700" title="Download review notes as Markdown">⬇ Notes (.md)</button>
     </div>
     <div class="now" id="now"></div>
     <p class="hint"><kbd>M</kbd> add feedback &nbsp; <kbd>D</kbd> draw &nbsp; <kbd>A</kbd> arrow &nbsp; <kbd>Space</kbd>/<kbd>K</kbd> play/pause &nbsp; <kbd>←</kbd><kbd>→</kbd> frame &nbsp; <kbd>Shift</kbd>+<kbd>←</kbd><kbd>→</kbd> 1 s &nbsp; <kbd>J</kbd> −5 s <kbd>L</kbd> +5 s &nbsp; <kbd>⌘/Ctrl Z</kbd> undo stroke</p>
@@ -241,10 +242,29 @@ function add() {
   v.pause();
   const n = $("note");
   const fr = Math.round(v.currentTime * FPS);
-  const it = { cid: "fb-" + fr + "-" + uid().slice(0, 4), ts: Date.now(), state: "backlog", kind: "marker", t: v.currentTime, frame: fr, scene: sceneAt(v.currentTime).id, note: n.value.trim(), shapes: JSON.parse(JSON.stringify(shapes)) };
+  const sc = sceneAt(v.currentTime);
+  const scOffset = Math.max(0, v.currentTime - sc.start);
+  const scFr = Math.round(scOffset * FPS);
+  const it = {
+    cid: "fb-" + fr + "-" + uid().slice(0, 4),
+    ts: Date.now(),
+    state: "backlog",
+    kind: "marker",
+    t: v.currentTime,
+    frame: fr,
+    scene: sc.id,
+    sceneNum: sc.n,
+    sceneTitle: sc.title,
+    sceneStart: sc.start,
+    originalFootageTimecode: fmt(scOffset),
+    originalFootageFrame: scFr,
+    originalFootageLocation: "Scene " + String(sc.n).padStart(2, "0") + " +" + fmt(scOffset) + " (scene fr " + scFr + ")",
+    note: n.value.trim(),
+    shapes: JSON.parse(JSON.stringify(shapes))
+  };
   if (!it.note && !it.shapes.length) { $("msg").className = "err"; $("msg").textContent = "Type a note or draw something first."; return; }
   items.push(it); n.value = ""; shapes = []; redraw(); persist(); render();
-  $("msg").className = "ok"; $("msg").textContent = "Added " + it.cid + " at " + fmt(it.t) + ".";
+  $("msg").className = "ok"; $("msg").textContent = "Added " + it.cid + " at " + fmt(it.t) + " (Footage +" + fmt(scOffset) + ").";
   if (it.shapes.length && getSas()) uploadToAzure(it);
 }
 $("add").onclick = add;
@@ -259,9 +279,13 @@ function render() {
     const sc = R.scenes.find((s) => s.id === m.scene);
     const cid = getCid(m);
     m.cid = cid;
-    const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:11px;padding:1px 6px;margin-right:6px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(cid) + '</span>';
+    const scOffset = sc ? Math.max(0, m.t - sc.start) : 0;
+    const scFr = Math.round(scOffset * FPS);
+    const footageBadge = m.kind === "marker" ? ' <span style="font-size:11px;color:var(--mute);margin-left:4px">📍 Footage: <b>+' + esc(fmt(scOffset)) + '</b> (scene fr ' + scFr + ')</span>' : '';
+    const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:11px;padding:1px 6px;margin-right:4px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(cid) + '</span>' +
+      '<button class="copy-cid" data-id="' + esc(cid) + '" title="Copy unique feedback ID (' + esc(cid) + ')" style="font-size:11px;padding:2px 7px;margin-right:6px;cursor:pointer">📋 Copy ID</button>';
     const imgLink = m.imgUrl ? ' <a href="' + m.imgUrl + '" target="_blank" style="color:var(--accent);font-size:12px;margin-left:6px;text-decoration:underline">🖼️ Azure image</a>' : (m.shapes && m.shapes.length && getSas() ? ' <button class="up-az" style="font-size:11px;padding:1px 6px">☁️ Upload Azure</button>' : "");
-    const where = m.kind === "text" ? idBadge + "📣 " + esc(m.section) : idBadge + "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
+    const where = m.kind === "text" ? idBadge + "📣 " + esc(m.section) : idBadge + "<b>" + fmt(m.t) + "</b> <small>comp fr " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + footageBadge + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
     d.innerHTML = '<button class="x" title="Delete">✕</button>' + where + ' <select class="state"><option value="backlog">📋 Backlog</option><option value="in-progress">🛠️ In progress</option><option value="done">✅ Done</option></select>' + (m.shapes && m.shapes.length ? ' <button class="dl" title="Download this frame with the drawing">⬇ frame</button>' : "") + '<textarea rows="2" placeholder="Feedback…"></textarea>';
     const b = d.querySelector("b"); if (b) b.onclick = () => goto(m);
     d.querySelector(".x").onclick = () => { items = items.filter((i) => i !== m); persist(); render(); renderPosts(); };
@@ -269,6 +293,18 @@ function render() {
     const sel = d.querySelector("select.state"); sel.value = m.state || "backlog"; sel.onchange = () => { m.state = sel.value; persist(); render(); };
     const dl = d.querySelector(".dl"); if (dl) dl.onclick = () => downloadFrame(m);
     const upBtn = d.querySelector(".up-az"); if (upBtn) upBtn.onclick = () => uploadToAzure(m);
+    const copyBtn = d.querySelector(".copy-cid");
+    if (copyBtn) {
+      copyBtn.onclick = () => {
+        const idVal = copyBtn.dataset.id;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(idVal).then(() => {
+            copyBtn.textContent = "✓ Copied!";
+            setTimeout(() => (copyBtn.textContent = "📋 Copy ID"), 1600);
+          });
+        }
+      };
+    }
     box.appendChild(d);
   });
   if (!list.length) box.innerHTML = '<p class="hint">' + (all.length ? "Nothing in this view." : "No feedback yet. Pause the video, type a note, press <kbd>M</kbd>.") + "</p>";
@@ -394,12 +430,16 @@ function build() {
     list.forEach((i) => {
       const cid = getCid(i);
       i.cid = cid;
+      const sc = R.scenes.find((x) => x.id === i.scene);
+      const scOffset = sc ? Math.max(0, i.t - sc.start) : 0;
+      const scFr = Math.round(scOffset * FPS);
+      const footageSnippet = sc ? " [footage: +" + fmt(scOffset) + " / scene fr " + scFr + "]" : "";
       const drawDesc = i.shapes && i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
       const imgDesc = i.imgUrl ? " [image: " + i.imgUrl + "]" : "";
       const progDesc = i.state === "in-progress" ? " [in progress]" : "";
-      out.push("- " + fmt(i.t) + " (frame " + i.frame + ") [id: " + cid + "]" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
+      out.push("- " + fmt(i.t) + " (comp frame " + i.frame + ")" + footageSnippet + " [id: " + cid + "]" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
       if (i.imgUrl) {
-        visualRefs.push("- **" + fmt(i.t) + " (frame " + i.frame + " · Scene " + String(s.n).padStart(2, "0") + " · [id: " + cid + "])**: " + i.imgUrl);
+        visualRefs.push("- **" + fmt(i.t) + " (comp frame " + i.frame + footageSnippet + " · Scene " + String(s.n).padStart(2, "0") + " · [id: " + cid + "])**: " + i.imgUrl);
       }
     });
     out.push("");
@@ -764,7 +804,8 @@ function renderCarousel() {
   const imgHtml = t.imgUrl ? '<a href="' + t.imgUrl + '" target="_blank" style="font-size:11.5px;color:var(--accent);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">🖼️ Visual drawing reference</a>' : "";
   const verifyBtn = t.t !== null ? '<button id="cVerifyBtn" class="pri" style="font-size:12px;padding:6px 12px;font-weight:700">▶ Verify in Video (' + fmt(t.t) + ')</button>' : (t.link ? '<a href="' + t.link + '" style="font-size:12px;color:var(--accent);font-weight:700;text-decoration:underline">🔗 Open ' + t.link + '</a>' : "");
   const commitHtml = t.commit ? '<span style="font-size:11px;color:var(--mute)">Commit: <a href="https://github.com/rifaterdemsahin/hyperframes/commit/' + t.commit + '" target="_blank" style="color:var(--accent);font-family:ui-monospace,monospace;font-weight:700;text-decoration:underline">' + t.commit + '</a></span>' : '';
-  const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:10px;padding:1px 5px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(t.id) + '</span>';
+  const idBadge = '<span class="pill" style="font-family:ui-monospace,monospace;font-size:10px;padding:1px 5px;background:rgba(255,255,255,.05);border-color:var(--line)">' + esc(t.id) + '</span>' +
+    '<button id="cCopyIdBtn" data-id="' + esc(t.id) + '" title="Copy unique feedback ID (' + esc(t.id) + ')" style="font-size:10px;padding:1px 5px;cursor:pointer">📋 Copy ID</button>';
 
   $("cCard").className = "carousel-card" + (isV ? " is-verified" : "");
   $("cCard").innerHTML =
@@ -785,6 +826,19 @@ function renderCarousel() {
         '<span style="font-size:11px;color:var(--mute)">Task ' + (cIdx + 1) + ' of ' + allTasks.length + '</span>' +
       '</div>' +
     '</div>';
+
+  const cCopy = $("cCopyIdBtn");
+  if (cCopy) {
+    cCopy.onclick = () => {
+      const idVal = cCopy.dataset.id;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(idVal).then(() => {
+          cCopy.textContent = "✓ Copied!";
+          setTimeout(() => (cCopy.textContent = "📋 Copy ID"), 1600);
+        });
+      }
+    };
+  }
 
   const vBtn = $("cVerifyBtn");
   if (vBtn && t.t !== null) {
@@ -858,6 +912,43 @@ document.addEventListener("keydown", (e) => {
   else if (k === "arrowright") { e.preventDefault(); e.shiftKey ? seekBy(1) : step(1); }
   else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);
 });
+
+const dlVid = $("dlVideoBtn");
+if (dlVid) {
+  dlVid.onclick = () => {
+    const filename = R.downloadName || ("UK-Director-Liquidation-Part-1-Draft-v" + R.draftN + "-Review.mp4");
+    const a = document.createElement("a");
+    a.href = R.src;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    $("msg").className = "ok";
+    $("msg").textContent = "Downloading " + filename + "…";
+  };
+}
+const dlNotes = $("dlNotesBtn");
+if (dlNotes) {
+  dlNotes.onclick = () => {
+    const t = build();
+    if (!t) {
+      $("msg").className = "err";
+      $("msg").textContent = "No open review notes to download.";
+      return;
+    }
+    const filename = "UK-Director-Liquidation-Draft-v" + R.draftN + "-Review-Feedback.md";
+    const blob = new Blob([t], { type: "text/markdown;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+    $("msg").className = "ok";
+    $("msg").textContent = "Downloaded " + filename + ".";
+  };
+}
 
 updateAzStatus(); renderPosts(); render(); renderCarousel(); tick(); syncPlay();
 </script>
