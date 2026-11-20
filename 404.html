@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forwarding to Fly.io...</title>
+<script>
+(function() {
+  var flyHost = "https://hyperframes-review.fly.dev";
+  var flyPath = location.pathname.replace(/^\/hyperframes/, "");
+  if (!flyPath || flyPath === "/") flyPath = "/";
+  location.replace(flyHost + flyPath + location.search + location.hash);
+})();
+</script>
+</head>
+<body style="font-family:system-ui,sans-serif;padding:32px;text-align:center;background:#0e1116;color:#e8ecf1">
+  <h2>🚀 Forwarding to Fly.io...</h2>
+  <p>Please wait or <a id="fl" href="https://hyperframes-review.fly.dev" style="color:#4cc3d9">click here to proceed to Fly.io</a>.</p>
+  <script>
+    document.getElementById("fl").href = "https://hyperframes-review.fly.dev" + location.pathname.replace(/^\/hyperframes/, "") + location.search + location.hash;
+  </script>
+</body>
+</html>

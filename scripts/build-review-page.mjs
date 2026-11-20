@@ -42,7 +42,12 @@ const DATA = { fps: FPS, src: `draft/v${N}/video.mp4`, downloadName: videoDownlo
 const json = JSON.stringify(DATA).replace(/</g, "\\u003c");
 
 const html = `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><script>
+if (location.hostname === "rifaterdemsahin.github.io" && !location.search.includes("noredirect=1")) {
+  var flyTarget = "https://hyperframes-review.fly.dev" + location.pathname.replace(/^\\/hyperframes/, "") + location.search + location.hash;
+  location.replace(flyTarget);
+}
+</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Review · Draft v${N}</title>
 <link rel="stylesheet" href="site.css">
 <style>
