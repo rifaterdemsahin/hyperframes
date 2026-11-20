@@ -1,5 +1,5 @@
 {
-  "latest": 5,
+  "latest": 6,
   "versions": [
     {
       "n": 1,
@@ -58,6 +58,18 @@
         "Scene 03: Generated BAM audio sound effect via fal.ai stable audio and mixed into soundtrack; removed BAM UI box in favor of sleek Legal Separation Rule & 3-step liquidation pipeline graphic.",
         "Scene 09: Generated motivational dawn background with fal.ai; added Shame to Grace guidance (don't attach personality to company, vehicle can always restart); Part 2 feedback prompt.",
         "Re-timed all scene durations and timeline offsets for seamless transition flow."
+      ]
+    },
+    {
+      "n": 6,
+      "date": "2026-11-20",
+      "label": "Sixth draft",
+      "changes": [
+        "Scene 01: Added dynamic 'In the Age of AI' core strategy reactor animation.",
+        "Scene 04: Added interactive ChatGPT co-pilot simulation with live learning from AI card.",
+        "Scene 08: Added visual workflow diagram comparing n8n deterministic scheduled email cron vs AI bot handling unknown inbound replies; dedicated golden honour card backdrop for friend quote.",
+        "Scene 10: Added animated Bot-to-Human Handover flow with data stream pulse into licensed practitioner decision block.",
+        "Visual Quality: Upgraded Hyperframes render quality to high-fidelity 'looks' (CRF 16) and razor-sharp 720p HD web copy."
       ]
     }
   ]

@@ -30,6 +30,7 @@ const CSS = `
       --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; 
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
     .scene { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; font-family: var(--font); color: var(--ink); opacity: 0; }
     .bg { position: absolute; inset: -60px; background-size: cover; background-position: center; transform-origin: 50% 50%; }
     .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.52) 55%, rgba(0,0,0,.35) 100%), linear-gradient(0deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,0) 38%); }
@@ -71,8 +72,26 @@ const CSS = `
     /* Side graphic container */
     .gfx-panel { position: absolute; right: 80px; top: 150px; width: 780px; display: flex; flex-direction: column; gap: 16px; opacity: 0; z-index: 15; }
 
+    /* Scene 01 Big AI Core Animation */
+    .core-panel { background: radial-gradient(circle at center, rgba(76,195,217,.25) 0%, rgba(10,16,28,.95) 75%); border: 3px solid var(--accent); border-radius: 24px; padding: 34px 28px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; box-shadow: 0 0 60px rgba(76,195,217,.35); position: relative; overflow: hidden; }
+    .core-ring { width: 130px; height: 130px; border-radius: 50%; border: 4px dashed var(--accent); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 0 30px var(--accent-glow); }
+    .core-nucleus { width: 84px; height: 84px; border-radius: 50%; background: linear-gradient(135deg, #4cc3d9, #06d6a0); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 0 24px #4cc3d9; }
+    .core-badge { background: #4cc3d9; color: #04222a; font-weight: 900; font-size: 30px; padding: 10px 28px; border-radius: 20px; letter-spacing: .08em; }
+    .core-headline { font-size: 38px; font-weight: 900; color: #ffffff; letter-spacing: -.02em; }
+    .core-sub { font-size: 28px; color: #cbd5e1; line-height: 1.35; max-width: 680px; }
+
     /* Scene 03 Legal Separation & Process Graphic */
     .debt-card { background: var(--card-bg); border: 2px solid rgba(76,195,217,.4); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+
+    /* Scene 04 ChatGPT Interface */
+    .chatgpt-card { background: rgba(14, 20, 32, 0.95); border: 2px solid #10a37f; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 16px 45px rgba(0,0,0,0.6), 0 0 30px rgba(16,163,127,0.2); }
+    .chatgpt-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .chatgpt-brand { display: flex; align-items: center; gap: 10px; font-size: 28px; font-weight: 800; color: #10a37f; }
+    .chatgpt-pill { background: rgba(16,163,127,0.18); color: #10a37f; border: 1px solid #10a37f; padding: 4px 14px; border-radius: 12px; font-size: 28px; font-weight: 800; }
+    .chat-bubble { padding: 14px 18px; border-radius: 14px; font-size: 28px; line-height: 1.35; }
+    .chat-user { background: rgba(255,255,255,0.08); border-left: 5px solid var(--accent); color: #e2e8f0; }
+    .chat-ai { background: rgba(16,163,127,0.12); border-left: 5px solid #10a37f; color: #ffffff; }
+    .chat-learn { background: linear-gradient(135deg, rgba(255,209,102,.15), rgba(76,195,217,.15)); border: 2px solid var(--warn); border-radius: 14px; padding: 14px 18px; font-size: 29px; font-weight: 800; color: var(--warn); text-align: center; }
 
     /* Scene 05 Cost & Timeline aesthetic leverage graphic */
     .cost-card { background: var(--card-bg); border: 2px solid rgba(255,255,255,.15); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
@@ -102,16 +121,21 @@ const CSS = `
     .db-row { display: flex; justify-content: space-between; font-size: 28px; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
     .mcp-pill { align-self: center; background: #ffd166; color: #1a1202; font-weight: 900; font-size: 28px; padding: 10px 28px; border-radius: 24px; }
 
-    /* Scene 08 Deterministic vs Probabilistic */
-    .comp-grid { display: flex; gap: 16px; width: 100%; }
-    .comp-col { flex: 1; background: var(--card-bg); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 12px; border: 2px solid rgba(255,255,255,.1); }
-    .comp-col.det { border-color: #ea4b71; }
-    .comp-col.prob { border-color: var(--accent); }
-    .comp-title { font-size: 28px; font-weight: 800; }
-    .det .comp-title { color: #ff6d5a; }
-    .prob .comp-title { color: var(--accent); }
-    .comp-desc { font-size: 28px; color: #cbd5e1; line-height: 1.3; }
-    .quote-box { background: rgba(255,255,255,.08); border-left: 6px solid var(--warn); border-radius: 14px; padding: 20px; font-size: 28px; font-style: italic; color: #ffd166; line-height: 1.35; }
+    /* Scene 08 Workflow Use Case & Friend Card */
+    .wf-box { background: var(--card-bg); border: 2px solid rgba(255,255,255,.15); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+    .wf-track { border-radius: 14px; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .wf-track.det { background: rgba(234,75,113,.12); border-left: 5px solid #ff6d5a; }
+    .wf-track.prob { background: rgba(76,195,217,.12); border-left: 5px solid var(--accent); }
+    .wf-title { font-size: 28px; font-weight: 800; }
+    .det .wf-title { color: #ff6d5a; }
+    .prob .wf-title { color: var(--accent); }
+    .wf-flow { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .wf-node { background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.15); padding: 8px 14px; border-radius: 10px; font-size: 28px; font-weight: 700; color: #fff; flex: 1; text-align: center; }
+    .wf-arrow { font-size: 28px; color: var(--warn); font-weight: 900; }
+    .friend-card { background: radial-gradient(circle at 85% 15%, rgba(255,209,102,.22) 0%, rgba(10,16,28,.95) 75%); border: 2px solid #ffd166; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.6), 0 0 25px rgba(255,209,102,.2); opacity: 0; }
+    .friend-header { display: flex; align-items: center; justify-content: space-between; font-size: 28px; font-weight: 800; color: #ffd166; }
+    .friend-quote { font-size: 28px; font-style: italic; color: #ffffff; line-height: 1.35; }
+    .honour-badge { background: #ffd166; color: #1a1202; font-weight: 900; font-size: 28px; padding: 6px 18px; border-radius: 14px; }
 
     /* Scene 09 Comments Callout */
     .comments-box { background: var(--card-bg); border: 2px solid var(--accent); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
@@ -119,10 +143,23 @@ const CSS = `
     .comments-prompt { font-size: 34px; font-weight: 800; color: #fff; line-height: 1.25; }
     .sub-btn { background: #ff0000; color: #fff; font-size: 32px; font-weight: 800; padding: 14px 40px; border-radius: 30px; letter-spacing: .06em; box-shadow: 0 8px 24px rgba(255,0,0,.5); }
 
-    /* Scene 10 Skool & Disclaimer */
-    .skool-panel { background: var(--card-bg); border: 2px solid #0070f3; border-radius: 22px; padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; box-shadow: 0 16px 40px rgba(0,112,243,.3); }
-    .skool-logo-img { max-height: 85px; max-width: 260px; object-fit: contain; border-radius: 8px; }
-    .skool-badge { background: #0070f3; color: #fff; font-weight: 800; font-size: 32px; padding: 10px 28px; border-radius: 20px; }
+    /* Scene 10 Bot to Human Handover & Skool */
+    .handover-card { background: var(--card-bg); border: 2px solid rgba(76,195,217,.4); border-radius: 22px; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+    .handover-flow { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .ho-box { flex: 1; background: rgba(255,255,255,.05); border: 2px solid rgba(255,255,255,.12); border-radius: 16px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+    .ho-bot { border-color: var(--accent); }
+    .ho-human { border-color: var(--success); }
+    .ho-icon { font-size: 36px; }
+    .ho-title { font-size: 30px; font-weight: 900; color: #fff; }
+    .ho-desc { font-size: 28px; color: #cbd5e1; }
+    .ho-arrow { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .ho-arrow-text { font-size: 28px; font-weight: 800; color: var(--warn); letter-spacing: .05em; }
+    .ho-arrow-symbol { font-size: 28px; color: var(--warn); font-weight: 900; }
+    .ho-guardrail { background: rgba(6,214,160,.12); border: 1px solid var(--success); border-radius: 10px; padding: 8px 12px; font-size: 28px; font-weight: 800; color: var(--success); text-align: center; }
+
+    .skool-panel { background: var(--card-bg); border: 2px solid #0070f3; border-radius: 22px; padding: 20px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; box-shadow: 0 16px 40px rgba(0,112,243,.3); }
+    .skool-logo-img { max-height: 70px; max-width: 220px; object-fit: contain; border-radius: 8px; }
+    .skool-badge { background: #0070f3; color: #fff; font-weight: 800; font-size: 28px; padding: 8px 24px; border-radius: 16px; }
     .skool-url { font-size: 28px; font-weight: 700; color: #4cc3d9; text-decoration: underline; }
 
     /* General Logo */
@@ -141,7 +178,7 @@ let rootAudio = "";
 
 scenes.forEach((s, i) => {
   const [head, ...lines] = s.overlay;
-  const hasGfx = s.fx || s.id === "s03-goal" || s.id === "s05-cost-timeline" || s.id === "s06-exceptions" || s.id === "s07-emails" || s.id === "s08-tracking" || s.id === "s09-cta" || s.id === "s10-outro";
+  const hasGfx = s.fx || s.id === "s01-hook" || s.id === "s03-goal" || s.id === "s04-five-things" || s.id === "s05-cost-timeline" || s.id === "s06-exceptions" || s.id === "s07-emails" || s.id === "s08-tracking" || s.id === "s09-cta" || s.id === "s10-outro";
   const logoFile = (s.logo && s.id !== "s10-outro") ? ["svg", "png", "webp", "jpg"].map((e) => `assets/logos/${s.logo}.${e}`).find((f) => existsSync(`${root}/video/${f}`)) : null;
   const voDur = s.voSeconds || s.duration - 0.5;
   const voLocal = VO_LEAD;
@@ -208,9 +245,22 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   }
 
   // Finite repeats for animations
-  if (s.id === "s03-goal") {
+  if (s.id === "s01-hook") {
+    js += `
+    tl.fromTo("#gfx-panel", { opacity: 0, scale: 0.65, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.8)" }, 6.2);
+    tl.fromTo("#core-ring", { rotation: 0 }, { rotation: 360, repeat: 3, duration: 3.5, ease: "linear" }, 6.5);
+    tl.fromTo("#core-nucleus", { scale: 0.85 }, { scale: 1.15, repeat: 5, yoyo: true, duration: 0.6, ease: "sine.inOut" }, 6.5);
+    tl.fromTo("#core-badge", { scale: 0.92 }, { scale: 1.05, repeat: 4, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 7.0);`;
+  } else if (s.id === "s03-goal") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);`;
+  } else if (s.id === "s04-five-things") {
+    js += `
+    tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 11.0);
+    tl.fromTo("#chat-user", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 11.8);
+    tl.fromTo("#chat-ai", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 12.6);
+    tl.fromTo("#chat-learn", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, 13.5);
+    tl.fromTo("#chat-learn", { scale: 0.98 }, { scale: 1.04, repeat: 5, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 14.2);`;
   } else if (s.id === "s05-cost-timeline") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
@@ -227,15 +277,19 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s08-tracking") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
-    tl.fromTo("#quote-box", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 5.0);`;
+    tl.fromTo("#friend-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 9.5);
+    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, ease: "sine.inOut" }, 10.5);`;
   } else if (s.id === "s09-cta") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.8);
     tl.fromTo("#sub-btn", { scale: 1 }, { scale: 1.08, repeat: 6, yoyo: true, duration: 0.7, ease: "sine.inOut" }, 1.5);`;
   } else if (s.id === "s10-outro") {
     js += `
-    tl.fromTo("#gfx-panel", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.0);
-    tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 6, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 2.0);`;
+    tl.fromTo("#gfx-panel", { opacity: 0, y: 35 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.6);
+    tl.fromTo("#ho-bot", { scale: 0.95 }, { scale: 1.05, repeat: 4, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 1.5);
+    tl.fromTo("#ho-pulse", { x: -10, opacity: 0.6 }, { x: 10, opacity: 1, repeat: 5, yoyo: true, duration: 0.6, ease: "power1.inOut" }, 2.0);
+    tl.fromTo("#ho-human", { borderColor: "var(--accent)" }, { borderColor: "var(--success)", repeat: 3, yoyo: true, duration: 0.8, ease: "sine.inOut" }, 3.5);
+    tl.fromTo("#skool-badge", { scale: 0.95 }, { scale: 1.05, repeat: 4, yoyo: true, duration: 1.2, ease: "sine.inOut" }, 5.5);`;
   }
 
   // Animated serious style subtitles in GSAP:
@@ -263,7 +317,19 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     tl.seek(0);`;
 
   let gfxHtml = "";
-  if (s.id === "s03-goal") {
+  if (s.id === "s01-hook") {
+    gfxHtml = `
+      <div id="gfx-panel" class="gfx-panel">
+        <div id="core-panel" class="core-panel">
+          <div id="core-ring" class="core-ring">
+            <div id="core-nucleus" class="core-nucleus">⚡</div>
+          </div>
+          <div id="core-badge" class="core-badge">CORE STRATEGY</div>
+          <div class="core-headline">In the Age of AI</div>
+          <div class="core-sub">AI is the director's core operational backbone: cut through red tape, organise records &amp; protect your position.</div>
+        </div>
+      </div>`;
+  } else if (s.id === "s03-goal") {
     gfxHtml = `
       <div id="gfx-panel" class="gfx-panel">
         <div class="debt-card">
@@ -277,6 +343,25 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
             <div class="db-row"><span style="color:#ffd166;">1. Hand Over</span><span>Licensed practitioner takes control</span></div>
             <div class="db-row"><span style="color:#4cc3d9;">2. Sell Assets</span><span>Realise value for creditors</span></div>
             <div class="db-row"><span style="color:#06d6a0;">3. Pay Creditors</span><span>Paid strictly in statutory order</span></div>
+          </div>
+        </div>
+      </div>`;
+  } else if (s.id === "s04-five-things") {
+    gfxHtml = `
+      <div id="gfx-panel" class="gfx-panel">
+        <div id="chatgpt-card" class="chatgpt-card">
+          <div class="chatgpt-head">
+            <div class="chatgpt-brand"><span>🟢</span><span>ChatGPT Co-Pilot</span></div>
+            <div class="chatgpt-pill">GPT-4o</div>
+          </div>
+          <div id="chat-user" class="chat-bubble chat-user">
+            <strong style="color:var(--accent);">Director:</strong> How do I handle HMRC balance &amp; avoid creditor preference?
+          </div>
+          <div id="chat-ai" class="chat-bubble chat-ai">
+            <strong style="color:#10a37f;">ChatGPT:</strong> 1. Freeze trading. 2. Treat all creditors equally. 3. Reconcile books for your licensed practitioner.
+          </div>
+          <div id="chat-learn" class="chat-learn">
+            🧠 LEARNING FROM AI: Synthesise rules &amp; act on the fly
           </div>
         </div>
       </div>`;
@@ -337,19 +422,33 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s08-tracking") {
     gfxHtml = `
       <div id="gfx-panel" class="gfx-panel">
-        <div class="comp-grid">
-          <div class="comp-col det">
-            <div class="comp-title">⚙️ n8n (Deterministic)</div>
-            <div class="comp-desc">Known rules, predictable flows, zero hallucination. Build your reliable backbone.</div>
+        <div class="wf-box">
+          <div class="wf-track det">
+            <div class="wf-title">⚙️ n8n (Deterministic): Scheduled Email</div>
+            <div class="wf-flow">
+              <div class="wf-node">⏰ Mon 09:00 Cron</div>
+              <div class="wf-arrow">➔</div>
+              <div class="wf-node">✉️ Send Requests &amp; Records</div>
+            </div>
           </div>
-          <div class="comp-col prob">
-            <div class="comp-title">🧠 AI (Probabilistic)</div>
-            <div class="comp-desc">Adaptive reasoning, text synthesis, contextual flexibility. Build intelligence on top.</div>
+          <div class="wf-track prob">
+            <div class="wf-title">🧠 AI Bot (Probabilistic): Unknowns</div>
+            <div class="wf-flow">
+              <div class="wf-node">📬 Inbound Unknown Reply</div>
+              <div class="wf-arrow">➔</div>
+              <div class="wf-node">🤖 AI Classifies &amp; Handles Data</div>
+            </div>
           </div>
         </div>
-        <div id="quote-box" class="quote-box">
-          “A friend said: become like MrBeast, why show your real work?<br>
-          <strong style="color: #fff; font-style: normal; display: block; margin-top: 8px;">✨ Have the honour to do what is right and share reality.”</strong>
+        <div id="friend-card" class="friend-card">
+          <div class="friend-header">
+            <span>🤝 Friend's Advice vs Reality</span>
+            <span class="honour-badge">HONOUR</span>
+          </div>
+          <div class="friend-quote">
+            “A friend said: become like MrBeast, why show your real work?<br>
+            <strong style="color: #ffd166; font-style: normal; display: block; margin-top: 6px;">✨ Have the honour to do what is right and share reality.”</strong>
+          </div>
         </div>
       </div>`;
   } else if (s.id === "s09-cta") {
@@ -373,10 +472,29 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s10-outro") {
     gfxHtml = `
       <div id="gfx-panel" class="gfx-panel">
+        <div class="handover-card">
+          <div style="font-size: 28px; font-weight: 800; color: #4cc3d9; text-align: center;">🤖 BOT TO HUMAN HANDOVER</div>
+          <div class="handover-flow">
+            <div id="ho-bot" class="ho-box ho-bot">
+              <span class="ho-icon">🤖</span>
+              <span class="ho-title">AI BOT</span>
+              <span class="ho-desc">Organises Data</span>
+            </div>
+            <div id="ho-arrow" class="ho-arrow">
+              <span class="ho-arrow-text">STREAM</span>
+              <span id="ho-pulse" class="ho-arrow-symbol">➔ ➔</span>
+            </div>
+            <div id="ho-human" class="ho-box ho-human">
+              <span class="ho-icon">⚖️</span>
+              <span class="ho-title">PRACTITIONER</span>
+              <span class="ho-desc">Decides &amp; Acts</span>
+            </div>
+          </div>
+          <div class="ho-guardrail">🛡️ Human In The Loop: Practitioner Decides, Bot Prepares</div>
+        </div>
         <div class="skool-panel">
           <img class="skool-logo-img" src="../assets/logos/skool.png" alt="Skool logo">
           <div id="skool-badge" class="skool-badge">🚀 Delivery Pilot Community</div>
-          <div style="font-size: 28px; color: #cbd5e1;">Join fellow bot builders and automation practitioners:</div>
           <div class="skool-url">https://www.skool.com/delivery-pilot-8938/</div>
         </div>
       </div>`;

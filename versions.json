@@ -1,5 +1,5 @@
 {
-  "site": "1.13.0",
+  "site": "1.14.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
@@ -12,7 +12,7 @@
     },
     "script.html": {
       "title": "Script",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -21,7 +21,7 @@
     },
     "storyboard/": {
       "title": "Storyboard",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -108,7 +108,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.13.0",
+      "version": "1.14.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -191,7 +191,7 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.12.0",
+      "version": "1.13.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -204,7 +204,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.12.0",
+      "version": "1.13.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -216,8 +216,8 @@
     },
     "performance.html": {
       "title": "Performance",
-      "version": "1.9.0",
-      "date": "2026-11-18",
+      "version": "1.10.0",
+      "date": "2026-11-20",
       "deps": [
         "spec/performance.json",
         "scripts/render-draft.mjs",
@@ -250,6 +250,20 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.14.0",
+      "date": "2026-11-20",
+      "pages": [
+        "review.html",
+        "first-draft.html",
+        "script.html",
+        "storyboard/",
+        "performance.html"
+      ],
+      "changes": [
+        "Draft v6: sharp HD visuals, AI core animation, ChatGPT co-pilot, and bot-to-human handover"
+      ]
+    },
     {
       "version": "1.13.0",
       "date": "2026-11-20",
@@ -525,6 +539,6 @@
     "*": "2026-11-18T21:55:42.014Z",
     "script.html": "2026-11-18T22:07:30.860Z",
     "publish.html": "2026-11-18T22:18:45.249Z",
-    "review.html": "2026-11-20T11:26:14.394Z"
+    "review.html": "2026-11-20T11:55:19.894Z"
   }
 }

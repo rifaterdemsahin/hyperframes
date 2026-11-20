@@ -29,7 +29,7 @@ mkdirSync(`${root}/${VDIR}/frames`, { recursive: true });
 mkdirSync(`${root}/video/renders`, { recursive: true });
 const runStart = clock();
 
-step("Generate the Hyperframes project", "10 scene files + root from scenes.json", () => { need(sh("node", ["scripts/build-video.mjs"]), "build-video"); });
+step("Generate the Hyperframes project", "10 scene files + root from scenes.json", () => { need(sh(process.execPath, ["scripts/build-video.mjs"]), "build-video"); });
 
 let checkSummary = "";
 step("Hyperframes check", "lint, runtime, layout, motion, contrast, craft (no cache)", () => {
@@ -43,8 +43,8 @@ step("Hyperframes check", "lint, runtime, layout, motion, contrast, craft (no ca
 });
 
 let renderInfo = {};
-step(`Render draft v${VN} (1080p, 30 fps, with sound)`, "local, drawelement capture", () => {
-  const r = sh("npx", ["-y", "hyperframes@0.9.67", "render", "--quality", "draft", "--output", "renders/first-draft.mp4"], { cwd: `${root}/video` });
+step(`Render draft v${VN} (1080p, 30 fps, with sound, high quality)`, "local, drawelement capture", () => {
+  const r = sh("npx", ["-y", "hyperframes@0.9.67", "render", "--quality", "looks", "--output", "renders/first-draft.mp4"], { cwd: `${root}/video` });
   need(r, "render");
   const out = (r.stdout || "") + (r.stderr || "");
   const m = out.match(/rendered in ([\d.]+)s/);
@@ -53,8 +53,8 @@ step(`Render draft v${VN} (1080p, 30 fps, with sound)`, "local, drawelement capt
   return `${renderInfo.workers ?? "?"} workers`;
 });
 
-step(`Make the light web copy of draft v${VN} (960x540)`, "H.264 CRF 29, AAC 64k", () => {
-  need(sh("ffmpeg", ["-y", "-loglevel", "error", "-i", "video/renders/first-draft.mp4", "-vf", "scale=960:540", "-c:v", "libx264", "-crf", "29", "-preset", "medium", "-c:a", "aac", "-b:a", "64k", "-movflags", "+faststart", `${VDIR}/video.mp4`]), "ffmpeg web copy");
+step(`Make the light web copy of draft v${VN} (1280x720 HD sharp)`, "H.264 CRF 23, AAC 128k", () => {
+  need(sh("ffmpeg", ["-y", "-loglevel", "error", "-i", "video/renders/first-draft.mp4", "-vf", "scale=1280:720", "-c:v", "libx264", "-crf", "23", "-preset", "slow", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", `${VDIR}/video.mp4`]), "ffmpeg web copy");
 });
 
 step("Extract one frame per scene", `${S.scenes.length} JPG frames`, () => {
@@ -108,11 +108,11 @@ save();
 
 step("Build the site pages", "storyboard, script, spec, agents, publish, architecture, draft + performance pages", () => {
   for (const f of ["build-storyboard", "build-script-page", "build-master-spec", "build-agents-page", "build-publish-page", "build-architecture", "build-first-draft-page", "build-review-page", "build-gaps-page", "build-menu"]) {
-    if (existsSync(`${root}/scripts/${f}.mjs`)) need(sh("node", [`scripts/${f}.mjs`]), f);
+    if (existsSync(`${root}/scripts/${f}.mjs`)) need(sh(process.execPath, [`scripts/${f}.mjs`]), f);
   }
 });
 save();
-if (existsSync(`${root}/scripts/build-performance-page.mjs`)) need(sh("node", ["scripts/build-performance-page.mjs"]), "build-performance-page");
+if (existsSync(`${root}/scripts/build-performance-page.mjs`)) need(sh(process.execPath, ["scripts/build-performance-page.mjs"]), "build-performance-page");
 
 const total = Math.round((clock() - runStart) * 10) / 10;
 console.log(`\nTotal wall time ${total} s. Draft ${duration} s long, render ${renderInfo.reported ?? "?"} s, check: ${checkSummary}.`);

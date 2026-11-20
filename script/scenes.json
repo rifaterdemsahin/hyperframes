@@ -8,13 +8,14 @@
       "title": "Hook",
       "start": 0,
       "duration": 14,
-      "broll": "Goal image, slow push-in. No figures on screen",
+      "broll": "Goal image, animated AI core engine, slow push-in",
       "vo": "My company is coming to an end, and I'm closing it properly. If you're a UK director in the same spot, here's how a liquidation works in the age of AI, and the five things to do first.",
       "realAsset": null,
       "bg": "goal",
       "overlay": [
         "The end of the company",
-        "closing it properly"
+        "closing it properly",
+        "⚡ The Core: Liquidating in the Age of AI"
       ],
       "ph": null,
       "voSeconds": 11.9,
@@ -70,7 +71,7 @@
       "title": "Five things to do first, with AI",
       "start": 57,
       "duration": 40,
-      "broll": "On-screen numbered list 1 to 5. Clean full-width card layout",
+      "broll": "Numbered list 1 to 5 with live ChatGPT co-pilot interaction & learning animation",
       "vo": "Five things to do first, with AI as your support. Remember, this is what I learned from AI, not financial advice. Your job is to learn with AI. One: check your HMRC balance. Two: gather the company's books and records. Three: get a licensed insolvency practitioner. I chose one with 4.8 stars on Trustpilot. Four: stop trading, and don't pay one creditor ahead of the others. Your practitioner will confirm this. Five: close your invoices and bring every bank account to zero, or the money goes to the Crown. Connect all of these parts to AI so you can iterate. Be ready to learn the details and act on the fly.",
       "realAsset": null,
       "bg": "desk",
@@ -81,7 +82,7 @@
         "1 Check HMRC balance · 2 Gather books & records",
         "3 Licensed practitioner · 4 Stop trading",
         "5 Close invoices & bank accounts to zero",
-        "Connect every part to AI, then iterate on the fly"
+        "🤖 Interactive ChatGPT learning: iterate on the fly"
       ],
       "ph": null,
       "voSeconds": 37.6,
@@ -168,12 +169,12 @@
       "title": "How I keep track of it",
       "start": 176,
       "duration": 24,
-      "broll": "n8n deterministic vs AI probabilistic comparison, honor and authenticity card",
+      "broll": "n8n deterministic cron email vs AI probabilistic reply workflow diagram, Friend's advice vs honour card",
       "vo": "I keep track of it all with n8n and AI agents. Remember: n8n is deterministic and known, while AI is probabilistic and unknown. Build your process around both. A friend told me: become like MrBeast, why show your real work? Have the honour to do what's right and share what you're genuinely working on. Build your system and mindset for the next journey.",
       "realAsset": null,
       "bg": "network",
       "overlay": [
-        "⚙️ n8n: Deterministic (Known) vs 🧠 AI: Probabilistic (Unknown)",
+        "⚙️ n8n (Scheduled Email) vs 🧠 AI Bot (Unknown Replies)",
         "🏗️ Build your workflow process around both",
         "💬 'Why show your real work?' · Have the honour to share reality",
         "🚀 Build your system & mindset for the next journey"
@@ -213,13 +214,13 @@
       "title": "Disclaimer + outro",
       "start": 224,
       "duration": 19,
-      "broll": "Disclaimer banner, Skool community link with logo",
+      "broll": "Bot-to-human legal handover animation, disclaimer banner, Skool community link with logo",
       "vo": "Important disclaimer: AI organises and explains, but the licensed practitioner decides. This is information, not legal or financial advice. If you're building bots and automation, join our Delivery Pilot community on Skool at the link below. See you in the next one!",
       "realAsset": "Skool community link",
       "bg": "goal",
       "overlay": [
-        "⚖️ DISCLAIMER: AI organises & explains. Practitioner decides.",
-        "ℹ️ Informational only · Not legal or financial advice",
+        "🤖 AI Bot prepares → ⚖️ Human practitioner decides",
+        "⚖️ DISCLAIMER: Informational only · Not legal/financial advice",
         "🚀 Join Delivery Pilot Community on Skool",
         "🔗 https://www.skool.com/delivery-pilot-8938/"
       ],
