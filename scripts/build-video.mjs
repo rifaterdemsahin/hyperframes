@@ -229,7 +229,6 @@ scenes.forEach((s, i) => {
 ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, ${r2(s.duration - 0.4)});`}
     tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.15, x: -40, duration: ${s.duration}, ease: "none" }, 0);
     tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: ${s.duration}, ease: "none" }, 0);
-    tl.fromTo("#tag", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
     tl.fromTo("#head", { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);`;
 
   lines.forEach((_, j) => {
@@ -277,8 +276,10 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   } else if (s.id === "s08-tracking") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
-    tl.fromTo("#friend-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 9.5);
-    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, ease: "sine.inOut" }, 10.5);`;
+    tl.to(".wf-box", { opacity: 0, y: -20, duration: 0.5, ease: "power2.in" }, 9.5);
+    tl.fromTo("#bg-hero", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.12, duration: 13.5, ease: "power1.out" }, 9.5);
+    tl.fromTo("#friend-card", { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" }, 9.7);
+    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 10.5);`;
   } else if (s.id === "s09-cta") {
     js += `
     tl.fromTo("#gfx-panel", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 0.8);
@@ -442,12 +443,15 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
         </div>
         <div id="friend-card" class="friend-card">
           <div class="friend-header">
-            <span>🤝 Friend's Advice vs Reality</span>
-            <span class="honour-badge">HONOUR</span>
+            <span style="font-size: 30px; font-weight: 900; color: #ffd166;">🏔️ THE HERO'S JOURNEY</span>
+            <span class="honour-badge" style="background:#ffd166; color:#04222a; font-weight:900;">TRUTH OVER HYPE</span>
           </div>
-          <div class="friend-quote">
-            “A friend said: become like MrBeast, why show your real work?<br>
-            <strong style="color: #ffd166; font-style: normal; display: block; margin-top: 6px;">✨ Have the honour to do what is right and share reality.”</strong>
+          <div class="friend-quote" style="font-size: 29px; line-height: 1.35;">
+            “A friend told me: become like MrBeast, why show your real work?<br>
+            <strong style="color: #ffd166; font-style: normal; display: block; margin-top: 8px;">✨ Have the honour to do what's right and share reality.”</strong>
+          </div>
+          <div style="background: rgba(255, 209, 102, 0.15); border: 1px solid #ffd166; border-radius: 12px; padding: 10px 16px; font-size: 28px; font-weight: 800; color: #fff; text-align: center;">
+            ⚔️ Face the trial · Transform shame into grace · Share reality
           </div>
         </div>
       </div>`;
@@ -513,9 +517,9 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
   <div data-composition-id="${s.id}" data-duration="${s.duration}" data-width="1920" data-height="1080">
     <div id="scene" class="scene">
       <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/${esc(s.bg || "calm")}.jpg)"></div>
+      ${s.id === "s08-tracking" ? `<div id="bg-hero" class="bg hero-bg" data-layout-ignore style="background-image:url(../assets/bg/heros-journey.jpg); opacity:0;"></div>` : ""}
       <div class="shade" data-layout-ignore></div>
       <div id="prog" class="prog"></div>
-      <div id="tag" class="tag">${esc(s.label)}</div>
       ${logoFile ? `<div id="logo" class="brand-logo"><img src="../${logoFile}" alt="${esc(s.logo)} logo"></div>` : ""}
       <div class="stack${hasGfx ? " narrow" : " full"}">
         <h1 id="head">${esc(head)}</h1>

@@ -158,14 +158,14 @@
   <div data-composition-id="s08-tracking" data-duration="24" data-width="1920" data-height="1080">
     <div id="scene" class="scene">
       <div id="bg" class="bg" data-layout-ignore style="background-image:url(../assets/bg/network.jpg)"></div>
+      <div id="bg-hero" class="bg hero-bg" data-layout-ignore style="background-image:url(../assets/bg/heros-journey.jpg); opacity:0;"></div>
       <div class="shade" data-layout-ignore></div>
       <div id="prog" class="prog"></div>
-      <div id="tag" class="tag">CHAPTER 6</div>
       <div id="logo" class="brand-logo"><img src="../assets/logos/n8n.svg" alt="n8n logo"></div>
       <div class="stack narrow">
         <h1 id="head">⚙️ n8n (Scheduled Email) vs 🧠 AI Bot (Unknown Replies)</h1>
         <p id="l0" class="line">🏗️ Build your workflow process around both</p>
-        <p id="l1" class="line">💬 'Why show your real work?' · Have the honour to share reality</p>
+        <p id="l1" class="line">🏔️ Hero's Journey: Have the honour to share real work</p>
         <p id="l2" class="line">🚀 Build your system &amp; mindset for the next journey</p>
       </div>
       
@@ -190,12 +190,15 @@
         </div>
         <div id="friend-card" class="friend-card">
           <div class="friend-header">
-            <span>🤝 Friend's Advice vs Reality</span>
-            <span class="honour-badge">HONOUR</span>
+            <span style="font-size: 30px; font-weight: 900; color: #ffd166;">🏔️ THE HERO'S JOURNEY</span>
+            <span class="honour-badge" style="background:#ffd166; color:#04222a; font-weight:900;">TRUTH OVER HYPE</span>
           </div>
-          <div class="friend-quote">
-            “A friend said: become like MrBeast, why show your real work?<br>
-            <strong style="color: #ffd166; font-style: normal; display: block; margin-top: 6px;">✨ Have the honour to do what is right and share reality.”</strong>
+          <div class="friend-quote" style="font-size: 29px; line-height: 1.35;">
+            “A friend told me: become like MrBeast, why show your real work?<br>
+            <strong style="color: #ffd166; font-style: normal; display: block; margin-top: 8px;">✨ Have the honour to do what's right and share reality.”</strong>
+          </div>
+          <div style="background: rgba(255, 209, 102, 0.15); border: 1px solid #ffd166; border-radius: 12px; padding: 10px 16px; font-size: 28px; font-weight: 800; color: #fff; text-align: center;">
+            ⚔️ Face the trial · Transform shame into grace · Share reality
           </div>
         </div>
       </div>
@@ -244,15 +247,16 @@
 tl.to("#scene", { opacity: 0, duration: 0.4, ease: "power1.in" }, 23.6);
     tl.fromTo("#bg", { scale: 1, x: 0 }, { scale: 1.15, x: -40, duration: 24, ease: "none" }, 0);
     tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 24, ease: "none" }, 0);
-    tl.fromTo("#tag", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.2);
     tl.fromTo("#head", { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
     tl.fromTo("#l0", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 6.17);
     tl.fromTo("#l1", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 10.37);
     tl.fromTo("#l2", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 14.57);
     tl.fromTo("#logo", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0.6);
     tl.fromTo("#gfx-panel", { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 1.0);
-    tl.fromTo("#friend-card", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 9.5);
-    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, ease: "sine.inOut" }, 10.5);
+    tl.to(".wf-box", { opacity: 0, y: -20, duration: 0.5, ease: "power2.in" }, 9.5);
+    tl.fromTo("#bg-hero", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.12, duration: 13.5, ease: "power1.out" }, 9.5);
+    tl.fromTo("#friend-card", { opacity: 0, scale: 0.88, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: "back.out(1.5)" }, 9.7);
+    tl.fromTo("#friend-card", { borderColor: "#ffd166" }, { borderColor: "#ffffff", repeat: 3, yoyo: true, duration: 1.0, immediateRender: false, ease: "sine.inOut" }, 10.5);
     tl.fromTo("#c0", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out" }, 0.25);
     tl.to("#c0", { opacity: 0, y: -6, duration: 0.2, ease: "power2.in" }, 3.14);
     tl.fromTo("#cc0", { scaleX: 0 }, { scaleX: 1, duration: 3.09, ease: "none" }, 0.25);

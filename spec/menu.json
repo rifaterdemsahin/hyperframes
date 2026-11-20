@@ -53,6 +53,7 @@
       "purpose": "How the system works, and how to reuse it for the next video.",
       "items": [
         { "label": "💰 Costs & estimates", "href": "costs.html", "desc": "tooling, API & iteration expenses", "hub": true },
+        { "label": "📋 Review spec (portable)", "href": "https://github.com/rifaterdemsahin/hyperframes/blob/main/docs/REVIEW-SPEC.md" },
         { "label": "♻️ Reuse as template", "href": "reuse.html", "desc": "keep the engine, replace the content", "hub": true },
         { "label": "🤖 AGENTS.md", "href": "agents.html", "desc": "the rules any AI agent follows here", "hub": true },
         { "label": "🕘 Changelog", "href": "changelog.html", "desc": "every release", "hub": true },

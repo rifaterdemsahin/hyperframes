@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Review</title>
+<title>Review · Draft v7</title>
 <link rel="stylesheet" href="site.css">
 <style>
 .wrap{max-width:1500px;margin:0 auto;padding:16px 16px 90px}
@@ -22,14 +22,14 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 .box{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--card)}pre.post{white-space:pre-wrap;font:13px/1.5 system-ui;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;margin:6px 0}
 #msg{min-height:20px;font-size:14px}.ok{color:var(--ok)}.err{color:#ff6b6b}
 </style></head><body data-feedback="custom">
-<script src="nav.js?v=1.15.0"></script>
+<script src="nav.js?v=1.16.0"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
-  <h1>📝 Review <span class="badge" id="total">0</span></h1>
-  <p class="lead">Watch the draft, pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Nothing is sent anywhere: copy the feedback into the chat when you are done.</p>
+  <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v7</span> <span class="badge" id="total">0</span></h1>
+  <p class="lead">Watch <b>Draft v7</b> (4:03 runtime), pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Drawings auto-upload to Azure when configured, and "Copy feedback for Claude" outputs timestamped notes with direct Azure links.</p>
   <div class="grid2">
   <section>
-    <div class="stage"><video id="v" controls preload="metadata" playsinline poster="draft/v6/frames/s01-hook.jpg"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
+    <div class="stage"><video id="v" controls preload="metadata" playsinline poster="draft/v7/frames/s01-hook.jpg"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
     <div class="ctl"><button id="play" class="big">▶ Play</button><button id="stop" class="big stop">⏹ Stop</button><span id="tc">00:00.00</span><small id="fr">frame 0</small>
       <button id="fm">◀ frame</button><button id="fp">frame ▶</button><button id="b5">−5s</button><button id="f5">+5s</button>
       <select id="rate"><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select></div>
@@ -46,6 +46,16 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
     <div id="msg"></div>
     <div class="ctl"><button class="pri" id="copy" style="flex:1;padding:11px">📋 Copy feedback for Claude</button></div>
     <small class="hint">Open items only. Done items stay in the list but are left out of the copy.</small>
+    <div style="margin-top:12px;padding:8px 10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;font-size:12px">
+      <details id="azDetails">
+        <summary style="cursor:pointer;color:var(--accent);font-weight:600">☁️ Azure Storage for Drawings <span id="azStatus" style="font-size:11px;color:var(--mute)"></span></summary>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <input id="azSas" type="password" placeholder="Azure SAS URL (stored in browser only)" style="flex:1;padding:5px 8px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)">
+          <button id="saveSas" style="padding:5px 10px;font-size:12px">Save</button>
+        </div>
+        <small class="hint" style="display:block;margin-top:4px">Drawings auto-upload to Azure and output direct image links in the copied feedback.</small>
+      </details>
+    </div>
   </aside>
   </div>
   <div class="ctl" style="justify-content:space-between;margin-top:18px"><h2 style="margin:0">🗂️ Feedback <span class="badge" id="count">0</span></h2><div id="states" class="ctl" style="margin:0"></div>
@@ -54,14 +64,42 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
   <textarea id="fallback" hidden readonly style="width:100%;height:150px;font:12px ui-monospace,monospace"></textarea>
 </div>
 <script>
-const R = {"fps":30,"src":"draft/v6/video.mp4","poster":"draft/v6/frames/s01-hook.jpg","label":"🎬 Draft v6","draftN":6,"duration":243,"scenes":[{"id":"s01-hook","n":1,"title":"Hook","start":0,"end":14,"lines":[{"t":0.25,"text":"My company is coming to an end, and I'm closing it properly."},{"t":4.01,"text":"If you're a UK director in the same spot, here's how a liquidation works in the age of AI, and the five things to do first."}]},{"id":"s02-intro","n":2,"title":"Part 1 of 3: AI and real-world red tape","start":14,"end":37,"lines":[{"t":14.25,"text":"I'm Rifat, an IT contractor based in Cambridge."},{"t":17.22,"text":"The tax rules in the UK changed, creating an involuntary push from outside to inside IR35 roles as the market took a downturn."},{"t":25.76,"text":"Doing the numbers is a hassle, but with AI we can navigate the red tape without costly mistakes."},{"t":32.45,"text":"It's time to close the company properly."}]},{"id":"s03-goal","n":3,"title":"The goal","start":37,"end":57,"lines":[{"t":37.25,"text":"Here's the goal."},{"t":38.42,"text":"The industrial and the information revolutions introduced so much red tape."},{"t":42.73,"text":"Company debt stays the company's."},{"t":44.68,"text":"A licensed practitioner takes over, sells the assets, and pays creditors in order."},{"t":49.77,"text":"There is a lot of red tape in society, so understand it first."}]},{"id":"s04-five-things","n":4,"title":"Five things to do first, with AI","start":57,"end":97,"lines":[{"t":57.25,"text":"Five things to do first, with AI as your support."},{"t":60.64,"text":"Remember, this is what I learned from AI, not financial advice."},{"t":64.36,"text":"Your job is to learn with AI."},{"t":66.73,"text":"One: check your HMRC balance."},{"t":68.43,"text":"Two: gather the company's books and records."},{"t":70.8,"text":"Three: get a licensed insolvency practitioner."},{"t":72.83,"text":"I chose one with 4.8 stars on Trustpilot."},{"t":75.54,"text":"Four: stop trading, and don't pay one creditor ahead of the others."},{"t":79.61,"text":"Your practitioner will confirm this."},{"t":81.3,"text":"Five: close your invoices and bring every bank account to zero, or the money goes to the Crown."},{"t":87.4,"text":"Connect all of these parts to AI so you can iterate."},{"t":91.12,"text":"Be ready to learn the details and act on the fly."}]},{"id":"s05-cost-timeline","n":5,"title":"What it costs and how long it takes","start":97,"end":124,"lines":[{"t":97.25,"text":"Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business."},{"t":102.95,"text":"This is the place that I found."},{"t":105.05,"text":"There could be cheaper or more expensive options, but you need to plan for it."},{"t":109.55,"text":"The process before took me two months, and after the payment I expect two more months to complete."},{"t":114.95,"text":"You plus AI gives you leverage."},{"t":116.75,"text":"Learn and act on the fly, build your skills, and carry them over to your next project."}]},{"id":"s06-exceptions","n":6,"title":"The exceptions","start":124,"end":153,"lines":[{"t":124.25,"text":"Now the exceptions, because this matters."},{"t":126.28,"text":"⚠️ The protection isn't absolute."},{"t":127.96,"text":"When I stopped paying the accountant, I felt isolated, and AI was the place to turn to."},{"t":133.7,"text":"This is what I learned from AI."},{"t":136.06,"text":"But AI systems aren't hands-off: you are hands-on to secure, adapt and train them."},{"t":140.79,"text":"The insolvency practitioner is your security guardrail 🛡️, so be sure on your end when inputting data to them."},{"t":147.2,"text":"Personal liability remains for wrongful trading, personal guarantees, or director loan accounts."}]},{"id":"s07-emails","n":7,"title":"What my emails taught me","start":153,"end":176,"lines":[{"t":153.25,"text":"Three lessons from my emails and records."},{"t":155.94,"text":"One: the process stops until the balance is paid—my provider chased me six times."},{"t":161.31,"text":"Two: use online methods and keep everything in writing, because online records act as databases."},{"t":167.06,"text":"Three: connect your drive and emails to AI over MCP."},{"t":170.9,"text":"When things go wrong, learn from them and iterate."}]},{"id":"s08-tracking","n":8,"title":"How I keep track of it","start":176,"end":200,"lines":[{"t":176.25,"text":"I keep track of it all with n8n and AI agents."},{"t":180.02,"text":"Remember: n8n is deterministic and known, while AI is probabilistic and unknown."},{"t":184.14,"text":"Build your process around both."},{"t":185.85,"text":"A friend told me: become like MrBeast, why show your real work?"},{"t":189.96,"text":"Have the honour to do what's right and share what you're genuinely working on."},{"t":194.76,"text":"Build your system and mindset for the next journey."}]},{"id":"s09-cta","n":9,"title":"Subscribe for Part 2","start":200,"end":224,"lines":[{"t":200.25,"text":"Closing a company often carries personal shame, but moving from shame to grace is the real breakthrough."},{"t":205.49,"text":"Don't attach your personality to a company: it's just a vehicle, and you can always restart."},{"t":210.43,"text":"In Part 2, I'll show how I build the app and AI agents."},{"t":214.44,"text":"If there is interest, I will shoot Part 2."},{"t":217.21,"text":"Tell me in the comments if you want to see it, and subscribe to follow along!"}]},{"id":"s10-outro","n":10,"title":"Disclaimer + outro","start":224,"end":243,"lines":[{"t":224.25,"text":"Important disclaimer: AI organises and explains, but the licensed practitioner decides."},{"t":228.75,"text":"This is information, not legal or financial advice."},{"t":232.03,"text":"If you're building bots and automation, join our Delivery Pilot community on Skool at the link below."},{"t":238.99,"text":"See you in the next one!"}]}],"title":"Stuck in Red Tape? How I Use AI When a Process Gets Confusing","description":"Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolvency practitioner.\n\nThis is Part 1 of 3: how I use AI to get through real-world red tape, using closing my own company as the example.\n\nIn this video:\n• Why you need support, and why AI is only support\n• Five things to do first\n• What it costs, and how to use AI as leverage\n• The exceptions, and why the practitioner decides\n• Gmail and Drive as data sources over MCP\n• Divide and conquer, and learning from every problem\n\nCHAPTERS\n0:00 Hook\n0:14 Part 1 of 3: AI and real-world red tape\n0:37 The goal\n0:57 Five things to do first, with AI\n1:37 What it costs and how long it takes\n2:04 The exceptions\n2:33 What my emails taught me\n2:56 How I keep track of it\n3:20 Subscribe for Part 2\n3:44 Disclaimer + outro\n\nNEXT\nPart 2, how I build the stages and the app: [PART 2 LINK: add when it is published]\nBuilding bots and automation? Join our Skool community: [SKOOL LINK: needed from you]\n\nAI organises and explains. The insolvency practitioner decides. This is information, not legal advice.\n\n#UKDirector #AI #RedTape","pageKey":"review.html","videoTitle":"UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape"};
-const KEY = "review-v2", FPS = R.fps;
+const R = {"fps":30,"src":"draft/v7/video.mp4","poster":"draft/v7/frames/s01-hook.jpg","label":"🎬 Draft v7","draftN":7,"duration":243,"scenes":[{"id":"s01-hook","n":1,"title":"Hook","start":0,"end":14,"lines":[{"t":0.25,"text":"My company is coming to an end, and I'm closing it properly."},{"t":4.01,"text":"If you're a UK director in the same spot, here's how a liquidation works in the age of AI, and the five things to do first."}]},{"id":"s02-intro","n":2,"title":"Part 1 of 3: AI and real-world red tape","start":14,"end":37,"lines":[{"t":14.25,"text":"I'm Rifat, an IT contractor based in Cambridge."},{"t":17.22,"text":"The tax rules in the UK changed, creating an involuntary push from outside to inside IR35 roles as the market took a downturn."},{"t":25.76,"text":"Doing the numbers is a hassle, but with AI we can navigate the red tape without costly mistakes."},{"t":32.45,"text":"It's time to close the company properly."}]},{"id":"s03-goal","n":3,"title":"The goal","start":37,"end":57,"lines":[{"t":37.25,"text":"Here's the goal."},{"t":38.42,"text":"The industrial and the information revolutions introduced so much red tape."},{"t":42.73,"text":"Company debt stays the company's."},{"t":44.68,"text":"A licensed practitioner takes over, sells the assets, and pays creditors in order."},{"t":49.77,"text":"There is a lot of red tape in society, so understand it first."}]},{"id":"s04-five-things","n":4,"title":"Five things to do first, with AI","start":57,"end":97,"lines":[{"t":57.25,"text":"Five things to do first, with AI as your support."},{"t":60.64,"text":"Remember, this is what I learned from AI, not financial advice."},{"t":64.36,"text":"Your job is to learn with AI."},{"t":66.73,"text":"One: check your HMRC balance."},{"t":68.43,"text":"Two: gather the company's books and records."},{"t":70.8,"text":"Three: get a licensed insolvency practitioner."},{"t":72.83,"text":"I chose one with 4.8 stars on Trustpilot."},{"t":75.54,"text":"Four: stop trading, and don't pay one creditor ahead of the others."},{"t":79.61,"text":"Your practitioner will confirm this."},{"t":81.3,"text":"Five: close your invoices and bring every bank account to zero, or the money goes to the Crown."},{"t":87.4,"text":"Connect all of these parts to AI so you can iterate."},{"t":91.12,"text":"Be ready to learn the details and act on the fly."}]},{"id":"s05-cost-timeline","n":5,"title":"What it costs and how long it takes","start":97,"end":124,"lines":[{"t":97.25,"text":"Here's what it costs: a £1,500 deposit, then a £2,100 balance to the liquidation company to close the business."},{"t":102.95,"text":"This is the place that I found."},{"t":105.05,"text":"There could be cheaper or more expensive options, but you need to plan for it."},{"t":109.55,"text":"The process before took me two months, and after the payment I expect two more months to complete."},{"t":114.95,"text":"You plus AI gives you leverage."},{"t":116.75,"text":"Learn and act on the fly, build your skills, and carry them over to your next project."}]},{"id":"s06-exceptions","n":6,"title":"The exceptions","start":124,"end":153,"lines":[{"t":124.25,"text":"Now the exceptions, because this matters."},{"t":126.28,"text":"⚠️ The protection isn't absolute."},{"t":127.96,"text":"When I stopped paying the accountant, I felt isolated, and AI was the place to turn to."},{"t":133.7,"text":"This is what I learned from AI."},{"t":136.06,"text":"But AI systems aren't hands-off: you are hands-on to secure, adapt and train them."},{"t":140.79,"text":"The insolvency practitioner is your security guardrail 🛡️, so be sure on your end when inputting data to them."},{"t":147.2,"text":"Personal liability remains for wrongful trading, personal guarantees, or director loan accounts."}]},{"id":"s07-emails","n":7,"title":"What my emails taught me","start":153,"end":176,"lines":[{"t":153.25,"text":"Three lessons from my emails and records."},{"t":155.94,"text":"One: the process stops until the balance is paid—my provider chased me six times."},{"t":161.31,"text":"Two: use online methods and keep everything in writing, because online records act as databases."},{"t":167.06,"text":"Three: connect your drive and emails to AI over MCP."},{"t":170.9,"text":"When things go wrong, learn from them and iterate."}]},{"id":"s08-tracking","n":8,"title":"How I keep track of it","start":176,"end":200,"lines":[{"t":176.25,"text":"I keep track of it all with n8n and AI agents."},{"t":180.02,"text":"Remember: n8n is deterministic and known, while AI is probabilistic and unknown."},{"t":184.14,"text":"Build your process around both."},{"t":185.85,"text":"A friend told me: become like MrBeast, why show your real work?"},{"t":189.96,"text":"Have the honour to do what's right and share what you're genuinely working on."},{"t":194.76,"text":"Build your system and mindset for the next journey."}]},{"id":"s09-cta","n":9,"title":"Subscribe for Part 2","start":200,"end":224,"lines":[{"t":200.25,"text":"Closing a company often carries personal shame, but moving from shame to grace is the real breakthrough."},{"t":205.49,"text":"Don't attach your personality to a company: it's just a vehicle, and you can always restart."},{"t":210.43,"text":"In Part 2, I'll show how I build the app and AI agents."},{"t":214.44,"text":"If there is interest, I will shoot Part 2."},{"t":217.21,"text":"Tell me in the comments if you want to see it, and subscribe to follow along!"}]},{"id":"s10-outro","n":10,"title":"Disclaimer + outro","start":224,"end":243,"lines":[{"t":224.25,"text":"Important disclaimer: AI organises and explains, but the licensed practitioner decides."},{"t":228.75,"text":"This is information, not legal or financial advice."},{"t":232.03,"text":"If you're building bots and automation, join our Delivery Pilot community on Skool at the link below."},{"t":238.99,"text":"See you in the next one!"}]}],"title":"Stuck in Red Tape? How I Use AI When a Process Gets Confusing","description":"Closing a UK company means a lot of red tape. Every time I opened the HMRC site I had more questions than answers, so I used AI as support, and I still work with a licensed insolvency practitioner.\n\nThis is Part 1 of 3: how I use AI to get through real-world red tape, using closing my own company as the example.\n\nIn this video:\n• Why you need support, and why AI is only support\n• Five things to do first\n• What it costs, and how to use AI as leverage\n• The exceptions, and why the practitioner decides\n• Gmail and Drive as data sources over MCP\n• Divide and conquer, and learning from every problem\n\nCHAPTERS\n0:00 Hook\n0:14 Part 1 of 3: AI and real-world red tape\n0:37 The goal\n0:57 Five things to do first, with AI\n1:37 What it costs and how long it takes\n2:04 The exceptions\n2:33 What my emails taught me\n2:56 How I keep track of it\n3:20 Subscribe for Part 2\n3:44 Disclaimer + outro\n\nNEXT\nPart 2, how I build the stages and the app: [PART 2 LINK: add when it is published]\nBuilding bots and automation? Join our Skool community: [SKOOL LINK: needed from you]\n\nAI organises and explains. The insolvency practitioner decides. This is information, not legal advice.\n\n#UKDirector #AI #RedTape","pageKey":"review.html","videoTitle":"UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape"};
+const KEY = "review-v2", FPS = R.fps, KEY_SAS = "azure-feedback-sas-v1";
 const $ = (id) => document.getElementById(id), v = $("v"), cv = $("cv"), ctx = cv.getContext("2d");
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const uid = () => Math.random().toString(16).slice(2, 10);
 const fmt = (t) => { const m = Math.floor(t / 60), s = Math.floor(t % 60), f = Math.round((t % 1) * FPS) % FPS; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0") + "." + String(f).padStart(2, "0"); };
 const sceneAt = (t) => R.scenes.find((s) => t >= s.start && t < s.end) || R.scenes[R.scenes.length - 1];
 v.src = R.src;
+
+function getSas() {
+  try {
+    const h = (location.hash || "").match(/sas=([^&]+)/);
+    if (h) {
+      const decoded = decodeURIComponent(h[1]);
+      localStorage.setItem(KEY_SAS, decoded);
+      history.replaceState(null, "", location.pathname + location.search);
+      return decoded;
+    }
+    return localStorage.getItem(KEY_SAS) || "";
+  } catch (e) { return ""; }
+}
+function updateAzStatus() {
+  const sas = getSas();
+  const el = $("azStatus");
+  if (el) el.textContent = sas ? "✅ Connected" : "⚠️ Not set";
+  if ($("azSas") && sas && !$("azSas").value) $("azSas").value = sas;
+}
+if ($("saveSas")) {
+  $("saveSas").onclick = () => {
+    const val = ($("azSas").value || "").trim();
+    if (val) localStorage.setItem(KEY_SAS, val); else localStorage.removeItem(KEY_SAS);
+    updateAzStatus();
+    $("msg").className = "ok";
+    $("msg").textContent = val ? "Azure SAS URL saved." : "Azure SAS cleared.";
+  };
+}
 
 // ---- notes live in this browser; those written before the last "feedback implemented" release are deleted (newer stay)
 let items = []; try { items = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
@@ -99,6 +137,7 @@ function add() {
   if (!it.note && !it.shapes.length) { $("msg").className = "err"; $("msg").textContent = "Type a note or draw something first."; return; }
   items.push(it); n.value = ""; shapes = []; redraw(); persist(); render();
   $("msg").className = "ok"; $("msg").textContent = "Added at " + fmt(it.t) + ".";
+  if (it.shapes.length && getSas()) uploadToAzure(it);
 }
 $("add").onclick = add;
 const open = (i) => (i.state || "backlog") !== "done";
@@ -110,20 +149,22 @@ function render() {
   list.forEach((m) => {
     const d = document.createElement("div"); d.className = "m" + (m.state === "done" ? " isdone" : "");
     const sc = R.scenes.find((s) => s.id === m.scene);
-    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + "</small>";
+    const imgLink = m.imgUrl ? ' <a href="' + m.imgUrl + '" target="_blank" style="color:var(--accent);font-size:12px;margin-left:6px;text-decoration:underline">🖼️ Azure image</a>' : (m.shapes && m.shapes.length && getSas() ? ' <button class="up-az" style="font-size:11px;padding:1px 6px">☁️ Upload Azure</button>' : "");
+    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
     d.innerHTML = '<button class="x" title="Delete">✕</button>' + where + ' <select class="state"><option value="backlog">📋 Backlog</option><option value="in-progress">🛠️ In progress</option><option value="done">✅ Done</option></select>' + (m.shapes && m.shapes.length ? ' <button class="dl" title="Download this frame with the drawing">⬇ frame</button>' : "") + '<textarea rows="2" placeholder="Feedback…"></textarea>';
     const b = d.querySelector("b"); if (b) b.onclick = () => goto(m);
     d.querySelector(".x").onclick = () => { items = items.filter((i) => i !== m); persist(); render(); renderPosts(); };
     const ta = d.querySelector("textarea"); ta.value = m.note || ""; ta.oninput = () => { m.note = ta.value; m.ts = Date.now(); persist(); };
     const sel = d.querySelector("select.state"); sel.value = m.state || "backlog"; sel.onchange = () => { m.state = sel.value; persist(); render(); };
     const dl = d.querySelector(".dl"); if (dl) dl.onclick = () => downloadFrame(m);
+    const upBtn = d.querySelector(".up-az"); if (upBtn) upBtn.onclick = () => uploadToAzure(m);
     box.appendChild(d);
   });
   if (!list.length) box.innerHTML = '<p class="hint">' + (all.length ? "Nothing in this view." : "No feedback yet. Pause the video, type a note, press <kbd>M</kbd>.") + "</p>";
   const cnt = (s) => all.filter((i) => (i.state || "backlog") === s).length;
   $("states").innerHTML = '<span class="pill">📋 ' + cnt("backlog") + ' backlog</span><span class="pill p">🛠️ ' + cnt("in-progress") + ' in progress</span><span class="pill d">✅ ' + cnt("done") + " done</span>";
   $("count").textContent = list.length; $("count2").textContent = all.filter(open).length; $("total").textContent = all.filter(open).length;
-  document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review";
+  document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review · Draft v" + R.draftN;
 }
 function goto(m) { v.pause(); v.currentTime = m.t; shapes = JSON.parse(JSON.stringify(m.shapes || [])); redraw(); if (shapes.length) setDraw(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
@@ -179,8 +220,41 @@ $("arrowBtn").onclick = () => { setDraw(true); document.querySelector('[data-too
 $("undo").onclick = () => { shapes.pop(); redraw(); }; $("clr").onclick = () => { shapes = []; redraw(); }; $("draw").onclick = () => setDraw(!drawMode);
 if (window.ResizeObserver) new ResizeObserver(sizeCv).observe(v.parentElement); window.addEventListener("resize", sizeCv); v.addEventListener("loadedmetadata", sizeCv);
 
-// ---- download the frame with its drawing (same origin, so the canvas stays clean)
+// ---- download or upload the frame with its drawing
 const seekTo = (t) => new Promise((ok) => { const done = () => { v.removeEventListener("seeked", done); ok(); }; v.addEventListener("seeked", done); v.currentTime = t; });
+async function captureFrameBlob(m) {
+  v.pause(); const keep = v.currentTime; await seekTo(m.t);
+  const w = v.videoWidth || 1280, h = v.videoHeight || 720, c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d"); g.drawImage(v, 0, 0, w, h); paint(g, m.shapes, { x: 0, y: 0, w, h });
+  await seekTo(keep);
+  return new Promise((ok) => c.toBlob(ok, "image/jpeg", 0.88));
+}
+async function uploadToAzure(m) {
+  const sas = getSas();
+  if (!sas || !m.shapes || !m.shapes.length) return;
+  const msg = $("msg"); if (msg) { msg.className = ""; msg.textContent = "Uploading frame drawing to Azure…"; }
+  try {
+    const blob = await captureFrameBlob(m);
+    const u = new URL(sas);
+    const fname = "review-" + fmt(m.t).replace(/[:.]/g, "-") + "-" + (m.cid || uid()) + ".jpg";
+    const putUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + fname + u.search;
+    const res = await fetch(putUrl, {
+      method: "PUT",
+      headers: { "x-ms-blob-type": "BlockBlob", "Content-Type": "image/jpeg" },
+      body: blob
+    });
+    if (res.ok) {
+      m.imgUrl = u.origin + u.pathname.replace(/\/$/, "") + "/hyperframes/" + fname;
+      persist();
+      render();
+      if (msg) { msg.className = "ok"; msg.textContent = "Drawing saved to Azure."; }
+    } else {
+      if (msg) { msg.className = "err"; msg.textContent = "Azure upload failed: HTTP " + res.status; }
+    }
+  } catch (err) {
+    if (msg) { msg.className = "err"; msg.textContent = "Azure upload failed: " + err.message; }
+  }
+}
 async function downloadFrame(m) {
   v.pause(); const keep = v.currentTime; await seekTo(m.t);
   const w = v.videoWidth || 960, h = v.videoHeight || 540, c = document.createElement("canvas"); c.width = w; c.height = h;
@@ -198,7 +272,12 @@ function build() {
   R.scenes.forEach((s) => {
     const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
     out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");
-    list.forEach((i) => out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + (i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "") + (i.state === "in-progress" ? " [in progress]" : "") + ": " + (i.note || "(no note)")));
+    list.forEach((i) => {
+      const drawDesc = i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
+      const imgDesc = i.imgUrl ? " [image: " + i.imgUrl + "]" : "";
+      const progDesc = i.state === "in-progress" ? " [in progress]" : "";
+      out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
+    });
     out.push("");
   });
   const texts = mine.filter((i) => i.kind === "text");
@@ -228,6 +307,6 @@ document.addEventListener("keydown", (e) => {
   else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);
 });
 
-renderPosts(); render(); tick(); syncPlay();
+updateAzStatus(); renderPosts(); render(); tick(); syncPlay();
 </script>
 </body></html>

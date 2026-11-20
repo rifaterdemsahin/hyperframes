@@ -41,7 +41,7 @@ const json = JSON.stringify(DATA).replace(/</g, "\\u003c");
 
 const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Review</title>
+<title>Review · Draft v${N}</title>
 <link rel="stylesheet" href="site.css">
 <style>
 .wrap{max-width:1500px;margin:0 auto;padding:16px 16px 90px}
@@ -66,8 +66,8 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 <script src="nav.js?v=${V.site}"></script>
 <div class="wrap">
   <div class="crumbs">🔍 3 Review</div>
-  <h1>📝 Review <span class="badge" id="total">0</span></h1>
-  <p class="lead">Watch the draft, pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Nothing is sent anywhere: copy the feedback into the chat when you are done.</p>
+  <h1>📝 Review · <span class="badge" style="background:var(--accent);color:#04222a;font-size:16px;padding:3px 12px;vertical-align:middle">Draft v${N}</span> <span class="badge" id="total">0</span></h1>
+  <p class="lead">Watch <b>Draft v${N}</b> (${tc(M.duration)} runtime), pause on the exact moment, and say what to change. Notes are tied to the time, the frame and the script scene, and you can draw on the frame. Drawings auto-upload to Azure when configured, and "Copy feedback for Claude" outputs timestamped notes with direct Azure links.</p>
   <div class="grid2">
   <section>
     <div class="stage"><video id="v" controls preload="metadata" playsinline poster="${DATA.poster}"></video><canvas id="cv"></canvas><button id="bigplay" aria-label="Play" title="Play (Space)">▶</button></div>
@@ -87,6 +87,16 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
     <div id="msg"></div>
     <div class="ctl"><button class="pri" id="copy" style="flex:1;padding:11px">📋 Copy feedback for Claude</button></div>
     <small class="hint">Open items only. Done items stay in the list but are left out of the copy.</small>
+    <div style="margin-top:12px;padding:8px 10px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;font-size:12px">
+      <details id="azDetails">
+        <summary style="cursor:pointer;color:var(--accent);font-weight:600">☁️ Azure Storage for Drawings <span id="azStatus" style="font-size:11px;color:var(--mute)"></span></summary>
+        <div style="margin-top:6px;display:flex;gap:6px">
+          <input id="azSas" type="password" placeholder="Azure SAS URL (stored in browser only)" style="flex:1;padding:5px 8px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)">
+          <button id="saveSas" style="padding:5px 10px;font-size:12px">Save</button>
+        </div>
+        <small class="hint" style="display:block;margin-top:4px">Drawings auto-upload to Azure and output direct image links in the copied feedback.</small>
+      </details>
+    </div>
   </aside>
   </div>
   <div class="ctl" style="justify-content:space-between;margin-top:18px"><h2 style="margin:0">🗂️ Feedback <span class="badge" id="count">0</span></h2><div id="states" class="ctl" style="margin:0"></div>
@@ -96,13 +106,41 @@ kbd{background:var(--card);border:1px solid var(--line);border-radius:4px;paddin
 </div>
 <script>
 const R = ${json};
-const KEY = "review-v2", FPS = R.fps;
+const KEY = "review-v2", FPS = R.fps, KEY_SAS = "azure-feedback-sas-v1";
 const $ = (id) => document.getElementById(id), v = $("v"), cv = $("cv"), ctx = cv.getContext("2d");
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const uid = () => Math.random().toString(16).slice(2, 10);
 const fmt = (t) => { const m = Math.floor(t / 60), s = Math.floor(t % 60), f = Math.round((t % 1) * FPS) % FPS; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0") + "." + String(f).padStart(2, "0"); };
 const sceneAt = (t) => R.scenes.find((s) => t >= s.start && t < s.end) || R.scenes[R.scenes.length - 1];
 v.src = R.src;
+
+function getSas() {
+  try {
+    const h = (location.hash || "").match(/sas=([^&]+)/);
+    if (h) {
+      const decoded = decodeURIComponent(h[1]);
+      localStorage.setItem(KEY_SAS, decoded);
+      history.replaceState(null, "", location.pathname + location.search);
+      return decoded;
+    }
+    return localStorage.getItem(KEY_SAS) || "";
+  } catch (e) { return ""; }
+}
+function updateAzStatus() {
+  const sas = getSas();
+  const el = $("azStatus");
+  if (el) el.textContent = sas ? "✅ Connected" : "⚠️ Not set";
+  if ($("azSas") && sas && !$("azSas").value) $("azSas").value = sas;
+}
+if ($("saveSas")) {
+  $("saveSas").onclick = () => {
+    const val = ($("azSas").value || "").trim();
+    if (val) localStorage.setItem(KEY_SAS, val); else localStorage.removeItem(KEY_SAS);
+    updateAzStatus();
+    $("msg").className = "ok";
+    $("msg").textContent = val ? "Azure SAS URL saved." : "Azure SAS cleared.";
+  };
+}
 
 // ---- notes live in this browser; those written before the last "feedback implemented" release are deleted (newer stay)
 let items = []; try { items = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
@@ -140,6 +178,7 @@ function add() {
   if (!it.note && !it.shapes.length) { $("msg").className = "err"; $("msg").textContent = "Type a note or draw something first."; return; }
   items.push(it); n.value = ""; shapes = []; redraw(); persist(); render();
   $("msg").className = "ok"; $("msg").textContent = "Added at " + fmt(it.t) + ".";
+  if (it.shapes.length && getSas()) uploadToAzure(it);
 }
 $("add").onclick = add;
 const open = (i) => (i.state || "backlog") !== "done";
@@ -151,20 +190,22 @@ function render() {
   list.forEach((m) => {
     const d = document.createElement("div"); d.className = "m" + (m.state === "done" ? " isdone" : "");
     const sc = R.scenes.find((s) => s.id === m.scene);
-    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + "</small>";
+    const imgLink = m.imgUrl ? ' <a href="' + m.imgUrl + '" target="_blank" style="color:var(--accent);font-size:12px;margin-left:6px;text-decoration:underline">🖼️ Azure image</a>' : (m.shapes && m.shapes.length && getSas() ? ' <button class="up-az" style="font-size:11px;padding:1px 6px">☁️ Upload Azure</button>' : "");
+    const where = m.kind === "text" ? "📣 " + esc(m.section) : "<b>" + fmt(m.t) + "</b> <small>frame " + m.frame + (sc ? " · scene " + sc.n + " " + esc(sc.title) : "") + (m.shapes && m.shapes.length ? " · ✏️ " + m.shapes.length + " mark(s)" : "") + imgLink + "</small>";
     d.innerHTML = '<button class="x" title="Delete">✕</button>' + where + ' <select class="state"><option value="backlog">📋 Backlog</option><option value="in-progress">🛠️ In progress</option><option value="done">✅ Done</option></select>' + (m.shapes && m.shapes.length ? ' <button class="dl" title="Download this frame with the drawing">⬇ frame</button>' : "") + '<textarea rows="2" placeholder="Feedback…"></textarea>';
     const b = d.querySelector("b"); if (b) b.onclick = () => goto(m);
     d.querySelector(".x").onclick = () => { items = items.filter((i) => i !== m); persist(); render(); renderPosts(); };
     const ta = d.querySelector("textarea"); ta.value = m.note || ""; ta.oninput = () => { m.note = ta.value; m.ts = Date.now(); persist(); };
     const sel = d.querySelector("select.state"); sel.value = m.state || "backlog"; sel.onchange = () => { m.state = sel.value; persist(); render(); };
     const dl = d.querySelector(".dl"); if (dl) dl.onclick = () => downloadFrame(m);
+    const upBtn = d.querySelector(".up-az"); if (upBtn) upBtn.onclick = () => uploadToAzure(m);
     box.appendChild(d);
   });
   if (!list.length) box.innerHTML = '<p class="hint">' + (all.length ? "Nothing in this view." : "No feedback yet. Pause the video, type a note, press <kbd>M</kbd>.") + "</p>";
   const cnt = (s) => all.filter((i) => (i.state || "backlog") === s).length;
   $("states").innerHTML = '<span class="pill">📋 ' + cnt("backlog") + ' backlog</span><span class="pill p">🛠️ ' + cnt("in-progress") + ' in progress</span><span class="pill d">✅ ' + cnt("done") + " done</span>";
   $("count").textContent = list.length; $("count2").textContent = all.filter(open).length; $("total").textContent = all.filter(open).length;
-  document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review";
+  document.title = (all.filter(open).length ? "(" + all.filter(open).length + ") " : "") + "Review · Draft v" + R.draftN;
 }
 function goto(m) { v.pause(); v.currentTime = m.t; shapes = JSON.parse(JSON.stringify(m.shapes || [])); redraw(); if (shapes.length) setDraw(true); window.scrollTo({ top: 0, behavior: "smooth" }); }
 
@@ -220,8 +261,41 @@ $("arrowBtn").onclick = () => { setDraw(true); document.querySelector('[data-too
 $("undo").onclick = () => { shapes.pop(); redraw(); }; $("clr").onclick = () => { shapes = []; redraw(); }; $("draw").onclick = () => setDraw(!drawMode);
 if (window.ResizeObserver) new ResizeObserver(sizeCv).observe(v.parentElement); window.addEventListener("resize", sizeCv); v.addEventListener("loadedmetadata", sizeCv);
 
-// ---- download the frame with its drawing (same origin, so the canvas stays clean)
+// ---- download or upload the frame with its drawing
 const seekTo = (t) => new Promise((ok) => { const done = () => { v.removeEventListener("seeked", done); ok(); }; v.addEventListener("seeked", done); v.currentTime = t; });
+async function captureFrameBlob(m) {
+  v.pause(); const keep = v.currentTime; await seekTo(m.t);
+  const w = v.videoWidth || 1280, h = v.videoHeight || 720, c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d"); g.drawImage(v, 0, 0, w, h); paint(g, m.shapes, { x: 0, y: 0, w, h });
+  await seekTo(keep);
+  return new Promise((ok) => c.toBlob(ok, "image/jpeg", 0.88));
+}
+async function uploadToAzure(m) {
+  const sas = getSas();
+  if (!sas || !m.shapes || !m.shapes.length) return;
+  const msg = $("msg"); if (msg) { msg.className = ""; msg.textContent = "Uploading frame drawing to Azure…"; }
+  try {
+    const blob = await captureFrameBlob(m);
+    const u = new URL(sas);
+    const fname = "review-" + fmt(m.t).replace(/[:.]/g, "-") + "-" + (m.cid || uid()) + ".jpg";
+    const putUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + fname + u.search;
+    const res = await fetch(putUrl, {
+      method: "PUT",
+      headers: { "x-ms-blob-type": "BlockBlob", "Content-Type": "image/jpeg" },
+      body: blob
+    });
+    if (res.ok) {
+      m.imgUrl = u.origin + u.pathname.replace(/\\/$/, "") + "/hyperframes/" + fname;
+      persist();
+      render();
+      if (msg) { msg.className = "ok"; msg.textContent = "Drawing saved to Azure."; }
+    } else {
+      if (msg) { msg.className = "err"; msg.textContent = "Azure upload failed: HTTP " + res.status; }
+    }
+  } catch (err) {
+    if (msg) { msg.className = "err"; msg.textContent = "Azure upload failed: " + err.message; }
+  }
+}
 async function downloadFrame(m) {
   v.pause(); const keep = v.currentTime; await seekTo(m.t);
   const w = v.videoWidth || 960, h = v.videoHeight || 540, c = document.createElement("canvas"); c.width = w; c.height = h;
@@ -239,7 +313,12 @@ function build() {
   R.scenes.forEach((s) => {
     const list = mine.filter((i) => i.kind === "marker" && i.scene === s.id).sort((a, b) => a.t - b.t); if (!list.length) return;
     out.push("## Scene " + String(s.n).padStart(2, "0") + " · " + s.title + " (" + fmt(s.start).slice(0, 5) + " to " + fmt(s.end).slice(0, 5) + ")");
-    list.forEach((i) => out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + (i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "") + (i.state === "in-progress" ? " [in progress]" : "") + ": " + (i.note || "(no note)")));
+    list.forEach((i) => {
+      const drawDesc = i.shapes.length ? " [drawing: " + describeShapes(i.shapes) + "]" : "";
+      const imgDesc = i.imgUrl ? " [image: " + i.imgUrl + "]" : "";
+      const progDesc = i.state === "in-progress" ? " [in progress]" : "";
+      out.push("- " + fmt(i.t) + " (frame " + i.frame + ")" + drawDesc + imgDesc + progDesc + ": " + (i.note || "(no note)"));
+    });
     out.push("");
   });
   const texts = mine.filter((i) => i.kind === "text");
@@ -269,7 +348,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "j") seekBy(-5); else if (k === "l") seekBy(5);
 });
 
-renderPosts(); render(); tick(); syncPlay();
+updateAzStatus(); renderPosts(); render(); tick(); syncPlay();
 </script>
 </body></html>
 `;
