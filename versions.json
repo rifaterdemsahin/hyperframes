@@ -1,10 +1,10 @@
 {
-  "site": "1.38.0",
+  "site": "1.39.0",
   "date": "2026-11-20",
   "pages": {
     "index.html": {
       "title": "Home",
-      "version": "1.10.0",
+      "version": "1.11.0",
       "date": "2026-11-20",
       "deps": [
         "scripts/build-architecture.mjs"
@@ -33,13 +33,13 @@
     },
     "kanban.html": {
       "title": "Kanban",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "date": "2026-11-20",
       "deps": []
     },
     "recommendations.html": {
       "title": "Recommendations",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "date": "2026-11-20",
       "deps": [
         "script/scenes.json",
@@ -111,7 +111,7 @@
     },
     "changelog.html": {
       "title": "Changelog",
-      "version": "1.38.0",
+      "version": "1.39.0",
       "date": "2026-11-20",
       "deps": [
         "versions.json",
@@ -120,7 +120,7 @@
     },
     "master-spec.html": {
       "title": "Master spec",
-      "version": "1.13.0",
+      "version": "1.14.0",
       "date": "2026-11-20",
       "deps": [
         "spec/project.json",
@@ -141,7 +141,7 @@
     },
     "agents.html": {
       "title": "AGENTS.md",
-      "version": "1.12.0",
+      "version": "1.13.0",
       "date": "2026-11-20",
       "deps": [
         "AGENTS.md",
@@ -214,7 +214,7 @@
     },
     "renders.html": {
       "title": "Renders & State",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -225,7 +225,7 @@
     },
     "first-draft.html": {
       "title": "Draft video",
-      "version": "1.18.0",
+      "version": "1.19.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -238,7 +238,7 @@
     },
     "review.html": {
       "title": "Review",
-      "version": "1.31.0",
+      "version": "1.32.0",
       "date": "2026-11-20",
       "deps": [
         "draft/versions.json",
@@ -272,8 +272,8 @@
     },
     "gaps.html": {
       "title": "Gaps",
-      "version": "1.10.0",
-      "date": "2026-11-18",
+      "version": "1.11.0",
+      "date": "2026-11-20",
       "deps": [
         "kanban.html",
         "spec/gaps.json",
@@ -284,7 +284,7 @@
     },
     "compare-drafts.html": {
       "title": "Compare drafts",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "date": "2026-11-20",
       "deps": [
         "review.html",
@@ -296,6 +296,25 @@
     }
   },
   "changelog": [
+    {
+      "version": "1.39.0",
+      "date": "2026-11-20",
+      "pages": [
+        "first-draft.html",
+        "review.html",
+        "renders.html",
+        "compare-drafts.html",
+        "recommendations.html",
+        "gaps.html",
+        "kanban.html",
+        "master-spec.html",
+        "agents.html",
+        "index.html"
+      ],
+      "changes": [
+        "Draft v12: pure keynote (footage gaps dropped, spec rule set aside), dramatic music bed ducked under the voice with swells (fal.ai ACE-Step, Apache-2.0, licence recorded), 24 drawn visuals on screens that name real things"
+      ]
+    },
     {
       "version": "1.38.0",
       "date": "2026-11-20",

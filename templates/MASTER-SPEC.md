@@ -1,6 +1,6 @@
 # Master spec: UK Director Liquidation, Part 1 of 3: Using AI to Beat the Red Tape
 
-Spec v1.2 · site v1.35.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
+Spec v1.2 · site v1.38.0. Generated from spec/project.json and script/scenes.json. Do not edit by hand.
 
 ## 1. Brief
 - **Series:** Part 1 of 3 (Part 2: how I build the stages, the app and the AI agents that email the right parties; Part 3: how it ends)
@@ -50,7 +50,7 @@ Every change: commit, push, deploy, bump version.
 
 ## 6. Rules
 - No AI-generated text, numbers, documents or screens. Backgrounds are mood plates only; every figure on screen is editable HTML text.
-- Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups.
+- Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups. NOT APPLIED TO PART 1: owner decision 20 Nov 2026, this film is a pure keynote cut with no real footage, and real things are shown as simple drawn visuals (icons, diagrams, numbers), never logos or screenshots. The rule applies again if footage is added.
 - Blur UTR, logins, names and addresses in the source image, then check the exported frame.
 - No secrets in the repo. Keys live in a git-ignored .env.
 - No figure for the company's debt in the video. Fees only where the viewer needs them.
@@ -60,8 +60,6 @@ Every change: commit, push, deploy, bump version.
 - Anything about AI agents emailing the parties is shown as your own approach. Messages to creditors and other parties go through or with the practitioner.
 
 ## 7. Open decisions
-- Palette and font: Open (You)
-- Music: Open (You)
 - Final voice: your recording or AI: Open (recording recommended) (You)
 - Repo stays public until release?: Open (You)
 - Gmail and Drive over MCP: show a real demo or a diagram?: Open (diagram planned) (You)

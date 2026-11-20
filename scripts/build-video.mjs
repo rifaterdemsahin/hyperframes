@@ -218,7 +218,18 @@ const KN_CSS = `
     .kimg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; }
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
     .beat-img { align-items: flex-end; }
-    .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }`;
+    .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }
+    .beat-vis { flex-direction: column; gap: 56px; }
+    .kvis { width: 480px; height: 360px; overflow: visible; fill: none; stroke: var(--kn-ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .kvis .d { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .kvis .a { stroke: var(--kn-accent); }
+    .kvis .dim, .kvis .tick { stroke: rgba(245,245,247,.35); }
+    .kvis .f { fill: var(--kn-accent); stroke: none; }
+    .kvis .sto, .kvis .dot, .kvis .node, .kvis .st, .kvis .end, .kvis .gem { fill: none; stroke: var(--kn-ink); }
+    .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
+    .kvis .book.a { fill: var(--kn-accent); }
+    .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }`;
 
 const knNorm = (w) => w.replace(/[^\p{L}\p{N}£$%'’-]/gu, "").toLowerCase();
 const knSize = (text) => Math.max(140, Math.min(200, Math.floor(1560 / (text.length * 0.5))));
@@ -228,6 +239,55 @@ const knMarkup = (text, key) => {
 };
 const knStripTags = (html) => String(html || "").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim();
 const knNotes = [];
+
+
+// ---- keynote visuals: simple drawn SVG for screens that name a real thing (no logos, no screenshots, no text)
+// Each returns the SVG body (viewBox 0 0 400 300) and its GSAP lines, starting at beat time t.
+// Classes: .d = a stroke that draws in (pathLength 1), .a = accent colour, .f = accent fill.
+const starPath = (cx, cy, R, r) => { let d = ""; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + (i * Math.PI) / 5, q = i % 2 ? r : R; d += `${i ? "L" : "M"}${r2(cx + q * Math.cos(a))} ${r2(cy + q * Math.sin(a))}`; } return d + "Z"; };
+function knVisual(name, id, t) {
+  const P = (d, cls = "") => `<path class="d ${cls}" pathLength="1" d="${d}"/>`;
+  const draw = (cls, at, dur = 0.7, stagger = 0) => `
+    tl.fromTo("#${id}-v ${cls}", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: ${dur}, ease: "power2.out"${stagger ? `, stagger: ${stagger}` : ""} }, ${r2(t + at)});`;
+  const pop = (cls, at, stagger = 0.12, origin = "50% 50%") => `
+    tl.fromTo("#${id}-v ${cls}", { scale: 0, opacity: 0, transformOrigin: "${origin}" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: ${stagger} }, ${r2(t + at)});`;
+  const V = {
+    "ir35": () => [`<circle class="d" pathLength="1" cx="230" cy="150" r="95"/>${P("M20 150 H205", "a")}${P("M175 120 L210 150 L175 180", "a")}`, draw(".d:not(.a)", 0.1, 0.7) + draw(".a", 0.5, 0.5)],
+    "market-fall": () => [`${P("M40 250 H360", "dim")}${P("M40 110 L110 80 L170 120 L230 100 L290 180 L360 235", "a")}`, draw(".dim", 0.05, 0.4) + draw(".a", 0.2, 0.9)],
+    "creditors-order": () => [`${[100, 200, 300].map((x) => `<circle class="dot" cx="${x}" cy="150" r="36"/><circle class="f fill" cx="${x}" cy="150" r="22"/>`).join("")}${P("M80 225 H320", "dim")}${P("M295 210 L320 225 L295 240", "dim")}`, pop(".dot", 0.05, 0.1) + pop(".fill", 0.45, 0.25) + draw(".dim", 0.4, 0.5)],
+    "balance": () => [`${P("M200 70 V245")}${P("M135 245 H265")}<g class="beam">${P("M80 100 H320")}${P("M80 100 L50 175 H110 Z")}${P("M320 100 L290 175 H350 Z", "a")}</g>`, draw(".d", 0.05, 0.7) + `
+    tl.fromTo("#${id}-v .beam", { rotation: -9, svgOrigin: "200 100" }, { rotation: 0, svgOrigin: "200 100", duration: 1.0, ease: "elastic.out(1, 0.5)" }, ${r2(t + 0.35)});`],
+    "books": () => [`${[[110, 90, 160], [165, 70, 180], [220, 100, 150], [275, 80, 170]].map(([x, y, h], i) => `<rect class="book${i === 1 ? " a" : ""}" x="${x}" y="${250 - h}" width="44" height="${h}" rx="6"/>`).join("")}${P("M90 252 H340", "dim")}`, draw(".dim", 0.05, 0.4) + `
+    tl.fromTo("#${id}-v .book", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.5, ease: "power3.out", stagger: 0.1 }, ${r2(t + 0.15)});`],
+    "practitioner": () => [`<circle class="d" pathLength="1" cx="160" cy="105" r="38"/>${P("M85 245 C85 170 235 170 235 245")}${P("M295 115 L340 132 V175 C340 205 320 225 295 235 C270 225 250 205 250 175 V132 Z", "a")}${P("M275 172 L290 188 L318 158", "a")}`, draw(".d:not(.a)", 0.05, 0.6) + draw(".a", 0.4, 0.6, 0.15)],
+    "stars": () => [`<defs><clipPath id="${id}-clip"><rect x="${320 - 26}" y="100" width="${r2(52 * 0.8)}" height="100"/></clipPath></defs>${[80, 140, 200, 260, 320].map((x) => `<path class="sto" d="${starPath(x, 150, 28, 12)}"/>`).join("")}${[80, 140, 200, 260].map((x) => `<path class="f sf" d="${starPath(x, 150, 28, 12)}"/>`).join("")}<path class="f sf" clip-path="url(#${id}-clip)" d="${starPath(320, 150, 28, 12)}"/>`, pop(".sto", 0.05, 0.06) + `
+    tl.fromTo("#${id}-v .sf", { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.12, ease: "power1.out" }, ${r2(t + 0.35)});`],
+    "stop": () => { const pts = Array.from({ length: 8 }, (_, i) => { const a = Math.PI / 8 + (i * Math.PI) / 4; return `${i ? "L" : "M"}${r2(200 + 105 * Math.cos(a))} ${r2(150 + 105 * Math.sin(a))}`; }).join("") + "Z"; return [`${P(pts, "a")}${P("M145 150 H255")}`, draw(".a", 0.05, 0.7) + draw(".d:not(.a)", 0.55, 0.35)]; },
+    "equal-creditors": () => [`${[125, 180, 235].map((x) => `<rect class="bar" x="${x}" y="125" width="40" height="120" rx="6"/>`).join("")}${P("M95 112 H305", "a")}${P("M95 247 H305", "dim")}`, draw(".dim", 0.05, 0.4) + `
+    tl.fromTo("#${id}-v .bar", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.6, ease: "power3.out" }, ${r2(t + 0.15)});` + draw(".a", 0.6, 0.5)],
+    "zero": () => [`<rect class="d" pathLength="1" x="80" y="75" width="240" height="150" rx="18"/>${P("M80 115 H320", "dim")}<rect class="f fillbar" x="110" y="165" width="180" height="26" rx="8"/>`, draw(".d", 0.05, 0.6) + `
+    tl.fromTo("#${id}-v .fillbar", { scaleX: 1, transformOrigin: "0% 50%" }, { scaleX: 0, duration: 0.9, ease: "power2.inOut" }, ${r2(t + 0.5)});`],
+    "crown": () => [`${P("M95 220 L72 105 L145 160 L200 75 L255 160 L328 105 L305 220 Z", "a")}${P("M100 248 H300")}${[72, 200, 328].map((x, i) => `<circle class="gem" cx="${x}" cy="${[105, 75, 105][i]}" r="9"/>`).join("")}`, draw(".a", 0.05, 0.8) + draw(".d:not(.a)", 0.5, 0.4) + pop(".gem", 0.7, 0.08)],
+    "connect": () => { const out = [[70, 70], [330, 70], [70, 230], [330, 230]]; return [`${out.map(([x, y]) => P(`M${x} ${y} L200 150`, "dim")).join("")}${out.map(([x, y]) => `<circle class="node" cx="${x}" cy="${y}" r="18"/>`).join("")}<circle class="hub f" cx="200" cy="150" r="36"/>`, pop(".node", 0.05, 0.08) + draw(".dim", 0.3, 0.5, 0.06) + pop(".hub", 0.6, 0)]; },
+    "cost-bars": () => [`<rect class="cb" x="40" y="125" width="${r2(320 * 1500 / 3600)}" height="50" rx="10"/><rect class="cb f" x="${r2(40 + 320 * 1500 / 3600 + 6)}" y="125" width="${r2(320 * 2100 / 3600 - 6)}" height="50" rx="10"/>${P("M40 205 H360", "dim")}`, draw(".dim", 0.05, 0.4) + `
+    tl.fromTo("#${id}-v .cb", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out", stagger: 0.45 }, ${r2(t + 0.15)});`],
+    "timeline-before": () => [`${P("M40 150 H360", "dim")}${P("M40 150 H200", "a")}${[40, 200, 360].map((x) => P(`M${x} 125 V175`, "tick")).join("")}<circle class="pay f" cx="200" cy="150" r="14"/>`, draw(".dim", 0.05, 0.4) + draw(".tick", 0.1, 0.3, 0.08) + draw(".a", 0.3, 0.8) + pop(".pay", 1.0, 0)],
+    "timeline-after": () => [`${P("M40 150 H360", "dim")}${P("M200 150 H360", "a")}${[40, 200, 360].map((x) => P(`M${x} 125 V175`, "tick")).join("")}<circle class="pay f" cx="200" cy="150" r="14"/>`, draw(".dim", 0.05, 0.4) + draw(".tick", 0.1, 0.3, 0.08) + pop(".pay", 0.15, 0) + draw(".a", 0.35, 0.8)],
+    "shield": () => [`${P("M200 45 L300 80 V150 C300 205 260 240 200 260 C140 240 100 205 100 150 V80 Z", "a")}${P("M155 152 L190 186 L250 120")}`, draw(".a", 0.05, 0.8) + draw(".d:not(.a)", 0.6, 0.4)],
+    "envelopes6": () => [`${[[60, 85], [160, 85], [260, 85], [60, 175], [160, 175], [260, 175]].map(([x, y], i) => `<g class="env${i === 5 ? " a" : ""}"><rect x="${x}" y="${y}" width="80" height="56" rx="6"/><path d="M${x} ${y} L${x + 40} ${y + 30} L${x + 80} ${y}"/></g>`).join("")}`, pop(".env", 0.05, 0.12)],
+    "database": () => [`<ellipse class="d" pathLength="1" cx="200" cy="80" rx="100" ry="26"/>${P("M100 80 V220")}${P("M300 80 V220")}${P("M100 220 A100 26 0 0 0 300 220")}${P("M100 127 A100 26 0 0 0 300 127", "a")}${P("M100 174 A100 26 0 0 0 300 174", "a")}`, draw(".d:not(.a)", 0.05, 0.6) + draw(".a", 0.45, 0.4, 0.15)],
+    "known-path": () => [`<circle class="f st" cx="45" cy="150" r="14"/>${P("M45 150 H335", "a")}${P("M305 120 L340 150 L305 180", "a")}`, pop(".st", 0.05, 0) + draw(".a", 0.2, 0.7)],
+    "unknown-paths": () => [`<circle class="st" cx="45" cy="150" r="14"/>${P("M45 150 C120 150 140 70 220 70 S320 45 360 62", "a")}${P("M45 150 C120 150 170 150 240 160 S320 195 360 188", "a")}${P("M45 150 C120 150 140 232 220 240 S320 262 352 252", "a")}${[[360, 62], [360, 188], [352, 252]].map(([x, y]) => `<circle class="end" cx="${x}" cy="${y}" r="9"/>`).join("")}`, pop(".st", 0.05, 0) + draw(".a", 0.2, 0.8, 0.12) + pop(".end", 0.9, 0.08)],
+    "bell": () => [`<g class="bellg">${P("M200 55 C150 55 128 95 128 150 V195 L108 222 H292 L272 195 V150 C272 95 250 55 200 55 Z", "a")}<circle class="f clap" cx="200" cy="240" r="14"/></g>`, draw(".a", 0.05, 0.7) + pop(".clap", 0.6, 0) + `
+    tl.fromTo("#${id}-v .bellg", { rotation: 0, svgOrigin: "200 55" }, { rotation: 12, svgOrigin: "200 55", duration: 0.18, ease: "sine.inOut", yoyo: true, repeat: 5 }, ${r2(t + 0.75)});`],
+    "comment": () => [`${P("M95 70 H305 Q330 70 330 95 V185 Q330 210 305 210 H175 L125 250 V210 H95 Q70 210 70 185 V95 Q70 70 95 70 Z")}${[150, 200, 250].map((x) => `<circle class="f cd" cx="${x}" cy="140" r="13"/>`).join("")}`, draw(".d", 0.05, 0.7) + pop(".cd", 0.55, 0.12)],
+    "arrow-down": () => [`<g class="arr">${P("M200 45 V235", "a")}${P("M140 178 L200 238 L260 178", "a")}</g>`, draw(".a", 0.05, 0.6) + `
+    tl.fromTo("#${id}-v .arr", { y: 0 }, { y: 16, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 5 }, ${r2(t + 0.7)});`],
+  };
+  if (!V[name]) throw new Error(`unknown keynote visual "${name}"`);
+  const [body, js] = V[name]();
+  return { svg: `<svg id="${id}-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore>${body}</svg>`, js };
+}
 
 function keynoteFile(s, i, gfxHtml, voDur) {
   const sid = s.id.split("-")[0];
@@ -264,6 +324,14 @@ function keynoteFile(s, i, gfxHtml, voDur) {
         <p id="${b.id}-t" class="kt kcap">${knMarkup(b.text, b.key)}</p>
       </div>`;
     }
+    if (b.visual) {
+      b.vis = knVisual(b.visual, b.id, b.t);
+      return `
+      <div id="${b.id}" class="clip beat beat-vis" data-start="${start}" data-duration="${b.d}" data-track-index="2">
+        ${b.vis.svg}
+        <h1 id="${b.id}-t" class="kt" style="font-size:${Math.min(150, knSize(b.text))}px">${knMarkup(b.text, b.key)}</h1>
+      </div>`;
+    }
     return `
       <div id="${b.id}" class="clip beat" data-start="${start}" data-duration="${b.d}" data-track-index="2">
         <h1 id="${b.id}-t" class="kt" style="font-size:${knSize(b.text)}px">${knMarkup(b.text, b.key)}</h1>
@@ -284,8 +352,11 @@ ${i === scenes.length - 1 ? "" : `    tl.to("#scene", { opacity: 0, duration: 0.
     tl.fromTo("#${b.id}-t", { scale: 1 }, { scale: 1.03, duration: ${b.d}, ease: "none" }, ${b.t});`;
     if (b.image) js += `
     tl.fromTo("#${b.id}-img", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.08, duration: ${b.d}, ease: "none" }, ${b.t});`;
+    if (b.vis) js += b.vis.js;
     if (!last) js += `
     tl.to("#${b.id}-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, ${r2(b.t + b.d - 0.3)});`;
+    if (b.vis && !last) js += `
+    tl.to("#${b.id}-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, ${r2(b.t + b.d - 0.3)});`;
   });
   js += `
     window.__timelines["${s.id}"] = tl;
@@ -328,7 +399,7 @@ function keynoteNotes() {
   ];
   for (const { s, beats, moved } of knNotes) {
     out.push(`## ${s.id} (${tc(s.start)} to ${tc(s.start + s.duration)})`, "", "| On screen at | Beat | Seconds |", "|---|---|---|");
-    for (const b of beats) out.push(`| ${tc(s.start + b.t)} | ${b.image ? `[image: ${b.image}] ` : ""}${b.text} | ${b.d} |`);
+    for (const b of beats) out.push(`| ${tc(s.start + b.t)} | ${b.image ? `[image: ${b.image}] ` : ""}${b.visual ? `[visual: ${b.visual}] ` : ""}${b.text} | ${b.d} |`);
     out.push("", "Moved to VO (no longer on screen):", "", ...moved.map((m) => `- ${m}`), "");
   }
   return out.join("\n");
@@ -738,6 +809,9 @@ ${i === scenes.length - 1 ? "" : `tl.to("#scene", { opacity: 0, duration: 0.4, e
     <audio id="vo-${esc(s.id)}" src="assets/vo/${esc(s.id)}.mp3" data-start="${r2(s.start + VO_LEAD)}" data-duration="${r2(voDur)}" data-track-index="1"></audio>`;
 });
 
+// Music bed (scripts/gen-music.sh + scripts/mix-music.mjs): one pre-mixed, pre-ducked track under the whole film.
+const MUSIC = existsSync(`${root}/video/assets/music/bed-mix.mp3`) ? `
+    <audio id="music" src="assets/music/bed-mix.mp3" data-start="0" data-duration="${total}" data-track-index="3"></audio>` : "";
 const index = `<!doctype html>
 <html lang="en" data-resolution="landscape">
 <head>
@@ -752,7 +826,7 @@ const index = `<!doctype html>
   </style>
 </head>
 <body>
-  <div id="root" data-composition-id="main" data-start="0" data-duration="${total}" data-width="1920" data-height="1080" data-fps="30">${rootClips}${rootAudio}
+  <div id="root" data-composition-id="main" data-start="0" data-duration="${total}" data-width="1920" data-height="1080" data-fps="30">${rootClips}${rootAudio}${MUSIC}
   </div>
   <script>
     window.__timelines = window.__timelines || {};

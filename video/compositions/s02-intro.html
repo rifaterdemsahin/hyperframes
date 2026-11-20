@@ -17,6 +17,17 @@
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
     .beat-img { align-items: flex-end; }
     .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }
+    .beat-vis { flex-direction: column; gap: 56px; }
+    .kvis { width: 480px; height: 360px; overflow: visible; fill: none; stroke: var(--kn-ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .kvis .d { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .kvis .a { stroke: var(--kn-accent); }
+    .kvis .dim, .kvis .tick { stroke: rgba(245,245,247,.35); }
+    .kvis .f { fill: var(--kn-accent); stroke: none; }
+    .kvis .sto, .kvis .dot, .kvis .node, .kvis .st, .kvis .end, .kvis .gem { fill: none; stroke: var(--kn-ink); }
+    .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
+    .kvis .book.a { fill: var(--kn-accent); }
+    .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>
@@ -30,11 +41,13 @@
       <div id="s02-k1" class="clip beat" data-start="s02-k0" data-duration="2.6" data-track-index="2">
         <h1 id="s02-k1-t" class="kt" style="font-size:173px">The rules <span class="key">changed</span>.</h1>
       </div>
-      <div id="s02-k2" class="clip beat" data-start="s02-k1" data-duration="3.72" data-track-index="2">
-        <h1 id="s02-k2-t" class="kt" style="font-size:164px">Pushed inside <span class="key">IR35</span>.</h1>
+      <div id="s02-k2" class="clip beat beat-vis" data-start="s02-k1" data-duration="3.72" data-track-index="2">
+        <svg id="s02-k2-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="d" pathLength="1" cx="230" cy="150" r="95"/><path class="d a" pathLength="1" d="M20 150 H205"/><path class="d a" pathLength="1" d="M175 120 L210 150 L175 180"/></svg>
+        <h1 id="s02-k2-t" class="kt" style="font-size:150px">Pushed inside <span class="key">IR35</span>.</h1>
       </div>
-      <div id="s02-k3" class="clip beat" data-start="s02-k2" data-duration="2.22" data-track-index="2">
-        <h1 id="s02-k3-t" class="kt" style="font-size:195px">The market <span class="key">fell</span>.</h1>
+      <div id="s02-k3" class="clip beat beat-vis" data-start="s02-k2" data-duration="2.22" data-track-index="2">
+        <svg id="s02-k3-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><path class="d dim" pathLength="1" d="M40 250 H360"/><path class="d a" pathLength="1" d="M40 110 L110 80 L170 120 L230 100 L290 180 L360 235"/></svg>
+        <h1 id="s02-k3-t" class="kt" style="font-size:150px">The market <span class="key">fell</span>.</h1>
       </div>
       <div id="s02-k4" class="clip beat" data-start="s02-k3" data-duration="2.23" data-track-index="2">
         <h1 id="s02-k4-t" class="kt" style="font-size:141px">The numbers? A <span class="key">hassle</span>.</h1>
@@ -59,10 +72,16 @@
     tl.to("#s02-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 5.37);
     tl.fromTo("#s02-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 5.67);
     tl.fromTo("#s02-k2-t", { scale: 1 }, { scale: 1.03, duration: 3.72, ease: "none" }, 5.67);
+    tl.fromTo("#s02-k2-v .d:not(.a)", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 5.77);
+    tl.fromTo("#s02-k2-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 6.17);
     tl.to("#s02-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 9.09);
+    tl.to("#s02-k2-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 9.09);
     tl.fromTo("#s02-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.39);
     tl.fromTo("#s02-k3-t", { scale: 1 }, { scale: 1.03, duration: 2.22, ease: "none" }, 9.39);
+    tl.fromTo("#s02-k3-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 9.44);
+    tl.fromTo("#s02-k3-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.out" }, 9.59);
     tl.to("#s02-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 11.31);
+    tl.to("#s02-k3-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 11.31);
     tl.fromTo("#s02-k4-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 11.61);
     tl.fromTo("#s02-k4-t", { scale: 1 }, { scale: 1.03, duration: 2.23, ease: "none" }, 11.61);
     tl.to("#s02-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 13.54);

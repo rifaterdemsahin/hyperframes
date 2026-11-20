@@ -17,6 +17,17 @@
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
     .beat-img { align-items: flex-end; }
     .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }
+    .beat-vis { flex-direction: column; gap: 56px; }
+    .kvis { width: 480px; height: 360px; overflow: visible; fill: none; stroke: var(--kn-ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .kvis .d { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .kvis .a { stroke: var(--kn-accent); }
+    .kvis .dim, .kvis .tick { stroke: rgba(245,245,247,.35); }
+    .kvis .f { fill: var(--kn-accent); stroke: none; }
+    .kvis .sto, .kvis .dot, .kvis .node, .kvis .st, .kvis .end, .kvis .gem { fill: none; stroke: var(--kn-ink); }
+    .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
+    .kvis .book.a { fill: var(--kn-accent); }
+    .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>

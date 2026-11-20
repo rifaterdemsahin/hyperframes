@@ -29,8 +29,8 @@ Moved to VO (no longer on screen):
 |---|---|---|
 | 0:14.0 | Rifat, IT contractor. | 3.07 |
 | 0:17.1 | The rules changed. | 2.6 |
-| 0:19.7 | Pushed inside IR35. | 3.72 |
-| 0:23.4 | The market fell. | 2.22 |
+| 0:19.7 | [visual: ir35] Pushed inside IR35. | 3.72 |
+| 0:23.4 | [visual: market-fall] The market fell. | 2.22 |
 | 0:25.6 | The numbers? A hassle. | 2.23 |
 | 0:27.8 | AI cuts the red tape. | 4.46 |
 | 0:32.3 | Time to close. | 4.7 |
@@ -51,7 +51,7 @@ Moved to VO (no longer on screen):
 | 0:40.6 | [image: redtape] So much red tape. | 1.96 |
 | 0:42.6 | Company debt stays the company's. | 1.95 |
 | 0:44.5 | The practitioner takes over. | 3.13 |
-| 0:47.7 | Pays creditors, in order. | 1.96 |
+| 0:47.7 | [visual: creditors-order] Pays creditors, in order. | 1.96 |
 | 0:49.6 | Red tape is everywhere. | 3.52 |
 | 0:53.1 | Understand it first. | 3.86 |
 
@@ -71,17 +71,17 @@ Moved to VO (no longer on screen):
 | 0:58.8 | AI as support. | 1.7 |
 | 1:00.5 | From AI. Not financial advice. | 3.72 |
 | 1:04.2 | Your job: learn. | 2.37 |
-| 1:06.6 | HMRC balance. | 1.7 |
-| 1:08.3 | Books and records. | 2.37 |
-| 1:10.7 | A licensed practitioner. | 2.03 |
-| 1:12.7 | 4.8 stars. | 2.71 |
-| 1:15.4 | Stop trading. | 1.02 |
-| 1:16.4 | No creditor goes first. | 3.05 |
+| 1:06.6 | [visual: balance] HMRC balance. | 1.7 |
+| 1:08.3 | [visual: books] Books and records. | 2.37 |
+| 1:10.7 | [visual: practitioner] A licensed practitioner. | 2.03 |
+| 1:12.7 | [visual: stars] 4.8 stars. | 2.71 |
+| 1:15.4 | [visual: stop] Stop trading. | 1.02 |
+| 1:16.4 | [visual: equal-creditors] No creditor goes first. | 3.05 |
 | 1:19.5 | Your practitioner confirms. | 1.69 |
 | 1:21.2 | Close every invoice. | 1.36 |
-| 1:22.5 | Every account to zero. | 2.37 |
-| 1:24.9 | Or it goes to the Crown. | 2.37 |
-| 1:27.3 | Connect it all to AI. | 3.72 |
+| 1:22.5 | [visual: zero] Every account to zero. | 2.37 |
+| 1:24.9 | [visual: crown] Or it goes to the Crown. | 2.37 |
+| 1:27.3 | [visual: connect] Connect it all to AI. | 3.72 |
 | 1:31.0 | Learn, then act. | 6.03 |
 
 Moved to VO (no longer on screen):
@@ -100,11 +100,11 @@ Moved to VO (no longer on screen):
 | On screen at | Beat | Seconds |
 |---|---|---|
 | 1:37.0 | What it costs. | 1.3 |
-| 1:38.3 | £1,500 + £2,100 | 4.5 |
+| 1:38.3 | [visual: cost-bars] £1,500 + £2,100 | 4.5 |
 | 1:42.8 | One provider I found. | 2.1 |
 | 1:44.9 | Prices vary. Plan for it. | 4.5 |
-| 1:49.4 | 2 months before. | 2.1 |
-| 1:51.5 | 2 months after. | 3.3 |
+| 1:49.4 | [visual: timeline-before] 2 months before. | 2.1 |
+| 1:51.5 | [visual: timeline-after] 2 months after. | 3.3 |
 | 1:54.8 | You + AI = leverage. | 1.8 |
 | 1:56.6 | Learn, act, build skills. | 2.7 |
 | 1:59.3 | Carry them forward. | 4.7 |
@@ -129,7 +129,7 @@ Moved to VO (no longer on screen):
 | 2:10.8 | AI was there. | 5.06 |
 | 2:15.9 | AI isn't hands-off. | 1.69 |
 | 2:17.6 | You are hands-on. | 3.04 |
-| 2:20.6 | The practitioner: your guardrail. | 2.7 |
+| 2:20.6 | [visual: shield] The practitioner: your guardrail. | 2.7 |
 | 2:23.3 | Check your own inputs. | 3.71 |
 | 2:27.1 | Personal liability remains. | 5.95 |
 
@@ -148,10 +148,10 @@ Moved to VO (no longer on screen):
 |---|---|---|
 | 2:33.0 | 3 lessons. | 2.76 |
 | 2:35.8 | Pay in full first. | 5.71 |
-| 2:41.5 | Chased 6 times. | 1.9 |
+| 2:41.5 | [visual: envelopes6] Chased 6 times. | 1.9 |
 | 2:43.4 | Keep it in writing. | 3.42 |
-| 2:46.8 | Records are a database. | 2.28 |
-| 2:49.1 | Connect it all over MCP. | 3.81 |
+| 2:46.8 | [visual: database] Records are a database. | 2.28 |
+| 2:49.1 | [visual: connect] Connect it all over MCP. | 3.81 |
 | 2:52.9 | Learn. Iterate. | 4.12 |
 
 Moved to VO (no longer on screen):
@@ -168,8 +168,8 @@ Moved to VO (no longer on screen):
 | On screen at | Beat | Seconds |
 |---|---|---|
 | 2:57.0 | n8n + AI agents. | 4.4 |
-| 3:01.4 | n8n: known. | 2.34 |
-| 3:03.7 | AI: unknown. | 2.34 |
+| 3:01.4 | [visual: known-path] n8n: known. | 2.34 |
+| 3:03.7 | [visual: unknown-paths] AI: unknown. | 2.34 |
 | 3:06.1 | Build around both. | 1.95 |
 | 3:08.0 | “Why show your real work?” | 4.69 |
 | 3:12.7 | Share what's real. | 5.47 |
@@ -193,8 +193,8 @@ Moved to VO (no longer on screen):
 | 3:30.7 | You can restart. | 1.54 |
 | 3:32.3 | Part 2: the app and agents. | 4.01 |
 | 3:36.3 | Want Part 2? | 2.77 |
-| 3:39.1 | Tell me in the comments. | 3.4 |
-| 3:42.5 | Subscribe. | 2.54 |
+| 3:39.1 | [visual: comment] Tell me in the comments. | 3.4 |
+| 3:42.5 | [visual: bell] Subscribe. | 2.54 |
 
 Moved to VO (no longer on screen):
 
@@ -213,7 +213,7 @@ Moved to VO (no longer on screen):
 | 3:49.6 | Not legal or financial advice. | 3.28 |
 | 3:52.9 | Building bots? | 2.46 |
 | 3:55.3 | Delivery Pilot, on Skool. | 2.86 |
-| 3:58.2 | Link below. | 1.64 |
+| 3:58.2 | [visual: arrow-down] Link below. | 1.64 |
 | 3:59.8 | See you next time. | 4.16 |
 
 Moved to VO (no longer on screen):

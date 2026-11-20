@@ -79,12 +79,14 @@
         {
           "at": "creating an involuntary",
           "text": "Pushed inside IR35.",
-          "key": "IR35"
+          "key": "IR35",
+          "visual": "ir35"
         },
         {
           "at": "as the market",
           "text": "The market fell.",
-          "key": "fell"
+          "key": "fell",
+          "visual": "market-fall"
         },
         {
           "at": "Doing the numbers",
@@ -152,7 +154,8 @@
         {
           "at": "and pays creditors",
           "text": "Pays creditors, in order.",
-          "key": "in order"
+          "key": "in order",
+          "visual": "creditors-order"
         },
         {
           "at": "There is a lot",
@@ -211,32 +214,38 @@
         {
           "at": "One: check your",
           "text": "HMRC balance.",
-          "key": "HMRC"
+          "key": "HMRC",
+          "visual": "balance"
         },
         {
           "at": "Two: gather the",
           "text": "Books and records.",
-          "key": "records"
+          "key": "records",
+          "visual": "books"
         },
         {
           "at": "Three: get a",
           "text": "A licensed practitioner.",
-          "key": "licensed"
+          "key": "licensed",
+          "visual": "practitioner"
         },
         {
           "at": "I chose one",
           "text": "4.8 stars.",
-          "key": "4.8"
+          "key": "4.8",
+          "visual": "stars"
         },
         {
           "at": "Four: stop trading,",
           "text": "Stop trading.",
-          "key": "Stop"
+          "key": "Stop",
+          "visual": "stop"
         },
         {
           "at": "and don't pay",
           "text": "No creditor goes first.",
-          "key": "No"
+          "key": "No",
+          "visual": "equal-creditors"
         },
         {
           "at": "Your practitioner will",
@@ -251,17 +260,20 @@
         {
           "at": "and bring every",
           "text": "Every account to zero.",
-          "key": "zero"
+          "key": "zero",
+          "visual": "zero"
         },
         {
           "at": "or the money",
           "text": "Or it goes to the Crown.",
-          "key": "Crown"
+          "key": "Crown",
+          "visual": "crown"
         },
         {
           "at": "Connect all of",
           "text": "Connect it all to AI.",
-          "key": "AI"
+          "key": "AI",
+          "visual": "connect"
         },
         {
           "at": "Be ready to",
@@ -302,7 +314,8 @@
         {
           "at": "a £1,500 deposit,",
           "text": "£1,500 + £2,100",
-          "key": "£2,100"
+          "key": "£2,100",
+          "visual": "cost-bars"
         },
         {
           "at": "This is the",
@@ -317,12 +330,14 @@
         {
           "at": "The process before",
           "text": "2 months before.",
-          "key": "2"
+          "key": "2",
+          "visual": "timeline-before"
         },
         {
           "at": "and after the",
           "text": "2 months after.",
-          "key": "2"
+          "key": "2",
+          "visual": "timeline-after"
         },
         {
           "at": "You plus AI",
@@ -403,7 +418,8 @@
         {
           "at": "The insolvency practitioner",
           "text": "The practitioner: your guardrail.",
-          "key": "guardrail"
+          "key": "guardrail",
+          "visual": "shield"
         },
         {
           "at": "so be sure",
@@ -454,7 +470,8 @@
         {
           "at": "provider chased me",
           "text": "Chased 6 times.",
-          "key": "6"
+          "key": "6",
+          "visual": "envelopes6"
         },
         {
           "at": "Two: use online",
@@ -464,12 +481,14 @@
         {
           "at": "because online records",
           "text": "Records are a database.",
-          "key": "database"
+          "key": "database",
+          "visual": "database"
         },
         {
           "at": "Three: connect your",
           "text": "Connect it all over MCP.",
-          "key": "MCP"
+          "key": "MCP",
+          "visual": "connect"
         },
         {
           "at": "When things go",
@@ -510,12 +529,14 @@
         {
           "at": "Remember: n8n is",
           "text": "n8n: known.",
-          "key": "known"
+          "key": "known",
+          "visual": "known-path"
         },
         {
           "at": "while AI is",
           "text": "AI: unknown.",
-          "key": "unknown"
+          "key": "unknown",
+          "visual": "unknown-paths"
         },
         {
           "at": "Build your process",
@@ -592,12 +613,14 @@
         {
           "at": "Tell me in",
           "text": "Tell me in the comments.",
-          "key": "comments"
+          "key": "comments",
+          "visual": "comment"
         },
         {
           "at": "and subscribe to",
           "text": "Subscribe.",
-          "key": "Subscribe"
+          "key": "Subscribe",
+          "visual": "bell"
         }
       ]
     },
@@ -650,7 +673,8 @@
         {
           "at": "at the link",
           "text": "Link below.",
-          "key": "below"
+          "key": "below",
+          "visual": "arrow-down"
         },
         {
           "at": "See you in",

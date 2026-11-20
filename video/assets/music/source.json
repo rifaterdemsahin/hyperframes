@@ -1,0 +1,16 @@
+{
+  "file": "bed-raw.mp3",
+  "generator": "fal.ai",
+  "model": "fal-ai/ace-step",
+  "modelWeights": "ACE-Step/ACE-Step-v1-3.5B",
+  "modelLicense": "Apache-2.0",
+  "modelLicenseUrl": "https://huggingface.co/ACE-Step/ACE-Step-v1-3.5B",
+  "falTerms": "https://fal.ai/terms",
+  "tags": "cinematic film score, dramatic, orchestral, instrumental, no vocals, slow build, emotional, strings, low brass, piano, deep pulse, epic swells, 70 bpm, minor key",
+  "lyrics": "[inst]",
+  "seed": 20261120,
+  "durationSeconds": 240,
+  "falRequestId": "01a1fae5-c5d4-77d2-a7f0-00161d8d3524",
+  "generatedAt": "2026-11-20T21:39:05Z",
+  "note": "Converted from the 48 kHz WAV fal.ai returned to 192 kbps MP3 to keep the repo small."
+}

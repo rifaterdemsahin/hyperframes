@@ -24,7 +24,7 @@
   },
   "rules": [
     "No AI-generated text, numbers, documents or screens. Backgrounds are mood plates only; every figure on screen is editable HTML text.",
-    "Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups.",
+    "Real footage for real things: HMRC screen, emails, n8n canvas and dashboard are your captures, never mock-ups. NOT APPLIED TO PART 1: owner decision 20 Nov 2026, this film is a pure keynote cut with no real footage, and real things are shown as simple drawn visuals (icons, diagrams, numbers), never logos or screenshots. The rule applies again if footage is added.",
     "Blur UTR, logins, names and addresses in the source image, then check the exported frame.",
     "No secrets in the repo. Keys live in a git-ignored .env.",
     "No figure for the company's debt in the video. Fees only where the viewer needs them.",
@@ -75,13 +75,13 @@
   "decisions": [
     {
       "item": "Palette and font",
-      "status": "Open",
-      "owner": "You"
+      "status": "Decided: keynote look, Inter 140 to 200 px on a black radial background, one blue accent (#2997ff)",
+      "owner": "You (decided)"
     },
     {
       "item": "Music",
-      "status": "Open",
-      "owner": "You"
+      "status": "Decided: dramatic cinematic music bed under the whole film, ducked under the voice, swells in the hook, the text-free stretches and the Subscribe ending; source and licence in video/assets/music/",
+      "owner": "You (decided)"
     },
     {
       "item": "Final voice: your recording or AI",
@@ -112,6 +112,11 @@
       "item": "Gmail and Drive over MCP: show a real demo or a diagram?",
       "status": "Open (diagram planned)",
       "owner": "You"
+    },
+    {
+      "item": "Real footage",
+      "status": "Decided: none. Pure keynote cut; gaps t02, t03, t05, t06 dropped",
+      "owner": "You (decided)"
     }
   ],
   "learnings": [

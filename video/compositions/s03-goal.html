@@ -17,6 +17,17 @@
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
     .beat-img { align-items: flex-end; }
     .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }
+    .beat-vis { flex-direction: column; gap: 56px; }
+    .kvis { width: 480px; height: 360px; overflow: visible; fill: none; stroke: var(--kn-ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .kvis .d { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .kvis .a { stroke: var(--kn-accent); }
+    .kvis .dim, .kvis .tick { stroke: rgba(245,245,247,.35); }
+    .kvis .f { fill: var(--kn-accent); stroke: none; }
+    .kvis .sto, .kvis .dot, .kvis .node, .kvis .st, .kvis .end, .kvis .gem { fill: none; stroke: var(--kn-ink); }
+    .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
+    .kvis .book.a { fill: var(--kn-accent); }
+    .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>
@@ -41,7 +52,8 @@
       <div id="s03-k4" class="clip beat" data-start="s03-k3" data-duration="3.13" data-track-index="2">
         <h1 id="s03-k4-t" class="kt" style="font-size:140px">The <span class="key">practitioner</span> takes over.</h1>
       </div>
-      <div id="s03-k5" class="clip beat" data-start="s03-k4" data-duration="1.96" data-track-index="2">
+      <div id="s03-k5" class="clip beat beat-vis" data-start="s03-k4" data-duration="1.96" data-track-index="2">
+        <svg id="s03-k5-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="dot" cx="100" cy="150" r="36"/><circle class="f fill" cx="100" cy="150" r="22"/><circle class="dot" cx="200" cy="150" r="36"/><circle class="f fill" cx="200" cy="150" r="22"/><circle class="dot" cx="300" cy="150" r="36"/><circle class="f fill" cx="300" cy="150" r="22"/><path class="d dim" pathLength="1" d="M80 225 H320"/><path class="d dim" pathLength="1" d="M295 210 L320 225 L295 240"/></svg>
         <h1 id="s03-k5-t" class="kt" style="font-size:140px">Pays creditors, <span class="key">in order</span>.</h1>
       </div>
       <div id="s03-k6" class="clip beat" data-start="s03-k5" data-duration="3.52" data-track-index="2">
@@ -74,7 +86,11 @@
     tl.to("#s03-k4-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 10.36);
     tl.fromTo("#s03-k5-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 10.66);
     tl.fromTo("#s03-k5-t", { scale: 1 }, { scale: 1.03, duration: 1.96, ease: "none" }, 10.66);
+    tl.fromTo("#s03-k5-v .dot", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0.1 }, 10.71);
+    tl.fromTo("#s03-k5-v .fill", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0.25 }, 11.11);
+    tl.fromTo("#s03-k5-v .dim", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 11.06);
     tl.to("#s03-k5-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 12.32);
+    tl.to("#s03-k5-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 12.32);
     tl.fromTo("#s03-k6-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 12.62);
     tl.fromTo("#s03-k6-t", { scale: 1 }, { scale: 1.03, duration: 3.52, ease: "none" }, 12.62);
     tl.to("#s03-k6-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 15.84);

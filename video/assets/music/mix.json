@@ -1,0 +1,121 @@
+{
+  "file": "bed-mix.mp3",
+  "from": "bed-raw.mp3",
+  "rawSecondsUsed": 237.3,
+  "filmSeconds": 244,
+  "tempo": 0.97254,
+  "levelsDb": {
+    "base": -7,
+    "hook": -6,
+    "swell": 2,
+    "subscribe": -4,
+    "ending": 4
+  },
+  "trimDb": -15,
+  "rampSeconds": 0.6,
+  "ducking": "sidechaincompress keyed on the voiceover: heavy (threshold 0.02, ratio 10) everywhere; light (threshold 0.06, ratio 2.5) crossfaded in for the hook, the Subscribe ending and the final tail so the swell is heard under the voice",
+  "windows": [
+    {
+      "from": 0,
+      "to": 14,
+      "level": -6,
+      "light": true,
+      "why": "hook"
+    },
+    {
+      "from": 12.15,
+      "to": 14.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s01-hook"
+    },
+    {
+      "from": 35.05,
+      "to": 37.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s02-intro"
+    },
+    {
+      "from": 54.85,
+      "to": 57.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s03-goal"
+    },
+    {
+      "from": 94.85,
+      "to": 97.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s04-five-things"
+    },
+    {
+      "from": 121.85,
+      "to": 124.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s05-cost-timeline"
+    },
+    {
+      "from": 151.25,
+      "to": 153.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s06-exceptions"
+    },
+    {
+      "from": 176.45,
+      "to": 177.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s07-emails"
+    },
+    {
+      "from": 201.85,
+      "to": 202.25,
+      "level": 2,
+      "light": false,
+      "why": "gap after s08-tracking"
+    },
+    {
+      "from": 219.21,
+      "to": 224.15,
+      "level": -4,
+      "light": true,
+      "why": "Subscribe for Part 2 (under the voice)"
+    },
+    {
+      "from": 224.15,
+      "to": 225.25,
+      "level": 4,
+      "light": false,
+      "why": "Subscribe for Part 2 ending (swell)"
+    },
+    {
+      "from": 242.45,
+      "to": 244,
+      "level": 4,
+      "light": true,
+      "why": "final tail"
+    }
+  ],
+  "measured": {
+    "voiceMeanDb": -28.2,
+    "musicUnderVoiceMeanDb": -44.7,
+    "voiceAboveMusicDb": 16.5,
+    "musicInGapsMeanDb": -29.2,
+    "swellsUnderVoice": [
+      {
+        "why": "hook",
+        "music": -35.3,
+        "voice": -27.5
+      },
+      {
+        "why": "Subscribe for Part 2 (under the voice)",
+        "music": -35.5,
+        "voice": -28.2
+      }
+    ]
+  }
+}

@@ -45,6 +45,8 @@ node scripts/build-gaps-page.mjs      # gaps.html from the kanban "Needs your in
 node scripts/build-changes-page.mjs   # changes.html: latest release, script diffs, commits (run after the bump, before the commit)
 scripts/gen-backgrounds.sh            # fal.ai background images (needs FAL_KEY in .env)
 scripts/gen-voiceover.sh [voice]      # fal.ai draft voiceover, writes voSeconds into scenes.json
+scripts/gen-music.sh                  # fal.ai ACE-Step music bed (Apache-2.0) -> video/assets/music/bed-raw.mp3 + source.json; skips if it exists
+node scripts/mix-music.mjs            # duck the bed under the voiceover, swells in gaps/hook/Subscribe -> bed-mix.mp3 + mix.json (rerun after any voice or timing change)
 node scripts/version.mjs bump minor|patch|major "what changed" [page ...] [--clear-notes=page,page]
 cd video && npm run check && npx hyperframes snapshot --at 1,3,5 && npm run render
 ```
@@ -89,7 +91,7 @@ Pages with their own feedback UI set `<body data-feedback="custom">`.
 
 ## Keynote style (from Draft v11)
 
-`script/scenes.json` has `"style": "keynote"`. Each scene's `keynote` array is the screen: one beat per idea, `{ "at": "<words in the voiceover>", "text": "...", "key": "<accent word>" }`, or `{ "at", "image": "<assets/bg name>", "text", "key" }` for a full-bleed image with one short caption. The first beat has no `at`. Rules: at most 6 words, no lists, one accent word, no boxes, borders, shadows or icons. Text you take off the screen goes to the voiceover, the per-scene HTML comment and `video/notes.md` (both generated). `build-video.mjs` warns when a beat is under its reading floor (0.68 s + 0.225 s a word): merge or drop it. Run `audit-keynote.mjs` before a release; it must report 0 flagged moments.
+`script/scenes.json` has `"style": "keynote"`. Each scene's `keynote` array is the screen: one beat per idea, `{ "at": "<words in the voiceover>", "text": "...", "key": "<accent word>" }`, or `{ "at", "image": "<assets/bg name>", "text", "key" }` for a full-bleed image with one short caption. The first beat has no `at`. Rules: at most 6 words, no lists, one accent word, no boxes, borders, shadows or icons. Text you take off the screen goes to the voiceover, the per-scene HTML comment and `video/notes.md` (both generated). `build-video.mjs` warns when a beat is under its reading floor (0.68 s + 0.225 s a word): merge or drop it. Run `audit-keynote.mjs` before a release; it must report 0 flagged moments. A beat may add `"visual": "<name>"`: a drawn SVG above the line from `knVisual()` in `build-video.mjs` (no logos, no screenshots, no text inside the drawing). Music: `video/assets/music/` holds the source, `LICENSE.md` and `mix.json`; `build-video.mjs` mounts `bed-mix.mp3` as `<audio id="music">`. Part 1 uses no real footage (owner decision, spec rule set aside).
 
 ## Reuse
 

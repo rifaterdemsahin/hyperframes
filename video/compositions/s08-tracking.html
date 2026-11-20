@@ -17,6 +17,17 @@
     .kimg-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,0) 45%); }
     .beat-img { align-items: flex-end; }
     .kcap { position: relative; margin-bottom: 120px; font-size: 96px; }
+    .beat-vis { flex-direction: column; gap: 56px; }
+    .kvis { width: 480px; height: 360px; overflow: visible; fill: none; stroke: var(--kn-ink); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .kvis .d { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .kvis .a { stroke: var(--kn-accent); }
+    .kvis .dim, .kvis .tick { stroke: rgba(245,245,247,.35); }
+    .kvis .f { fill: var(--kn-accent); stroke: none; }
+    .kvis .sto, .kvis .dot, .kvis .node, .kvis .st, .kvis .end, .kvis .gem { fill: none; stroke: var(--kn-ink); }
+    .kvis .bar, .kvis .book, .kvis .cb:not(.f) { fill: rgba(245,245,247,.88); stroke: none; }
+    .kvis .book.a { fill: var(--kn-accent); }
+    .kvis .env rect, .kvis .env path { fill: none; stroke: var(--kn-ink); stroke-width: 5; }
+    .kvis .env.a rect, .kvis .env.a path { stroke: var(--kn-accent); }
   </style>
 </head>
 <body>
@@ -27,11 +38,13 @@
       <div id="s08-k0" class="clip beat" data-start="0" data-duration="4.4" data-track-index="2">
         <h1 id="s08-k0-t" class="kt" style="font-size:195px">n8n + AI <span class="key">agents</span>.</h1>
       </div>
-      <div id="s08-k1" class="clip beat" data-start="s08-k0" data-duration="2.34" data-track-index="2">
-        <h1 id="s08-k1-t" class="kt" style="font-size:200px">n8n: <span class="key">known</span>.</h1>
+      <div id="s08-k1" class="clip beat beat-vis" data-start="s08-k0" data-duration="2.34" data-track-index="2">
+        <svg id="s08-k1-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="f st" cx="45" cy="150" r="14"/><path class="d a" pathLength="1" d="M45 150 H335"/><path class="d a" pathLength="1" d="M305 120 L340 150 L305 180"/></svg>
+        <h1 id="s08-k1-t" class="kt" style="font-size:150px">n8n: <span class="key">known</span>.</h1>
       </div>
-      <div id="s08-k2" class="clip beat" data-start="s08-k1" data-duration="2.34" data-track-index="2">
-        <h1 id="s08-k2-t" class="kt" style="font-size:200px">AI: <span class="key">unknown</span>.</h1>
+      <div id="s08-k2" class="clip beat beat-vis" data-start="s08-k1" data-duration="2.34" data-track-index="2">
+        <svg id="s08-k2-v" class="kvis" viewBox="0 0 400 300" aria-hidden="true" data-layout-ignore><circle class="st" cx="45" cy="150" r="14"/><path class="d a" pathLength="1" d="M45 150 C120 150 140 70 220 70 S320 45 360 62"/><path class="d a" pathLength="1" d="M45 150 C120 150 170 150 240 160 S320 195 360 188"/><path class="d a" pathLength="1" d="M45 150 C120 150 140 232 220 240 S320 262 352 252"/><circle class="end" cx="360" cy="62" r="9"/><circle class="end" cx="360" cy="188" r="9"/><circle class="end" cx="352" cy="252" r="9"/></svg>
+        <h1 id="s08-k2-t" class="kt" style="font-size:150px">AI: <span class="key">unknown</span>.</h1>
       </div>
       <div id="s08-k3" class="clip beat" data-start="s08-k2" data-duration="1.95" data-track-index="2">
         <h1 id="s08-k3-t" class="kt" style="font-size:173px">Build around <span class="key">both</span>.</h1>
@@ -58,10 +71,17 @@
     tl.to("#s08-k0-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 4.1);
     tl.fromTo("#s08-k1-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 4.4);
     tl.fromTo("#s08-k1-t", { scale: 1 }, { scale: 1.03, duration: 2.34, ease: "none" }, 4.4);
+    tl.fromTo("#s08-k1-v .st", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 4.45);
+    tl.fromTo("#s08-k1-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.out" }, 4.6);
     tl.to("#s08-k1-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 6.44);
+    tl.to("#s08-k1-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 6.44);
     tl.fromTo("#s08-k2-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 6.74);
     tl.fromTo("#s08-k2-t", { scale: 1 }, { scale: 1.03, duration: 2.34, ease: "none" }, 6.74);
+    tl.fromTo("#s08-k2-v .st", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0 }, 6.79);
+    tl.fromTo("#s08-k2-v .a", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out", stagger: 0.12 }, 6.94);
+    tl.fromTo("#s08-k2-v .end", { scale: 0, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.7)", stagger: 0.08 }, 7.64);
     tl.to("#s08-k2-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 8.78);
+    tl.to("#s08-k2-v", { opacity: 0, duration: 0.25, ease: "power1.in" }, 8.78);
     tl.fromTo("#s08-k3-t", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.08);
     tl.fromTo("#s08-k3-t", { scale: 1 }, { scale: 1.03, duration: 1.95, ease: "none" }, 9.08);
     tl.to("#s08-k3-t", { opacity: 0, duration: 0.25, ease: "power1.in" }, 10.73);

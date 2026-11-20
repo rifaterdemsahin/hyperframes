@@ -23,11 +23,11 @@ details.card summary{cursor:pointer;font-weight:700}details.card[open] summary{m
 </style>
 </head>
 <body>
-<script src="nav.js?v=1.38.0"></script>
-<main data-reviewed-draft="11" data-reviewed-date="2026-11-20">
+<script src="nav.js?v=1.39.0"></script>
+<main data-reviewed-draft="12" data-reviewed-date="2026-11-20">
   <h1>✅ Recommendations</h1>
   <p class="lead">What I would do next, in priority order, from a scan of the whole project: script, spec, pages, server, repo and the rendered drafts. These are suggestions, not requirements. Anything about law or tax is a prompt to check with your practitioner, not advice.</p>
-  <span class="stamp">Reviewed against <b>Draft v11</b> (keynote cut) · 20 Nov 2026 · the tests fail if this page falls more than 2 drafts behind</span>
+  <span class="stamp">Reviewed against <b>Draft v12</b> (keynote cut, music and visuals) · 20 Nov 2026 · the tests fail if this page falls more than 2 drafts behind</span>
 
   <div class="card why">
     <h3>Why this page stopped updating</h3>
@@ -60,17 +60,16 @@ details.card summary{cursor:pointer;font-weight:700}details.card[open] summary{m
     <p>The claims are the same as before, now in shorter form: "Company debt stays the company's", "No creditor goes first", "Or it goes to the Crown", "Personal liability remains". The description makes them too. Keep the disclaimer (it is on screen in the outro).</p></div>
   <div class="card"><h3><span class="tag hi">HIGH</span>Watch Draft v11 once with sound</h3>
     <p>Each keynote screen is timed from where its word falls in the voiceover, estimated from word position, not from a transcript. Some screens may land slightly early or late. If you see that, I can time them from a word-level transcript instead; the same transcript gives the SRT.</p></div>
-  <div class="card"><h3><span class="tag hi">HIGH</span>Decide: a pure keynote, or keynote plus real footage</h3>
-    <p>The project rules say "real footage for real things" (the HMRC screen, emails, the n8n canvas). The keynote cut has no footage, and gaps t02, t03, t05 and t06 still wait for those captures. Either drop them (simpler, nothing to blur) or add them as full-bleed beats with one caption, blurred at source.</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Final voice and music</h3>
-    <p>Both are open decisions. The film still uses the AI draft voice (Kokoro). A keynote with no on-screen detail leans hard on the voice, so your own recording would help most here. A quiet music bed would help the long text-free stretches.</p></div>
-  <div class="card"><h3><span class="tag mid">MED</span>Decide whether the repo stays public before release</h3>
+  <div class="card"><h3><span class="tag mid">MED</span>Final voice</h3>
+    <p>Still open. The film uses the AI draft voice (Kokoro). With no footage and a music bed, the voice carries the film, so your own recording would help most here. If you record, run <code>scripts/mix-music.mjs</code> again: the ducking keys on the voice clips.</p></div>
+  <div class="card"><h3><span class="tag lo">LOW</span>Listen to the music once</h3>
+    <p>The bed is generated (fal.ai ACE-Step, Apache-2.0) and was checked by level meters and a speech check, not by ear. Under the voice it sits about 17 dB lower; it swells in the gaps, in the hook and on "Subscribe". If you dislike it, delete <code>video/assets/music/bed-raw.mp3</code>, change the seed in <code>scripts/gen-music.sh</code> and run it again.</p></div>  <div class="card"><h3><span class="tag mid">MED</span>Decide whether the repo stays public before release</h3>
     <p>Still open (gap t35). The repo and site show the script, fees and dates. If you make it private, that also takes the old Azure tokens out of public view, but revoking them comes first.</p></div>
 
   <h2>Out of date: fix the records</h2>
   <div class="card"><h3><span class="tag mid">MED</span>Gaps and Kanban still show finished or moot items</h3>
     <ul>
-      <li>Gaps last changed on 18 Nov. These are no longer needed: t22 (Skool link, decided), t32 (n8n logo, no logos in the keynote cut), t33 ("average UK figures", the line now says "the place that I found"), t23 (Scene 9 "AI emailing the parties", no longer in the script). t08 (palette and font) is answered by the keynote cut unless you want something else.</li>
+      <li>These are no longer needed but still in "Needs your input": t22 (Skool link, decided), t32 (n8n logo, no logos in the keynote cut), t33 ("average UK figures", the line now says "the place that I found"), t23 (Scene 9 "AI emailing the parties", no longer in the script). Footage gaps t02, t03, t05, t06 and the look and music gap t08 are closed.</li>
       <li>The Kanban last changed at 17:32 on 20 Nov, before Drafts v10 and v11.</li>
     </ul></div>
   <div class="card"><h3><span class="tag mid">MED</span>The publish description is behind the film</h3>
@@ -118,8 +117,11 @@ details.card summary{cursor:pointer;font-weight:700}details.card[open] summary{m
     <tr><td>Disclaimer + outro</td><td>19 s</td><td>17.2 s</td><td>147</td><td>7</td></tr>
   </table></div>
 
-  <details class="card"><summary>Done since the last update (4)</summary>
+  <details class="card"><summary>Done since the last update (7)</summary>
     <ul>
+      <li><span class="done">Done</span> Pure keynote, no real footage: gaps t02, t03, t05, t06 dropped, spec rule set aside for this film (Draft v12).</li>
+      <li><span class="done">Done</span> Music: cinematic bed, ducked under the voice, source and licence in <code>video/assets/music/</code> (Draft v12).</li>
+      <li><span class="done">Done</span> Visuals on 24 screens that name a real thing (Draft v12).</li>
       <li><span class="done">Done</span> Skool link: Delivery Pilot Community, decided and in the outro.</li>
       <li><span class="done">Done</span> "Average UK figures": the costs line now says it is the provider you found and that prices vary.</li>
       <li><span class="done">Done</span> Official n8n logo: used from Draft v3, then removed in the keynote cut.</li>

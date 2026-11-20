@@ -7,12 +7,12 @@
 .gap{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--warn);border-radius:12px;padding:12px 16px;margin:12px 0}.gap h3{margin:0 0 4px}.gap p{margin:5px 0}.blk{color:var(--mute);font-size:14px}.how{font-size:15px}
 a.go{display:inline-block;background:var(--accent);color:#04222a;font-weight:700;text-decoration:none;border-radius:8px;padding:6px 14px}.st{margin-left:10px;color:var(--warn);font-size:13px;font-weight:700}
 </style></head><body>
-<script src="nav.js?v=1.38.0"></script>
+<script src="nav.js?v=1.39.0"></script>
 <main>
   <div class="crumbs">🔍 3 Review</div>
   <h1>🧩 Gaps</h1>
-  <p class="lead"><b>15 things are waiting on you</b> before this video can be finished and published. None of them has been delivered yet.</p>
-  <div class="pills"><a href="#g-approval">✅ Needs your approval <b>1</b></a><a href="#g-render">🎬 Blocks the final video <b>6</b></a><a href="#g-publish">📣 Blocks publishing <b>3</b></a><a href="#g-safety">🔐 Safety and risk <b>3</b></a><a href="#g-tooling">🛠️ Waiting on your decision (tools) <b>2</b></a></div>
+  <p class="lead"><b>10 things are waiting on you</b> before this video can be finished and published. None of them has been delivered yet.</p>
+  <div class="pills"><a href="#g-approval">✅ Needs your approval <b>1</b></a><a href="#g-render">🎬 Blocks the final video <b>1</b></a><a href="#g-publish">📣 Blocks publishing <b>3</b></a><a href="#g-safety">🔐 Safety and risk <b>3</b></a><a href="#g-tooling">🛠️ Waiting on your decision (tools) <b>2</b></a></div>
   <p class="note">The list is the <a href="kanban.html">kanban</a>'s "Needs your input" column. When you deliver something, tell me and I move it to Done, and it disappears from here. Every card says how to deliver it and links to where it matters.</p>
   <h2 id="g-approval">✅ Needs your approval <small>1</small></h2>
 <div class="gap" id="t01">
@@ -22,48 +22,13 @@ a.go{display:inline-block;background:var(--accent);color:#04222a;font-weight:700
   <p class="how"><b>How to deliver it:</b> Watch it on the Review page, add notes there and paste them into the chat. Or just say &quot;approved&quot;.</p>
   <p><a class="go" href="review.html">Open the Review page &rarr;</a> <span class="st">Not delivered</span></p>
 </div>
-  <h2 id="g-render">🎬 Blocks the final video <small>6</small></h2>
-<div class="gap" id="t02">
-  <h3>⏳ HMRC screen for step 1 (S2), optional</h3>
-  <p>The hook no longer shows figures, so this is only an optional inset for step 1. Blur the UTR and login and hide the balance.</p>
-  <p class="blk"><b>Blocks:</b> Scene 4 (optional inset)</p>
-  <p class="how"><b>How to deliver it:</b> Drop the screenshot into video/assets/ and tell me the file name. Blur the UTR, login and the balance first.</p>
-  <p><a class="go" href="first-draft.html#sc-s04-five-things">See scene 4 &rarr;</a> <span class="st">Not delivered</span></p>
-</div>
-<div class="gap" id="t03">
-  <h3>⏳ Face-cam clip for the intro</h3>
-  <p>About 15 s, Part 1 intro. Say if the face-cam audio is the voiceover or if you record it separately.</p>
-  <p class="blk"><b>Blocks:</b> Scene 2 (intro)</p>
-  <p class="how"><b>How to deliver it:</b> Record about 15 seconds, drop the file in video/assets/ and tell me the file name.</p>
-  <p><a class="go" href="first-draft.html#sc-s02-intro">See scene 2 &rarr;</a> <span class="st">Not delivered</span></p>
-</div>
+  <h2 id="g-render">🎬 Blocks the final video <small>1</small></h2>
 <div class="gap" id="t04">
   <h3>⏳ Voiceover: keep the AI draft or record your own</h3>
   <p>A British male AI draft plays on each storyboard panel, regenerated for the rewritten script. No scene overruns now. Keep it, change the voice, or send your own recording.</p>
   <p class="blk"><b>Blocks:</b> Every scene's timing and captions</p>
   <p class="how"><b>How to deliver it:</b> Tell me to keep the AI voice or change it, or drop your recording in video/assets/vo/ (one file per scene, same names as now) and say so.</p>
   <p><a class="go" href="storyboard/">Hear the current voice &rarr;</a> <span class="st">Not delivered</span></p>
-</div>
-<div class="gap" id="t05">
-  <h3>⏳ n8n canvas recording (S3) and dashboard (S10)</h3>
-  <p>20 s canvas capture, then the dashboard. Any client data blurred.</p>
-  <p class="blk"><b>Blocks:</b> Scene 8 (tracking)</p>
-  <p class="how"><b>How to deliver it:</b> A 20 second n8n canvas capture plus the dashboard. Drop the files in video/assets/ and tell me the names. Blur any client data.</p>
-  <p><a class="go" href="first-draft.html#sc-s08-tracking">See scene 8 &rarr;</a> <span class="st">Not delivered</span></p>
-</div>
-<div class="gap" id="t06">
-  <h3>⏳ Email screenshots (S12), blurred</h3>
-  <p>Chase reminders, the receipt, the liquidation-date email. Names and addresses blurred. I will add a Gmail and Drive over MCP diagram.</p>
-  <p class="blk"><b>Blocks:</b> Scene 7 (emails)</p>
-  <p class="how"><b>How to deliver it:</b> Screenshots of the chasers, the receipt and the liquidation-date email, with names and addresses blurred. Drop them in video/assets/.</p>
-  <p><a class="go" href="first-draft.html#sc-s07-emails">See scene 7 &rarr;</a> <span class="st">Not delivered</span></p>
-</div>
-<div class="gap" id="t08">
-  <h3>⏳ Look and sound: palette, font, music</h3>
-  <p>Any brand colours, a font, a music preference, or say 'your call'.</p>
-  <p class="blk"><b>Blocks:</b> Look and sound</p>
-  <p class="how"><b>How to deliver it:</b> Tell me a palette, a font and a music preference, or say &quot;your call&quot;.</p>
-  <p><a class="go" href="master-spec.html">See the open decisions &rarr;</a> <span class="st">Not delivered</span></p>
 </div>
   <h2 id="g-publish">📣 Blocks publishing <small>3</small></h2>
 <div class="gap" id="t27">

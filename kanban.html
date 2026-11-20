@@ -24,7 +24,7 @@ textarea{min-height:60px;resize:vertical}
 </style>
 </head>
 <body data-feedback="custom">
-<script src="nav.js?v=1.38.0"></script>
+<script src="nav.js?v=1.39.0"></script>
 <header>
   <h1>Video Kanban: Liquidation Part 1</h1>
   <p>Cards tagged <span class="chip you">YOU</span> need something from you. Type instructions in each box. They save in this browser only, so use <b>Copy for Claude</b> and paste the result into the chat.</p>
@@ -41,13 +41,13 @@ const COLS=[["input","Needs your input"],["ready","Ready for Claude"],["doing","
 const TASKS=[
  // Needs your input
  {id:"t01",col:"input",who:"you",title:"Review draft v2 and approve it, or send more notes",desc:"Draft v2 is rendered and waiting for your verdict."},
- {id:"t02",col:"input",who:"you",title:"HMRC screen for step 1 (S2), optional",desc:"The hook no longer shows figures, so this is only an optional inset for step 1. Blur the UTR and login and hide the balance."},
- {id:"t03",col:"input",who:"you",title:"Face-cam clip for the intro",desc:"About 15 s, Part 1 intro. Say if the face-cam audio is the voiceover or if you record it separately."},
+ {id:"t02",col:"done",who:"you",title:"HMRC screen for step 1 (S2), optional",desc:"Dropped (owner, 20 Nov): pure keynote cut, no real footage. Was: HMRC screen inset."},
+ {id:"t03",col:"done",who:"you",title:"Face-cam clip for the intro",desc:"Dropped (owner, 20 Nov): pure keynote cut, no real footage. Was: face-cam intro clip."},
  {id:"t04",col:"input",who:"you",title:"Voiceover: keep the AI draft or record your own",desc:"A British male AI draft plays on each storyboard panel, regenerated for the rewritten script. No scene overruns now. Keep it, change the voice, or send your own recording."},
- {id:"t05",col:"input",who:"you",title:"n8n canvas recording (S3) and dashboard (S10)",desc:"20 s canvas capture, then the dashboard. Any client data blurred."},
- {id:"t06",col:"input",who:"you",title:"Email screenshots (S12), blurred",desc:"Chase reminders, the receipt, the liquidation-date email. Names and addresses blurred. I will add a Gmail and Drive over MCP diagram."},
+ {id:"t05",col:"done",who:"you",title:"n8n canvas recording (S3) and dashboard (S10)",desc:"Dropped (owner, 20 Nov): pure keynote cut, no real footage. Was: n8n canvas and dashboard capture."},
+ {id:"t06",col:"done",who:"you",title:"Email screenshots (S12), blurred",desc:"Dropped (owner, 20 Nov): pure keynote cut, no real footage. Was: blurred email screenshots."},
  {id:"t07",col:"done",who:"you",title:"Confirm the facts on screen",desc:"£1,500 + £2,100, about two months, 4.8 Trustpilot. Verified as average UK figures."},
- {id:"t08",col:"input",who:"you",title:"Look and sound: palette, font, music",desc:"Any brand colours, a font, a music preference, or say 'your call'."},
+ {id:"t08",col:"done",who:"you",title:"Look and sound: palette, font, music",desc:"Decided (owner, 20 Nov): keynote look (Inter on black, one blue accent) and a dramatic cinematic music bed, ducked under the voice."},
  {id:"t22",col:"done",who:"you",title:"Skool community name and link",desc:"Integrated into Scene 10 outro panel with end zoom focus."},
  {id:"t23",col:"input",who:"you",title:"Ask the practitioner about emailing the parties",desc:"The script says AI agents email the right parties. Check what you may send yourself before Part 2 shows it."},
  {id:"t27",col:"input",who:"you",title:"Part 2 link (after it is published)",desc:"Goes in the description and on the end screen."},

@@ -1,5 +1,5 @@
 {
-  "latest": 11,
+  "latest": 12,
   "versions": [
     {
       "n": 1,
@@ -124,6 +124,16 @@
         "Two full-bleed image beats with a short caption: red tape (S03) and the next journey (S08).",
         "Everything dropped from the screen is kept in an HTML comment per scene and in video/notes.md; the voiceover is unchanged.",
         "Keynote audit (scripts/audit-keynote.mjs): v10 had 163 of 163 text moments over the limits; v11 has 0."
+      ]
+    },
+    {
+      "n": 12,
+      "date": "2026-11-20",
+      "label": "Twelfth draft: music and visuals",
+      "changes": [
+        "Music: a dramatic cinematic bed under the whole film (fal.ai ACE-Step, Apache-2.0, instrumental), about 18 dB under the voice and ducked by a sidechain on the voiceover; it swells in the hook, every gap between scenes, the Subscribe ending and the final tail. Source and licence in video/assets/music/.",
+        "Visuals: 24 screens that name a real thing now have a simple drawn, animated visual above the line: IR35, market, creditors in order, HMRC balance, books, practitioner, 4.8 stars, stop, no creditor first, account to zero, the Crown, AI connections, costs, the 2 + 2 month timeline, guardrail, 6 chasers, database, MCP, known vs unknown paths, comments, subscribe bell, link below.",
+        "Pure keynote: no real footage. Gaps t02, t03, t05 and t06 dropped; the spec's real-footage rule no longer applies to this film."
       ]
     }
   ]
